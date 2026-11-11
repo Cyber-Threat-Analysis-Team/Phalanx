@@ -1,0 +1,1213 @@
+{
+ "threat": "TR47",
+ "name": "Malicious code/software/activity: Network exploit",
+ "category": "NAA",
+ "cia": [
+  "A"
+ ],
+ "affected_assets": [
+  "Ground: Satellite Control Centre & Centralised Checkout Systems & TTC Ground (Antenna)",
+  "Space: BUS (CDHS, COM) & Payload (PDHS, PLCOM)",
+  "User: VSAT"
+ ],
+ "description": "Exploitation of misconfigurations and software vulnerabilities to gain unauthorized access to critial systems and networks. Exploitation of the computer network (CNE) in ground control stations as a result of poor configuration could, for example, lead to unauthorized access to and hence compromise of satellite lifecycle assets.",
+ "claims": [],
+ "candidates": [
+  {
+   "technique": "DE-0001",
+   "tactic": "Defense Evasion",
+   "name": "Disable Fault Management",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "DE-0002.01",
+   "tactic": "Defense Evasion",
+   "name": "Inhibit Ground System Functionality",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "DE-0002.02",
+   "tactic": "Defense Evasion",
+   "name": "Jam Link Signal",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "DE-0002.03",
+   "tactic": "Defense Evasion",
+   "name": "Inhibit Spacecraft Functionality",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "DE-0003",
+   "tactic": "Defense Evasion",
+   "name": "On-Board Values Obfuscation",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "DE-0003.03",
+   "tactic": "Defense Evasion",
+   "name": "Command Receiver On/Off Mode",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "DE-0003.04",
+   "tactic": "Defense Evasion",
+   "name": "Command Receivers Received Signal Strength",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "DE-0003.05",
+   "tactic": "Defense Evasion",
+   "name": "Command Receiver Lock Modes",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "DE-0003.06",
+   "tactic": "Defense Evasion",
+   "name": "Telemetry Downlink Modes",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "DE-0003.07",
+   "tactic": "Defense Evasion",
+   "name": "Cryptographic Modes",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "DE-0003.08",
+   "tactic": "Defense Evasion",
+   "name": "Received Commands",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "DE-0003.09",
+   "tactic": "Defense Evasion",
+   "name": "System Clock for Evasion",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "DE-0003.10",
+   "tactic": "Defense Evasion",
+   "name": "GPS Ephemeris",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "DE-0003.11",
+   "tactic": "Defense Evasion",
+   "name": "Watchdog Timer (WDT) for Evasion",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "DE-0004",
+   "tactic": "Defense Evasion",
+   "name": "Masquerading",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "DE-0005",
+   "tactic": "Defense Evasion",
+   "name": "Subvert Protections via Safe-Mode",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "DE-0006",
+   "tactic": "Defense Evasion",
+   "name": "Modify Whitelist",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "DE-0007",
+   "tactic": "Defense Evasion",
+   "name": "Evasion via Rootkit",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "DE-0008",
+   "tactic": "Defense Evasion",
+   "name": "Evasion via Bootkit",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "DE-0009.04",
+   "tactic": "Defense Evasion",
+   "name": "Targeted Deception of Onboard SSA/SDA Sensors",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "DE-0009.05",
+   "tactic": "Defense Evasion",
+   "name": "Corruption or Overload of Ground-Based SDA Systems",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "DE-0010",
+   "tactic": "Defense Evasion",
+   "name": "Overflow Audit Log",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "DE-0011",
+   "tactic": "Defense Evasion",
+   "name": "Credentialed Evasion",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "EX-0001",
+   "tactic": "Execution",
+   "name": "Replay",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "EX-0001.01",
+   "tactic": "Execution",
+   "name": "Command Packets",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "EX-0001.02",
+   "tactic": "Execution",
+   "name": "Bus Traffic Replay",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "EX-0002",
+   "tactic": "Execution",
+   "name": "Position, Navigation, and Timing (PNT) Geofencing",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "EX-0003",
+   "tactic": "Execution",
+   "name": "Modify Authentication Process",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "EX-0004",
+   "tactic": "Execution",
+   "name": "Compromise Boot Memory",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "EX-0005.01",
+   "tactic": "Execution",
+   "name": "Design Flaws",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "EX-0005.02",
+   "tactic": "Execution",
+   "name": "Malicious Use of Hardware Commands",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "EX-0006",
+   "tactic": "Execution",
+   "name": "Disable/Bypass Encryption",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "EX-0009.02",
+   "tactic": "Execution",
+   "name": "Operating System",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "EX-0010",
+   "tactic": "Execution",
+   "name": "Malicious Code",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "EX-0010.01",
+   "tactic": "Execution",
+   "name": "Ransomware",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "EX-0010.02",
+   "tactic": "Execution",
+   "name": "Wiper Malware",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "EX-0010.03",
+   "tactic": "Execution",
+   "name": "Rootkit",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "EX-0010.04",
+   "tactic": "Execution",
+   "name": "Bootkit",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "EX-0011",
+   "tactic": "Execution",
+   "name": "Exploit Reduced Protections During Safe-Mode",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "EX-0012",
+   "tactic": "Execution",
+   "name": "Modify On-Board Values",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "EX-0012.01",
+   "tactic": "Execution",
+   "name": "Registers",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "EX-0012.02",
+   "tactic": "Execution",
+   "name": "Internal Routing Tables",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "EX-0012.04",
+   "tactic": "Execution",
+   "name": "App/Subscriber Tables",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "EX-0012.05",
+   "tactic": "Execution",
+   "name": "Scheduling Algorithm",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "EX-0012.07",
+   "tactic": "Execution",
+   "name": "Propulsion Subsystem",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "EX-0012.08",
+   "tactic": "Execution",
+   "name": "Attitude Determination & Control Subsystem",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "EX-0012.09",
+   "tactic": "Execution",
+   "name": "Electrical Power Subsystem",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "EX-0012.10",
+   "tactic": "Execution",
+   "name": "Command & Data Handling Subsystem",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "EX-0012.11",
+   "tactic": "Execution",
+   "name": "Watchdog Timer (WDT)",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "EX-0012.12",
+   "tactic": "Execution",
+   "name": "System Clock",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "EX-0013",
+   "tactic": "Execution",
+   "name": "Flooding",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "EX-0013.01",
+   "tactic": "Execution",
+   "name": "Valid Commands",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "EX-0013.02",
+   "tactic": "Execution",
+   "name": "Erroneous Input",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "EX-0014",
+   "tactic": "Execution",
+   "name": "Spoofing",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "EX-0014.01",
+   "tactic": "Execution",
+   "name": "Time Spoof",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "EX-0014.02",
+   "tactic": "Execution",
+   "name": "Bus Traffic Spoofing",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "EX-0014.03",
+   "tactic": "Execution",
+   "name": "Sensor Data",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "EX-0014.04",
+   "tactic": "Execution",
+   "name": "Position, Navigation, and Timing (PNT) Spoofing",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "EX-0016",
+   "tactic": "Execution",
+   "name": "Jamming",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "EX-0016.01",
+   "tactic": "Execution",
+   "name": "Uplink Jamming",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "EX-0016.02",
+   "tactic": "Execution",
+   "name": "Downlink Jamming",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "EX-0016.03",
+   "tactic": "Execution",
+   "name": "Position, Navigation, and Timing (PNT) Jamming",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "EX-0017",
+   "tactic": "Execution",
+   "name": "Kinetic Physical Attack",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "EX-0017.02",
+   "tactic": "Execution",
+   "name": "Co-Orbital ASAT",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "EXF-0001",
+   "tactic": "Exfiltration",
+   "name": "Replay",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "EXF-0002",
+   "tactic": "Exfiltration",
+   "name": "Side-Channel Exfiltration",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "EXF-0002.02",
+   "tactic": "Exfiltration",
+   "name": "Electromagnetic Leakage Attacks",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "EXF-0002.03",
+   "tactic": "Exfiltration",
+   "name": "Traffic Analysis Attacks",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "EXF-0002.04",
+   "tactic": "Exfiltration",
+   "name": "Timing Attacks",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "EXF-0003",
+   "tactic": "Exfiltration",
+   "name": "Signal Interception",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "EXF-0003.01",
+   "tactic": "Exfiltration",
+   "name": "Uplink Exfiltration",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "EXF-0003.02",
+   "tactic": "Exfiltration",
+   "name": "Downlink Exfiltration",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "EXF-0004",
+   "tactic": "Exfiltration",
+   "name": "Out-of-Band Communications Link",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "EXF-0006",
+   "tactic": "Exfiltration",
+   "name": "Modify Communications Configuration",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "EXF-0006.01",
+   "tactic": "Exfiltration",
+   "name": "Software Defined Radio",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "EXF-0006.02",
+   "tactic": "Exfiltration",
+   "name": "Transponder",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "EXF-0007",
+   "tactic": "Exfiltration",
+   "name": "Compromised Ground System",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "EXF-0009",
+   "tactic": "Exfiltration",
+   "name": "Compromised Partner Site",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "IA-0001",
+   "tactic": "Initial Access",
+   "name": "Compromise Supply Chain",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0001.01",
+   "tactic": "Initial Access",
+   "name": "Software Dependencies & Development Tools",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0001.02",
+   "tactic": "Initial Access",
+   "name": "Software Supply Chain",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0001.03",
+   "tactic": "Initial Access",
+   "name": "Hardware Supply Chain",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0002",
+   "tactic": "Initial Access",
+   "name": "Compromise Software Defined Radio",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0003",
+   "tactic": "Initial Access",
+   "name": "Crosslink via Compromised Neighbor",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0004",
+   "tactic": "Initial Access",
+   "name": "Secondary/Backup Communication Channel",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0004.01",
+   "tactic": "Initial Access",
+   "name": "Ground Station",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0004.02",
+   "tactic": "Initial Access",
+   "name": "Receiver",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0005",
+   "tactic": "Initial Access",
+   "name": "Rendezvous & Proximity Operations",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0005.01",
+   "tactic": "Initial Access",
+   "name": "Compromise Emanations",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0005.02",
+   "tactic": "Initial Access",
+   "name": "Docked Vehicle / OSAM",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0005.03",
+   "tactic": "Initial Access",
+   "name": "Proximity Grappling",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0006",
+   "tactic": "Initial Access",
+   "name": "Compromise Hosted Payload",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0007",
+   "tactic": "Initial Access",
+   "name": "Compromise Ground System",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0007.01",
+   "tactic": "Initial Access",
+   "name": "Compromise On-Orbit Update",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0007.02",
+   "tactic": "Initial Access",
+   "name": "Malicious Commanding via Valid GS",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0008",
+   "tactic": "Initial Access",
+   "name": "Rogue External Entity",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0008.01",
+   "tactic": "Initial Access",
+   "name": "Rogue Ground Station",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0008.02",
+   "tactic": "Initial Access",
+   "name": "Rogue Spacecraft",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0008.03",
+   "tactic": "Initial Access",
+   "name": "ASAT/Counterspace Weapon",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0009",
+   "tactic": "Initial Access",
+   "name": "Trusted Relationship",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0009.01",
+   "tactic": "Initial Access",
+   "name": "Mission Collaborator (academia, international, etc.)",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0009.02",
+   "tactic": "Initial Access",
+   "name": "Vendor",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0009.03",
+   "tactic": "Initial Access",
+   "name": "User Segment",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0010",
+   "tactic": "Initial Access",
+   "name": "Unauthorized Access During Safe-Mode",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0011",
+   "tactic": "Initial Access",
+   "name": "Auxiliary Device Compromise",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0012",
+   "tactic": "Initial Access",
+   "name": "Assembly, Test, and Launch Operation Compromise",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0013",
+   "tactic": "Initial Access",
+   "name": "Compromise Host Spacecraft",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IMP-0007",
+   "tactic": "Impact",
+   "name": "Native Functionality Abuse",
+   "sources": [
+    "impact"
+   ]
+  },
+  {
+   "technique": "IMP-0008",
+   "tactic": "Impact",
+   "name": "State or Mode Manipulation",
+   "sources": [
+    "impact"
+   ]
+  },
+  {
+   "technique": "IMP-0009",
+   "tactic": "Impact",
+   "name": "Configuration Manipulation",
+   "sources": [
+    "impact"
+   ]
+  },
+  {
+   "technique": "IMP-0010",
+   "tactic": "Impact",
+   "name": "Data Manipulation",
+   "sources": [
+    "impact"
+   ]
+  },
+  {
+   "technique": "IMP-0011",
+   "tactic": "Impact",
+   "name": "Command and Data Flow Manipulation",
+   "sources": [
+    "impact"
+   ]
+  },
+  {
+   "technique": "IMP-0012",
+   "tactic": "Impact",
+   "name": "Software, Firmware, or Programmable Logic Manipulation",
+   "sources": [
+    "impact"
+   ]
+  },
+  {
+   "technique": "IMP-0013",
+   "tactic": "Impact",
+   "name": "Resource Exhaustion or Contention",
+   "sources": [
+    "impact"
+   ]
+  },
+  {
+   "technique": "IMP-0014",
+   "tactic": "Impact",
+   "name": "Timing or Synchronization Manipulation",
+   "sources": [
+    "impact"
+   ]
+  },
+  {
+   "technique": "LM-0001",
+   "tactic": "Lateral Movement",
+   "name": "Hosted Payload",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "LM-0002",
+   "tactic": "Lateral Movement",
+   "name": "Exploit Lack of Bus Segregation",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "LM-0003",
+   "tactic": "Lateral Movement",
+   "name": "Constellation Hopping via Crosslink",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ]
+  },
+  {
+   "technique": "LM-0006.01",
+   "tactic": "Lateral Movement",
+   "name": "Rideshare Payload",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "PER-0001",
+   "tactic": "Persistence",
+   "name": "Memory Compromise",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "PER-0002",
+   "tactic": "Persistence",
+   "name": "Backdoor",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "PER-0002.01",
+   "tactic": "Persistence",
+   "name": "Hardware Backdoor",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "PER-0003",
+   "tactic": "Persistence",
+   "name": "Ground System Presence",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "PER-0004",
+   "tactic": "Persistence",
+   "name": "Replace Cryptographic Keys",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "RD-0001.01",
+   "tactic": "Resource Development",
+   "name": "Ground Station Equipment",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "RD-0001.02",
+   "tactic": "Resource Development",
+   "name": "Commercial Ground Station Services",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "RD-0002",
+   "tactic": "Resource Development",
+   "name": "Compromise Infrastructure",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "RD-0002.01",
+   "tactic": "Resource Development",
+   "name": "Mission-Operated Ground System",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "RD-0003.02",
+   "tactic": "Resource Development",
+   "name": "Cryptographic Keys",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "RD-0004.01",
+   "tactic": "Resource Development",
+   "name": "Identify/Select Delivery Mechanism",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "RD-0004.02",
+   "tactic": "Resource Development",
+   "name": "Upload Exploit/Payload",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "REC-0001",
+   "tactic": "Reconnaissance",
+   "name": "Gather Spacecraft Design Information",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "REC-0001.03",
+   "tactic": "Reconnaissance",
+   "name": "Cryptographic Algorithms",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "REC-0001.04",
+   "tactic": "Reconnaissance",
+   "name": "Data Bus",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "REC-0001.06",
+   "tactic": "Reconnaissance",
+   "name": "Maneuver & Control",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "REC-0001.07",
+   "tactic": "Reconnaissance",
+   "name": "Payload",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "REC-0001.09",
+   "tactic": "Reconnaissance",
+   "name": "Fault Management",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "REC-0003",
+   "tactic": "Reconnaissance",
+   "name": "Gather Spacecraft Communications Information",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "REC-0003.02",
+   "tactic": "Reconnaissance",
+   "name": "Commanding Details",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "REC-0003.03",
+   "tactic": "Reconnaissance",
+   "name": "Mission-Specific Channel Scanning",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "REC-0003.04",
+   "tactic": "Reconnaissance",
+   "name": "Valid Credentials",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "REC-0004.01",
+   "tactic": "Reconnaissance",
+   "name": "Flight Termination",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "REC-0005",
+   "tactic": "Reconnaissance",
+   "name": "Eavesdropping",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "REC-0005.01",
+   "tactic": "Reconnaissance",
+   "name": "Uplink Intercept Eavesdropping",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "REC-0005.02",
+   "tactic": "Reconnaissance",
+   "name": "Downlink Intercept",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "REC-0007",
+   "tactic": "Reconnaissance",
+   "name": "Monitor for Safe-Mode Indicators",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "REC-0008.03",
+   "tactic": "Reconnaissance",
+   "name": "Known Vulnerabilities",
+   "sources": [
+    "crosswalk"
+   ]
+  }
+ ]
+}

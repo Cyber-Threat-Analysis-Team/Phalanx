@@ -1,0 +1,924 @@
+{
+ "threat": "TR45",
+ "status": "proposed",
+ "author": "assistant sub-agent V3G4 (v3 re-map); fix pass Fix2",
+ "date": "2026-10-27",
+ "vectors": [
+  {
+   "vector": "rf_link",
+   "basis": "weak",
+   "enisa_quote": "Exploitation of weak communications protocols",
+   "credential": "mission_valid",
+   "credential_quote": "malicious use of compromised master keys or any encryption key",
+   "reason": "A communications protocol is exploited on a radio link, but ENISA names no link; the TT&C link is the one the mission itself runs. The key clause is modelled as a second scenario in which the attacker holds mission keys."
+  }
+ ],
+ "rows": [
+  {
+   "technique": "IA-0008",
+   "code": "K-ENABLE",
+   "role": "entry",
+   "reason": "An outside party on the link is what exploits a weak protocol; ENISA implies a listener or transmitter but names no origin.",
+   "sparta_quote": "radiating or exchanging traffic using mission-compatible waveforms, framing, or crosslink protocols",
+   "enables": "EXF-0003",
+   "vectors": [
+    "rf_link"
+   ],
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0008.01",
+   "code": "K-ENABLE",
+   "role": "entry",
+   "reason": "A rogue ground station is the outsider that receives and transmits on the link.",
+   "sparta_quote": "to transmit and receive mission-compatible signals",
+   "enables": "EXF-0003",
+   "vectors": [
+    "rf_link"
+   ],
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0004",
+   "code": "D-UNDESCRIBED",
+   "reason": "ENISA names no backup channel.",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0004.02",
+   "code": "D-UNDESCRIBED",
+   "reason": "ENISA names no secondary receiver.",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0002",
+   "code": "D-UNDESCRIBED",
+   "reason": "Compromising a software-defined radio is not described; the weakness is in the protocol.",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0010",
+   "code": "D-UNDESCRIBED",
+   "reason": "Safe-mode is not part of ENISA's text.",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0009.03",
+   "code": "D-UNDESCRIBED",
+   "reason": "A terminal as a springboard into mission systems is not described; here the terminal only listens and uses keys.",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0003",
+   "code": "D-UNDESCRIBED",
+   "reason": "ENISA names no neighbouring satellite, though the crosslink would be one more communication.",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0005.01",
+   "code": "D-UNDESCRIBED",
+   "reason": "Reading emanations is a side-channel; ENISA's weakness is missing encryption or a compromised key.",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0008.02",
+   "code": "D-UNDESCRIBED",
+   "reason": "A rogue spacecraft as listener is not described.",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0007.01",
+   "code": "D-UNDESCRIBED",
+   "reason": "Updates are not mentioned.",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0001.02",
+   "code": "D-OTHER",
+   "other_threat": "TR55",
+   "reason": "Delivered software is the supply chain; ENISA's weakness is in the protocol.",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0001",
+   "code": "D-UNDESCRIBED",
+   "reason": "Inserting code in the supply chain is not described; the weakness is missing encryption or a compromised key.",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0001.01",
+   "code": "D-UNDESCRIBED",
+   "reason": "Poisoned dependencies are not described.",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0001.03",
+   "code": "D-UNDESCRIBED",
+   "reason": "Tainted hardware is not described.",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0004.01",
+   "code": "D-UNDESCRIBED",
+   "reason": "A backup ground station is not named.",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0007",
+   "code": "D-UNDESCRIBED",
+   "reason": "ENISA's key compromise and weak protocols do not describe compromise of a ground system; the Crypto Unit Ground only appears as an affected asset.",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0007.02",
+   "code": "D-UNDESCRIBED",
+   "reason": "Commanding through a valid ground station uses mission authority; ENISA's use of keys is to read communication.",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0009.02",
+   "code": "D-UNDESCRIBED",
+   "reason": "Vendor remote access is not mentioned.",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0011",
+   "code": "D-UNDESCRIBED",
+   "reason": "Auxiliary devices are not mentioned.",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0012",
+   "code": "D-UNDESCRIBED",
+   "reason": "ATLO compromise is not mentioned.",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EX-0006",
+   "code": "K-ACTION",
+   "role": "execution",
+   "reason": "Read as a downgrade of the weak protocol: forcing null ciphers or fallbacks, or using a key to ask for unencrypted service. ENISA does not say this step is required (interception works without it where encryption is absent), so it is not made a precondition of EXF-0003.",
+   "sparta_quote": "downgrading negotiated suites or keys",
+   "enisa_quote": "Exploitation of weak communications protocols, commonly due to a lack of encryption",
+   "sources": [
+    "crosswalk",
+    "sv:SV-AC-3"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "DE-0011",
+   "code": "K-ACTION",
+   "role": "execution",
+   "reason": "Malicious use of a compromised key is use of valid credentials. ENISA does not claim concealment; no SPARTA technique describes plain key use better.",
+   "sparta_quote": "leverage valid credentials to conduct unauthorized actions against a spacecraft",
+   "enisa_quote": "malicious use of compromised master keys or any encryption key",
+   "vectors": [
+    "rf_link"
+   ],
+   "role_reason": "ENISA describes the use of the key as the attack, not hiding it; the SPARTA tactic is Defense Evasion, but only the credentialed-use wording fits.",
+   "sources": [
+    "sv:SV-AC-3"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EXF-0003",
+   "code": "K-EFFECT",
+   "role": "exfiltration",
+   "reason": "Capturing traffic on the link is the access to communication ENISA states as the result.",
+   "sparta_quote": "captures mission traffic in transit, on ground networks or over the space link",
+   "enisa_quote": "gaining access to any communication/information in the satellite lifecycle",
+   "sources": [
+    "crosswalk",
+    "sv:SV-AC-7"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EXF-0003.01",
+   "code": "K-EFFECT",
+   "role": "exfiltration",
+   "reason": "Command traffic on the uplink is readable when confidentiality is weak or absent, which is ENISA's stated cause.",
+   "sparta_quote": "If confidentiality is weak or absent, opcode/argument content, dictionaries, and procedures become directly readable",
+   "enisa_quote": "commonly due to a lack of encryption",
+   "sources": [
+    "crosswalk",
+    "sv:SV-AC-7"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EXF-0003.02",
+   "code": "K-EFFECT",
+   "role": "exfiltration",
+   "reason": "Downlink traffic is read the same way; ENISA says any communication in the lifecycle.",
+   "sparta_quote": "where protection exists only on uplink or is inconsistently applied, downlink content may still be in clear",
+   "enisa_quote": "any communication/information in the satellite lifecycle",
+   "sources": [
+    "crosswalk",
+    "sv:SV-AC-7"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EXF-0001",
+   "code": "D-UNDESCRIBED",
+   "reason": "Replaying captured traffic is a use of what is intercepted; ENISA states access to the communication as the result.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EXF-0002",
+   "code": "D-UNDESCRIBED",
+   "reason": "Side-channel leakage is not weak protocol or key use.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EXF-0002.01",
+   "code": "D-UNDESCRIBED",
+   "reason": "Power analysis of the crypto unit is not described.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EXF-0002.02",
+   "code": "D-UNDESCRIBED",
+   "reason": "Electromagnetic leakage is not described.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EXF-0002.03",
+   "code": "D-UNDESCRIBED",
+   "reason": "Traffic analysis reads metadata of encrypted traffic; ENISA's cause is missing encryption.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EXF-0002.04",
+   "code": "D-UNDESCRIBED",
+   "reason": "Timing attacks on crypto routines are not what ENISA names.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EXF-0004",
+   "code": "D-UNDESCRIBED",
+   "reason": "An out-of-band channel for exfiltrating data is not mentioned.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EXF-0005",
+   "code": "D-UNDESCRIBED",
+   "reason": "Intercepting from a proximity platform is not named; the interception is on the link.",
+   "sources": [
+    "crosswalk",
+    "sv:SV-AC-7"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EXF-0007",
+   "code": "D-OTHER",
+   "other_threat": "TR38",
+   "reason": "Siphoning data from compromised ground systems is exfiltration by a ground intruder; ENISA's access comes from the protocol weakness or key.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EX-0001",
+   "code": "D-UNDESCRIBED",
+   "reason": "Replay of captured commands is not what ENISA states; it states gaining access.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EX-0001.01",
+   "code": "D-UNDESCRIBED",
+   "reason": "Command-packet replay is not described.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EX-0001.02",
+   "code": "D-UNDESCRIBED",
+   "reason": "Bus traffic replay is not described.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EX-0003",
+   "code": "D-UNDESCRIBED",
+   "reason": "Altering the authentication process is not described; the keys are used as they are.",
+   "sources": [
+    "sv:SV-AC-3"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EX-0005.01",
+   "code": "D-UNDESCRIBED",
+   "reason": "Hardware design flaws are not mentioned; the weakness is the protocol.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EX-0008",
+   "code": "D-UNDESCRIBED",
+   "reason": "Time-triggered logic is not mentioned.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EX-0009",
+   "code": "D-UNDESCRIBED",
+   "reason": "Code defects are not what ENISA describes; it names weak protocols and keys.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EX-0009.02",
+   "code": "D-UNDESCRIBED",
+   "reason": "OS flaws are not described.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EX-0009.03",
+   "code": "D-UNDESCRIBED",
+   "reason": "Known defects in libraries are not the weakness named; it is missing encryption.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EX-0011",
+   "code": "D-UNDESCRIBED",
+   "reason": "Reduced protection in safe-mode is not part of the text.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EX-0014",
+   "code": "D-UNDESCRIBED",
+   "reason": "Forged inputs are not described.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EX-0014.02",
+   "code": "D-UNDESCRIBED",
+   "reason": "Forged bus messages are not described.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EX-0015",
+   "code": "D-UNDESCRIBED",
+   "reason": "Side-channel attacks are not described.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "DE-0003.07",
+   "code": "D-UNDESCRIBED",
+   "reason": "Hiding the cryptographic mode indicator is concealment; ENISA names none.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "DE-0004",
+   "code": "D-UNDESCRIBED",
+   "reason": "Masquerading is not described.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "DE-0005",
+   "code": "D-UNDESCRIBED",
+   "reason": "Subverting safe-mode protections is not described.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "LM-0007",
+   "code": "D-OTHER",
+   "other_threat": "TR37",
+   "reason": "Moving across boundaries with legitimate credentials is abuse of rights; ENISA's use of the key is to read communication.",
+   "sources": [
+    "sv:SV-AC-3"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "LM-0003",
+   "code": "D-UNDESCRIBED",
+   "reason": "Crosslink hopping is not described.",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "PER-0001",
+   "code": "D-UNDESCRIBED",
+   "reason": "Persistence in memory is not described.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "PER-0004",
+   "code": "D-OTHER",
+   "other_threat": "TR52",
+   "reason": "Replacing keys to seize control is taking over the satellite; ENISA's key use is to gain access to communication.",
+   "sources": [
+    "crosswalk",
+    "sv:SV-AC-3"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "PER-0005",
+   "code": "D-OTHER",
+   "other_threat": "TR35",
+   "reason": "Keeping access with stolen credentials is unauthorized access; ENISA's result is reading information.",
+   "sources": [
+    "sv:SV-AC-3"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IMP-0007",
+   "code": "D-UNDESCRIBED",
+   "reason": "ENISA's result is access to information, not use of a function.",
+   "sources": [
+    "impact"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IMP-0008",
+   "code": "D-UNDESCRIBED",
+   "reason": "No mode change is stated.",
+   "sources": [
+    "impact"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IMP-0009",
+   "code": "D-UNDESCRIBED",
+   "reason": "No settings change is stated.",
+   "sources": [
+    "impact"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IMP-0010",
+   "code": "D-UNDESCRIBED",
+   "reason": "No data falsification is stated; confidentiality only (C).",
+   "sources": [
+    "impact"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IMP-0011",
+   "code": "D-UNDESCRIBED",
+   "reason": "No traffic alteration is stated; the traffic is read.",
+   "sources": [
+    "impact"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IMP-0012",
+   "code": "D-UNDESCRIBED",
+   "reason": "No software or firmware replacement is stated.",
+   "sources": [
+    "impact"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IMP-0013",
+   "code": "D-UNDESCRIBED",
+   "reason": "No exhaustion is stated.",
+   "sources": [
+    "impact"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IMP-0014",
+   "code": "D-UNDESCRIBED",
+   "reason": "No timing manipulation is stated.",
+   "sources": [
+    "impact"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "RD-0003.02",
+   "code": "P-PREP",
+   "enables": "DE-0011",
+   "reason": "Cryptographic material such as link-encryption keys is what must be obtained before a compromised key can be used.",
+   "sources": [
+    "crosswalk",
+    "sv:SV-AC-3"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "REC-0003.04",
+   "code": "P-PREP",
+   "enables": "DE-0011",
+   "reason": "Finding valid credentials, including link-encryption keys, precedes use of a compromised key.",
+   "sources": [
+    "crosswalk",
+    "sv:SV-AC-3"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "REC-0001.03",
+   "code": "P-PREP",
+   "enables": "EX-0006",
+   "reason": "Knowing algorithms, modes and uplink/downlink policy differences is what a downgrade needs.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "RD-0001.01",
+   "code": "P-PREP",
+   "enables": "IA-0008.01",
+   "reason": "Building the attacker's own RF ground stack is needed before a rogue station can listen or transmit.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "RD-0001.02",
+   "code": "D-UNDESCRIBED",
+   "reason": "Commercial ground-station services are not mentioned.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "RD-0003",
+   "code": "D-UNDESCRIBED",
+   "reason": "ENISA mentions no acquisition of tools; the key preparation is the child technique.",
+   "sources": [
+    "sv:SV-AC-3"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "RD-0003.01",
+   "code": "D-UNDESCRIBED",
+   "reason": "Exploit packages are not part of this threat.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "REC-0003",
+   "code": "D-UNDESCRIBED",
+   "reason": "Gathering communication details is recon for interception; EXF-0003 already is the interception, and ENISA mentions no recon.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "REC-0003.02",
+   "code": "D-UNDESCRIBED",
+   "reason": "Commanding details are not what ENISA's access to communication needs.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "REC-0005",
+   "code": "D-UNDESCRIBED",
+   "reason": "Eavesdropping as recon duplicates the exfiltration step.",
+   "sources": [
+    "crosswalk",
+    "sv:SV-AC-7"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "REC-0005.01",
+   "code": "D-UNDESCRIBED",
+   "reason": "Uplink intercept as recon duplicates EXF-0003.01.",
+   "sources": [
+    "crosswalk",
+    "sv:SV-AC-7"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "REC-0005.02",
+   "code": "D-UNDESCRIBED",
+   "reason": "Downlink intercept as recon duplicates EXF-0003.02.",
+   "sources": [
+    "crosswalk",
+    "sv:SV-AC-7"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "REC-0005.03",
+   "code": "D-UNDESCRIBED",
+   "reason": "Proximity eavesdropping is not named.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "REC-0005.04",
+   "code": "D-UNDESCRIBED",
+   "reason": "Active scanning of the link is not mentioned.",
+   "sources": [
+    "sv:SV-AC-7"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "REC-0007",
+   "code": "D-UNDESCRIBED",
+   "reason": "Safe-mode indicators are not relevant.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "REC-0008.03",
+   "code": "D-UNDESCRIBED",
+   "reason": "Known vulnerabilities are not the weakness ENISA names.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0005",
+   "code": "D-UNDESCRIBED",
+   "reason": "Proximity operations are not described.",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0005.02",
+   "code": "D-UNDESCRIBED",
+   "reason": "Docking is not described.",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0005.03",
+   "code": "D-UNDESCRIBED",
+   "reason": "Grappling is not described.",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0006",
+   "code": "D-UNDESCRIBED",
+   "reason": "A hosted payload door is not described.",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0009",
+   "code": "D-UNDESCRIBED",
+   "reason": "No trusted partner route is named.",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0009.01",
+   "code": "D-UNDESCRIBED",
+   "reason": "Mission collaborators are not named.",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0008.03",
+   "code": "D-UNDESCRIBED",
+   "reason": "Counterspace weapons are not named.",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0013",
+   "code": "D-UNDESCRIBED",
+   "reason": "Reaching a hosted function from the bus is not described.",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "LM-0001",
+   "code": "D-UNDESCRIBED",
+   "reason": "No hosted-payload pivot is described.",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA"
+  }
+ ],
+ "review_response": [
+  {
+   "finding": "DE-0011 removed in every scenario (rf_link has no credential), so the compromised-keys clause is not modelled; RD-0003.02 and REC-0003.04 orphaned.",
+   "action": "fixed: rf_link now carries credential mission_valid with credential_quote 'malicious use of compromised master keys or any encryption key', so the engine adds a keyed scenario in which DE-0011 is accepted and its preparation rows have a step."
+  },
+  {
+   "finding": "DE-0011 coded as evasion although ENISA says nothing about hiding.",
+   "action": "fixed: role execution with a role_reason (key use is the attack; ENISA claims no concealment). Kept as the best SPARTA wording for use of a valid credential; no entry or execution technique fits better."
+  },
+  {
+   "finding": "EX-0006 turns a passive interception threat into a command to disable encryption.",
+   "action": "kept because ENISA's 'exploitation of weak communications protocols' can be a downgrade (null ciphers, fallbacks, unencrypted service requested with a key), and nine other threats drop to TR45 for it. Changed: it is no longer a precondition of the interception (EXF-0003 stays link-only and independent), so the lack-of-encryption case is still modelled. Open question for the lead: read it as a downgrade or drop it."
+  },
+  {
+   "finding": "Protection toggle does not test this threat (SDLS auth only, not confidentiality).",
+   "action": "kept because the model has no confidentiality control. Coverage note records it: an 'on' result for TR45 means 'authentication does not stop interception', not a test of encryption."
+  },
+  {
+   "finding": "Single vector rf_link for a threat that spans any communication in the lifecycle.",
+   "action": "fixed: added feeder_rf and user_terminal (basis weak, quote 'any communication/information in the satellite lifecycle'). Ground was not added: the key-compromise path is modelled by the credential on rf_link and ENISA names no ground action."
+  },
+  {
+   "finding": "Orphans and D-OTHER targets (PER-0004->TR52, PER-0005->TR35, LM-0007->TR37, EXF-0007->TR38).",
+   "action": "kept; re-checked at the end. EX-0009*/EX-0008 moved from D-OTHER TR48 to D-UNDESCRIBED: ENISA's weak protocol is not a code defect."
+  },
+  {
+   "finding": "M2: feeder_rf and user_terminal weak vectors only produced structural differences",
+   "action": "fixed: both removed; rf_link is the only vector; coverage note says the authentication controls do not stop interception."
+  },
+  {
+   "finding": "m1: EX-0006 kept circularly because other threats drop to TR45",
+   "action": "kept on the ENISA text alone: 'Exploitation of weak communications protocols' read as protocol-level downgrade; drops of other threats are not a reason. Open question for the lead: re-point D-OTHER rows (TR13, TR29, TR33, TR38, TR39, TR44, TR47) to TR28/TR50 if the keep is withdrawn."
+  },
+  {
+   "finding": "m2: DE-0011 leads nowhere",
+   "action": "recorded in coverage_notes."
+  }
+ ],
+ "coverage_notes": [
+  "The SDLS on/off switch tests authentication and anti-replay only; confidentiality is not a modelled control on the TT&C link, so EXF-0003 is accepted in every setting there. This is not a statement that the controls protect confidentiality.",
+  "DE-0011 (use of a compromised key) is modelled as a credential scenario but leads to no outcome beyond the passive capture, which does not depend on the key; the key clause is recorded and adds no result.",
+  "Feeder and user-terminal links are not mapped: ENISA says 'any communication' but names no link, and the model's capture result on them would not depend on the attacker's actions."
+ ]
+}

@@ -1,0 +1,618 @@
+{
+ "threat": "TR35",
+ "status": "proposed",
+ "author": "assistant sub-agent V3G2 (v3 re-map); fix pass Fix1",
+ "date": "2026-10-27",
+ "vectors": [
+  {
+   "vector": "ground",
+   "basis": "weak",
+   "enisa_quote": "gaining and maintaining unauthorized access to a network",
+   "reason": "Weak: 'a network' names no ground or mission network; ground is inferred from the affected assets ('Ground: all assets (including SLE/SDL protocol)'), reached through the web, phishing, intranet or password attacks the text lists. The attacker starts without mission keys and a cracked password gives a mission-valid credential."
+  }
+ ],
+ "rows": [
+  {
+   "technique": "DE-0004",
+   "code": "K-ACTION",
+   "role": "evasion",
+   "enisa_quote": "via masquerading techniques, threat actors presenting themselves as legitimate entities/users can gain unauthorized access",
+   "sparta_quote": "The adversary presents themselves as an authorized origin so activity appears legitimate",
+   "reason": "ENISA names masquerading as a way in, which is what this technique describes.",
+   "sources": [
+    "sv:SV-AC-4"
+   ],
+   "framework": "SPARTA",
+   "ground_side": true,
+   "ground_side_reason": "SPARTA describes this technique against the spacecraft or its C2 systems; this threat applies it to the ground IT identity or account that the credential opens (the ENISA affected assets are ground IT systems), so it needs an attacker on the ground side with an accepted entry, not the satellite bus."
+  },
+  {
+   "technique": "DE-0011",
+   "code": "D-OTHER",
+   "other_threat": "TR37",
+   "reason": "Using valid credentials to avoid detection is the credential misuse of TR37; TR35 describes gaining access, not hiding it.",
+   "sources": [
+    "sv:SV-AC-4"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EX-0001",
+   "code": "D-UNDESCRIBED",
+   "reason": "Replaying telecommands is not described; the access is to a network.",
+   "sources": [
+    "sv:SV-AC-1"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EX-0001.01",
+   "code": "D-UNDESCRIBED",
+   "reason": "Replaying telecommand packets is not described; the access is to a network.",
+   "sources": [
+    "sv:SV-AC-1"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EX-0003",
+   "code": "D-UNDESCRIBED",
+   "reason": "Changing how the spacecraft validates authority is an on-board step; TR35 stops at network access.",
+   "sources": [
+    "sv:SV-AC-4"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EXF-0004",
+   "code": "D-UNDESCRIBED",
+   "reason": "A covert secondary link off the spacecraft is not described; espionage here is from the network foothold.",
+   "sources": [
+    "sv:SV-AC-1"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EXF-0007",
+   "code": "K-EFFECT",
+   "role": "exfiltration",
+   "reason": "Espionage from the network foothold is the stated purpose; in the ground system this is siphoning data.",
+   "sparta_quote": "uses its trusted position to siphon data at scale",
+   "enisa_quote": "pre-position themselves for reconnaissance, espionage",
+   "sources": [
+    "analyst_added"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0001",
+   "code": "D-UNDESCRIBED",
+   "reason": "ENISA names no supplier or build chain; the listed paths are web, phishing, intranet and password attacks.",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0001.01",
+   "code": "D-UNDESCRIBED",
+   "reason": "Dependency and build-tool poisoning is not among the listed paths (web, phishing, intranet, password).",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0001.02",
+   "code": "D-UNDESCRIBED",
+   "reason": "Subverted software delivery is not described; the access is to a network.",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0001.03",
+   "code": "D-UNDESCRIBED",
+   "reason": "Altering hardware before delivery is not described; the access is to a network.",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0002",
+   "code": "D-UNDESCRIBED",
+   "reason": "Compromising a software-defined radio is an RF-equipment attack; ENISA's paths are IT-network attacks.",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0003",
+   "code": "D-UNDESCRIBED",
+   "reason": "No crosslink path in the text.",
+   "sources": [
+    "sv:SV-AC-1",
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0004",
+   "code": "D-UNDESCRIBED",
+   "reason": "Backup spacecraft channels are not described; the access is to a network.",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0004.01",
+   "code": "D-UNDESCRIBED",
+   "reason": "The backup ground segment is not described.",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0004.02",
+   "code": "D-UNDESCRIBED",
+   "reason": "The spacecraft's backup receiver is not part of a network access.",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0005",
+   "code": "D-UNDESCRIBED",
+   "reason": "Rendezvous and proximity operations have no counterpart in a network intrusion.",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0005.01",
+   "code": "D-UNDESCRIBED",
+   "reason": "Compromise emanations are measured from close range; ENISA's paths are remote network attacks.",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0005.02",
+   "code": "D-UNDESCRIBED",
+   "reason": "Docked-vehicle access has no counterpart in the text.",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0005.03",
+   "code": "D-UNDESCRIBED",
+   "reason": "Grappling a satellite is an on-orbit physical act; the text describes none.",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0006",
+   "code": "D-UNDESCRIBED",
+   "reason": "A hosted payload is not mentioned; the access is to a ground network.",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0007",
+   "code": "K-ACTION",
+   "role": "entry",
+   "vectors": [
+    "ground"
+   ],
+   "enisa_quote": "gaining and maintaining unauthorized access to a network",
+   "sparta_quote": "Compromising the ground segment gives an adversary the most direct path to first execution",
+   "reason": "Unauthorized access to the ground network is the threat itself.",
+   "sources": [
+    "sv:SV-AC-1",
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0007.01",
+   "code": "D-UNDESCRIBED",
+   "reason": "Poisoning the on-orbit update pipeline is a later attack the text only hints at as 'subsequent attacks'.",
+   "sources": [
+    "sv:SV-AC-1",
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0007.02",
+   "code": "D-OTHER",
+   "other_threat": "TR52",
+   "reason": "Transmitting commands through a valid ground station is the control-seizure step; TR35 stops at network access and pre-positioning.",
+   "sources": [
+    "sv:SV-AC-1",
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0008",
+   "code": "D-UNDESCRIBED",
+   "reason": "An outside RF transmitter is not described; the access is to a ground network.",
+   "sources": [
+    "sv:SV-AC-1",
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0008.01",
+   "code": "D-UNDESCRIBED",
+   "reason": "A rogue ground station is an outside RF origin; the text names web, phishing, intranet and password attacks.",
+   "sources": [
+    "sv:SV-AC-1",
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0008.02",
+   "code": "D-UNDESCRIBED",
+   "reason": "A rogue spacecraft has no counterpart; the text names network-side attack paths.",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0008.03",
+   "code": "D-UNDESCRIBED",
+   "reason": "A counterspace weapon is not mentioned; the text names network-side attack paths.",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0009",
+   "code": "D-UNDESCRIBED",
+   "reason": "Partner connections are not named; the listed paths are web, phishing, intranet and password attacks.",
+   "sources": [
+    "sv:SV-AC-4",
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0009.01",
+   "code": "D-UNDESCRIBED",
+   "reason": "A compromised collaborator is not named.",
+   "sources": [
+    "sv:SV-AC-4",
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0009.02",
+   "code": "D-OTHER",
+   "other_threat": "TR55",
+   "reason": "Entering through a vendor's access route is supply chain compromise; TR35 names no vendor.",
+   "sources": [
+    "sv:SV-AC-4",
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0009.03",
+   "code": "D-UNDESCRIBED",
+   "reason": "A compromised user segment is not named.",
+   "sources": [
+    "sv:SV-AC-4",
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0010",
+   "code": "D-UNDESCRIBED",
+   "reason": "Timing access to safe-mode is not described; the entry is a network.",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0011",
+   "code": "D-UNDESCRIBED",
+   "reason": "'Attacks on air gapped solutions' may use removable media, but ENISA names no media; SPARTA's technique is devices ingested by the spacecraft or its support equipment during I&T or on orbit, not the bridging of a ground intranet, which IA-0007 already covers.",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0012",
+   "code": "D-UNDESCRIBED",
+   "reason": "ATLO compromise through test laptops and lab networks is not described; the network is the ground network reached by web, phishing, intranet or password attacks.",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0013",
+   "code": "D-UNDESCRIBED",
+   "reason": "Reaching a hosted RAN function from the host bus has no counterpart in the text.",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IMP-0007",
+   "code": "D-UNDESCRIBED",
+   "reason": "TR35 states no impact beyond pre-positioning, reconnaissance and espionage.",
+   "sources": [
+    "impact"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IMP-0008",
+   "code": "D-UNDESCRIBED",
+   "reason": "TR35 states no change of spacecraft state or mode.",
+   "sources": [
+    "impact"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IMP-0009",
+   "code": "D-OTHER",
+   "other_threat": "TR57",
+   "reason": "Altering settings is the parameter modification of TR57; TR35 states no change.",
+   "sources": [
+    "impact"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IMP-0010",
+   "code": "D-OTHER",
+   "other_threat": "TR39",
+   "reason": "Changing data is data modification; TR35 states no change.",
+   "sources": [
+    "impact"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IMP-0011",
+   "code": "D-OTHER",
+   "other_threat": "TR32",
+   "reason": "Altering command or data flows is traffic manipulation; TR35 states none.",
+   "sources": [
+    "impact"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IMP-0012",
+   "code": "D-OTHER",
+   "other_threat": "TR42",
+   "reason": "Replacing software or firmware is firmware corruption; TR35 states none.",
+   "sources": [
+    "impact"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IMP-0013",
+   "code": "D-OTHER",
+   "other_threat": "TR51",
+   "reason": "Exhausting resources is resource exhaustion; TR35 states none.",
+   "sources": [
+    "impact"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IMP-0014",
+   "code": "D-UNDESCRIBED",
+   "reason": "TR35 states no change of clocks or synchronisation.",
+   "sources": [
+    "impact"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "LM-0001",
+   "code": "D-UNDESCRIBED",
+   "reason": "Pivoting through a hosted payload has no counterpart in the text.",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "LM-0003",
+   "code": "D-UNDESCRIBED",
+   "reason": "Hopping across crosslinks is not described.",
+   "sources": [
+    "sv:SV-AC-1",
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "LM-0004",
+   "code": "D-UNDESCRIBED",
+   "reason": "Visiting-vehicle interfaces are not described.",
+   "sources": [
+    "sv:SV-AC-1"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "LM-0006",
+   "code": "D-UNDESCRIBED",
+   "reason": "The launch vehicle interface is not described.",
+   "sources": [
+    "sv:SV-AC-1"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "LM-0006.01",
+   "code": "D-UNDESCRIBED",
+   "reason": "Rideshare payloads are not described.",
+   "sources": [
+    "sv:SV-AC-1"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "LM-0007",
+   "code": "D-OTHER",
+   "other_threat": "TR37",
+   "reason": "Reusing credentials to cross boundaries is the misuse of rights in TR37; TR35 describes entering and staying in the network.",
+   "sources": [
+    "sv:SV-AC-4"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "PER-0003",
+   "code": "K-ACTION",
+   "role": "persistence",
+   "reason": "ENISA says the access is maintained and used to pre-position; residing in ground infrastructure is that persistence.",
+   "sparta_quote": "maintains long-lived access by residing within mission ground infrastructure",
+   "enisa_quote": "gaining and maintaining unauthorized access to a network",
+   "sources": [
+    "analyst_added"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "PER-0004",
+   "code": "D-OTHER",
+   "other_threat": "TR52",
+   "reason": "Replacing spacecraft keys cements control of the vehicle; TR35 describes network access only.",
+   "sources": [
+    "sv:SV-AC-1"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "PER-0005",
+   "code": "K-ACTION",
+   "role": "persistence",
+   "reason": "Brute-force cracked or phished passwords are valid credentials that keep the access ENISA says is maintained; the technique needs a mission-valid credential, which only the cracked-password scenario has.",
+   "sparta_quote": "acquire or leverage valid credentials to maintain persistent access",
+   "enisa_quote": "gaining and maintaining unauthorized access to a network",
+   "framework": "SPARTA",
+   "sources": [
+    "sv:SV-AC-4"
+   ],
+   "ground_side": true,
+   "ground_side_reason": "SPARTA describes this technique against the spacecraft or its C2 systems; this threat applies it to the ground IT identity or account that the credential opens (the ENISA affected assets are ground IT systems), so it needs an attacker on the ground side with an accepted entry, not the satellite bus."
+  },
+  {
+   "technique": "RD-0002",
+   "code": "P-PREP",
+   "enables": "IA-0007",
+   "reason": "Compromising existing infrastructure by phishing or exposed services is how the web and phishing paths ENISA lists produce the foothold.",
+   "sources": [
+    "sv:SV-AC-1"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "RD-0002.01",
+   "code": "P-PREP",
+   "enables": "IA-0007",
+   "reason": "Phishing an operator, pivoting from enterprise IT and exploiting gateway services are the paths ENISA lists (phishing, web attacks, intranet).",
+   "sources": [
+    "sv:SV-AC-1"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "RD-0002.02",
+   "code": "D-UNDESCRIBED",
+   "reason": "A third-party ground system is not named.",
+   "sources": [
+    "sv:SV-AC-1"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "RD-0002.03",
+   "code": "D-UNDESCRIBED",
+   "reason": "A third-party spacecraft is not named.",
+   "sources": [
+    "sv:SV-AC-1"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "REC-0003.04",
+   "code": "P-PREP",
+   "enables": "IA-0007",
+   "reason": "Brute-force password cracking and phishing are acquisition paths for valid credentials, which then give the access.",
+   "sources": [
+    "sv:SV-AC-4"
+   ],
+   "framework": "SPARTA"
+  }
+ ],
+ "review_response": [
+  {
+   "finding": "'attacks on air gapped solutions' named but IA-0011 has no row",
+   "action": "fixed: IA-0011 is coded D-UNDESCRIBED with the reason that ENISA names no removable media and SPARTA's IA-0011 is device ingest by the spacecraft or its support equipment, not a ground intranet bridge"
+  },
+  {
+   "finding": "PER-0003/PER-0005 'enables' IA-0007 points backwards (persistence follows entry)",
+   "action": "fixed: both are now K-ACTION persistence rows with the ENISA quote 'gaining and maintaining unauthorized access to a network' and no enables; IA-0007 stays the K-ACTION entry"
+  },
+  {
+   "finding": "DE-0004 vs DE-0011 split and DE-0004 not distinctive",
+   "action": "kept because TR37 owns credential misuse (DE-0011) and ENISA's masquerade wording ('presenting themselves as legitimate entities/users') is the SPARTA masquerade; TR43/TR37 keep it for different reasons"
+  },
+  {
+   "finding": "EXF-0007 analyst_added, quote 'reconnaissance, espionage'",
+   "action": "kept because reviewer says no change; two analyst_added rows (PER-0003, EXF-0007)"
+  },
+  {
+   "finding": "Ground origin gives mission_valid to an outsider",
+   "action": "fixed in the report note: PER-0005 is kept for the cracked-password case only; with no credential the engine removes it. No credential field is set because ENISA says the credential is obtained during the attack"
+  },
+  {
+   "finding": "Section 0: entries, candidates, flat chain",
+   "action": "fixed: all origin-sourced candidates coded; entry is K-ACTION IA-0007 with persistence and exfiltration rows reachable from any accepted entry"
+  },
+  {
+   "finding": "fix pass M1: PER-0005 and DE-0004 were removed in every scenario (on-board reachability), and the earlier response said PER-0005 survived with a credential",
+   "action": "fixed: both rows carry ground_side true with a reason, so they need a ground-side attacker with an accepted entry; PER-0005 still needs a mission-valid credential (authority), so it appears only in the cracked-password scenario. The earlier statement that it already survived with a credential was wrong at that time."
+  },
+  {
+   "finding": "fix pass M7: ground vector basis 'quote' overstated",
+   "action": "fixed: basis weak; the quote names no network, ground is inferred from the affected assets."
+  }
+ ]
+}

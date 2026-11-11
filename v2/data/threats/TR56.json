@@ -1,0 +1,41 @@
+{
+ "id": "TR56",
+ "source": "ENISA Space Threat Landscape 2025, Annex C Table 17 (via Phalanx/framework/enisa_threats_tuple.csv)",
+ "category": "NAA",
+ "name": "Theft of authentication information",
+ "cia": [
+  "A",
+  "C",
+  "I"
+ ],
+ "affected_asset_selectors": [
+  "Ground: Crypto Hardware/Software & Transport Container (Crypto Unit Board) & Satellite Control Centre (Crypto Unit Ground)",
+  "Space: BUS (Crypto Unit Board)"
+ ],
+ "description": "Threats of physical or logical theft (e.g. via keylogger) with potential impact on assets that are connected to the crypto unit board or the crypto unit ground. Such threats can materialize in different phases of a satellite's lifecycle, including while the satellite is manufactured, being transported to its launch site, or via attacks on the satellite control center once the satellite is in orbit.",
+ "projection": {
+  "candidate_assets": [],
+  "candidate_lifecycle": [
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7
+  ],
+  "lifecycle_rule": "ET-P-LC-01 (legacy tuple L field; Annex C has no lifecycle column)",
+  "derivation_provenance": {
+   "kind": "source_field",
+   "source": "Phalanx/framework/enisa_threats_tuple.csv row TR56",
+   "source_sha256": "c086e9d7221893d69e2ff6d380e3b2024aecc144bac8f034218b6814ef060b52",
+   "field": "L (lifecycle)",
+   "note": "candidate_lifecycle copies the legacy tuple L field {3,4,5,6,7}; ENISA STL 2025 Annex C has no lifecycle column, so the basis is the legacy tuple, not the Annex"
+  },
+  "applicable_boundary_roles": [
+   "command_authority"
+  ]
+ },
+ "claims": [],
+ "crosswalk_key": "Theft of authentication information"
+}

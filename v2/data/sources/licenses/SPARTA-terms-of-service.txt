@@ -1,0 +1,12 @@
+SPARTA Terms of Service (verbatim copy of the LICENSE and DISCLAIMERS sections)
+Source: https://sparta.aerospace.org/terms-of-service (retrieved 2026-11-04; vault note research/notes/terms-of-service.md)
+
+LICENSE
+The Aerospace Corporation hereby grants you a non-exclusive, royalty-free license to use SPARTA for research, development, and commercial purposes. Any copy you make for such purposes is authorized provided that you reproduce Aerospace’s copyright designation and this license in any such copy. 
+DISCLAIMERS
+The Aerospace Corporation does not claim SPARTA enumerates all possibilities for the types of tactics, techniques, procedures (i.e., actions and behaviors) that a threat actor could utilize against a spacecraft. Using the information contained within SPARTA to address or cover full categories of techniques will not guarantee full defensive coverage as there may be undisclosed techniques or variations on existing techniques not documented by SPARTA. If gaps are identified and/or submitted the Aerospace Corporation will update SPARTA accordingly. See Contribute page for more information on how to contribute. Any contribution made to the Aerospace Corporation for including into SPARTA, will be subject to the terms of use identified herein. The Aerospace Corporation reserves the right to reject or include any submission and distribute the information accordingly. 
+ALL DOCUMENTS AND THE INFORMATION CONTAINED THEREIN ARE PROVIDED ON AN "AS IS" BASIS AND THE CONTRIBUTOR, THE ORGANIZATION HE/SHE REPRESENTS OR IS SPONSORED BY (IF ANY), THE AEROSPACE CORPORATION, ITS BOARD OF TRUSTEES, OFFICERS, AGENTS, AND EMPLOYEES, DISCLAIM ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTY THAT THE USE OF THE INFORMATION THEREIN WILL NOT INFRINGE ANY RIGHTS OR ANY IMPLIED WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE. 
+
+SPARTA states that it makes use of MITRE ATT&CK: "This project makes use of the MITRE ATT&CK ®. ©2022 The MITRE Corporation. This work is reproduced and distributed with the permission of The MITRE Corporation." ATT&CK Terms of Use: https://attack.mitre.org/resources/terms-of-use/
+
+SPARTA® is a registered trademark of The Aerospace Corporation.

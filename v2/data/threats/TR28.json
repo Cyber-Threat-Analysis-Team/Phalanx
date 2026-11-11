@@ -1,0 +1,57 @@
+{
+ "id": "TR28",
+ "source": "ENISA Space Threat Landscape 2025, Annex C Table 17 (via Phalanx/framework/enisa_threats_tuple.csv)",
+ "category": "EIH",
+ "name": "Hijacking",
+ "cia": [
+  "A",
+  "I"
+ ],
+ "affected_asset_selectors": [
+  "Ground: Satellite Control Centre & TTC Ground (SLE/SDL protocol)",
+  "Space: BUS (CDHS & COM) & Payload (PDHS & PLCOM)"
+ ],
+ "description": "Malicious alteration or complete replacement of a satellite's legitimate signals with the aim to reuse it for another purpose. Hijacking and unauthorized commands to guidance control are a threat to both ground and space segments, primarily impacting the satellite control center and TTC ground stations, as well as the satellite bus in the space segment. This type of threats can be materialized by compromising the SLE and SDL protocols.",
+ "projection": {
+  "candidate_assets": [
+   "bus_cdhs",
+   "bus_cdhs_f",
+   "bus_com",
+   "ground_moc",
+   "ground_ttc"
+  ],
+  "candidate_lifecycle": [
+   3,
+   4,
+   5,
+   6,
+   7
+  ],
+  "lifecycle_rule": "ET-P-LC-01 (legacy tuple L field; Annex C has no lifecycle column)",
+  "derivation_provenance": {
+   "kind": "source_field",
+   "source": "Phalanx/framework/enisa_threats_tuple.csv row TR28",
+   "source_sha256": "c086e9d7221893d69e2ff6d380e3b2024aecc144bac8f034218b6814ef060b52",
+   "field": "L (lifecycle)",
+   "note": "candidate_lifecycle copies the legacy tuple L field {3,4,5,6,7}; ENISA STL 2025 Annex C has no lifecycle column, so the basis is the legacy tuple, not the Annex"
+  },
+  "applicable_boundary_roles": [
+   "command_authority"
+  ]
+ },
+ "claims": [
+  {
+   "sv": "SV-IT-1",
+   "quote": "Malicious alteration or complete replacement of a satellite's legitimate signals",
+   "basis": "enisa_quote",
+   "rationale": "Replacing/altering legitimate signals is communications spoofing."
+  },
+  {
+   "sv": "SV-MA-7",
+   "quote": "Hijacking and unauthorized commands to guidance control",
+   "basis": "enisa_quote",
+   "rationale": "Unauthorized commands via compromised ground/TTC to the spacecraft."
+  }
+ ],
+ "crosswalk_key": "Hijacking"
+}

@@ -1,0 +1,517 @@
+{
+  "_about": "Pilot rule tables for one TR52 run. Semantics live here, not in the runner (plan v5 §10). Technique profiles are analyst-authored from SPARTA v4.0.1 technique text; every profile not overridden falls back to its tactic default.",
+  "status": "draft (analyst-authored, not frozen)",
+  "authored_by": "assistant (pilot), from SPARTA v4.0.1 technique text",
+  "action_window": "SI-I-WIN-01: the SI covers initial access through effect; Reconnaissance and Resource Development are preparatory and outside the window",
+  "tactic_defaults": {
+    "Reconnaissance": {
+      "kind": "prep"
+    },
+    "Resource Development": {
+      "kind": "prep"
+    },
+    "Initial Access": {
+      "kind": "entry",
+      "access": [],
+      "authority": "none",
+      "target": [
+        "bus_cdhs",
+        "bus_com"
+      ],
+      "effect": "enabling",
+      "lifecycle": [
+        5,
+        6,
+        7
+      ],
+      "traverses": "command_authority"
+    },
+    "Execution": {
+      "kind": "onboard",
+      "target": [
+        "bus_cdhs"
+      ],
+      "effect": [
+        "I",
+        "A"
+      ],
+      "lifecycle": [
+        5,
+        6,
+        7
+      ]
+    },
+    "Persistence": {
+      "kind": "onboard",
+      "target": [
+        "bus_cdhs"
+      ],
+      "effect": "enabling",
+      "lifecycle": [
+        5,
+        6,
+        7
+      ]
+    },
+    "Defense Evasion": {
+      "kind": "onboard",
+      "target": [
+        "bus_cdhs"
+      ],
+      "effect": "enabling",
+      "lifecycle": [
+        5,
+        6,
+        7
+      ]
+    },
+    "Lateral Movement": {
+      "kind": "onboard",
+      "target": [
+        "bus_cdhs"
+      ],
+      "effect": "enabling",
+      "lifecycle": [
+        5,
+        6,
+        7
+      ]
+    },
+    "Exfiltration": {
+      "kind": "onboard",
+      "target": [
+        "bus_cdhs",
+        "bus_com"
+      ],
+      "effect": [
+        "C"
+      ],
+      "lifecycle": [
+        5,
+        6,
+        7
+      ]
+    },
+    "Impact": {
+      "kind": "onboard",
+      "target": [
+        "bus_cdhs"
+      ],
+      "effect": [
+        "A"
+      ],
+      "lifecycle": [
+        5,
+        6,
+        7
+      ]
+    }
+  },
+  "overrides": {
+    "IA-0001.01": {
+      "access": [
+        "supply_chain"
+      ],
+      "lifecycle": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "traverses": "artifact_admission",
+      "target": [
+        "bus_cdhs"
+      ]
+    },
+    "IA-0001.02": {
+      "access": [
+        "supply_chain"
+      ],
+      "lifecycle": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "traverses": "artifact_admission",
+      "target": [
+        "bus_cdhs"
+      ]
+    },
+    "IA-0001.03": {
+      "access": [
+        "supply_chain"
+      ],
+      "lifecycle": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "traverses": "physical_custody",
+      "target": [
+        "bus_cdhs"
+      ]
+    },
+    "IA-0003": {
+      "access": [
+        "compromised_neighbor_satellite"
+      ],
+      "traverses": "crosslink",
+      "target": [
+        "bus_com"
+      ]
+    },
+    "IA-0004.01": {
+      "access": [
+        "compromised_authorized_gs"
+      ],
+      "requires_fact": {
+        "attacker.gs_role": "backup"
+      },
+      "authority": "valid_credential"
+    },
+    "IA-0005.03": {
+      "access": [
+        "proximity_spacecraft"
+      ],
+      "traverses": "proximity",
+      "target": [
+        "bus_structure"
+      ]
+    },
+    "IA-0006": {
+      "access": [
+        "hosted_payload_operator"
+      ],
+      "target": [
+        "payload"
+      ]
+    },
+    "IA-0007": {
+      "kind": "ground",
+      "access": [
+        "compromised_authorized_gs",
+        "malicious_insider"
+      ],
+      "target": [
+        "ground_ttc",
+        "ground_moc"
+      ],
+      "traverses": null
+    },
+    "IA-0007.01": {
+      "access": [
+        "compromised_authorized_gs",
+        "supply_chain"
+      ],
+      "authority": "valid_credential",
+      "traverses": "artifact_admission",
+      "target": [
+        "bus_cdhs"
+      ]
+    },
+    "IA-0007.02": {
+      "access": [
+        "compromised_authorized_gs"
+      ],
+      "authority": "valid_credential",
+      "traverses": "command_authority"
+    },
+    "IA-0008": {
+      "access": [
+        "rogue_ground_station",
+        "rogue_spacecraft",
+        "counterspace"
+      ],
+      "authority": "tc_unauthenticated",
+      "traverses": "command_authority"
+    },
+    "IA-0008.01": {
+      "access": [
+        "rogue_ground_station"
+      ],
+      "authority": "tc_unauthenticated",
+      "traverses": "command_authority"
+    },
+    "IA-0009": {
+      "access": [
+        "mission_partner"
+      ]
+    },
+    "IA-0009.01": {
+      "access": [
+        "mission_partner"
+      ]
+    },
+    "IA-0009.02": {
+      "access": [
+        "supply_chain"
+      ],
+      "lifecycle": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "traverses": "artifact_admission"
+    },
+    "IA-0009.03": {
+      "access": [
+        "user_segment"
+      ],
+      "target": [
+        "user_terminal"
+      ]
+    },
+    "IA-0010": {
+      "access": [
+        "compromised_authorized_gs",
+        "rogue_ground_station"
+      ],
+      "requires_fact": {
+        "platform_state.safe_mode": true
+      }
+    },
+    "IA-0012": {
+      "access": [
+        "supply_chain"
+      ],
+      "lifecycle": [
+        2,
+        3,
+        4
+      ],
+      "traverses": "physical_custody"
+    },
+    "EX-0001": {
+      "kind": "entry",
+      "access": [
+        "rogue_ground_station"
+      ],
+      "authority": "tc_no_antireplay",
+      "traverses": "command_authority",
+      "target": [
+        "bus_cdhs",
+        "bus_com"
+      ],
+      "effect": [
+        "I",
+        "A"
+      ]
+    },
+    "EX-0001.01": {
+      "kind": "entry",
+      "access": [
+        "rogue_ground_station"
+      ],
+      "authority": "tc_no_antireplay",
+      "traverses": "command_authority",
+      "target": [
+        "bus_cdhs",
+        "bus_com"
+      ],
+      "effect": [
+        "I",
+        "A"
+      ]
+    },
+    "EX-0002": {
+      "target": [
+        "pnt_receiver"
+      ]
+    },
+    "EX-0006": {
+      "effect": [
+        "C",
+        "I"
+      ]
+    },
+    "EX-0011": {
+      "requires_fact": {
+        "platform_state.safe_mode": true
+      }
+    },
+    "EX-0012.07": {
+      "target": [
+        "bus_prop"
+      ]
+    },
+    "EX-0012.08": {
+      "target": [
+        "bus_adcs"
+      ]
+    },
+    "EX-0012.09": {
+      "target": [
+        "bus_eps"
+      ]
+    },
+    "EX-0013": {
+      "effect": [
+        "A"
+      ]
+    },
+    "EX-0013.01": {
+      "effect": [
+        "A"
+      ]
+    },
+    "EX-0013.02": {
+      "effect": [
+        "A"
+      ]
+    },
+    "EX-0014": {
+      "target": [
+        "bus_cdhs",
+        "sensor"
+      ]
+    },
+    "EX-0014.01": {
+      "target": [
+        "pnt_receiver"
+      ]
+    },
+    "EX-0014.03": {
+      "target": [
+        "sensor"
+      ]
+    },
+    "EX-0014.04": {
+      "target": [
+        "pnt_receiver"
+      ]
+    },
+    "DE-0002.01": {
+      "kind": "ground",
+      "access": [
+        "compromised_authorized_gs",
+        "malicious_insider"
+      ],
+      "target": [
+        "ground_ttc",
+        "ground_moc"
+      ]
+    },
+    "DE-0005": {
+      "requires_fact": {
+        "platform_state.safe_mode": true
+      }
+    },
+    "DE-0009.04": {
+      "target": [
+        "ssa_sensor"
+      ]
+    },
+    "DE-0009.05": {
+      "target": [
+        "ssa_ground"
+      ]
+    },
+    "DE-0011": {
+      "authority": "valid_credential"
+    },
+    "LM-0001": {
+      "target": [
+        "payload"
+      ]
+    },
+    "LM-0003": {
+      "target": [
+        "crosslink_neighbor"
+      ]
+    },
+    "LM-0006.01": {
+      "target": [
+        "payload"
+      ]
+    },
+    "LM-0007": {
+      "authority": "valid_credential"
+    },
+    "PER-0003": {
+      "kind": "ground",
+      "access": [
+        "compromised_authorized_gs",
+        "malicious_insider"
+      ],
+      "target": [
+        "ground_ttc",
+        "ground_moc"
+      ]
+    },
+    "PER-0005": {
+      "authority": "valid_credential"
+    },
+    "IMP-0009": {
+      "effect": [
+        "I",
+        "A"
+      ]
+    },
+    "IMP-0010": {
+      "effect": [
+        "I"
+      ]
+    },
+    "IMP-0011": {
+      "effect": [
+        "I",
+        "A"
+      ]
+    },
+    "IMP-0012": {
+      "effect": [
+        "I",
+        "A"
+      ]
+    },
+    "IMP-0014": {
+      "effect": [
+        "I",
+        "A"
+      ]
+    }
+  },
+  "attacker_seeds": {
+    "rogue_ground_station": [
+      "IA-0008",
+      "IA-0008.01",
+      "EX-0001",
+      "EX-0001.01"
+    ],
+    "compromised_authorized_gs": [
+      "IA-0007",
+      "IA-0007.02"
+    ]
+  },
+  "deprecation_successors": [
+    "IMP-0007",
+    "IMP-0008",
+    "IMP-0009",
+    "IMP-0010",
+    "IMP-0011",
+    "IMP-0012",
+    "IMP-0013",
+    "IMP-0014"
+  ],
+  "derivation": {
+    "_about": "Structured derivation of technique targets: a technique without an analyst override takes as target the union of the G asset classes mapped from the defence-in-depth layers (x_aerospace_did_layer) of the SPARTA SV-* statements that relate it. Layers without a single asset reading (Data, Prevention, Crypto, IDS/IPS) map to nothing and leave the tactic default. No description text is used.",
+    "sv_layer_targets": {
+      "SBC": [
+        "bus_cdhs"
+      ],
+      "S/C Software": [
+        "bus_cdhs"
+      ],
+      "Comms Link": [
+        "bus_com"
+      ],
+      "Ground": [
+        "ground_ttc",
+        "ground_moc"
+      ]
+    }
+  }
+}

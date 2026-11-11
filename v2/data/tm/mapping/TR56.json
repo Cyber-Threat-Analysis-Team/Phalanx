@@ -1,0 +1,1012 @@
+{
+ "threat": "TR56",
+ "status": "proposed",
+ "author": "assistant sub-agent V3G2 (v3 re-map); fix pass Fix1",
+ "date": "2026-10-27",
+ "vectors": [
+  {
+   "vector": "ground",
+   "basis": "quote",
+   "enisa_quote": "attacks on the satellite control center once the satellite is in orbit",
+   "reason": "The satellite control centre is where ENISA places the in-orbit-phase theft; the crypto unit ground sits there."
+  },
+  {
+   "vector": "supply_chain",
+   "basis": "quote",
+   "enisa_quote": "while the satellite is manufactured, being transported to its launch site",
+   "reason": "Manufacture and transport to the launch site are the pre-operations phases ENISA names; integration-site (ATLO) access is the SPARTA entry for them. SPARTA has no technique for theft of the crypto unit board or its transport container, so this vector ends at the entry."
+  }
+ ],
+ "rows": [
+  {
+   "technique": "DE-0002.01",
+   "code": "D-UNDESCRIBED",
+   "reason": "Hiding or falsifying telemetry in ground displays is not theft of authentication information.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "DE-0003.07",
+   "code": "D-UNDESCRIBED",
+   "reason": "Switching on-board crypto modes to desynchronise the link is not a theft step.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "DE-0004",
+   "code": "D-OTHER",
+   "other_threat": "TR43",
+   "reason": "Presenting oneself as an authorised origin is the use of an identity; ENISA's text stops at the theft of the authentication data.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "DE-0005",
+   "code": "D-UNDESCRIBED",
+   "reason": "Safe-mode protection bypass is not part of stealing authentication data.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "DE-0007",
+   "code": "D-UNDESCRIBED",
+   "reason": "This rootkit hooks flight-software reporting paths; ENISA's keylogger sits on ground hosts and no hiding step is stated.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "DE-0009.05",
+   "code": "D-UNDESCRIBED",
+   "reason": "Overloading ground SDA systems has nothing to do with crypto unit authentication data.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "DE-0011",
+   "code": "D-OTHER",
+   "other_threat": "TR43",
+   "reason": "Using valid credentials to avoid alarms is the use of a stolen identity, which TR56 does not describe.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EX-0001",
+   "code": "D-UNDESCRIBED",
+   "reason": "Replaying captured telecommands is not described; the stolen item is authentication data, not a replayed command.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EX-0001.01",
+   "code": "D-UNDESCRIBED",
+   "reason": "Replaying telecommand packets is not described.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EX-0005.01",
+   "code": "D-UNDESCRIBED",
+   "reason": "On-board design-flaw exploitation is not described; the theft is physical or by keylogger.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EX-0005.02",
+   "code": "D-UNDESCRIBED",
+   "reason": "Misuse of hardware commands is not described.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EX-0006",
+   "code": "D-OTHER",
+   "other_threat": "TR28",
+   "reason": "Disabling or downgrading link encryption is a link-control step (kept in TR28); TR56 stops at the theft.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EX-0010",
+   "code": "D-OTHER",
+   "other_threat": "TR46",
+   "reason": "Executable logic run on the vehicle is malicious injection; the keylogger ENISA names runs on ground hosts.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EX-0010.03",
+   "code": "D-OTHER",
+   "other_threat": "TR46",
+   "reason": "A rootkit is a follow-on of code injection kept in TR46; TR56 names none.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EX-0011",
+   "code": "D-UNDESCRIBED",
+   "reason": "Exploiting relaxed checks in safe-mode is not described.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EX-0013",
+   "code": "D-OTHER",
+   "other_threat": "TR40",
+   "reason": "Flooding the spacecraft is denial of service; not described here.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EX-0013.01",
+   "code": "D-OTHER",
+   "other_threat": "TR40",
+   "reason": "Flooding with valid commands is denial of service; not described here.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EX-0013.02",
+   "code": "D-UNDESCRIBED",
+   "reason": "Flooding with erroneous input is not described.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EX-0014",
+   "code": "D-OTHER",
+   "other_threat": "TR54",
+   "reason": "Forged time, sensor or bus inputs are spoofing; not described here.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EX-0015",
+   "code": "D-UNDESCRIBED",
+   "reason": "ENISA names theft by physical access or keylogger, not recovery of key bits by measuring power, timing or emissions of a crypto module.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EXF-0001",
+   "code": "D-UNDESCRIBED",
+   "reason": "Replaying commands to provoke repeat downlinks is not described.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EXF-0002",
+   "code": "D-UNDESCRIBED",
+   "reason": "Side-channel observation is not the theft ENISA names (physical item or keylogger).",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EXF-0002.01",
+   "code": "D-UNDESCRIBED",
+   "reason": "Power analysis to recover key bits is not the theft ENISA names.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EXF-0002.02",
+   "code": "D-UNDESCRIBED",
+   "reason": "Electromagnetic leakage analysis is not the theft ENISA names.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EXF-0002.03",
+   "code": "D-UNDESCRIBED",
+   "reason": "Traffic analysis is not theft of authentication information.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EXF-0003",
+   "code": "D-OTHER",
+   "other_threat": "TR29",
+   "reason": "Collecting signals off the link is interception of communication, not theft of the crypto unit's authentication data.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EXF-0003.01",
+   "code": "D-OTHER",
+   "other_threat": "TR29",
+   "reason": "Tapping the uplink is interception of communication; not described here.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EXF-0003.02",
+   "code": "D-OTHER",
+   "other_threat": "TR29",
+   "reason": "Tapping the downlink is interception of communication; not described here.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EXF-0004",
+   "code": "D-UNDESCRIBED",
+   "reason": "A covert secondary link off the spacecraft is not described.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EXF-0005",
+   "code": "D-UNDESCRIBED",
+   "reason": "Proximity operations to extract data have no counterpart in the text.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EXF-0006.02",
+   "code": "D-UNDESCRIBED",
+   "reason": "Transponder exfiltration is not described.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EXF-0007",
+   "code": "K-EFFECT",
+   "role": "exfiltration",
+   "vectors": [
+    "ground"
+   ],
+   "enisa_quote": "physical or logical theft (e.g. via keylogger)",
+   "sparta_quote": "uses its trusted position to siphon data at scale",
+   "reason": "A keylogger or similar logical theft on control-centre hosts siphons authentication data from inside the ground system.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EXF-0010",
+   "code": "D-UNDESCRIBED",
+   "reason": "The payload communication channel is an on-board exfiltration path; the theft here is on the ground.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0001",
+   "code": "D-OTHER",
+   "other_threat": "TR55",
+   "reason": "A keylogger planted through manufacture or delivery of software or hardware is the supply chain compromise of TR55; TR56 names the theft itself.",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0001.01",
+   "code": "D-OTHER",
+   "other_threat": "TR55",
+   "reason": "Poisoned dependencies and build tools are a supply chain insertion (TR55), not a theft of authentication information.",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0001.02",
+   "code": "D-OTHER",
+   "other_threat": "TR55",
+   "reason": "Subverted software delivery and signing-key abuse are TR55's supply chain compromise; the theft here is the outcome, not the delivery route.",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0001.03",
+   "code": "D-OTHER",
+   "other_threat": "TR55",
+   "reason": "Altering boards or bitstreams before delivery is TR55's hardware supply chain compromise; ENISA names theft of the crypto unit items, not their alteration.",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0002",
+   "code": "D-UNDESCRIBED",
+   "reason": "Compromising a software-defined radio is an RF-equipment attack; the theft ENISA names is physical or by keylogger.",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0003",
+   "code": "D-UNDESCRIBED",
+   "reason": "No crosslink path in the text.",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0004",
+   "code": "D-UNDESCRIBED",
+   "reason": "Backup spacecraft channels are not described.",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0004.01",
+   "code": "D-UNDESCRIBED",
+   "reason": "The backup ground segment is not described; ENISA names the satellite control centre.",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0004.02",
+   "code": "D-UNDESCRIBED",
+   "reason": "The spacecraft's backup receiver is not described.",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0005",
+   "code": "D-UNDESCRIBED",
+   "reason": "Rendezvous and proximity operations have no counterpart; the theft is in manufacture, transport or the control centre.",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0005.01",
+   "code": "D-UNDESCRIBED",
+   "reason": "Local analysis of emissions from crypto modules is not the physical or logical theft ENISA names.",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0005.02",
+   "code": "D-UNDESCRIBED",
+   "reason": "Docked-vehicle access has no counterpart in the text.",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0005.03",
+   "code": "D-UNDESCRIBED",
+   "reason": "Grappling a satellite is an on-orbit physical act; ENISA's theft happens on the ground or before launch.",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0006",
+   "code": "D-UNDESCRIBED",
+   "reason": "A hosted payload is not mentioned.",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0007",
+   "code": "K-ENABLE",
+   "role": "entry",
+   "vectors": [
+    "ground"
+   ],
+   "enables": "EXF-0007",
+   "enisa_quote": "attacks on the satellite control center once the satellite is in orbit",
+   "sparta_quote": "Compromising the ground segment gives an adversary the most direct path to first execution",
+   "reason": "Compromising the control centre reaches the key-loading tools, HSMs and operator hosts that hold authentication data.",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0007.01",
+   "code": "D-UNDESCRIBED",
+   "reason": "Poisoning the update pipeline is not described; the item stolen is authentication data.",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0007.02",
+   "code": "D-OTHER",
+   "other_threat": "TR52",
+   "reason": "Transmitting commands through a valid ground station is the control-seizure step; TR56 describes only the theft.",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0008",
+   "code": "D-UNDESCRIBED",
+   "reason": "An outside RF transmitter is not described; the theft is on the ground.",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0008.01",
+   "code": "D-UNDESCRIBED",
+   "reason": "A rogue ground station is not described.",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0008.02",
+   "code": "D-UNDESCRIBED",
+   "reason": "A rogue spacecraft is not described.",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0008.03",
+   "code": "D-UNDESCRIBED",
+   "reason": "A counterspace weapon is not mentioned; the theft concerns the crypto unit board, ground and transport container.",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0009",
+   "code": "D-UNDESCRIBED",
+   "reason": "A partner connection is not described; the text names the control centre, manufacture and transport.",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0009.01",
+   "code": "D-UNDESCRIBED",
+   "reason": "A compromised collaborator is not described.",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0009.02",
+   "code": "D-OTHER",
+   "other_threat": "TR55",
+   "reason": "A vendor's access route being used is supply chain compromise (TR55); ENISA names no vendor, only manufacture, transport and the control centre.",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0009.03",
+   "code": "D-UNDESCRIBED",
+   "reason": "A compromised user segment is not described.",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0010",
+   "code": "D-UNDESCRIBED",
+   "reason": "Timing access to safe-mode is not described.",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0011",
+   "code": "D-UNDESCRIBED",
+   "reason": "Tainted peripherals or removable media are not named; a hardware keylogger in the transport or integration phase is physical theft and has no SPARTA technique here.",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0012",
+   "code": "K-ACTION",
+   "role": "entry",
+   "reason": "Test and integration tooling is where logical theft such as a keylogger can reach the crypto unit while the satellite is manufactured; this is the only SPARTA entry for the manufacture phase ENISA names.",
+   "sparta_quote": "Assembly, Test, and Launch Operation (ATLO) concentrates people, tools, and authority",
+   "enisa_quote": "while the satellite is manufactured, being transported to its launch site",
+   "vectors": [
+    "supply_chain"
+   ],
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0013",
+   "code": "D-UNDESCRIBED",
+   "reason": "Reaching a hosted RAN function from the host bus has no counterpart in the text.",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IMP-0007",
+   "code": "D-UNDESCRIBED",
+   "reason": "ENISA names only 'potential impact' on assets connected to the crypto unit, with no specific outcome.",
+   "sources": [
+    "impact"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IMP-0008",
+   "code": "D-UNDESCRIBED",
+   "reason": "ENISA states no change of spacecraft state or mode.",
+   "sources": [
+    "impact"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IMP-0009",
+   "code": "D-OTHER",
+   "other_threat": "TR57",
+   "reason": "Altering settings is the parameter modification of TR57; TR56 states no outcome.",
+   "sources": [
+    "impact"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IMP-0010",
+   "code": "D-OTHER",
+   "other_threat": "TR39",
+   "reason": "Changing data is data modification; TR56 states no outcome.",
+   "sources": [
+    "impact"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IMP-0011",
+   "code": "D-OTHER",
+   "other_threat": "TR32",
+   "reason": "Altering command or data flows is traffic manipulation; TR56 states none.",
+   "sources": [
+    "impact"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IMP-0012",
+   "code": "D-OTHER",
+   "other_threat": "TR42",
+   "reason": "Replacing software or firmware is firmware corruption; TR56 states none.",
+   "sources": [
+    "impact"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IMP-0013",
+   "code": "D-OTHER",
+   "other_threat": "TR51",
+   "reason": "Exhausting resources is resource exhaustion; TR56 states none.",
+   "sources": [
+    "impact"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IMP-0014",
+   "code": "D-UNDESCRIBED",
+   "reason": "ENISA states no change of clocks or synchronisation.",
+   "sources": [
+    "impact"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "LM-0001",
+   "code": "D-UNDESCRIBED",
+   "reason": "Pivoting through a hosted payload has no counterpart in the text.",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "LM-0003",
+   "code": "D-UNDESCRIBED",
+   "reason": "Hopping across constellation crosslinks has no counterpart in the text.",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "LM-0004",
+   "code": "D-UNDESCRIBED",
+   "reason": "Visiting-vehicle interfaces have no counterpart in the text.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "LM-0007",
+   "code": "D-OTHER",
+   "other_threat": "TR37",
+   "reason": "Reusing credentials to cross boundaries is the misuse of rights in TR37; TR56 describes the theft of the credentials.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "PER-0003",
+   "code": "K-ENABLE",
+   "role": "persistence",
+   "vectors": [
+    "ground"
+   ],
+   "enables": "EXF-0007",
+   "enisa_quote": "physical or logical theft (e.g. via keylogger)",
+   "sparta_quote": "The adversary maintains long-lived access by residing within mission ground infrastructure",
+   "reason": "ENISA names a keylogger; a keylogger only collects secrets while it stays resident on the ground hosts, which is an inference from the example, not a stated persistence step.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "PER-0004",
+   "code": "D-OTHER",
+   "other_threat": "TR52",
+   "reason": "Replacing spacecraft keys cements control of the vehicle; TR56 describes theft of keys, not their replacement.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "PER-0005",
+   "code": "D-OTHER",
+   "other_threat": "TR35",
+   "reason": "Maintaining access with valid credentials is the maintained network access of TR35; TR56 describes the theft of those credentials.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "RD-0001.01",
+   "code": "D-UNDESCRIBED",
+   "reason": "Building a ground station stack is not described.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "RD-0001.02",
+   "code": "D-UNDESCRIBED",
+   "reason": "Renting commercial ground station services is not described.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "RD-0002",
+   "code": "D-UNDESCRIBED",
+   "reason": "Compromising infrastructure from outside is not described; ENISA names the theft itself.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "RD-0002.01",
+   "code": "D-UNDESCRIBED",
+   "reason": "Compromising the mission ground system is the entry covered by IA-0007; as a Resource Development row it adds no theft step.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "RD-0003.02",
+   "code": "P-PREP",
+   "enables": "EXF-0007",
+   "reason": "Cryptographic keys, KEKs and HSM loading keys are the crypto unit assets ENISA names; as Resource Development it cannot be kept, so it is recorded as preparation while EXF-0007 realises the theft.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "RD-0004",
+   "code": "D-UNDESCRIBED",
+   "reason": "Staging capabilities for on-board delivery is not described.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "RD-0004.01",
+   "code": "D-UNDESCRIBED",
+   "reason": "Selecting a delivery mechanism for an on-board payload is not described.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "RD-0004.02",
+   "code": "D-UNDESCRIBED",
+   "reason": "Uploading an exploit or payload is not described.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "REC-0001",
+   "code": "D-UNDESCRIBED",
+   "reason": "Spacecraft design information is not what ENISA says is stolen.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "REC-0002.02",
+   "code": "D-UNDESCRIBED",
+   "reason": "Mapping the organisation is not the theft ENISA names.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "REC-0003",
+   "code": "D-UNDESCRIBED",
+   "reason": "Spacecraft communications information is not what ENISA says is stolen.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "REC-0003.02",
+   "code": "D-UNDESCRIBED",
+   "reason": "Commanding details are not what ENISA says is stolen.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "REC-0003.04",
+   "code": "P-PREP",
+   "enables": "EXF-0007",
+   "reason": "Acquiring valid credentials, authentication keys and counters is what the stolen authentication information is; as a Reconnaissance technique it cannot be kept, so it is recorded as preparation while EXF-0007 realises the theft.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "REC-0004",
+   "code": "D-UNDESCRIBED",
+   "reason": "Launch information is not what ENISA says is stolen.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "REC-0005",
+   "code": "D-UNDESCRIBED",
+   "reason": "Eavesdropping on the link is not theft from the crypto unit.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "REC-0005.01",
+   "code": "D-UNDESCRIBED",
+   "reason": "Uplink eavesdropping is not theft from the crypto unit.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "REC-0005.02",
+   "code": "D-UNDESCRIBED",
+   "reason": "Downlink interception is not theft from the crypto unit.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "REC-0005.03",
+   "code": "D-UNDESCRIBED",
+   "reason": "Proximity observation is not the physical or logical theft ENISA names.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "REC-0005.04",
+   "code": "D-UNDESCRIBED",
+   "reason": "Scanning RF or optical is not theft of authentication information.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "REC-0008",
+   "code": "D-UNDESCRIBED",
+   "reason": "Supply-chain information gathering is not described.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "REC-0008.01",
+   "code": "D-UNDESCRIBED",
+   "reason": "Hardware reconnaissance is not described.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "REC-0008.04",
+   "code": "D-UNDESCRIBED",
+   "reason": "Mapping business relationships is not described.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  }
+ ],
+ "review_response": [
+  {
+   "finding": "Blocker: only ground chosen; manufacture and transport phases discarded",
+   "action": "fixed: supply_chain vector added with the ENISA phase quote and IA-0012 kept as its entry (role entry, K-ACTION); the vector ends at the entry because SPARTA has no technique for theft of the board or transport container (stated in the vector reason)"
+  },
+  {
+   "finding": "Theft of authentication information not kept as an outcome; REC-0003.04 and RD-0003.02 are P-PREP",
+   "action": "kept because Reconnaissance and Resource Development cannot be kept codes; reasons rewritten to say they prepare the theft, which EXF-0007 realises on the ground side"
+  },
+  {
+   "finding": "Nothing models the crypto unit board side",
+   "action": "fixed in part: the board side is reachable only through the manufacture/transport phases (supply_chain vector, IA-0012 entry); DE-0003.07 and EX-0006 stay dropped because they disable or desynchronise on-board crypto rather than steal from it. Board-side theft itself has no SPARTA technique (sparta_gap noted in the vector reason)"
+  },
+  {
+   "finding": "PER-0003 keylogger persistence is an inference",
+   "action": "fixed: reason now states it is an inference from the keylogger example"
+  },
+  {
+   "finding": "Section 0: step lists are flat sets; candidate lists lacked entries",
+   "action": "fixed: entries IA-0007 and PER-0003 both enable EXF-0007; all origin-sourced candidates coded"
+  },
+  {
+   "finding": "fix pass: review2 A found no defect in TR56 beyond the D-OTHER home checks",
+   "action": "kept because ground and supply_chain vectors, the entry/exfiltration chain and the PER-0003 inference were confirmed sound; EXF-0007 and PER-0003 already run as ground-side steps."
+  }
+ ]
+}

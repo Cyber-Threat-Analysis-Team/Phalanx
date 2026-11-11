@@ -1,0 +1,469 @@
+{
+ "threat": "TR16",
+ "status": "proposed",
+ "author": "assistant sub-agent V3G2 (v3 re-map); fix pass Fix1",
+ "date": "2026-10-27",
+ "vectors": [
+  {
+   "vector": "ground",
+   "basis": "weak",
+   "enisa_quote": "gain access to desired premises or information",
+   "reason": "ENISA names premises and information but no system or origin; a threatened or corrupted insider at the mission's ground facilities is the inferred path."
+  },
+  {
+   "vector": "trusted_party",
+   "basis": "weak",
+   "enisa_quote": "any segment of satellite lifecycle, where human activity or iteraction is present",
+   "reason": "Partner and vendor staff are people in the lifecycle who can be coerced; ENISA names no partner, only 'any segment'."
+  },
+  {
+   "vector": "supply_chain",
+   "basis": "weak",
+   "enisa_quote": "any segment of satellite lifecycle, where human activity or iteraction is present",
+   "reason": "Manufacture and integration are lifecycle segments with human activity; coercing integrator staff is the inferred path, ENISA names no site."
+  }
+ ],
+ "rows": [
+  {
+   "technique": "EXF-0007",
+   "code": "K-EFFECT",
+   "role": "exfiltration",
+   "reason": "The information the adversary wants is taken from inside the ground systems through the coerced person's access.",
+   "sparta_quote": "uses its trusted position to siphon data at scale",
+   "enisa_quote": "gain access to desired premises or information",
+   "vectors": [
+    "ground",
+    "trusted_party"
+   ],
+   "sources": [
+    "analyst_added"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0001",
+   "code": "D-OTHER",
+   "other_threat": "TR55",
+   "reason": "Inserting malicious artifacts into manufacture or delivery is TR55's supply chain compromise; coercion of a person is not that insertion.",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0001.01",
+   "code": "D-OTHER",
+   "other_threat": "TR55",
+   "reason": "Poisoned dependencies and build tools are TR55's supply chain insertion; no code is altered here.",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0001.02",
+   "code": "D-OTHER",
+   "other_threat": "TR55",
+   "reason": "Subverted software delivery is TR55's supply chain compromise; the victim here is a person.",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0001.03",
+   "code": "D-OTHER",
+   "other_threat": "TR55",
+   "reason": "Altering boards before delivery is TR55's hardware supply chain compromise, not a coerced person's act.",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0002",
+   "code": "D-UNDESCRIBED",
+   "reason": "Compromising a software-defined radio is an RF-equipment attack; the threat is against people.",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0003",
+   "code": "D-UNDESCRIBED",
+   "reason": "No crosslink or neighbour satellite is mentioned; the threat is against people.",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0004",
+   "code": "D-UNDESCRIBED",
+   "reason": "Backup spacecraft channels are not described; the victim performs actions through normal access.",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0004.01",
+   "code": "D-UNDESCRIBED",
+   "reason": "Targeting the backup ground segment is not described.",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0004.02",
+   "code": "D-UNDESCRIBED",
+   "reason": "The spacecraft's backup receiver is not part of a threat against people.",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0005",
+   "code": "D-UNDESCRIBED",
+   "reason": "Rendezvous and proximity operations have no counterpart; violence against persons is not an on-orbit act.",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0005.01",
+   "code": "D-UNDESCRIBED",
+   "reason": "Compromise emanations are measured from close range; ENISA's harm is against a person.",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0005.02",
+   "code": "D-UNDESCRIBED",
+   "reason": "Docked-vehicle access has no counterpart in the text.",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0005.03",
+   "code": "D-UNDESCRIBED",
+   "reason": "Grappling a satellite is an on-orbit physical act; ENISA's violence is against persons on the ground.",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0006",
+   "code": "D-UNDESCRIBED",
+   "reason": "A hosted payload is not mentioned.",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0007",
+   "code": "K-ENABLE",
+   "role": "entry",
+   "reason": "A coerced or corrupted insider hands the adversary access to ground premises and systems; SPARTA models that foothold as compromise of the ground system.",
+   "sparta_quote": "Compromising the ground segment gives an adversary the most direct path to first execution against a spacecraft",
+   "enables": "EXF-0007",
+   "vectors": [
+    "ground"
+   ],
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0007.01",
+   "code": "D-UNDESCRIBED",
+   "reason": "Poisoning the on-orbit update pipeline is not described; ENISA names access to premises or information and actions the victim performs.",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0007.02",
+   "code": "D-OTHER",
+   "other_threat": "TR52",
+   "reason": "The commanding through a valid ground station is TR52's control-seizure step; ENISA's 'other actions that the adversary wants them to do' names no commanding, the same rule as TR43, TR53, TR37 and TR35.",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0008",
+   "code": "D-UNDESCRIBED",
+   "reason": "A rogue external transmitter is not described; the access comes from a coerced person.",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0008.01",
+   "code": "D-UNDESCRIBED",
+   "reason": "A rogue ground station is an outside RF origin; the text describes only coerced people.",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0008.02",
+   "code": "D-UNDESCRIBED",
+   "reason": "A rogue spacecraft has no counterpart in the text.",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0008.03",
+   "code": "D-UNDESCRIBED",
+   "reason": "A counterspace weapon is not mentioned; ENISA's threat is violence or harm against people.",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0009",
+   "code": "K-ENABLE",
+   "role": "entry",
+   "reason": "A coerced partner or vendor employee gives the adversary the connection the mission already trusts, which is the 'premises or information' of that segment.",
+   "sparta_quote": "riding connections that the mission already trusts",
+   "enables": "EXF-0007",
+   "vectors": [
+    "trusted_party"
+   ],
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0009.01",
+   "code": "D-UNDESCRIBED",
+   "reason": "The academic and international partner child of IA-0009; ENISA does not single out collaborators, so the parent IA-0009 is the kept entry.",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0009.02",
+   "code": "D-UNDESCRIBED",
+   "reason": "The vendor child of IA-0009; ENISA names no vendor, and coerced vendor staff are covered by the parent entry IA-0009.",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0009.03",
+   "code": "D-UNDESCRIBED",
+   "reason": "ENISA's human activity in the lifecycle is not framed as a user segment; this technique compromises user domains of the service.",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0010",
+   "code": "D-UNDESCRIBED",
+   "reason": "Timing access to safe-mode is not described; the person gives access directly.",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0011",
+   "code": "D-UNDESCRIBED",
+   "reason": "Tainted peripherals or removable media are not described; the victim hands over access directly.",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0012",
+   "code": "K-ACTION",
+   "role": "entry",
+   "reason": "A threatened or corrupted integration or test engineer gives access to the ATLO premises and tools; getting in is the access ENISA says the adversary wants.",
+   "sparta_quote": "vendor support accounts move software between staging and flight hardware",
+   "enisa_quote": "gain access to desired premises or information",
+   "vectors": [
+    "supply_chain"
+   ],
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ],
+   "enables": "EXF-0008"
+  },
+  {
+   "technique": "IA-0013",
+   "code": "D-UNDESCRIBED",
+   "reason": "Reaching a hosted RAN function from the host bus has no counterpart in the text.",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IMP-0007",
+   "code": "D-UNDESCRIBED",
+   "reason": "ENISA states what the adversary wants from the victim (access, information, actions) but no on-board outcome.",
+   "sources": [
+    "impact"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IMP-0008",
+   "code": "D-UNDESCRIBED",
+   "reason": "ENISA states no change of spacecraft state or mode.",
+   "sources": [
+    "impact"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IMP-0009",
+   "code": "D-OTHER",
+   "other_threat": "TR57",
+   "reason": "Altering settings is the parameter modification of TR57; TR16 states no such outcome.",
+   "sources": [
+    "impact"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IMP-0010",
+   "code": "D-OTHER",
+   "other_threat": "TR39",
+   "reason": "Changing data is data modification; TR16 states no such outcome.",
+   "sources": [
+    "impact"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IMP-0011",
+   "code": "D-OTHER",
+   "other_threat": "TR32",
+   "reason": "Altering command or data flows is traffic manipulation; TR16 states none.",
+   "sources": [
+    "impact"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IMP-0012",
+   "code": "D-OTHER",
+   "other_threat": "TR42",
+   "reason": "Replacing software or firmware is firmware corruption; TR16 states none.",
+   "sources": [
+    "impact"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IMP-0013",
+   "code": "D-OTHER",
+   "other_threat": "TR51",
+   "reason": "Exhausting resources is resource exhaustion; TR16 states none.",
+   "sources": [
+    "impact"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IMP-0014",
+   "code": "D-UNDESCRIBED",
+   "reason": "ENISA names no change of clocks or synchronisation.",
+   "sources": [
+    "impact"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "LM-0001",
+   "code": "D-UNDESCRIBED",
+   "reason": "Pivoting through a hosted payload has no counterpart in the text.",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "LM-0003",
+   "code": "D-UNDESCRIBED",
+   "reason": "Hopping across constellation crosslinks has no counterpart in the text.",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "EXF-0008",
+   "framework": "SPARTA",
+   "code": "K-EFFECT",
+   "role": "exfiltration",
+   "vectors": [
+    "supply_chain"
+   ],
+   "enisa_quote": "gain access to desired premises or information",
+   "sparta_quote": "the adversary gains access to source code, test vectors, telemetry captures, build artifacts, documentation, and configuration data",
+   "reason": "A coerced integration or development insider hands over the information ENISA says the adversary wants; for the supply_chain vector that information is source code, test data and build artefacts, and no candidate source proposed an exfiltration for that side.",
+   "sources": [
+    "analyst_added"
+   ]
+  }
+ ],
+ "review_response": [
+  {
+   "finding": "'any segment of satellite lifecycle' is the only location statement but only ground was chosen",
+   "action": "fixed: trusted_party and supply_chain vectors added (basis weak, quote 'any segment of satellite lifecycle, where human activity or iteraction is present'), with IA-0009 and IA-0012 as their entries; ground is marked weak (ENISA names premises, not an origin)"
+  },
+  {
+   "finding": "IA-0007.02 kept with role execution, inconsistent with TR43/TR53/TR37/TR35",
+   "action": "fixed: now D-OTHER TR52 like the others; ENISA's 'other actions' names no commanding"
+  },
+  {
+   "finding": "EXF-0007 analyst_added; 'access' is not exfiltration at scale",
+   "action": "kept because reviewer accepts it; limited to the ground and trusted_party vectors, since it needs a ground-side foothold"
+  },
+  {
+   "finding": "Physical-site access modelled only as IA-0007",
+   "action": "kept because SPARTA has no technique for entering premises by violence; the kept entries are the access paths of the three segments and the vector reasons say they are inferred"
+  },
+  {
+   "finding": "Candidate list was impact-only; entries and IA-0012/IA-0009.* never assessed",
+   "action": "fixed: every origin-sourced entry technique is now coded (IA-0001.* to TR55, IA-0009.01/.02/.03 and the rest D-UNDESCRIBED with specific reasons)"
+  },
+  {
+   "finding": "Section 0 flat chain",
+   "action": "fixed: IA-0007 and IA-0009 enable EXF-0007; IA-0012 is the K-ACTION access for supply_chain, which has no exfiltration row and is therefore entry-only"
+  },
+  {
+   "finding": "fix pass M8: TR16 supply_chain ended at the entry while TR53 supply_chain ends in exfiltration for the same 'access to information'",
+   "action": "fixed: EXF-0008 added (analyst_added, supply_chain) as the outcome of IA-0012, as in TR53; the earlier statement that the supply_chain vector is entry-only no longer holds."
+  }
+ ]
+}

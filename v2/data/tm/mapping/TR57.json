@@ -1,0 +1,456 @@
+{
+ "threat": "TR57",
+ "status": "proposed",
+ "author": "assistant sub-agent V3G3 (v3 re-map); fix pass Fix2",
+ "date": "2026-10-27",
+ "vectors": [
+  {
+   "vector": "ground",
+   "basis": "weak",
+   "enisa_quote": "modification of a satellite's parameters",
+   "reason": "ENISA names no origin; the text implies parameters are changed through commands from the operator's ground system (deliberate or incorrect)."
+  },
+  {
+   "vector": "supply_chain",
+   "basis": "weak",
+   "enisa_quote": "parameters or test procedures",
+   "reason": "Weak: 'test procedures' implies the assembly and test environment, which the supplier/integrator origin attaches to; ENISA does not say so."
+  }
+ ],
+ "rows": [
+  {
+   "technique": "IMP-0007",
+   "sources": [
+    "impact"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Using an existing function as designed is not what ENISA describes; it states changed parameters.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IMP-0008",
+   "sources": [
+    "impact"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "ENISA names parameter changes and restarts, not a forced operating state or mode.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IMP-0009",
+   "sources": [
+    "impact"
+   ],
+   "code": "K-EFFECT",
+   "role": "impact",
+   "enisa_quote": "modification of a satellite's parameters",
+   "sparta_quote": "deliberate alteration of authoritative, non-executable settings or structured artifacts that govern spacecraft behavior",
+   "reason": "Altering satellite parameters is the configuration manipulation ENISA names.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IMP-0010",
+   "sources": [
+    "impact"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR39",
+   "reason": "Altering data values, not parameters or settings, is the data-modification threat TR39.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IMP-0011",
+   "sources": [
+    "impact"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Changing how commands or data move is not described.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IMP-0012",
+   "sources": [
+    "impact"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR42",
+   "reason": "Replacing code or firmware is TR42; ENISA's text is about parameters and procedures.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IMP-0013",
+   "sources": [
+    "impact"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR51",
+   "reason": "Exhausting resources is TR51; infinite restarts here come from watchdog/RTOS tampering.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IMP-0014",
+   "sources": [
+    "impact"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Clock or synchronisation shifts are not described.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0007",
+   "sources": [
+    "entry_table"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Ground compromise in general is not stated; the valid-command route (IA-0007.02) is the closer fit to parameter changes.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0007.01",
+   "sources": [
+    "entry_table"
+   ],
+   "code": "D-OTHER",
+   "reason": "Manipulating the update pipeline is TR46's injection into updates; in TR57 update tampering is only a later consequence of parameter changes, not the way in.",
+   "other_threat": "TR46",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0007.02",
+   "sources": [
+    "entry_table"
+   ],
+   "code": "K-ENABLE",
+   "reason": "Weak inference: a deliberate or mistaken parameter change from the mission's own ground system is commanded through valid ground commands, which is what this technique describes.",
+   "role": "entry",
+   "enables": "EX-0012",
+   "vectors": [
+    "ground"
+   ],
+   "sparta_quote": "modifying rate/size limits or command queues",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0004.01",
+   "sources": [
+    "entry_table"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Backup ground station access is not described.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0010",
+   "sources": [
+    "entry_table"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Safe-mode timing is not described.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EX-0012",
+   "sources": [
+    "analyst_added"
+   ],
+   "code": "K-ACTION",
+   "role": "execution",
+   "enisa_quote": "modification of a satellite's parameters",
+   "sparta_quote": "The attacker alters live or persistent data that the spacecraft uses to make decisions and route work",
+   "reason": "Modify On-Board Values is the parameter modification ENISA describes.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EX-0012.05",
+   "sources": [
+    "analyst_added"
+   ],
+   "code": "K-ACTION",
+   "role": "execution",
+   "enisa_quote": "manipulating RTOS components",
+   "sparta_quote": "Threat actors target these parameters and associated tables to skew execution order and timing",
+   "reason": "Real-time scheduling parameters are RTOS components, named by ENISA.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EX-0012.11",
+   "sources": [
+    "analyst_added"
+   ],
+   "code": "K-EFFECT",
+   "role": "impact",
+   "enisa_quote": "result in infinite restarts of the satellite",
+   "sparta_quote": "forcing repeated resets at tactically chosen moments",
+   "reason": "Manipulating the watchdog yields the repeated resets ENISA states.",
+   "role_reason": "Execution technique that is the stated outcome: ENISA's 'infinite restarts' is the repeated watchdog-forced reset itself.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0012",
+   "sources": [
+    "origin"
+   ],
+   "code": "K-ENABLE",
+   "role": "entry",
+   "enables": "EX-0012",
+   "vectors": [
+    "supply_chain"
+   ],
+   "sparta_quote": "compromised laptops or transient cyber assets push images and tables",
+   "reason": "Weak inference from 'test procedures': ATLO test tooling pushes images and tables into the flight hardware, a place where parameters and test procedures are modified.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0001",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR55",
+   "reason": "Inserting malicious code or configuration during manufacturing is TR55's supply-chain compromise; the ENISA text is about changed parameters.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0001.01",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR55",
+   "reason": "Poisoned dependencies and development tools are TR55's case; no dependency is named.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0001.02",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR55",
+   "reason": "Subverted software delivery is TR55; ENISA's parameters are values, not delivered software.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0001.03",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR55",
+   "reason": "Hardware tampering before delivery is TR55; parameters are not hardware.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0002",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Compromise of a software-defined radio is not described; the CDHS is the named asset.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0003",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Crosslink access from a neighbour satellite is not described.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0004",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "A secondary command channel is not described.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0004.02",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "A backup RF receive path is not described.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0005",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Rendezvous and proximity operations are not described.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0005.01",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Emanation capture does not modify parameters.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0005.02",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Docked-vehicle access is not described.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0005.03",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Grappling is not described.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0006",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "A hosted-payload doorway is not described; the named asset is the CDHS.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0008",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "An external transmitter is not named; parameter changes are described as deliberate or incorrect, i.e. by someone with access.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0008.01",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "A rogue ground station is not described.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0008.02",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "A rogue spacecraft is not described.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0008.03",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Counterspace platforms are not described.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0009",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Trusted-relationship access is not described.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0009.01",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Collaborator access is not described.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0009.02",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Vendor remote access is not described.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0009.03",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "User-segment access is not described.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0011",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR20",
+   "reason": "Malicious peripherals or removable media are TR20; no such device is named here.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0013",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Pivot from a host spacecraft into a hosted payload is not described.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "LM-0001",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Pivoting through a hosted-payload boundary is not described.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "LM-0003",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Hopping across a crosslink is not described.",
+   "framework": "SPARTA"
+  }
+ ],
+ "review_response": [
+  {
+   "finding": "Vector quote is a downstream effect and IA-0007.01 is placed before the step that, in ENISA, enables it (major).",
+   "action": "fixed: vector basis is 'weak' with a quote about the parameter modification itself; IA-0007.01 dropped (D-OTHER to TR46); entry is IA-0007.02 (valid ground commands that change limits and queues)."
+  },
+  {
+   "finding": "'Test procedures' suggests ATLO, not ground operations (minor).",
+   "action": "fixed: supply_chain added with basis 'weak' and IA-0012 (ATLO test tooling) as entry for that branch."
+  },
+  {
+   "finding": "EX-0012.11 coded K-EFFECT / impact although SPARTA lists it as Execution (minor).",
+   "action": "fixed: role_reason added; ENISA's outcome 'infinite restarts' is the watchdog-driven repeated reset, and the Impact techniques that name resets are other threats' (IMP-0013 TR51)."
+  },
+  {
+   "finding": "EX-0012.10 reason cites an asset not in the ENISA description (minor).",
+   "action": "fixed: EX-0012.10 (analyst-added, not a candidate) removed; EX-0012 and EX-0012.05 cover the described parameter and RTOS tampering."
+  },
+  {
+   "finding": "review2_B: no finding requiring a change",
+   "action": "kept; re-validated after the engine change."
+  }
+ ]
+}

@@ -1,0 +1,521 @@
+{
+ "threat": "TR13",
+ "name": "Failure of communication networks",
+ "category": "FM",
+ "cia": [
+  "A"
+ ],
+ "affected_assets": [
+  "Ground: TTC Ground (Antenna, SLE/SDL protocol)",
+  "Space: BUS (COM)",
+  "User: VSAT"
+ ],
+ "description": "Failrue of communication networks may be caused by malfunction of either hardware of software supporting this network's function or attack directed at them. The satellite lifecycle is dependent on connectivity and so this threat may disrupt functioning of any of its segments.",
+ "claims": [],
+ "candidates": [
+  {
+   "technique": "DE-0003.07",
+   "tactic": "Defense Evasion",
+   "name": "Cryptographic Modes",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "DE-0004",
+   "tactic": "Defense Evasion",
+   "name": "Masquerading",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "EX-0001",
+   "tactic": "Execution",
+   "name": "Replay",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "EX-0006",
+   "tactic": "Execution",
+   "name": "Disable/Bypass Encryption",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "EX-0015",
+   "tactic": "Execution",
+   "name": "Side-Channel Attack",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "EXF-0002",
+   "tactic": "Exfiltration",
+   "name": "Side-Channel Exfiltration",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "EXF-0002.01",
+   "tactic": "Exfiltration",
+   "name": "Power Analysis Attacks",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "EXF-0002.02",
+   "tactic": "Exfiltration",
+   "name": "Electromagnetic Leakage Attacks",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "EXF-0002.03",
+   "tactic": "Exfiltration",
+   "name": "Traffic Analysis Attacks",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "EXF-0002.05",
+   "tactic": "Exfiltration",
+   "name": "Thermal Imaging attacks",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "EXF-0003",
+   "tactic": "Exfiltration",
+   "name": "Signal Interception",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "EXF-0003.01",
+   "tactic": "Exfiltration",
+   "name": "Uplink Exfiltration",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "EXF-0003.02",
+   "tactic": "Exfiltration",
+   "name": "Downlink Exfiltration",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "EXF-0004",
+   "tactic": "Exfiltration",
+   "name": "Out-of-Band Communications Link",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "EXF-0005",
+   "tactic": "Exfiltration",
+   "name": "Proximity Operations",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "IA-0001",
+   "tactic": "Initial Access",
+   "name": "Compromise Supply Chain",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0001.01",
+   "tactic": "Initial Access",
+   "name": "Software Dependencies & Development Tools",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0001.02",
+   "tactic": "Initial Access",
+   "name": "Software Supply Chain",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0001.03",
+   "tactic": "Initial Access",
+   "name": "Hardware Supply Chain",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0002",
+   "tactic": "Initial Access",
+   "name": "Compromise Software Defined Radio",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0003",
+   "tactic": "Initial Access",
+   "name": "Crosslink via Compromised Neighbor",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0004",
+   "tactic": "Initial Access",
+   "name": "Secondary/Backup Communication Channel",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0004.01",
+   "tactic": "Initial Access",
+   "name": "Ground Station",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0004.02",
+   "tactic": "Initial Access",
+   "name": "Receiver",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0005",
+   "tactic": "Initial Access",
+   "name": "Rendezvous & Proximity Operations",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0005.01",
+   "tactic": "Initial Access",
+   "name": "Compromise Emanations",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0005.02",
+   "tactic": "Initial Access",
+   "name": "Docked Vehicle / OSAM",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0005.03",
+   "tactic": "Initial Access",
+   "name": "Proximity Grappling",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0006",
+   "tactic": "Initial Access",
+   "name": "Compromise Hosted Payload",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0007",
+   "tactic": "Initial Access",
+   "name": "Compromise Ground System",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0007.01",
+   "tactic": "Initial Access",
+   "name": "Compromise On-Orbit Update",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0007.02",
+   "tactic": "Initial Access",
+   "name": "Malicious Commanding via Valid GS",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0008",
+   "tactic": "Initial Access",
+   "name": "Rogue External Entity",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0008.01",
+   "tactic": "Initial Access",
+   "name": "Rogue Ground Station",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0008.02",
+   "tactic": "Initial Access",
+   "name": "Rogue Spacecraft",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0008.03",
+   "tactic": "Initial Access",
+   "name": "ASAT/Counterspace Weapon",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0009",
+   "tactic": "Initial Access",
+   "name": "Trusted Relationship",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0009.01",
+   "tactic": "Initial Access",
+   "name": "Mission Collaborator (academia, international, etc.)",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0009.02",
+   "tactic": "Initial Access",
+   "name": "Vendor",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0009.03",
+   "tactic": "Initial Access",
+   "name": "User Segment",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0010",
+   "tactic": "Initial Access",
+   "name": "Unauthorized Access During Safe-Mode",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0011",
+   "tactic": "Initial Access",
+   "name": "Auxiliary Device Compromise",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0012",
+   "tactic": "Initial Access",
+   "name": "Assembly, Test, and Launch Operation Compromise",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0013",
+   "tactic": "Initial Access",
+   "name": "Compromise Host Spacecraft",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IMP-0007",
+   "tactic": "Impact",
+   "name": "Native Functionality Abuse",
+   "sources": [
+    "impact"
+   ]
+  },
+  {
+   "technique": "IMP-0008",
+   "tactic": "Impact",
+   "name": "State or Mode Manipulation",
+   "sources": [
+    "impact"
+   ]
+  },
+  {
+   "technique": "IMP-0009",
+   "tactic": "Impact",
+   "name": "Configuration Manipulation",
+   "sources": [
+    "impact"
+   ]
+  },
+  {
+   "technique": "IMP-0010",
+   "tactic": "Impact",
+   "name": "Data Manipulation",
+   "sources": [
+    "impact"
+   ]
+  },
+  {
+   "technique": "IMP-0011",
+   "tactic": "Impact",
+   "name": "Command and Data Flow Manipulation",
+   "sources": [
+    "impact"
+   ]
+  },
+  {
+   "technique": "IMP-0012",
+   "tactic": "Impact",
+   "name": "Software, Firmware, or Programmable Logic Manipulation",
+   "sources": [
+    "impact"
+   ]
+  },
+  {
+   "technique": "IMP-0013",
+   "tactic": "Impact",
+   "name": "Resource Exhaustion or Contention",
+   "sources": [
+    "impact"
+   ]
+  },
+  {
+   "technique": "IMP-0014",
+   "tactic": "Impact",
+   "name": "Timing or Synchronization Manipulation",
+   "sources": [
+    "impact"
+   ]
+  },
+  {
+   "technique": "LM-0001",
+   "tactic": "Lateral Movement",
+   "name": "Hosted Payload",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "LM-0003",
+   "tactic": "Lateral Movement",
+   "name": "Constellation Hopping via Crosslink",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ]
+  },
+  {
+   "technique": "RD-0001.01",
+   "tactic": "Resource Development",
+   "name": "Ground Station Equipment",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "RD-0001.02",
+   "tactic": "Resource Development",
+   "name": "Commercial Ground Station Services",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "REC-0003",
+   "tactic": "Reconnaissance",
+   "name": "Gather Spacecraft Communications Information",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "REC-0003.02",
+   "tactic": "Reconnaissance",
+   "name": "Commanding Details",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "REC-0005",
+   "tactic": "Reconnaissance",
+   "name": "Eavesdropping",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "REC-0005.01",
+   "tactic": "Reconnaissance",
+   "name": "Uplink Intercept Eavesdropping",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "REC-0005.02",
+   "tactic": "Reconnaissance",
+   "name": "Downlink Intercept",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "REC-0007",
+   "tactic": "Reconnaissance",
+   "name": "Monitor for Safe-Mode Indicators",
+   "sources": [
+    "crosswalk"
+   ]
+  }
+ ]
+}

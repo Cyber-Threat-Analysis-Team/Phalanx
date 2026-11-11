@@ -1,0 +1,36 @@
+{
+ "id": "TR05",
+ "source": "ENISA Space Threat Landscape 2025, Annex C Table 17 (via Phalanx/framework/enisa_threats_tuple.csv)",
+ "category": "OUT",
+ "name": "Personnel absence",
+ "cia": [
+  "A"
+ ],
+ "affected_asset_selectors": [
+  "Human Resources: all assets"
+ ],
+ "description": "Threats pertaining to limited availability of critical staff, or lack thereof, at any of the satellite lifecycle phases. Personnel absence may result in loss/unavailiability of relevant information and inability to complete tasks, comply with prescribed roles and responsibilities, or enforce the four-eyes principle for risk and quality assurance.",
+ "projection": {
+  "candidate_assets": [],
+  "candidate_lifecycle": [
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7
+  ],
+  "lifecycle_rule": "ET-P-LC-01 (legacy tuple L field; Annex C has no lifecycle column)",
+  "derivation_provenance": {
+   "kind": "source_field",
+   "source": "Phalanx/framework/enisa_threats_tuple.csv row TR05",
+   "source_sha256": "c086e9d7221893d69e2ff6d380e3b2024aecc144bac8f034218b6814ef060b52",
+   "field": "L (lifecycle)",
+   "note": "candidate_lifecycle copies the legacy tuple L field {3,4,5,6,7}; ENISA STL 2025 Annex C has no lifecycle column, so the basis is the legacy tuple, not the Annex"
+  },
+  "applicable_boundary_roles": []
+ },
+ "claims": [],
+ "crosswalk_key": "Personnel absence"
+}

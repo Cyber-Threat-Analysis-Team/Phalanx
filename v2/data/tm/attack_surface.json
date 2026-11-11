@@ -1,0 +1,939 @@
+{
+  "_about": "Attack-surface model for the threat-modeling showcase, v2. Nodes and links follow data/architectures/G-CONV.json and G-D53.json; the transparent architecture follows 3GPP TR 38.821 and shares the TT&C, update, ATLO and GNSS links of G-CONV (source graph only: no TT&C, update or ATLO link to the G-D53 feeder satellite). Additions are marked basis 'assumed'. Entry paths are computed by phalanx.tm from the attach rules below; nothing per architecture is hand-listed. Analyst-drafted, unreviewed.",
+  "version": "2026-11-11.1",
+  "trust_boundaries": {
+    "_about": "Paper trust boundaries (ASIANComNet 2026 manuscript, §III-D and Table I; data/rules/vocabulary.json paper_boundaries) per link id, as in the source architectures' figure_alias. Labels only: no rule gates a step on them.",
+    "defs": {
+      "TB1": "UE ↔ RAN (서비스 링크 접속)",
+      "TB2": "지상 ↔ 우주 (feeder 링크, TT&C 명령 경로)",
+      "TB3": "지상 ↔ 코어 (백홀, 오케스트레이션)",
+      "TB4": "개발·업데이트 파이프라인 (공급망)"
+    },
+    "by_link": {
+      "SERVICE": {
+        "tb": [
+          "TB1"
+        ],
+        "basis": "definition: TB1 is UE ↔ RAN"
+      },
+      "TC-UL": {
+        "tb": [
+          "TB2"
+        ],
+        "basis": "stated: source E-TCUL, Fig. 2 (TR52 crosses TB2 on the TT&C command path)"
+      },
+      "SLE": {
+        "tb": [
+          "TB2"
+        ],
+        "basis": "interpretation: source E-SLE, Table I places TT&C/SOC (SLE-SDL) at TB2"
+      },
+      "NG": {
+        "tb": [
+          "TB2",
+          "TB3"
+        ],
+        "basis": "interpretation: source E-NG, feeder link (TB2) then ground core (TB3)"
+      },
+      "UPD": {
+        "tb": [
+          "TB4"
+        ],
+        "basis": "stated: source E-UPD, development/update pipeline"
+      },
+      "ATLO": {
+        "tb": [],
+        "basis": "none: source E-ATLO, physical custody is not a paper boundary"
+      },
+      "F1-ISL": {
+        "tb": [],
+        "basis": "none: source E-F1, inter-satellite link; no paper boundary covers it"
+      },
+      "HOST": {
+        "tb": [],
+        "basis": "none: on-board hosted RAN ↔ bus; no paper boundary covers it"
+      },
+      "HOST-F": {
+        "tb": [],
+        "basis": "none: on-board hosted RAN ↔ bus; no paper boundary covers it"
+      },
+      "GNSS-sat_service": {
+        "tb": [],
+        "basis": "none: GNSS reception; no paper boundary covers it"
+      },
+      "GNSS-sat_feeder": {
+        "tb": [],
+        "basis": "none: GNSS reception; no paper boundary covers it"
+      },
+      "partner connection": {
+        "tb": [],
+        "basis": "none: partner → mission operator; not a paper boundary"
+      },
+      "proximity": {
+        "tb": [],
+        "basis": "none: physical proximity; not a paper boundary"
+      },
+      "FEEDER": {
+        "tb": [
+          "TB2"
+        ],
+        "basis": "interpretation: transparent feeder link (ground ↔ space), as the G-CONV feeder in this label set"
+      },
+      "NG-T": {
+        "tb": [
+          "TB3"
+        ],
+        "basis": "interpretation: terrestrial Ng (ground ↔ core)"
+      }
+    }
+  },
+  "controls": {
+    "sdls": {
+      "label": "SDLS authentication + anti-replay on the TC uplink",
+      "label_ko": "TC 업링크 SDLS 인증·재전송 방지",
+      "bypassed_by": "mission_valid",
+      "source": "CCSDS 355.0-B-2; use on the uplink not stated by any pinned source",
+      "encrypts": false,
+      "note": "authentication and anti-replay only; SDLS encryption is optional and not assumed"
+    },
+    "ndsip": {
+      "label": "NDS/IP on the Ng interface",
+      "label_ko": "Ng 구간 NDS/IP",
+      "bypassed_by": "mno_valid",
+      "source": "TS 33.210 (mandatory between security domains)",
+      "encrypts": true,
+      "capture_bypassed_by": "mno_valid"
+    },
+    "ipsec_f1": {
+      "label": "IPsec on F1 over the inter-satellite link",
+      "label_ko": "ISL 위 F1 IPsec",
+      "bypassed_by": "mno_valid",
+      "source": "TS 33.501 §9.8 (mandatory to implement, use optional); D5.3 design",
+      "encrypts": true,
+      "capture_bypassed_by": "mno_valid",
+      "optional": true
+    },
+    "as_security": {
+      "label": "5G access-stratum / NAS security on the service link",
+      "label_ko": "서비스 링크 5G AS/NAS 보안",
+      "bypassed_by": "subscriber_valid",
+      "source": "TS 33.501",
+      "encrypts": true,
+      "capture_bypassed_by": null
+    },
+    "segregation": {
+      "label": "Segregation of the hosted RAN from the satellite bus",
+      "label_ko": "호스팅 RAN–위성 버스 분리",
+      "bypassed_by": null,
+      "source": "assumed; ENISA TR07 names its absence as an enabling condition",
+      "encrypts": false
+    }
+  },
+  "vectors": {
+    "ground": "attacker acts from inside the mission's own ground systems (operations centre, ground station, update pipeline; insider)",
+    "rf_link": "attacker transmits or receives on the TT&C radio link from equipment outside the mission",
+    "feeder_rf": "attacker transmits or receives on the feeder link that carries Ng between the gateway and the satellite RAN (rogue gateway)",
+    "user_terminal": "attacker acts from a user terminal on the service link (rogue or compromised UE, service-link jamming or eavesdropping)",
+    "supply_chain": "attacker acts through hardware, software, updates or integration before or outside operations",
+    "trusted_party": "attacker rides a connection the mission already trusts: partner, vendor remote access",
+    "crosslink": "attacker reaches a satellite from another satellite over an inter-satellite link",
+    "proximity": "attacker acts from a spacecraft or weapon close to the satellite, or with physical access",
+    "hosted_payload": "attacker controls a function hosted on the satellite but run by another operator (the on-board RAN run by the mobile network operator) and uses it as a door into the host bus"
+  },
+  "origins": {
+    "ground": {
+      "label": "Compromised own ground system / insider",
+      "label_ko": "침해된 자체 지상 설비 / 내부자",
+      "attach": {
+        "from_nodes": [
+          "moc",
+          "fsw_pipeline"
+        ]
+      },
+      "credentials": [
+        "mission_valid",
+        "none"
+      ],
+      "link_attack": false,
+      "credential_note": "mission_valid: compromised operations centre or insider holding mission keys; none: attacker inside the ground segment without the mission keys, e.g. a ground-station front end (SDLS keys assumed held at the operations centre)",
+      "entry": {
+        "IA-0007": {
+          "channel": "any"
+        },
+        "IA-0007.02": {
+          "channel": "tc_uplink",
+          "injects": true
+        },
+        "IA-0007.01": {
+          "channel": "artifact"
+        },
+        "IA-0004.01": {
+          "channel": "tc_uplink",
+          "injects": true
+        },
+        "IA-0010": {
+          "channel": "tc_uplink",
+          "injects": true
+        },
+        "IA-0011": {
+          "channel": "any"
+        }
+      }
+    },
+    "rf_link": {
+      "label": "External transmitter on the TT&C link (rogue ground station)",
+      "label_ko": "TT&C 링크의 외부 송신기 (rogue 지상국)",
+      "attach": {
+        "rule": "rogue_on_links",
+        "link_kinds": [
+          "tc_uplink",
+          "gnss"
+        ]
+      },
+      "credentials": [
+        "none"
+      ],
+      "link_attack": true,
+      "entry": {
+        "IA-0008": {
+          "channel": "tc_uplink",
+          "injects": true
+        },
+        "IA-0008.01": {
+          "channel": "tc_uplink",
+          "injects": true
+        },
+        "IA-0004": {
+          "channel": "tc_uplink",
+          "injects": true
+        },
+        "IA-0004.02": {
+          "channel": "tc_uplink",
+          "injects": true
+        },
+        "IA-0002": {
+          "channel": "tc_uplink",
+          "injects": true
+        },
+        "IA-0010": {
+          "channel": "tc_uplink",
+          "injects": true
+        }
+      }
+    },
+    "feeder_rf": {
+      "label": "Rogue gateway on the feeder link",
+      "label_ko": "feeder 링크의 rogue 게이트웨이",
+      "attach": {
+        "rule": "rogue_on_links",
+        "link_kinds": [
+          "feeder"
+        ]
+      },
+      "credentials": [
+        "none"
+      ],
+      "link_attack": true,
+      "entry": {
+        "IA-0008": {
+          "channel": "feeder",
+          "injects": true
+        },
+        "IA-0008.01": {
+          "channel": "feeder",
+          "injects": true
+        }
+      }
+    },
+    "user_terminal": {
+      "label": "User terminal on the service link",
+      "label_ko": "서비스 링크의 사용자 단말",
+      "attach": {
+        "from_nodes": [
+          "ue"
+        ]
+      },
+      "credentials": [
+        "subscriber_valid",
+        "none"
+      ],
+      "link_attack": true,
+      "credential_note": "subscriber_valid: a legitimate subscriber turned attacker or a compromised UE; none: a rogue terminal",
+      "entry": {
+        "IA-0009.03": {
+          "channel": "service_link",
+          "injects": true
+        },
+        "IA-0008": {
+          "channel": "service_link",
+          "injects": true
+        }
+      }
+    },
+    "supply_chain": {
+      "label": "Supplier / integrator",
+      "label_ko": "공급업체 / 통합 업체",
+      "attach": {
+        "from_nodes": [
+          "fsw_pipeline",
+          "atlo"
+        ]
+      },
+      "credentials": [
+        "none"
+      ],
+      "link_attack": false,
+      "entry": {
+        "IA-0001": {
+          "channel": "any"
+        },
+        "IA-0001.01": {
+          "channel": "artifact"
+        },
+        "IA-0001.02": {
+          "channel": "artifact"
+        },
+        "IA-0001.03": {
+          "channel": "custody"
+        },
+        "IA-0012": {
+          "channel": "custody"
+        },
+        "IA-0009.02": {
+          "channel": "any"
+        },
+        "IA-0007.01": {
+          "channel": "artifact"
+        },
+        "IA-0011": {
+          "channel": "custody"
+        }
+      }
+    },
+    "trusted_party": {
+      "label": "Trusted partner / vendor remote access",
+      "label_ko": "신뢰 관계 파트너 / 벤더 원격 접근",
+      "attach": {
+        "from_nodes": [
+          "moc"
+        ],
+        "via_first": "partner connection"
+      },
+      "credentials": [
+        "partner_valid"
+      ],
+      "link_attack": false,
+      "credential_note": "partner_valid: the partner's own access to the operations centre, not mission command keys",
+      "entry": {
+        "IA-0009": {
+          "channel": "any"
+        },
+        "IA-0009.01": {
+          "channel": "any"
+        },
+        "IA-0009.02": {
+          "channel": "any"
+        }
+      }
+    },
+    "crosslink": {
+      "label": "Compromised neighbour satellite",
+      "label_ko": "침해된 인접 위성",
+      "attach": {
+        "rule": "across_isl"
+      },
+      "credentials": [
+        "none",
+        "mno_valid"
+      ],
+      "link_attack": false,
+      "credential_note": "mno_valid: the neighbour's RAN holds the F1 security association",
+      "entry": {
+        "IA-0003": {
+          "channel": "isl",
+          "injects": true
+        }
+      }
+    },
+    "proximity": {
+      "label": "Proximity spacecraft / counterspace weapon / physical access",
+      "label_ko": "근접 우주선 / 대우주 무기 / 물리적 접근",
+      "attach": {
+        "rule": "proximity"
+      },
+      "credentials": [
+        "none"
+      ],
+      "link_attack": false,
+      "entry": {
+        "IA-0005": {
+          "channel": "proximity"
+        },
+        "IA-0005.01": {
+          "channel": "proximity"
+        },
+        "IA-0005.02": {
+          "channel": "proximity"
+        },
+        "IA-0005.03": {
+          "channel": "proximity"
+        },
+        "IA-0008.02": {
+          "channel": "proximity",
+          "injects": true
+        },
+        "IA-0008.03": {
+          "channel": "proximity"
+        },
+        "IA-0011": {
+          "channel": "proximity"
+        }
+      }
+    },
+    "hosted_payload": {
+      "label": "Mobile network operator side (hosted RAN)",
+      "label_ko": "이동통신 운영 주체 측 (호스팅 RAN)",
+      "attach": {
+        "from_nodes": [
+          "core"
+        ]
+      },
+      "credentials": [
+        "mno_valid"
+      ],
+      "link_attack": false,
+      "entry": {
+        "IA-0006": {
+          "channel": "hosted",
+          "injects": true
+        }
+      }
+    }
+  },
+  "door": {
+    "_about": "Crossing from a hosted RAN function into its host bus needs a kept door technique; without it the chain stops at the RAN function.",
+    "techniques": [
+      "IA-0006",
+      "LM-0001"
+    ],
+    "link_kind": "hosted"
+  },
+  "step_authority": {
+    "_about": "Authority needed by non-entry steps (from the TR52 pilot profiles, data/rules/techniques.json; children inherit from their parent). tc: the step sends telecommands, so it needs a path over a tc_uplink and, when SDLS is on, mission keys. credential: the step uses a mission-valid credential.",
+    "EX-0001": "tc",
+    "DE-0011": "credential",
+    "LM-0007": "credential",
+    "PER-0005": "credential",
+    "EX-0001.02": null
+  },
+  "link_only": {
+    "_about": "Techniques that act on a radio link itself without the spacecraft accepting a command, with the link kinds they act on. For origins that attack links they need only such a link on the path (an attacker inside a ground station counts for the TT&C link). A link-only outcome also needs an accepted link-only action. A mapping row may override with link_only true/false and a reason.",
+    "techniques": {
+      "EX-0013": [
+        "tc_uplink",
+        "feeder",
+        "service_link"
+      ],
+      "EX-0013.02": [
+        "tc_uplink",
+        "feeder",
+        "service_link"
+      ],
+      "EX-0014": [
+        "tc_uplink",
+        "feeder",
+        "service_link",
+        "gnss"
+      ],
+      "EX-0014.04": [
+        "gnss"
+      ],
+      "EX-0016": [
+        "tc_uplink",
+        "feeder",
+        "service_link",
+        "gnss"
+      ],
+      "EX-0016.01": [
+        "tc_uplink",
+        "feeder",
+        "service_link"
+      ],
+      "EX-0016.02": [
+        "tc_uplink",
+        "feeder",
+        "service_link"
+      ],
+      "EX-0016.03": [
+        "gnss"
+      ],
+      "DE-0002.02": [
+        "tc_uplink"
+      ],
+      "EXF-0003": [
+        "tc_uplink",
+        "feeder",
+        "service_link"
+      ],
+      "EXF-0003.01": [
+        "tc_uplink",
+        "feeder",
+        "service_link"
+      ],
+      "EXF-0003.02": [
+        "tc_uplink",
+        "feeder",
+        "service_link"
+      ],
+      "EXF-0002.03": [
+        "tc_uplink",
+        "feeder",
+        "service_link"
+      ],
+      "IMP-0013": [
+        "tc_uplink",
+        "feeder",
+        "service_link",
+        "gnss"
+      ]
+    }
+  },
+  "lateral_crosslink": {
+    "techniques": [
+      "LM-0003"
+    ],
+    "requires_link_kind": "isl"
+  },
+  "architectures": {
+    "G-CONV": {
+      "label": "Conventional: full gNB on one service satellite",
+      "label_ko": "기존형: 서비스 위성 한 대에 gNB 전체 탑재",
+      "nodes": {
+        "moc": {
+          "label": "Mission operations centre",
+          "segment": "ground",
+          "operated_by": "mission_operator"
+        },
+        "gs": {
+          "label": "TT&C ground station",
+          "segment": "ground",
+          "operated_by": "mission_operator"
+        },
+        "fsw_pipeline": {
+          "label": "Flight software / update pipeline",
+          "segment": "ground",
+          "operated_by": "mission_operator"
+        },
+        "atlo": {
+          "label": "Integration site (ATLO)",
+          "segment": "ground",
+          "operated_by": "integrator"
+        },
+        "core": {
+          "label": "5G core and gateway",
+          "segment": "ground",
+          "operated_by": "mno"
+        },
+        "ue": {
+          "label": "User terminal",
+          "segment": "user",
+          "operated_by": "subscriber",
+          "basis": "assumed: added for the service-link origin (analyst decision)"
+        },
+        "sat_service.bus": {
+          "label": "Service satellite bus (CDHS, COM)",
+          "segment": "space",
+          "operated_by": "mission_operator"
+        },
+        "sat_service.gnb": {
+          "label": "gNB hosted on the service satellite",
+          "segment": "space",
+          "operated_by": "mno",
+          "hosted_on": "sat_service.bus",
+          "basis": "assumed: RAN run by the mobile network operator, bus by the mission operator; the source file has one mission-operator satellite node"
+        },
+        "gnss": {
+          "label": "GNSS signals in space",
+          "segment": "external",
+          "operated_by": "gnss_provider",
+          "basis": "assumed: every bus has a GNSS receiver (SPARTA EX-0014.04/EX-0016.03 describe it)"
+        }
+      },
+      "links": [
+        {
+          "id": "SLE",
+          "from": "moc",
+          "to": "gs",
+          "kind": "ground",
+          "label": "SLE (ground)"
+        },
+        {
+          "id": "TC-UL",
+          "from": "gs",
+          "to": "sat_service.bus",
+          "kind": "tc_uplink",
+          "control": "sdls",
+          "label": "TT&C uplink"
+        },
+        {
+          "id": "UPD",
+          "from": "fsw_pipeline",
+          "to": "sat_service.bus",
+          "kind": "artifact",
+          "label": "software update"
+        },
+        {
+          "id": "ATLO",
+          "from": "atlo",
+          "to": "sat_service.bus",
+          "kind": "custody",
+          "label": "physical custody before launch"
+        },
+        {
+          "id": "NG",
+          "from": "core",
+          "to": "sat_service.gnb",
+          "kind": "feeder",
+          "control": "ndsip",
+          "label": "Ng over the feeder link"
+        },
+        {
+          "id": "SERVICE",
+          "from": "ue",
+          "to": "sat_service.gnb",
+          "kind": "service_link",
+          "control": "as_security",
+          "label": "service link (Uu)",
+          "basis": "assumed: added with the user terminal"
+        },
+        {
+          "id": "HOST",
+          "from": "sat_service.gnb",
+          "to": "sat_service.bus",
+          "kind": "hosted",
+          "control": "segregation",
+          "label": "hosted RAN ↔ bus interface",
+          "basis": "assumed: the hosted RAN needs power, time and data from the bus (SPARTA IA-0006 describes this interface)"
+        },
+        {
+          "id": "GNSS-sat_service",
+          "from": "gnss",
+          "to": "sat_service.bus",
+          "kind": "gnss",
+          "label": "GNSS reception",
+          "basis": "assumed: as node gnss"
+        }
+      ]
+    },
+    "G-D53": {
+      "label": "D5.3 split: DU on the service satellite, CU on the feeder satellite, F1 over the inter-satellite link",
+      "label_ko": "D5.3 분할형: DU는 서비스 위성, CU는 feeder 위성, F1은 위성 간 링크(ISL)",
+      "nodes": {
+        "moc": {
+          "label": "Mission operations centre",
+          "segment": "ground",
+          "operated_by": "mission_operator"
+        },
+        "gs": {
+          "label": "TT&C ground station",
+          "segment": "ground",
+          "operated_by": "mission_operator"
+        },
+        "fsw_pipeline": {
+          "label": "Flight software / update pipeline",
+          "segment": "ground",
+          "operated_by": "mission_operator"
+        },
+        "atlo": {
+          "label": "Integration site (ATLO)",
+          "segment": "ground",
+          "operated_by": "integrator"
+        },
+        "core": {
+          "label": "5G core and gateway",
+          "segment": "ground",
+          "operated_by": "mno"
+        },
+        "ue": {
+          "label": "User terminal",
+          "segment": "user",
+          "operated_by": "subscriber",
+          "basis": "assumed: as G-CONV"
+        },
+        "sat_service.bus": {
+          "label": "Service satellite bus (CDHS, COM)",
+          "segment": "space",
+          "operated_by": "mission_operator"
+        },
+        "sat_service.du": {
+          "label": "DU hosted on the service satellite",
+          "segment": "space",
+          "operated_by": "mno",
+          "hosted_on": "sat_service.bus",
+          "basis": "assumed: as G-CONV gNB"
+        },
+        "sat_feeder.bus": {
+          "label": "Feeder satellite bus (CDHS)",
+          "segment": "space",
+          "operated_by": "mission_operator"
+        },
+        "sat_feeder.cu": {
+          "label": "CU hosted on the feeder satellite",
+          "segment": "space",
+          "operated_by": "mno",
+          "hosted_on": "sat_feeder.bus",
+          "basis": "assumed: as G-CONV gNB"
+        },
+        "gnss": {
+          "label": "GNSS signals in space",
+          "segment": "external",
+          "operated_by": "gnss_provider",
+          "basis": "assumed: every bus has a GNSS receiver (SPARTA EX-0014.04/EX-0016.03 describe it)"
+        }
+      },
+      "links": [
+        {
+          "id": "SLE",
+          "from": "moc",
+          "to": "gs",
+          "kind": "ground",
+          "label": "SLE (ground)"
+        },
+        {
+          "id": "TC-UL",
+          "from": "gs",
+          "to": "sat_service.bus",
+          "kind": "tc_uplink",
+          "control": "sdls",
+          "label": "TT&C uplink"
+        },
+        {
+          "id": "UPD",
+          "from": "fsw_pipeline",
+          "to": "sat_service.bus",
+          "kind": "artifact",
+          "label": "software update"
+        },
+        {
+          "id": "ATLO",
+          "from": "atlo",
+          "to": "sat_service.bus",
+          "kind": "custody",
+          "label": "physical custody before launch"
+        },
+        {
+          "id": "NG",
+          "from": "core",
+          "to": "sat_feeder.cu",
+          "kind": "feeder",
+          "control": "ndsip",
+          "label": "Ng over the feeder link"
+        },
+        {
+          "id": "F1-ISL",
+          "from": "sat_feeder.cu",
+          "to": "sat_service.du",
+          "kind": "isl",
+          "control": "ipsec_f1",
+          "label": "F1 over the inter-satellite link"
+        },
+        {
+          "id": "SERVICE",
+          "from": "ue",
+          "to": "sat_service.du",
+          "kind": "service_link",
+          "control": "as_security",
+          "label": "service link (Uu)",
+          "basis": "assumed: as G-CONV"
+        },
+        {
+          "id": "HOST",
+          "from": "sat_service.du",
+          "to": "sat_service.bus",
+          "kind": "hosted",
+          "control": "segregation",
+          "label": "hosted DU ↔ service bus",
+          "basis": "assumed: as G-CONV HOST"
+        },
+        {
+          "id": "HOST-F",
+          "from": "sat_feeder.cu",
+          "to": "sat_feeder.bus",
+          "kind": "hosted",
+          "control": "segregation",
+          "label": "hosted CU ↔ feeder bus",
+          "basis": "assumed: as G-CONV HOST"
+        },
+        {
+          "id": "GNSS-sat_service",
+          "from": "gnss",
+          "to": "sat_service.bus",
+          "kind": "gnss",
+          "label": "GNSS reception",
+          "basis": "assumed: as node gnss"
+        },
+        {
+          "id": "GNSS-sat_feeder",
+          "from": "gnss",
+          "to": "sat_feeder.bus",
+          "kind": "gnss",
+          "label": "GNSS reception",
+          "basis": "assumed: as node gnss"
+        }
+      ]
+    },
+    "transparent": {
+      "label": "Transparent: gNB on the ground, satellite relays Uu (3GPP Rel-17/18 baseline)",
+      "label_ko": "투명 중계형: gNB는 지상, 위성은 Uu를 중계",
+      "nodes": {
+        "moc": {
+          "label": "Mission operations centre",
+          "segment": "ground",
+          "operated_by": "mission_operator"
+        },
+        "gs": {
+          "label": "TT&C ground station",
+          "segment": "ground",
+          "operated_by": "mission_operator"
+        },
+        "fsw_pipeline": {
+          "label": "Flight software / update pipeline",
+          "segment": "ground",
+          "operated_by": "mission_operator"
+        },
+        "atlo": {
+          "label": "Integration site (ATLO)",
+          "segment": "ground",
+          "operated_by": "integrator"
+        },
+        "core": {
+          "label": "5G core and gateway",
+          "segment": "ground",
+          "operated_by": "mno"
+        },
+        "gnb": {
+          "label": "gNB / NTN gateway on the ground",
+          "segment": "ground",
+          "operated_by": "mno",
+          "basis": "3GPP TR 38.821 transparent payload: the gNB is on the ground and the satellite relays the radio signal"
+        },
+        "ue": {
+          "label": "User terminal",
+          "segment": "user",
+          "operated_by": "subscriber",
+          "basis": "assumed: as G-CONV"
+        },
+        "sat_service.bus": {
+          "label": "Service satellite bus (CDHS, COM)",
+          "segment": "space",
+          "operated_by": "mission_operator"
+        },
+        "sat_service.payload": {
+          "label": "Transparent payload (radio relay)",
+          "segment": "space",
+          "operated_by": "mission_operator",
+          "basis": "3GPP TR 38.821: the transparent payload relays Uu between the service and feeder links and runs no RAN function; operated by the satellite operator, assumed here to be the mission operator. No payload ↔ bus attack link is modelled: the relay is not a RAN interface"
+        },
+        "gnss": {
+          "label": "GNSS signals in space",
+          "segment": "external",
+          "operated_by": "gnss_provider",
+          "basis": "assumed: every bus has a GNSS receiver (SPARTA EX-0014.04/EX-0016.03 describe it)"
+        }
+      },
+      "links": [
+        {
+          "id": "SLE",
+          "from": "moc",
+          "to": "gs",
+          "kind": "ground",
+          "label": "SLE (ground)"
+        },
+        {
+          "id": "TC-UL",
+          "from": "gs",
+          "to": "sat_service.bus",
+          "kind": "tc_uplink",
+          "control": "sdls",
+          "label": "TT&C uplink"
+        },
+        {
+          "id": "UPD",
+          "from": "fsw_pipeline",
+          "to": "sat_service.bus",
+          "kind": "artifact",
+          "label": "software update"
+        },
+        {
+          "id": "ATLO",
+          "from": "atlo",
+          "to": "sat_service.bus",
+          "kind": "custody",
+          "label": "physical custody before launch"
+        },
+        {
+          "id": "NG-T",
+          "from": "gnb",
+          "to": "core",
+          "kind": "ground",
+          "control": "ndsip",
+          "label": "Ng (terrestrial)",
+          "basis": "3GPP TR 38.821: Ng stays terrestrial in the transparent architecture; NDS/IP per TS 33.210 as in G-CONV"
+        },
+        {
+          "id": "FEEDER",
+          "from": "gnb",
+          "to": "sat_service.payload",
+          "kind": "feeder",
+          "label": "feeder link (relayed Uu)",
+          "basis": "3GPP TR 38.821: the feeder link carries the relayed Uu between the gateway/gNB and the payload; the payload performs no authentication, so no control is placed on this link"
+        },
+        {
+          "id": "SERVICE",
+          "from": "ue",
+          "to": "sat_service.payload",
+          "kind": "service_link",
+          "control": "as_security",
+          "label": "service link (Uu, relayed)",
+          "basis": "assumed: as G-CONV; Uu is relayed by the payload and terminates at the gNB on the ground, where 5G AS/NAS security also terminates (TS 33.501)"
+        },
+        {
+          "id": "GNSS-sat_service",
+          "from": "gnss",
+          "to": "sat_service.bus",
+          "kind": "gnss",
+          "label": "GNSS reception",
+          "basis": "assumed: as node gnss"
+        }
+      ]
+    }
+  },
+  "reverse_door": {
+    "_about": "From a compromised bus into the RAN function hosted on it (SPARTA IA-0013, the inverse of IA-0006). When kept and accepted, the RAN functions on the reached bus are recorded as reached.",
+    "techniques": [
+      "IA-0013"
+    ]
+  },
+  "ground_side": {
+    "_about": "Techniques that act in ground systems or supplier sites: they need an accepted entry, not the satellite bus.",
+    "techniques": [
+      "IA-0007",
+      "IA-0009",
+      "IA-0009.01",
+      "IA-0009.02",
+      "PER-0003",
+      "EXF-0007",
+      "EXF-0008",
+      "EXF-0009",
+      "DE-0002.01"
+    ]
+  },
+  "capture": {
+    "_about": "Techniques that read traffic off a link. They fail on an encrypting link whose control is on, unless the attacker's credential bypasses it.",
+    "techniques": [
+      "EXF-0003",
+      "EXF-0003.01",
+      "EXF-0003.02"
+    ]
+  }
+}

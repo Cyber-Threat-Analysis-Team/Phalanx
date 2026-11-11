@@ -1,0 +1,42 @@
+{
+ "id": "TR12",
+ "source": "ENISA Space Threat Landscape 2025, Annex C Table 17 (via Phalanx/framework/enisa_threats_tuple.csv)",
+ "category": "FM",
+ "name": "Failure of Cloud infrastructure",
+ "cia": [
+  "A"
+ ],
+ "affected_asset_selectors": [
+  "Ground: Satellite Control (GSaaS/Cloud)",
+  "Space: BUS (CDHS) & Payload"
+ ],
+ "description": "With the proliferation of Cloud solutions and the rise of Ground Stations as a Service(GSaaS), threats to Cloud infrastructure can deny availability of satellite receivers in the ground segment, affecting ground stations as especially impacting users of GSaaS. This will be more pronounced with the introduction of Satellite Operations as a Service (SOaaS). Furthermore, the multi-tenant nature of SOaaS introduces distinct threats to data privacy and service availiability in orbit.",
+ "projection": {
+  "candidate_assets": [
+   "bus_cdhs",
+   "bus_cdhs_f",
+   "ran_cu",
+   "ran_du"
+  ],
+  "candidate_lifecycle": [
+   3,
+   4,
+   5,
+   6,
+   7
+  ],
+  "lifecycle_rule": "ET-P-LC-01 (legacy tuple L field; Annex C has no lifecycle column)",
+  "derivation_provenance": {
+   "kind": "source_field",
+   "source": "Phalanx/framework/enisa_threats_tuple.csv row TR12",
+   "source_sha256": "c086e9d7221893d69e2ff6d380e3b2024aecc144bac8f034218b6814ef060b52",
+   "field": "L (lifecycle)",
+   "note": "candidate_lifecycle copies the legacy tuple L field {3,4,5,6,7}; ENISA STL 2025 Annex C has no lifecycle column, so the basis is the legacy tuple, not the Annex"
+  },
+  "applicable_boundary_roles": [
+   "command_authority"
+  ]
+ },
+ "claims": [],
+ "crosswalk_key": "Failure of Cloud infrastructure"
+}

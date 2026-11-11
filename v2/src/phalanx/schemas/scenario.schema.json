@@ -1,0 +1,149 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SI: scenario instance",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "si_id",
+    "threat",
+    "variant",
+    "label",
+    "attacker",
+    "selected_asset_instances",
+    "realized_lifecycle",
+    "intended_effect",
+    "protection_applied",
+    "platform_state",
+    "evidence_refs"
+  ],
+  "properties": {
+    "si_id": {
+      "type": "string",
+      "pattern": "^SI-"
+    },
+    "threat": {
+      "type": "string"
+    },
+    "variant": {
+      "type": "string"
+    },
+    "label": {
+      "type": "string"
+    },
+    "attacker": {
+      "type": "object",
+      "required": [
+        "class",
+        "origin_node",
+        "credential"
+      ],
+      "properties": {
+        "class": {
+          "type": "string"
+        },
+        "origin_node": {
+          "type": "string"
+        },
+        "credential": {
+          "type": "string"
+        },
+        "gs_role": {
+          "type": "string"
+        },
+        "capability": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "selected_asset_instances": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      },
+      "minProperties": 1
+    },
+    "realized_lifecycle": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 7
+    },
+    "intended_effect": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "C",
+          "I",
+          "A"
+        ]
+      },
+      "uniqueItems": true,
+      "minItems": 1
+    },
+    "protection_applied": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": {
+          "enum": [
+            true,
+            false,
+            "unknown"
+          ]
+        }
+      }
+    },
+    "platform_state": {
+      "type": "object",
+      "additionalProperties": {
+        "enum": [
+          true,
+          false,
+          "unknown"
+        ]
+      }
+    },
+    "evidence_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "authoring_aid": {
+      "description": "Nondeterministic authoring aid (e.g. an LLM) used while writing this SI; null = none. Analyst-authored input; outside the H5 determinism scope (protocol §2.5).",
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "tool",
+            "version",
+            "purpose",
+            "date"
+          ],
+          "properties": {
+            "tool": {
+              "type": "string",
+              "minLength": 1
+            },
+            "version": {
+              "type": "string",
+              "minLength": 1
+            },
+            "purpose": {
+              "type": "string",
+              "minLength": 1
+            },
+            "date": {
+              "type": "string",
+              "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

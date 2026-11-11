@@ -1,0 +1,979 @@
+{
+ "threat": "TR29",
+ "status": "proposed",
+ "author": "assistant sub-agent V3G7 (v3 re-map); fix pass Fix2",
+ "date": "2026-10-27",
+ "vectors": [
+  {
+   "vector": "rf_link",
+   "enisa_quote": "any existing communication link in the satellite lifecycle",
+   "basis": "quote",
+   "reason": "A communication link between the space and ground segments is the TT&C radio link; the interceptor is a receiver outside the mission, and ENISA adds that secondary/backup channels count."
+  },
+  {
+   "vector": "ground",
+   "enisa_quote": "inside of specific segments - ground, space, user and human resources",
+   "basis": "quote",
+   "reason": "ENISA names links inside the ground segment (MOC to station, SLE/SDL), which an attacker taps from within ground systems."
+  }
+ ],
+ "review_response": [
+  {
+   "finding": "IA-0004 K-ENABLE (rf_link, enables EXF-0003) does not match SPARTA semantics",
+   "action": "fixed: IA-0004 is now D-UNDESCRIBED; the backup-channel wording is carried by the EXF-0003.02 enisa_quote and the rf_link vector, and the rf_link entry is IA-0008.01 (receiver of a rogue ground station)."
+  },
+  {
+   "finding": "No origin for 'inside of specific segments - ground, space, user': space and user links excluded",
+   "action": "fixed: added feeder_rf (weak, 'between the segments'), user_terminal (weak, user segment/VSAT) and crosslink (weak, space segment) vectors with entries IA-0008.01/IA-0008/IA-0003; proximity not added because ENISA names no nearby platform."
+  },
+  {
+   "finding": "EXF-0002.03 traffic analysis K-ACTION is stronger than the quote",
+   "action": "fixed: demoted to D-UNDESCRIBED; traffic analysis reads metadata and node power, not the data ENISA says is intercepted."
+  },
+  {
+   "finding": "engine: passive capture needs a fake TC entry (review_arch V-8, C-4)",
+   "action": "kept because the validator requires a kept entry per vector; EXF-0003* are link_only by default so the engine skips the enabler, which is the intended workaround."
+  },
+  {
+   "finding": "M2: crosslink, feeder_rf and user_terminal vectors only produced model-artefact differences",
+   "action": "fixed: all three vectors removed; IA-0003 is D-UNDESCRIBED (passive ISL monitoring needs no compromised neighbour and has no SPARTA technique). rf_link and ground remain."
+  },
+  {
+   "finding": "M2: report must say interception is not stopped by the modelled authentication controls",
+   "action": "fixed: stated in scope_note."
+  }
+ ],
+ "scope_note": "TR29 is confidentiality of data on links. Controls that would change the result (SDLS encryption, NDS/IP, IPsec on F1) are outside the model's current protection axes (review_arch C-4). Interception here is not stopped by the modelled authentication controls (SDLS authentication, anti-replay); passive monitoring of crosslinks is not in the model (no SPARTA technique, no passive origin), and the feeder and service links are not mapped because ENISA names no such link.",
+ "rows": [
+  {
+   "technique": "EXF-0003",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk",
+    "sv:SV-CF-1"
+   ],
+   "code": "K-ACTION",
+   "role": "exfiltration",
+   "enisa_quote": "Interception of data over a communication channel",
+   "sparta_quote": "captures mission traffic in transit, on ground networks or over the space link",
+   "reason": "Capturing mission traffic on a ground LAN, the space link or a crosslink is the interception ENISA names."
+  },
+  {
+   "technique": "EXF-0003.01",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk",
+    "sv:SV-CF-1"
+   ],
+   "code": "K-ACTION",
+   "role": "exfiltration",
+   "enisa_quote": "any existing communication link in the satellite lifecycle",
+   "sparta_quote": "By receiving or tapping the uplink path, the adversary collects telecommand frames",
+   "reason": "Tapping the ground-to-space command path is interception of one existing link; its content is telecommand frames."
+  },
+  {
+   "technique": "EXF-0003.02",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk",
+    "sv:SV-CF-1"
+   ],
+   "code": "K-ACTION",
+   "role": "exfiltration",
+   "enisa_quote": "primary and secondary commincation channels (e.g. used as backup)",
+   "sparta_quote": "The attacker records spacecraft-to-ground traffic, real-time telemetry",
+   "reason": "Recording spacecraft-to-ground telemetry and payload traffic is interception of the downlink, including backup channels."
+  },
+  {
+   "technique": "IA-0008.01",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "code": "K-ENABLE",
+   "role": "entry",
+   "vectors": [
+    "rf_link"
+   ],
+   "enables": "EXF-0003",
+   "sparta_quote": "Adversaries may field their own ground system, transportable or fixed, to transmit and receive mission-compatible signals",
+   "reason": "A rogue receiving/transmitting ground station is the equipment outside the mission that listens on the TT&C link."
+  },
+  {
+   "technique": "IA-0008",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "code": "K-ENABLE",
+   "role": "entry",
+   "vectors": [
+    "rf_link"
+   ],
+   "enables": "EXF-0003",
+   "sparta_quote": "any actor-controlled transmitter, platform, or node, ground, maritime, airborne, or space-based",
+   "reason": "An actor-controlled node outside the authorised architecture is the attacker's vantage point on the TT&C link."
+  },
+  {
+   "technique": "IA-0003",
+   "code": "D-UNDESCRIBED",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "reason": "Passive interception of inter-satellite traffic does not need a compromised neighbour satellite, and SPARTA has no technique for passive crosslink monitoring; ENISA only says 'links inside the space segment'."
+  },
+  {
+   "technique": "IA-0007",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ],
+   "code": "K-ENABLE",
+   "role": "entry",
+   "vectors": [
+    "ground"
+   ],
+   "enables": "EXF-0003",
+   "sparta_quote": "data gateways (SLE/CSP)",
+   "reason": "Interception on links inside the ground segment (MOC to station, SLE/SDL) needs a foothold in the ground systems that carry them."
+  },
+  {
+   "technique": "REC-0003",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "P-PREP",
+   "enables": "EXF-0003",
+   "reason": "Receiver design needs the link's band, modulation/coding and framing, which this reconnaissance collects."
+  },
+  {
+   "technique": "REC-0003.03",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "P-PREP",
+   "enables": "EXF-0003",
+   "reason": "Finding the non-TT&C channels is what lets the interception reach links beyond TT&C."
+  },
+  {
+   "technique": "REC-0005",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk",
+    "sv:SV-CF-1"
+   ],
+   "code": "P-PREP",
+   "enables": "EXF-0003",
+   "reason": "Eavesdropping reconnaissance is the passive capture setup; ENISA's interception is the exfiltration-side use of the same capture."
+  },
+  {
+   "technique": "REC-0005.01",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk",
+    "sv:SV-CF-1"
+   ],
+   "code": "P-PREP",
+   "enables": "EXF-0003.01",
+   "reason": "Capturing the command path to learn framing is the preparation for uplink interception."
+  },
+  {
+   "technique": "REC-0005.02",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk",
+    "sv:SV-CF-1"
+   ],
+   "code": "P-PREP",
+   "enables": "EXF-0003.02",
+   "reason": "Harvesting downlink telemetry and beacons is the preparation for downlink interception."
+  },
+  {
+   "technique": "RD-0001.01",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "P-PREP",
+   "enables": "EXF-0003",
+   "reason": "Own antennas, LNA and demodulator chain are what an outside receiver needs to intercept TT&C or feeder signals."
+  },
+  {
+   "technique": "DE-0002.02",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR44",
+   "reason": "Jamming denies the link; TR29 is about reading the traffic, not suppressing it."
+  },
+  {
+   "technique": "DE-0003.07",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Switching on-board crypto-mode values hides state from monitoring; it captures nothing on a link."
+  },
+  {
+   "technique": "DE-0003.09",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Biasing the clock for evasion changes on-board time bases, unrelated to receiving a channel."
+  },
+  {
+   "technique": "DE-0003.10",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "A spoofed ephemeris corrupts the position solution on board; ENISA describes reading data in transit."
+  },
+  {
+   "technique": "DE-0004",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR43",
+   "reason": "Masquerading as a legitimate entity is impersonation, ENISA TR43's subject, not passive reading."
+  },
+  {
+   "technique": "EX-0001",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Replay re-sends captured traffic; it uses an interception's output but is an active injection ENISA does not describe."
+  },
+  {
+   "technique": "EX-0001.01",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Replaying command packets is injection that needs an authority path, not listening on the channel."
+  },
+  {
+   "technique": "EX-0001.02",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Replaying bus traffic acts inside the spacecraft; ENISA's interception is of communication links."
+  },
+  {
+   "technique": "EX-0002",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Geofence-driven execution is an on-board trigger and has no link-reading behaviour."
+  },
+  {
+   "technique": "EX-0006",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR45",
+   "reason": "Disabling or bypassing encryption defeats the protection that the intercept faces; ENISA TR45 covers that step."
+  },
+  {
+   "technique": "EX-0011",
+   "framework": "SPARTA",
+   "sources": [
+    "sv:SV-CF-1"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Safe-mode weak protections matter for command access; ENISA TR29 describes capture, not commanding."
+  },
+  {
+   "technique": "EX-0012.02",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Editing on-board routing tables modifies data; the threat here is reading it in transit."
+  },
+  {
+   "technique": "EX-0012.12",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Skewing the system clock modifies on-board values; not interception."
+  },
+  {
+   "technique": "EX-0013.02",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Feeding erroneous input to receivers is a flood or confusion attack, not capture."
+  },
+  {
+   "technique": "EX-0014",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR54",
+   "reason": "Spoofing sends forged signals; ENISA TR54 is the spoofing threat."
+  },
+  {
+   "technique": "EX-0014.01",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Time spoofing forges the time source and does not read any channel."
+  },
+  {
+   "technique": "EX-0014.02",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Spoofing bus traffic acts on the on-board bus, not on a communication link between segments."
+  },
+  {
+   "technique": "EX-0014.04",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR54",
+   "reason": "GNSS-style spoofing is a signal-forgery attack described by ENISA TR54."
+  },
+  {
+   "technique": "EX-0015",
+   "framework": "SPARTA",
+   "sources": [
+    "sv:SV-CF-1"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Side-channel attacks extract secrets from computation byproducts; SV-CF-1 lists it but ENISA says interception over a channel."
+  },
+  {
+   "technique": "EX-0016",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR44",
+   "reason": "Jamming is link denial (TR44), not data capture."
+  },
+  {
+   "technique": "EX-0016.01",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR44",
+   "reason": "Uplink jamming denies commanding; capture of the uplink is EXF-0003.01."
+  },
+  {
+   "technique": "EX-0016.02",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR44",
+   "reason": "Downlink jamming denies telemetry; capture of the downlink is EXF-0003.02."
+  },
+  {
+   "technique": "EX-0016.03",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "GNSS-band jamming is not the communication channel ENISA says is intercepted."
+  },
+  {
+   "technique": "EXF-0001",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk",
+    "sv:SV-CF-1"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Replay-as-exfiltration induces new transmissions by sending commands; ENISA describes passive capture."
+  },
+  {
+   "technique": "EXF-0002",
+   "framework": "SPARTA",
+   "sources": [
+    "sv:SV-CF-1"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Side-channel exfiltration reads physical byproducts, not data carried on a communication channel."
+  },
+  {
+   "technique": "EXF-0002.01",
+   "framework": "SPARTA",
+   "sources": [
+    "sv:SV-CF-1"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Power-analysis attacks need hardware proximity or probing and do not describe link interception."
+  },
+  {
+   "technique": "EXF-0002.02",
+   "framework": "SPARTA",
+   "sources": [
+    "sv:SV-CF-1"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Electromagnetic leakage is read near the emitter; ENISA names communication links."
+  },
+  {
+   "technique": "EXF-0002.03",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk",
+    "sv:SV-CF-1"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Traffic analysis reads flow metadata and node power profile, not the intercepted data; ENISA's 'any information' sentence is the generic consequence."
+  },
+  {
+   "technique": "EXF-0002.04",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk",
+    "sv:SV-CF-1"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Timing attacks infer secrets from response latency, a different behaviour from capturing channel content."
+  },
+  {
+   "technique": "EXF-0002.05",
+   "framework": "SPARTA",
+   "sources": [
+    "sv:SV-CF-1"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Thermal imaging observes heat, which is no communication channel."
+  },
+  {
+   "technique": "EXF-0004",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk",
+    "sv:SV-CF-1"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR38",
+   "reason": "Co-opting a secondary link to carry stolen data out is exfiltration over an alternative channel, ENISA TR38."
+  },
+  {
+   "technique": "EXF-0005",
+   "framework": "SPARTA",
+   "sources": [
+    "sv:SV-CF-1"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR18",
+   "reason": "A nearby vehicle collecting emissions is the proximity spying ENISA TR18 describes."
+  },
+  {
+   "technique": "EXF-0006.02",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR38",
+   "reason": "Reconfiguring a transponder to forward data to attacker receivers is exfiltration by reconfiguration, ENISA TR38."
+  },
+  {
+   "technique": "EXF-0010",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR46",
+   "reason": "Routing data out through an implanted payload channel is described with malicious injection in ENISA TR46."
+  },
+  {
+   "technique": "IA-0001",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Supply-chain insertion happens before flight and has no link-interception behaviour."
+  },
+  {
+   "technique": "IA-0001.01",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Poisoned dependencies and tools affect the built software, not a communication channel."
+  },
+  {
+   "technique": "IA-0001.02",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR55",
+   "reason": "Malicious software introduced through the supply chain is ENISA TR55."
+  },
+  {
+   "technique": "IA-0001.03",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Hardware tampering before delivery is not capture of traffic on a link."
+  },
+  {
+   "technique": "IA-0002",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "A compromised on-board SDR could mirror traffic, but ENISA does not describe tampering with the radio itself."
+  },
+  {
+   "technique": "IA-0004",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "A backup-channel access path is for commanding; the ENISA words on secondary channels say a backup link can be intercepted too, which EXF-0003 already covers."
+  },
+  {
+   "technique": "IA-0004.01",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Compromising a backup ground station gives command access; interception on ground links needs only IA-0007."
+  },
+  {
+   "technique": "IA-0004.02",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Abusing the spacecraft's backup receiver is command injection, not listening."
+  },
+  {
+   "technique": "IA-0005",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Rendezvous is the proximity attacker's entry; ENISA TR29 names communication links and no nearby platform."
+  },
+  {
+   "technique": "IA-0005.01",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Emanation analysis reads leakage near the emitter, not a communication link."
+  },
+  {
+   "technique": "IA-0005.02",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "A docked vehicle is a physical access path that ENISA does not mention here."
+  },
+  {
+   "technique": "IA-0005.03",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Grappling is a physical contact attack and unrelated to channel interception."
+  },
+  {
+   "technique": "IA-0006",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "The hosted-payload door is an access path into the host bus; ENISA gives no such actor."
+  },
+  {
+   "technique": "IA-0007.01",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR46",
+   "reason": "Manipulating the update pipeline implants software, ENISA TR46."
+  },
+  {
+   "technique": "IA-0007.02",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR52",
+   "reason": "Commanding the spacecraft through a valid ground station is control seizure (TR52), not interception."
+  },
+  {
+   "technique": "IA-0008.02",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "A rogue spacecraft as listener sits in the proximity/crosslink origin; ENISA TR29 names none, and the crosslink vector is modelled through IA-0003."
+  },
+  {
+   "technique": "IA-0008.03",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "An ASAT weapon is a destructive actor, not a listener."
+  },
+  {
+   "technique": "IA-0009",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "A trusted-relationship foothold is not one of the links ENISA names."
+  },
+  {
+   "technique": "IA-0009.01",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Collaborator access is an access path to systems, not interception of a link."
+  },
+  {
+   "technique": "IA-0009.02",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Vendor remote access is an access path to systems, not interception of a link."
+  },
+  {
+   "technique": "IA-0009.03",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "A compromised user domain used as springboard goes into mission cores; interception on the user link is covered by the rogue terminal IA-0008."
+  },
+  {
+   "technique": "IA-0010",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Safe-mode access is a commanding technique and has no capture role."
+  },
+  {
+   "technique": "IA-0011",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Auxiliary-device compromise is an on-board access path, unrelated to links."
+  },
+  {
+   "technique": "IA-0012",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "ATLO compromise is a pre-flight path; ENISA TR29 is about links."
+  },
+  {
+   "technique": "IA-0013",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Compromise of a host spacecraft is an access path from hosted functions, not interception."
+  },
+  {
+   "technique": "IMP-0007",
+   "framework": "SPARTA",
+   "sources": [
+    "impact"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Abusing native functionality is an on-board impact; interception leaves the spacecraft unchanged."
+  },
+  {
+   "technique": "IMP-0008",
+   "framework": "SPARTA",
+   "sources": [
+    "impact"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "State or mode manipulation changes the spacecraft; TR29 only copies information."
+  },
+  {
+   "technique": "IMP-0009",
+   "framework": "SPARTA",
+   "sources": [
+    "impact"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR57",
+   "reason": "Changing configuration is parameter modification (TR57)."
+  },
+  {
+   "technique": "IMP-0010",
+   "framework": "SPARTA",
+   "sources": [
+    "impact"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR39",
+   "reason": "Altering data is ENISA TR39; TR29 is confidentiality only."
+  },
+  {
+   "technique": "IMP-0011",
+   "framework": "SPARTA",
+   "sources": [
+    "impact"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Flow manipulation alters or redirects traffic; interception reads it without changing the flow."
+  },
+  {
+   "technique": "IMP-0012",
+   "framework": "SPARTA",
+   "sources": [
+    "impact"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR42",
+   "reason": "Changing software or firmware is ENISA TR42."
+  },
+  {
+   "technique": "IMP-0013",
+   "framework": "SPARTA",
+   "sources": [
+    "impact"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR51",
+   "reason": "Resource exhaustion is a denial-of-service outcome (TR51)."
+  },
+  {
+   "technique": "IMP-0014",
+   "framework": "SPARTA",
+   "sources": [
+    "impact"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Timing manipulation changes the spacecraft; TR29 has confidentiality impact only."
+  },
+  {
+   "technique": "LM-0001",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Pivoting from a hosted payload is lateral movement to the bus; ENISA gives no such step."
+  },
+  {
+   "technique": "LM-0002",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Exploiting bus segregation is movement, not capture of a communication link."
+  },
+  {
+   "technique": "LM-0003",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Hopping to a neighbour needs control of the crosslink; intercepting traffic on it needs only IA-0003."
+  },
+  {
+   "technique": "LM-0006.01",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Rideshare-payload movement is a pivot between co-hosted payloads; ENISA describes none."
+  },
+  {
+   "technique": "PER-0004",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR52",
+   "reason": "Replacing keys to cement control is part of the seizure TR52 describes."
+  },
+  {
+   "technique": "RD-0001.02",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Renting commercial ground-station time is a way to get an antenna; ENISA describes owned or tapped links, so RD-0001.01 is the needed preparation."
+  },
+  {
+   "technique": "RD-0003.02",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Obtaining keys prepares decryption of captured traffic, a later step ENISA does not describe."
+  },
+  {
+   "technique": "RD-0004",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Staging capabilities is generic preparation for later exploits, not for capture."
+  },
+  {
+   "technique": "RD-0004.02",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Staging an upload exploit prepares commanding, not listening."
+  },
+  {
+   "technique": "REC-0001.03",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Cryptographic-algorithm discovery prepares decryption, not the capture ENISA describes."
+  },
+  {
+   "technique": "REC-0003.02",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Commanding details prepare command injection; interception needs only link parameters."
+  },
+  {
+   "technique": "REC-0003.04",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "ENISA's MFA example is something that gets intercepted; credential reconnaissance is a later use of the stolen secret."
+  },
+  {
+   "technique": "REC-0005.03",
+   "framework": "SPARTA",
+   "sources": [
+    "sv:SV-CF-1"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Observing from a nearby platform is the proximity case that TR29 does not name."
+  },
+  {
+   "technique": "REC-0005.04",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk",
+    "sv:SV-CF-1"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Active scanning sends probes to elicit responses; ENISA's interception is passive reception."
+  },
+  {
+   "technique": "REC-0007",
+   "framework": "SPARTA",
+   "sources": [
+    "sv:SV-CF-1"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Monitoring for safe-mode indicators prepares timing of command access, not capture."
+  }
+ ]
+}

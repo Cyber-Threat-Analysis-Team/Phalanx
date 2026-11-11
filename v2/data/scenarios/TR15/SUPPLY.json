@@ -1,0 +1,38 @@
+{
+ "si_id": "SI-TR15-SUPPLY",
+ "threat": "TR15",
+ "variant": "G-D53",
+ "label": "Third-party supplier introduces code through the flight-software update pipeline before launch",
+ "attacker": {
+  "class": "supply_chain",
+  "origin_node": "fsw_pipeline",
+  "credential": "none",
+  "capability": "third-party software supplier"
+ },
+ "selected_asset_instances": {
+  "ground_moc": "moc"
+ },
+ "realized_lifecycle": 3,
+ "intended_effect": [
+  "C",
+  "I"
+ ],
+ "protection_applied": {
+  "E-TCUL": {
+   "sdls_auth": true,
+   "sdls_antireplay": true
+  },
+  "E-RF": {
+   "sdls_auth": true,
+   "sdls_antireplay": true
+  }
+ },
+ "platform_state": {
+  "safe_mode": false
+ },
+ "evidence_refs": [
+  "ENISA STL 2025 Annex C TR15 description",
+  "SPARTA v4.0.1 SV-* related-to links",
+  "standard draft scenario set, tools/draft_all_ets.py"
+ ]
+}

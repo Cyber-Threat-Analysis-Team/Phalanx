@@ -1,0 +1,1045 @@
+{
+  "threat": "TR28",
+  "status": "proposed",
+  "author": "assistant sub-agent V3G1 (v3 re-map); fix pass Fix1",
+  "date": "2026-10-27",
+  "vectors": [
+    {
+      "vector": "rf_link",
+      "basis": "weak",
+      "enisa_quote": "complete replacement of a satellite's legitimate signals",
+      "reason": "Weak: ENISA does not say who replaces the signal or from where; replacing a signal the satellite receives means transmitting on its radio link from outside the mission."
+    },
+    {
+      "vector": "ground",
+      "basis": "weak",
+      "enisa_quote": "primarily impacting the satellite control center and TTC ground stations",
+      "reason": "Weak: the quote names what is impacted (control centre and TTC ground stations), not where the attacker acts; the attacker position inside the ground segment is inferred from the SLE protocol that ties those two together."
+    }
+  ],
+  "review_response": [
+    {
+      "finding": "S2 / whole rf_link chain disappears under SDLS (EX-0006 placed after an entry that SDLS blocks)",
+      "action": "kept because: EX-0006 alters on-board encryption and counter state, which needs a command the satellite already accepted; an outsider without keys has none when SDLS is on, so the engine result is correct. ENISA's 'compromising the SDL protocol' is the assumption that SDLS is broken or absent; the report must say that SDLS-on results assume an intact protocol and that this threat is the one that breaks it. No link_only override was used."
+    },
+    {
+      "finding": "EX-0006 is the wrong carrier on the ground vector",
+      "action": "fixed: EX-0006 restricted to vectors [rf_link]; IA-0007 now carries the SLE half with sparta_quote 'data gateways (SLE/CSP)' and enables the guidance-command action EX-0012.08."
+    },
+    {
+      "finding": "IMP-0008 and IMP-0011 share one quote for two things; EX-0012.08 is the better guidance-control technique",
+      "action": "fixed: EX-0012.08 added as analyst_added K-ACTION with the quote 'unauthorized commands to guidance control'; IMP-0011 now quotes 'complete replacement of a satellite's legitimate signals'; IMP-0008 is kept (prior decision, and other threats drop to it) with its own quote and a reason that flags it as the weakest effect row."
+    },
+    {
+      "finding": "IMP-0011 K-ACTION here but K-EFFECT in TR52/TR54/TR44",
+      "action": "fixed: K-EFFECT impact; the sending is done by the K-ENABLE entry rows (IA-0007.02, IA-0008.x)."
+    },
+    {
+      "finding": "IA-0007.02 coded differently across TR28/TR51/TR52/TR50",
+      "action": "fixed: K-ENABLE role entry here, same as TR51, TR52 and TR57."
+    },
+    {
+      "finding": "'replacement of a satellite's legitimate signals' as downlink or transponder replacement has no kept step",
+      "action": "kept because: no SPARTA technique replaces a downlink signal without a command (EXF-0006.02 Transponder diverts data for collection); reported as ENISA text not fully covered, no sparta_gap on the whole threat since commands and protocol compromise are covered."
+    },
+    {
+      "finding": "DE-0003.07 Cryptographic Modes as a companion of EX-0006 (review, optional)",
+      "action": "kept because: EX-0006 already carries 'forcing algorithm fallbacks' and 'null ciphers'; DE-0003.07 is a concealment technique, so it stays D-UNDESCRIBED."
+    },
+    {
+      "finding": "rf_link quote, IMP-0007, DE-0004/EX-0001.01/EX-0014.x to TR54, DE-0002.02/EX-0016.x to TR44, PER-0004 to TR52, RD-0001.01 (no issue)",
+      "action": "kept because: confirmed in the review; rf_link basis changed to weak because the quote names the signals, not the attacker's position."
+    },
+    {
+      "finding": "fix pass: validator, EX-0012.08 and IMP-0011 kept for rf_link but every enabler belonged to ground",
+      "action": "fixed: IA-0008 and IA-0008.01 now enable EX-0006, EX-0012.08 and IMP-0011, so the rf_link vector has its own enablers for each step; ground keeps IA-0007 -> EX-0012.08 and IA-0007.02 -> IMP-0011."
+    },
+    {
+      "finding": "fix pass M7: ground vector basis 'quote' overstated",
+      "action": "fixed: basis weak; the quote names what is impacted, not the attacker's position (same standard as rf_link)."
+    },
+    {
+      "finding": "fix pass M5: caveats promised in earlier responses were not in the file",
+      "action": "fixed: notes array added (SDLS-on assumes an intact protocol; downlink/transponder replacement uncovered)."
+    },
+    {
+      "finding": "fix pass M3/m3: IMP-0008 quote overlaps EX-0012.08; no edge from EX-0006 to the outcomes",
+      "action": "kept because the outcomes follow any accepted entry (each entry now enables them) and the overlapping quote is ENISA's only wording for the guidance-control effect; the reason already flags IMP-0008 as the weakest row. Process commentary removed from the reasons."
+    }
+  ],
+  "rows": [
+    {
+      "technique": "EX-0006",
+      "sources": [
+        "crosswalk",
+        "sv:SV-MA-7"
+      ],
+      "framework": "SPARTA",
+      "code": "K-ACTION",
+      "role": "execution",
+      "vectors": [
+        "rf_link"
+      ],
+      "enisa_quote": "compromising the SLE and SDL protocols",
+      "sparta_quote": "traffic or data is processed in clear or with weakened protection",
+      "reason": "For the outside transmitter the SDL half of 'compromising the SLE and SDL protocols' is defeating link protection (null ciphers, skipped anti-replay checks); limited to rf_link because a ground insider already holds the keys."
+    },
+    {
+      "technique": "EX-0012.08",
+      "sources": [
+        "analyst_added"
+      ],
+      "framework": "SPARTA",
+      "code": "K-ACTION",
+      "role": "execution",
+      "vectors": [
+        "rf_link",
+        "ground"
+      ],
+      "enisa_quote": "unauthorized commands to guidance control",
+      "sparta_quote": "Editing these values skews estimation or control",
+      "reason": "Guidance control is the attitude determination and control subsystem; unauthorized commands there edit its estimator and controller values, which is a concrete action behind ENISA's phrase."
+    },
+    {
+      "technique": "IA-0007",
+      "sources": [
+        "sv:SV-MA-7"
+      ],
+      "framework": "SPARTA",
+      "code": "K-ENABLE",
+      "role": "entry",
+      "vectors": [
+        "ground"
+      ],
+      "enables": "EX-0012.08",
+      "sparta_quote": "data gateways (SLE/CSP)",
+      "reason": "ENISA puts the hijack at the control centre and TTC ground stations and at the SLE protocol; IA-0007 names the SLE/CSP data gateways as part of the ground system whose compromise gives the foothold for the guidance commands."
+    },
+    {
+      "technique": "IA-0007.02",
+      "sources": [
+        "sv:SV-MA-7"
+      ],
+      "framework": "SPARTA",
+      "code": "K-ENABLE",
+      "role": "entry",
+      "vectors": [
+        "ground"
+      ],
+      "enables": "IMP-0011",
+      "sparta_quote": "Adversaries may use a compromised, mission-owned ground system to transmit legitimate-looking commands to the target spacecraft",
+      "reason": "The compromised control centre or TTC station sends the unauthorized commands that ENISA says hijack the satellite."
+    },
+    {
+      "technique": "IA-0008",
+      "sources": [
+        "crosswalk",
+        "sv:SV-IT-1"
+      ],
+      "framework": "SPARTA",
+      "code": "K-ENABLE",
+      "role": "entry",
+      "vectors": [
+        "rf_link"
+      ],
+      "enables": [
+        "EX-0006",
+        "EX-0012.08",
+        "IMP-0011"
+      ],
+      "sparta_quote": "Most interact by radiating or exchanging traffic using mission-compatible waveforms, framing, or crosslink protocols",
+      "reason": "An external transmitter that radiates mission-compatible signals is what can replace the legitimate signal, and it must first defeat the link protection."
+    },
+    {
+      "technique": "IA-0008.01",
+      "sources": [
+        "crosswalk",
+        "sv:SV-IT-1"
+      ],
+      "framework": "SPARTA",
+      "code": "K-ENABLE",
+      "role": "entry",
+      "vectors": [
+        "rf_link"
+      ],
+      "enables": [
+        "EX-0006",
+        "EX-0012.08",
+        "IMP-0011"
+      ],
+      "sparta_quote": "Adversaries may field their own ground system, transportable or fixed, to transmit and receive mission-compatible signals",
+      "reason": "A rogue ground station is the concrete transmitter that substitutes its own signals for the legitimate ones."
+    },
+    {
+      "technique": "IMP-0011",
+      "sources": [
+        "impact"
+      ],
+      "framework": "SPARTA",
+      "code": "K-EFFECT",
+      "role": "impact",
+      "enisa_quote": "complete replacement of a satellite's legitimate signals",
+      "sparta_quote": "An adversary may inject an unauthorized command or alter a legitimate command before execution",
+      "reason": "Replacing the legitimate signal means attacker-controlled commands or data flow to the satellite in its place; the sending is done by the entry rows."
+    },
+    {
+      "technique": "IMP-0008",
+      "sources": [
+        "impact"
+      ],
+      "framework": "SPARTA",
+      "code": "K-EFFECT",
+      "role": "impact",
+      "enisa_quote": "Hijacking and unauthorized commands to guidance control",
+      "sparta_quote": "An adversary may force an unauthorized transition",
+      "reason": "Hijacking means the attacker decides the operating state and mode; this is the weakest effect row, because ENISA names commands to a subsystem, not a mode change."
+    },
+    {
+      "technique": "IMP-0007",
+      "sources": [
+        "impact"
+      ],
+      "framework": "SPARTA",
+      "code": "K-EFFECT",
+      "role": "impact",
+      "enisa_quote": "reuse it for another purpose",
+      "sparta_quote": "The function may operate exactly as designed, but the adversary uses it for an unauthorized or harmful purpose",
+      "reason": "Using the satellite's own functions for the attacker's purpose is the stated aim of the hijack."
+    },
+    {
+      "technique": "RD-0001.01",
+      "sources": [
+        "crosswalk"
+      ],
+      "framework": "SPARTA",
+      "code": "P-PREP",
+      "enables": "IA-0008.01",
+      "reason": "Fielding a rogue ground station needs its own ground station equipment."
+    },
+    {
+      "technique": "REC-0003.02",
+      "sources": [
+        "crosswalk"
+      ],
+      "framework": "SPARTA",
+      "code": "P-PREP",
+      "enables": "IMP-0011",
+      "reason": "Valid unauthorized commands need the mission's command formats and dictionaries."
+    },
+    {
+      "technique": "DE-0002.01",
+      "sources": [
+        "sv:SV-MA-7"
+      ],
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Inhibiting ground-system functions (hiding activity from operators) is concealment; ENISA's hijack describes taking over signals and commands, not hiding them."
+    },
+    {
+      "technique": "DE-0002.02",
+      "sources": [
+        "crosswalk"
+      ],
+      "framework": "SPARTA",
+      "code": "D-OTHER",
+      "reason": "Overpowering the link by jamming is denial of service; ENISA's hijack replaces or alters the signal instead of drowning it, and TR44 keeps this technique.",
+      "other_threat": "TR44"
+    },
+    {
+      "technique": "DE-0003.07",
+      "sources": [
+        "crosswalk"
+      ],
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Switching crypto modes or 'crypto off' states is a way to desynchronise or hide traffic; EX-0006 already carries the protocol-weakening ENISA names, and ENISA mentions no hidden-content step."
+    },
+    {
+      "technique": "DE-0003.09",
+      "sources": [
+        "crosswalk"
+      ],
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Biasing the system clock to evade detection is concealment through timing; the hijack text mentions no clock manipulation."
+    },
+    {
+      "technique": "DE-0003.10",
+      "sources": [
+        "crosswalk"
+      ],
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Corrupting GPS ephemeris to hide activity is a navigation-side evasion that the hijack text does not describe."
+    },
+    {
+      "technique": "DE-0004",
+      "sources": [
+        "crosswalk"
+      ],
+      "framework": "SPARTA",
+      "code": "D-OTHER",
+      "reason": "Presenting as an authorised origin is the spoofing threat (a signal that appears legitimate); TR54 keeps it, whereas hijacking here is described through protocol compromise.",
+      "other_threat": "TR54"
+    },
+    {
+      "technique": "DE-0009.04",
+      "sources": [
+        "sv:SV-IT-1"
+      ],
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Deceiving onboard space-domain-awareness sensors targets SSA payloads, which ENISA's hijack of the signals and guidance commands does not name."
+    },
+    {
+      "technique": "EX-0001",
+      "sources": [
+        "crosswalk"
+      ],
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Replay of captured traffic is not mentioned; ENISA speaks of altering or replacing signals and unauthorized commands, and replay as such belongs to the sub-technique TR54 keeps."
+    },
+    {
+      "technique": "EX-0001.01",
+      "sources": [
+        "crosswalk"
+      ],
+      "framework": "SPARTA",
+      "code": "D-OTHER",
+      "reason": "Resending previously accepted telecommands is a spoofing means kept by TR54; ENISA hijacking does not mention captured commands.",
+      "other_threat": "TR54"
+    },
+    {
+      "technique": "EX-0001.02",
+      "sources": [
+        "crosswalk"
+      ],
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Replaying bus traffic acts inside the spacecraft network; ENISA's text is about the radio signals and the ground protocols."
+    },
+    {
+      "technique": "EX-0002",
+      "sources": [
+        "crosswalk"
+      ],
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "PNT geofencing makes behaviour depend on position; nothing in the hijack text suggests location-triggered execution."
+    },
+    {
+      "technique": "EX-0008",
+      "sources": [
+        "crosswalk"
+      ],
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Time-synchronised execution schedules actions for later; ENISA describes the hijack, not delayed or timed payload actions."
+    },
+    {
+      "technique": "EX-0008.02",
+      "sources": [
+        "crosswalk"
+      ],
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Relative time sequences chain actions after an event; the hijack text names no timing of commands."
+    },
+    {
+      "technique": "EX-0012.02",
+      "sources": [
+        "crosswalk"
+      ],
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Editing internal routing tables redirects on-board data; ENISA's hijack is about signals and guidance commands, not on-board routing."
+    },
+    {
+      "technique": "EX-0012.12",
+      "sources": [
+        "crosswalk"
+      ],
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Editing the system clock skews timing; the hijack text does not mention time."
+    },
+    {
+      "technique": "EX-0013.02",
+      "sources": [
+        "crosswalk"
+      ],
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Erroneous input exhausts receivers and parsers (a denial effect); ENISA's hijack is about taking over, not about overloading."
+    },
+    {
+      "technique": "EX-0014",
+      "sources": [
+        "crosswalk",
+        "sv:SV-IT-1"
+      ],
+      "framework": "SPARTA",
+      "code": "D-OTHER",
+      "reason": "Forging inputs that look trustworthy is the spoofing threat, which TR54 keeps; the hijack text describes replacing the signal through protocol compromise.",
+      "other_threat": "TR54"
+    },
+    {
+      "technique": "EX-0014.01",
+      "sources": [
+        "crosswalk",
+        "sv:SV-IT-1"
+      ],
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Time spoofing forges the time source seen by consumers; ENISA hijacking names no time attack, and spoofing in general belongs to TR54."
+    },
+    {
+      "technique": "EX-0014.02",
+      "sources": [
+        "crosswalk",
+        "sv:SV-IT-1"
+      ],
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Spoofing bus messages acts on internal networks; the hijack text is about the radio signals and the SLE/SDL protocols."
+    },
+    {
+      "technique": "EX-0014.03",
+      "sources": [
+        "sv:SV-IT-1"
+      ],
+      "framework": "SPARTA",
+      "code": "D-OTHER",
+      "reason": "Fabricated sensor measurements are the spoofing threat; TR54 keeps this technique and the hijack text names no sensor data.",
+      "other_threat": "TR54"
+    },
+    {
+      "technique": "EX-0014.04",
+      "sources": [
+        "crosswalk",
+        "sv:SV-IT-1"
+      ],
+      "framework": "SPARTA",
+      "code": "D-OTHER",
+      "reason": "Transmitting false navigation signals is the spoofing threat, kept by TR54; the hijack text says nothing about GNSS.",
+      "other_threat": "TR54"
+    },
+    {
+      "technique": "EX-0016",
+      "sources": [
+        "crosswalk"
+      ],
+      "framework": "SPARTA",
+      "code": "D-OTHER",
+      "reason": "Jamming is the denial threat kept by TR44; replacing a signal is the opposite of drowning it.",
+      "other_threat": "TR44"
+    },
+    {
+      "technique": "EX-0016.01",
+      "sources": [
+        "crosswalk"
+      ],
+      "framework": "SPARTA",
+      "code": "D-OTHER",
+      "reason": "Uplink jamming prevents acceptance of telecommands (TR44 and TR32 threat); the hijack wants the satellite to accept the attacker's commands.",
+      "other_threat": "TR44"
+    },
+    {
+      "technique": "EX-0016.02",
+      "sources": [
+        "crosswalk"
+      ],
+      "framework": "SPARTA",
+      "code": "D-OTHER",
+      "reason": "Downlink jamming blocks telemetry and is part of the jamming threat TR44 keeps, not of a signal takeover.",
+      "other_threat": "TR44"
+    },
+    {
+      "technique": "EX-0016.03",
+      "sources": [
+        "crosswalk"
+      ],
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Jamming navigation or timing signals denies GNSS; the hijack text names no navigation service."
+    },
+    {
+      "technique": "EXF-0001",
+      "sources": [
+        "crosswalk"
+      ],
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Replaying data to exfiltrate it is a collection step; ENISA's hijack states no data theft."
+    },
+    {
+      "technique": "EXF-0002.03",
+      "sources": [
+        "crosswalk"
+      ],
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Traffic-analysis exfiltration infers information from link patterns; hijacking states no information gain."
+    },
+    {
+      "technique": "EXF-0002.04",
+      "sources": [
+        "crosswalk"
+      ],
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Timing side channels leak information passively; the hijack text describes active takeover."
+    },
+    {
+      "technique": "EXF-0003",
+      "sources": [
+        "crosswalk"
+      ],
+      "framework": "SPARTA",
+      "code": "D-OTHER",
+      "reason": "Signal interception is the eavesdropping threat kept by TR29; the hijack text describes altering or replacing signals, not listening.",
+      "other_threat": "TR29"
+    },
+    {
+      "technique": "EXF-0003.01",
+      "sources": [
+        "crosswalk"
+      ],
+      "framework": "SPARTA",
+      "code": "D-OTHER",
+      "reason": "Intercepting the uplink to read commands is part of TR29's interception threat; ENISA's hijack sends commands rather than reads them.",
+      "other_threat": "TR29"
+    },
+    {
+      "technique": "EXF-0003.02",
+      "sources": [
+        "crosswalk"
+      ],
+      "framework": "SPARTA",
+      "code": "D-OTHER",
+      "reason": "Intercepting the downlink is the interception threat TR29 keeps; not an action of a hijack.",
+      "other_threat": "TR29"
+    },
+    {
+      "technique": "EXF-0004",
+      "sources": [
+        "crosswalk"
+      ],
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "An out-of-band link to move data out is exfiltration; ENISA hijacking names no data leaving the system."
+    },
+    {
+      "technique": "EXF-0006.02",
+      "sources": [
+        "crosswalk"
+      ],
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Remapping the transponder to favour non-mission receivers diverts data to the attacker; this is signal diversion for collection, and ENISA names reuse of the satellite, not data diversion (accepted as a gap for the 'replacement of signals' sentence)."
+    },
+    {
+      "technique": "EXF-0007",
+      "sources": [
+        "sv:SV-MA-7"
+      ],
+      "framework": "SPARTA",
+      "code": "D-OTHER",
+      "reason": "Using a compromised ground system as an exfiltration path is the ground-compromise threat TR38 keeps; ENISA's hijack names no data theft.",
+      "other_threat": "TR38"
+    },
+    {
+      "technique": "EXF-0009",
+      "sources": [
+        "sv:SV-MA-7"
+      ],
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Exfiltration from a partner site is not part of the hijack; no partner is named."
+    },
+    {
+      "technique": "EXF-0010",
+      "sources": [
+        "crosswalk"
+      ],
+      "framework": "SPARTA",
+      "code": "D-OTHER",
+      "reason": "Exfiltration over the payload communication channel is an on-board implant behaviour kept by TR46, not a hijack action.",
+      "other_threat": "TR46"
+    },
+    {
+      "technique": "IA-0001",
+      "sources": [
+        "origin"
+      ],
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Supply-chain compromise before launch is not described; ENISA's hijack is of an operating satellite's signals and ground protocols."
+    },
+    {
+      "technique": "IA-0001.01",
+      "sources": [
+        "origin"
+      ],
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Poisoned development tools and dependencies are a supply-chain route that the hijack text does not mention."
+    },
+    {
+      "technique": "IA-0001.02",
+      "sources": [
+        "crosswalk"
+      ],
+      "framework": "SPARTA",
+      "code": "D-OTHER",
+      "reason": "Software supply-chain compromise is the supply-chain threat kept by TR55; ENISA hijacking names protocol compromise instead.",
+      "other_threat": "TR55"
+    },
+    {
+      "technique": "IA-0001.03",
+      "sources": [
+        "origin"
+      ],
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Tampered hardware from the supply chain is not described for a hijack of signals."
+    },
+    {
+      "technique": "IA-0002",
+      "sources": [
+        "entry_table"
+      ],
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Compromising the satellite's software-defined radio changes the on-board receiver itself; ENISA's text puts the compromise in the SLE/SDL protocols and the ground, not the SDR (not named)."
+    },
+    {
+      "technique": "IA-0003",
+      "sources": [
+        "crosswalk"
+      ],
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Entering through a compromised neighbour satellite is a crosslink route; ENISA mentions only ground and bus."
+    },
+    {
+      "technique": "IA-0004",
+      "sources": [
+        "sv:SV-MA-7"
+      ],
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "A secondary or backup comm channel as the door is not named; the hijack text names the standard SLE/SDL path."
+    },
+    {
+      "technique": "IA-0004.01",
+      "sources": [
+        "sv:SV-MA-7"
+      ],
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Using a backup ground station is a different door than the primary control centre and TTC stations ENISA names."
+    },
+    {
+      "technique": "IA-0004.02",
+      "sources": [
+        "crosswalk"
+      ],
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "A secondary receiver as a way in is not named; ENISA gives the main link and the ground protocols."
+    },
+    {
+      "technique": "IA-0005",
+      "sources": [
+        "origin"
+      ],
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Rendezvous and proximity operations are not described; the hijack is described over signals and ground protocols."
+    },
+    {
+      "technique": "IA-0005.01",
+      "sources": [
+        "crosswalk"
+      ],
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Compromise emanations is passive side-channel eavesdropping; a hijack needs to act, not listen."
+    },
+    {
+      "technique": "IA-0005.02",
+      "sources": [
+        "origin"
+      ],
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "A docked vehicle or OSAM servicer is a physical-contact route the hijack text does not mention."
+    },
+    {
+      "technique": "IA-0005.03",
+      "sources": [
+        "origin"
+      ],
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Grappling the satellite is physical capture, not the signal replacement or command abuse ENISA describes."
+    },
+    {
+      "technique": "IA-0006",
+      "sources": [
+        "origin"
+      ],
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Compromising a hosted payload as a door into the bus is not described; ENISA names the bus itself as the space target."
+    },
+    {
+      "technique": "IA-0007.01",
+      "sources": [
+        "crosswalk",
+        "sv:SV-MA-7"
+      ],
+      "framework": "SPARTA",
+      "code": "D-OTHER",
+      "reason": "Compromising an on-orbit update pushes malicious software; ENISA's hijack is through protocol compromise, and TR46 keeps the update route.",
+      "other_threat": "TR46"
+    },
+    {
+      "technique": "IA-0008.02",
+      "sources": [
+        "origin"
+      ],
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "A rogue spacecraft is a proximity origin; ENISA points to ground stations and the link, not to a neighbouring vehicle."
+    },
+    {
+      "technique": "IA-0008.03",
+      "sources": [
+        "origin"
+      ],
+      "framework": "SPARTA",
+      "code": "D-OTHER",
+      "reason": "A counterspace weapon as the origin is the ASAT threat TR18 keeps; the hijack text does not name one.",
+      "other_threat": "TR18"
+    },
+    {
+      "technique": "IA-0009",
+      "sources": [
+        "sv:SV-MA-7"
+      ],
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "A trusted relationship as the way in is not named in the hijack text."
+    },
+    {
+      "technique": "IA-0009.01",
+      "sources": [
+        "sv:SV-MA-7"
+      ],
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "A mission collaborator as the origin is not named; ENISA places the threat at the control centre and TTC stations."
+    },
+    {
+      "technique": "IA-0009.02",
+      "sources": [
+        "sv:SV-MA-7"
+      ],
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "A vendor's remote access is not named for the hijack; supply chain and vendors are not mentioned."
+    },
+    {
+      "technique": "IA-0009.03",
+      "sources": [
+        "crosswalk",
+        "sv:SV-MA-7"
+      ],
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Hijacking via the user segment is not described: ENISA names no user terminal or service link (the user-terminal origin is not chosen)."
+    },
+    {
+      "technique": "IA-0010",
+      "sources": [
+        "entry_table"
+      ],
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Entering during safe mode relies on reduced protections; the hijack text does not mention safe mode."
+    },
+    {
+      "technique": "IA-0011",
+      "sources": [
+        "origin"
+      ],
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Auxiliary devices and removable media are a different access route that the hijack text does not mention."
+    },
+    {
+      "technique": "IA-0012",
+      "sources": [
+        "origin"
+      ],
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Assembly, test and launch compromise happens before launch; ENISA's hijack is of an operating satellite."
+    },
+    {
+      "technique": "IA-0013",
+      "sources": [
+        "origin"
+      ],
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Moving from a compromised bus into a hosted RAN function is not described by ENISA."
+    },
+    {
+      "technique": "IMP-0009",
+      "sources": [
+        "impact"
+      ],
+      "framework": "SPARTA",
+      "code": "D-OTHER",
+      "reason": "Altering stored settings is the parameter-modification threat TR57 keeps; the hijack text names signals and commands.",
+      "other_threat": "TR57"
+    },
+    {
+      "technique": "IMP-0010",
+      "sources": [
+        "impact"
+      ],
+      "framework": "SPARTA",
+      "code": "D-OTHER",
+      "reason": "Falsifying data content is the data-manipulation threat TR39 keeps; the hijack text is about signals and commands.",
+      "other_threat": "TR39"
+    },
+    {
+      "technique": "IMP-0012",
+      "sources": [
+        "impact"
+      ],
+      "framework": "SPARTA",
+      "code": "D-OTHER",
+      "reason": "Changing executable code is the software-modification threat TR42 keeps; ENISA hijacking names protocol compromise, not a code change.",
+      "other_threat": "TR42"
+    },
+    {
+      "technique": "IMP-0013",
+      "sources": [
+        "impact"
+      ],
+      "framework": "SPARTA",
+      "code": "D-OTHER",
+      "reason": "Depleting or monopolising a resource is resource exhaustion kept by TR51; hijacking aims at reuse, not denial.",
+      "other_threat": "TR51"
+    },
+    {
+      "technique": "IMP-0014",
+      "sources": [
+        "impact"
+      ],
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Manipulating the time reference is a timing effect; the hijack text names no clock or synchronisation outcome."
+    },
+    {
+      "technique": "LM-0001",
+      "sources": [
+        "origin"
+      ],
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Moving from the bus into a hosted payload is a lateral step that the hijacking text does not describe."
+    },
+    {
+      "technique": "LM-0002",
+      "sources": [
+        "crosswalk"
+      ],
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Exploiting missing bus segregation moves between subsystems; ENISA names bus and ground but no internal movement."
+    },
+    {
+      "technique": "LM-0003",
+      "sources": [
+        "crosswalk"
+      ],
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Hopping to other satellites over crosslinks is constellation movement; the hijack text covers a single satellite."
+    },
+    {
+      "technique": "LM-0006.01",
+      "sources": [
+        "crosswalk"
+      ],
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "A rideshare payload as a lateral path is not described for the hijack."
+    },
+    {
+      "technique": "PER-0003",
+      "sources": [
+        "sv:SV-MA-7"
+      ],
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Keeping a presence in the ground system is persistence, which ENISA does not state for the hijack."
+    },
+    {
+      "technique": "PER-0004",
+      "sources": [
+        "crosswalk"
+      ],
+      "framework": "SPARTA",
+      "code": "D-OTHER",
+      "reason": "Replacing cryptographic keys to lock users out is the seizure-of-control outcome that TR52 keeps; the hijack text does not describe lockout.",
+      "other_threat": "TR52"
+    },
+    {
+      "technique": "RD-0002",
+      "sources": [
+        "sv:SV-MA-7"
+      ],
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Preparing compromised infrastructure is not needed by a kept row of this chain."
+    },
+    {
+      "technique": "RD-0002.01",
+      "sources": [
+        "sv:SV-MA-7"
+      ],
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Compromising a mission-operated ground system is resource preparation; IA-0007 is the kept step, and no kept row depends on this one."
+    },
+    {
+      "technique": "RD-0002.02",
+      "sources": [
+        "sv:SV-MA-7"
+      ],
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Compromising a third-party ground system is preparation for a different origin; no kept row depends on it."
+    },
+    {
+      "technique": "RD-0003.02",
+      "sources": [
+        "crosswalk"
+      ],
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Obtaining cryptographic keys is a preparation step for key abuse; no kept row of this chain needs keys, since EX-0006 weakens the protection instead."
+    },
+    {
+      "technique": "RD-0004",
+      "sources": [
+        "crosswalk"
+      ],
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Staging capabilities is generic preparation that no kept row of this chain depends on."
+    },
+    {
+      "technique": "RD-0004.02",
+      "sources": [
+        "crosswalk"
+      ],
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Staging an exploit or payload for upload serves code injection, not the protocol compromise ENISA names."
+    },
+    {
+      "technique": "REC-0001.03",
+      "sources": [
+        "crosswalk"
+      ],
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Learning the cryptographic algorithms is reconnaissance for attacking crypto; ENISA says the protocols are compromised but no kept row needs this knowledge as a preparation."
+    },
+    {
+      "technique": "REC-0003",
+      "sources": [
+        "crosswalk"
+      ],
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Gathering general spacecraft communication details is not needed beyond the command formats that REC-0003.02 supplies."
+    },
+    {
+      "technique": "REC-0003.03",
+      "sources": [
+        "crosswalk"
+      ],
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Scanning for the mission's channel serves a jammer; the rogue ground station here already knows its target (RD-0001.01 covers the equipment)."
+    },
+    {
+      "technique": "REC-0003.04",
+      "sources": [
+        "crosswalk"
+      ],
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Collecting valid credentials is reconnaissance for credential misuse; the hijack text does not describe stolen credentials."
+    },
+    {
+      "technique": "REC-0005",
+      "sources": [
+        "crosswalk"
+      ],
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Eavesdropping as reconnaissance is not needed by a kept row; command formats come from REC-0003.02."
+    },
+    {
+      "technique": "REC-0005.01",
+      "sources": [
+        "crosswalk"
+      ],
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Intercepting the uplink to learn commands is not needed by the kept rows and is not named by ENISA."
+    },
+    {
+      "technique": "REC-0005.02",
+      "sources": [
+        "crosswalk"
+      ],
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Intercepting the downlink is not needed by any kept row of the hijack chain."
+    },
+    {
+      "technique": "REC-0005.04",
+      "sources": [
+        "crosswalk"
+      ],
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Active RF or optical scanning of the target is not needed by a kept row; the hijack text mentions no probing."
+    },
+    {
+      "technique": "REC-0007",
+      "sources": [
+        "crosswalk"
+      ],
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Watching for safe-mode indicators prepares access during safe mode, which the hijack text does not describe."
+    }
+  ],
+  "notes": [
+    "SDLS-on results assume an intact protocol: this threat is the one ENISA describes as breaking the SLE/SDL protocols, so a SDLS-on scenario that stops the rf_link chain describes an uncompromised protocol, not the threat's own case.",
+    "Not covered: ENISA's 'complete replacement of a satellite's legitimate signals' on the downlink or transponder has no SPARTA technique that works without an accepted command (EXF-0006.02 diverts data for collection, which is another outcome)."
+  ]
+}

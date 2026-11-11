@@ -1,0 +1,877 @@
+{
+ "threat": "TR37",
+ "status": "proposed",
+ "author": "assistant sub-agent V3G2 (v3 re-map); fix pass Fix1",
+ "date": "2026-10-27",
+ "vectors": [
+  {
+   "vector": "ground",
+   "basis": "weak",
+   "enisa_quote": "malicious insiders trading credentials for monetary rewards",
+   "reason": "ENISA names insiders but not whose; the affected assets are ground IT systems (mission control, WAN, checkout), so the mission's own ground staff are the inferred insiders."
+  },
+  {
+   "vector": "trusted_party",
+   "basis": "weak",
+   "enisa_quote": "in any segment of the satellite lifecycle",
+   "reason": "'Any segment' covers insiders at partners and vendors who trade the credentials of their own access routes; ENISA names no partner."
+  },
+  {
+   "vector": "supply_chain",
+   "basis": "weak",
+   "enisa_quote": "in any segment of the satellite lifecycle",
+   "reason": "The affected assets include assembly, manufacturing and checkout systems; integrator insiders trading credentials reach ATLO tooling. ENISA names no integrator."
+  }
+ ],
+ "rows": [
+  {
+   "technique": "DE-0002.01",
+   "code": "K-EFFECT",
+   "role": "impact",
+   "vectors": [
+    "ground",
+    "trusted_party"
+   ],
+   "enisa_quote": "change them or incapacitate them",
+   "sparta_quote": "disabling telemetry software, corrupting processing pipelines, or crashing display interfaces",
+   "reason": "Disabling or crashing ground processes through the abused access is the incapacitation ENISA names.",
+   "sources": [
+    "crosswalk"
+   ],
+   "role_reason": "ENISA's 'incapacitate them' is the outcome; SPARTA's only incapacitation of ground processes sits under Defense Evasion and applies to telemetry processes only",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "DE-0004",
+   "code": "K-ACTION",
+   "role": "evasion",
+   "enisa_quote": "malicious insiders trading credentials for monetary rewards",
+   "sparta_quote": "using insider-derived credentials or roles to operate mission tooling",
+   "reason": "SPARTA's masquerade names insider-derived credentials; a falsified right presents the buyer as an authorised holder.",
+   "sources": [
+    "crosswalk",
+    "sv:SV-AC-4"
+   ],
+   "framework": "SPARTA",
+   "ground_side": true,
+   "ground_side_reason": "SPARTA describes this technique against the spacecraft or its C2 systems; this threat applies it to the ground IT identity or account that the credential opens (the ENISA affected assets are ground IT systems), so it needs an attacker on the ground side with an accepted entry, not the satellite bus."
+  },
+  {
+   "technique": "DE-0005",
+   "code": "D-UNDESCRIBED",
+   "reason": "Safe-mode protection bypass is an on-board timing trick; ENISA describes misuse of access rights to IT systems.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "DE-0006",
+   "code": "D-UNDESCRIBED",
+   "reason": "Whitelists here are on the spacecraft; ENISA's access rights and permissions are those of IT systems on the ground.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "DE-0011",
+   "code": "K-ACTION",
+   "role": "evasion",
+   "enisa_quote": "malicious insiders trading credentials for monetary rewards",
+   "sparta_quote": "Threat actors may leverage valid credentials to conduct unauthorized actions",
+   "reason": "Valid credentials obtained from insiders are used to act without raising alarms, which is the misuse of rights.",
+   "sources": [
+    "crosswalk",
+    "sv:SV-AC-4"
+   ],
+   "framework": "SPARTA",
+   "ground_side": true,
+   "ground_side_reason": "SPARTA describes this technique against the spacecraft or its C2 systems; this threat applies it to the ground IT identity or account that the credential opens (the ENISA affected assets are ground IT systems), so it needs an attacker on the ground side with an accepted entry, not the satellite bus."
+  },
+  {
+   "technique": "EX-0001.01",
+   "code": "D-UNDESCRIBED",
+   "reason": "Replaying telecommand packets is not described; the adversary holds valid rights instead.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EX-0003",
+   "code": "D-UNDESCRIBED",
+   "reason": "SPARTA's technique changes how the spacecraft validates authority; ENISA's modified rights and permissions are those of ground IT systems.",
+   "sources": [
+    "sv:SV-AC-4"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EX-0005.01",
+   "code": "D-UNDESCRIBED",
+   "reason": "Exploiting on-board design flaws is not described; the rights are valid or falsified, not exploited.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EX-0005.02",
+   "code": "D-UNDESCRIBED",
+   "reason": "Misusing hardware commands is an on-board step the text never mentions.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EX-0011",
+   "code": "D-UNDESCRIBED",
+   "reason": "Safe-mode relaxed checks are not described; abused rights work in nominal operations.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EX-0012",
+   "code": "D-OTHER",
+   "other_threat": "TR57",
+   "reason": "Changing on-board values and parameters is the parameter modification of TR57; TR37 says only that processes are changed.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EX-0012.03",
+   "code": "D-UNDESCRIBED",
+   "reason": "Memory writes to the spacecraft are not described; the changed processes are in ground systems.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EX-0012.07",
+   "code": "D-UNDESCRIBED",
+   "reason": "Propulsion-subsystem values are not described.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EX-0012.08",
+   "code": "D-UNDESCRIBED",
+   "reason": "Attitude-control values are not described.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EX-0012.10",
+   "code": "D-UNDESCRIBED",
+   "reason": "Command and data handling values are not described.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EX-0014",
+   "code": "D-OTHER",
+   "other_threat": "TR54",
+   "reason": "Forged time, sensor or bus inputs are spoofing; TR37 abuses valid or falsified rights.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EX-0014.02",
+   "code": "D-UNDESCRIBED",
+   "reason": "Bus-traffic spoofing is an on-board attack that the text does not describe.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EXF-0001",
+   "code": "D-UNDESCRIBED",
+   "reason": "Replaying commands to provoke repeat downlinks is not described.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EXF-0003.01",
+   "code": "D-OTHER",
+   "other_threat": "TR29",
+   "reason": "Tapping the uplink to collect frames is interception of communication, not misuse of rights.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EXF-0007",
+   "code": "K-EFFECT",
+   "role": "exfiltration",
+   "vectors": [
+    "ground",
+    "trusted_party"
+   ],
+   "enisa_quote": "to collect information",
+   "sparta_quote": "uses its trusted position to siphon data at scale",
+   "reason": "ENISA says the adversaries collect information through the gained access; from inside the ground system this is siphoning data.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EXF-0010",
+   "code": "D-UNDESCRIBED",
+   "reason": "The payload communication channel is an on-board path; the text gives no on-board access.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0001",
+   "code": "D-OTHER",
+   "other_threat": "TR55",
+   "reason": "Inserting malicious artifacts during manufacture or delivery is TR55's supply chain compromise; TR37 is the trade of credentials.",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0001.01",
+   "code": "D-OTHER",
+   "other_threat": "TR55",
+   "reason": "Poisoned dependencies and build tools are supply chain insertion (TR55); no code is altered in TR37.",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0001.02",
+   "code": "D-OTHER",
+   "other_threat": "TR55",
+   "reason": "Subverted software delivery is TR55's supply chain compromise; the insiders here sell credentials.",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0001.03",
+   "code": "D-OTHER",
+   "other_threat": "TR55",
+   "reason": "Altering boards before delivery is TR55's hardware supply chain compromise; not described as a rights abuse.",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0002",
+   "code": "D-UNDESCRIBED",
+   "reason": "Compromising a software-defined radio is an RF-equipment attack; ENISA's actors misuse IT access rights.",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0003",
+   "code": "D-UNDESCRIBED",
+   "reason": "No crosslink path in the text; the actor misuses rights on IT systems.",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0004",
+   "code": "D-UNDESCRIBED",
+   "reason": "Backup spacecraft channels are not described.",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0004.01",
+   "code": "D-UNDESCRIBED",
+   "reason": "The backup ground segment is not described; the rights misused are on the mission's ground IT systems.",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0004.02",
+   "code": "D-UNDESCRIBED",
+   "reason": "The spacecraft's backup receiver is not described.",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0005",
+   "code": "D-UNDESCRIBED",
+   "reason": "Rendezvous and proximity operations have no counterpart; the abused rights are those of IT systems.",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0005.01",
+   "code": "D-UNDESCRIBED",
+   "reason": "Compromise emanations are measured from close range; no such act is described.",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0005.02",
+   "code": "D-UNDESCRIBED",
+   "reason": "Docked-vehicle access has no counterpart in the text.",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0005.03",
+   "code": "D-UNDESCRIBED",
+   "reason": "Grappling a satellite is a physical on-orbit act; the text describes none.",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0006",
+   "code": "D-UNDESCRIBED",
+   "reason": "A hosted payload is not mentioned.",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0007",
+   "code": "K-ENABLE",
+   "role": "entry",
+   "reason": "Rights to ground IT systems are what the insiders sell; using them is the entry into the ground segment.",
+   "sparta_quote": "Compromising the ground segment gives an adversary the most direct path to first execution against a spacecraft",
+   "enables": "DE-0011",
+   "vectors": [
+    "ground"
+   ],
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0007.01",
+   "code": "D-UNDESCRIBED",
+   "reason": "Poisoning the on-orbit update pipeline is not described.",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0007.02",
+   "code": "D-OTHER",
+   "other_threat": "TR52",
+   "reason": "Transmitting commands through a valid ground station is the control-seizure step; TR37 names processes and information, not commanding the spacecraft.",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0008",
+   "code": "D-UNDESCRIBED",
+   "reason": "A rogue external transmitter has no counterpart; the rights are those of insiders.",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0008.01",
+   "code": "D-UNDESCRIBED",
+   "reason": "A rogue ground station has no counterpart in the text.",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0008.02",
+   "code": "D-UNDESCRIBED",
+   "reason": "A rogue spacecraft has no counterpart in the text.",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0008.03",
+   "code": "D-UNDESCRIBED",
+   "reason": "A counterspace weapon is not mentioned; the rights are those of insiders.",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0009",
+   "code": "K-ENABLE",
+   "role": "entry",
+   "reason": "A partner or vendor insider selling the credentials of the access route the mission already trusts is how 'any segment' is reached; the parent technique covers both.",
+   "sparta_quote": "riding connections that the mission already trusts",
+   "enables": "DE-0011",
+   "vectors": [
+    "trusted_party"
+   ],
+   "framework": "SPARTA",
+   "sources": [
+    "sv:SV-AC-4",
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0009.01",
+   "code": "D-UNDESCRIBED",
+   "reason": "The academic and international partner child of IA-0009; ENISA names no collaborator, so the parent IA-0009 is the kept entry.",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk",
+    "sv:SV-AC-4",
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0009.02",
+   "code": "D-UNDESCRIBED",
+   "reason": "The vendor child of IA-0009; ENISA names no vendor, and a vendor insider is already covered by the parent entry IA-0009 (not by a supplier-site compromise).",
+   "framework": "SPARTA",
+   "sources": [
+    "sv:SV-AC-4",
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0009.03",
+   "code": "D-UNDESCRIBED",
+   "reason": "A compromised user segment is not described.",
+   "sources": [
+    "sv:SV-AC-4",
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0010",
+   "code": "D-UNDESCRIBED",
+   "reason": "Timing first access to safe-mode is not described; valid rights work at any time.",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0011",
+   "code": "D-UNDESCRIBED",
+   "reason": "Tainted peripherals or removable media are not described.",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0012",
+   "code": "K-ENABLE",
+   "role": "entry",
+   "reason": "Integrator insiders trading credentials hand over test and integration accounts, which matches the assembly, manufacturing and checkout assets ENISA lists.",
+   "sparta_quote": "vendor support accounts move software between staging and flight hardware",
+   "enables": "DE-0011",
+   "vectors": [
+    "supply_chain"
+   ],
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0013",
+   "code": "D-UNDESCRIBED",
+   "reason": "Reaching a hosted RAN function from the host bus has no counterpart in the text.",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IMP-0007",
+   "code": "D-UNDESCRIBED",
+   "reason": "ENISA's outcomes are collect, change or incapacitate; none is the misuse of a native spacecraft function.",
+   "sources": [
+    "impact"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IMP-0008",
+   "code": "D-UNDESCRIBED",
+   "reason": "ENISA names no change of spacecraft state or mode.",
+   "sources": [
+    "impact"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IMP-0009",
+   "code": "D-OTHER",
+   "other_threat": "TR57",
+   "reason": "Altering the settings that govern spacecraft behaviour is the parameter modification of TR57; ENISA's modified access rights belong to IT systems, as already stated for EX-0003.",
+   "framework": "SPARTA",
+   "sources": [
+    "impact"
+   ]
+  },
+  {
+   "technique": "IMP-0010",
+   "code": "D-OTHER",
+   "other_threat": "TR39",
+   "reason": "Changing measured or derived data is data modification; ENISA's changed items are processes and permissions.",
+   "sources": [
+    "impact"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IMP-0011",
+   "code": "D-OTHER",
+   "other_threat": "TR32",
+   "reason": "Altering command or data flows is traffic manipulation; not described here.",
+   "sources": [
+    "impact"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IMP-0012",
+   "code": "D-OTHER",
+   "other_threat": "TR42",
+   "reason": "Replacing software or firmware is firmware corruption; not described here.",
+   "sources": [
+    "impact"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IMP-0013",
+   "code": "D-OTHER",
+   "other_threat": "TR51",
+   "reason": "Exhausting resources is resource exhaustion; not described here.",
+   "sources": [
+    "impact"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IMP-0014",
+   "code": "D-UNDESCRIBED",
+   "reason": "ENISA names no change of clocks or synchronisation.",
+   "sources": [
+    "impact"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "LM-0001",
+   "code": "D-UNDESCRIBED",
+   "reason": "Pivoting through a hosted payload has no counterpart in the text.",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "LM-0002",
+   "code": "D-UNDESCRIBED",
+   "reason": "Exploiting a flat on-board bus is not described; ENISA's reach comes from credentials.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "LM-0003",
+   "code": "D-UNDESCRIBED",
+   "reason": "Hopping across constellation crosslinks has no counterpart in the text.",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "LM-0004",
+   "code": "D-UNDESCRIBED",
+   "reason": "Visiting-vehicle interfaces have no counterpart in the text.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "LM-0007",
+   "code": "K-ACTION",
+   "role": "lateral",
+   "reason": "Traded credentials reused through approved interfaces let one set of rights reach other domains, which is how 'multitude of processes in any segment' is affected; the SPARTA text is spacecraft-oriented, so this is the weakest kept row.",
+   "sparta_quote": "reusing legitimate credentials and keys to cross boundaries that rely on trust",
+   "enisa_quote": "affect multitude of processes in any segment of the satellite lifecycle",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk",
+    "sv:SV-AC-4"
+   ],
+   "ground_side": true,
+   "ground_side_reason": "SPARTA's credentialed traversal describes crossing spacecraft and constellation boundaries; this threat applies it to the ground systems and WAN that the traded credentials open ('multitude of processes in any segment'), so it needs a ground-side attacker with an accepted entry, not the satellite bus."
+  },
+  {
+   "technique": "PER-0003",
+   "code": "D-OTHER",
+   "other_threat": "TR35",
+   "reason": "Staying resident in ground infrastructure is the maintained access of TR35; TR37 describes no persistence.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "PER-0004",
+   "code": "D-OTHER",
+   "other_threat": "TR52",
+   "reason": "Replacing spacecraft keys cements control of the vehicle; not described here.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "PER-0005",
+   "code": "D-OTHER",
+   "other_threat": "TR35",
+   "reason": "Maintaining access with valid credentials is the maintained access of TR35; TR37 describes gaining access.",
+   "sources": [
+    "crosswalk",
+    "sv:SV-AC-4"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "RD-0001.01",
+   "code": "D-UNDESCRIBED",
+   "reason": "Building a ground station stack is not described.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "RD-0002",
+   "code": "D-UNDESCRIBED",
+   "reason": "Compromising infrastructure is not described; rights are bought from insiders.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "RD-0002.01",
+   "code": "D-UNDESCRIBED",
+   "reason": "Compromising the ground system from outside is not described; the insider already has access.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "RD-0003.02",
+   "code": "D-UNDESCRIBED",
+   "reason": "Link and uplink keys are not the IT-system credentials ENISA says insiders trade.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "RD-0004.01",
+   "code": "D-UNDESCRIBED",
+   "reason": "Selecting a delivery mechanism for an on-board payload is not described.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "REC-0001",
+   "code": "D-UNDESCRIBED",
+   "reason": "Spacecraft design information is not needed to use traded credentials.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "REC-0002.02",
+   "code": "D-UNDESCRIBED",
+   "reason": "Mapping the organisation is not described; the insiders offer their own credentials.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "REC-0003.02",
+   "code": "D-UNDESCRIBED",
+   "reason": "Commanding details are not what the insiders trade.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "REC-0003.04",
+   "code": "P-PREP",
+   "enables": "DE-0011",
+   "reason": "Obtaining valid credentials is the trade ENISA names: insiders sell the credentials the adversary then uses.",
+   "sources": [
+    "crosswalk",
+    "sv:SV-AC-4"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "REC-0004",
+   "code": "D-UNDESCRIBED",
+   "reason": "Launch information has no counterpart in the text.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "REC-0005.01",
+   "code": "D-UNDESCRIBED",
+   "reason": "Eavesdropping on the uplink is not how the credentials are obtained in the text.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "REC-0008",
+   "code": "D-UNDESCRIBED",
+   "reason": "Supply-chain information gathering is not described.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "REC-0008.01",
+   "code": "D-UNDESCRIBED",
+   "reason": "Hardware reconnaissance is not described.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "REC-0008.04",
+   "code": "D-UNDESCRIBED",
+   "reason": "Mapping business relationships is not described.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  }
+ ],
+ "review_response": [
+  {
+   "finding": "IMP-0009 kept while EX-0003 dropped for ground-IT scope (internal contradiction)",
+   "action": "fixed: IMP-0009 is now D-OTHER TR57; ENISA's modified rights are those of IT systems, consistent with EX-0003"
+  },
+  {
+   "finding": "LM-0007 thin once IMP-0009 goes; TR43/TR35/TR56/TR45/TR51/TR52 point to TR37",
+   "action": "kept because the other threats route LM-0007 here and 'misuse of access rights ... in any segment' is credential reuse across boundaries; it is now a K-ACTION (lateral) with the quote 'affect multitude of processes in any segment...'. Doubt: SPARTA's description is spacecraft-oriented (C&DH, crosslink routers), so this is the weakest kept row"
+  },
+  {
+   "finding": "'any segment of the lifecycle' but supply_chain/trusted_party not vectors; IA-0009.02 routed to TR55 with a reason that does not fit a credential sale",
+   "action": "fixed: trusted_party and supply_chain vectors added (basis weak) with IA-0009 and IA-0012 as entries enabling DE-0011; IA-0009.02 is D-UNDESCRIBED (alternative child of IA-0009), no longer pointed at TR55"
+  },
+  {
+   "finding": "DE-0002.01 role impact for 'incapacitate'",
+   "action": "fixed: role_reason added; flagged as the only ENISA 'incapacitate' row, valid for telemetry/ground processes only"
+  },
+  {
+   "finding": "EXF-0007 'collect information' vs 'siphon data at scale'",
+   "action": "kept because reviewer says no change; from inside the ground system collecting information is exfiltration"
+  },
+  {
+   "finding": "Section 0: ground credential is mission_valid; trusted_party none",
+   "action": "fixed: vectors now carry credential_quote 'malicious insiders trading credentials for monetary rewards' (ground mission_valid, trusted_party partner_valid)"
+  },
+  {
+   "finding": "Chain is a flat set",
+   "action": "fixed: the three entry rows enable DE-0011; EXF-0007, DE-0002.01 are limited to the vectors that end in ground infrastructure"
+  },
+  {
+   "finding": "fix pass M1: DE-0004, DE-0011 and LM-0007 were removed in every ground and trusted_party scenario; the credential fields added no scenario",
+   "action": "fixed: the three rows carry ground_side true with a reason; the vector credential fields are removed because the origins already list mission_valid and partner_valid. DE-0011 and LM-0007 still need a mission-valid credential (authority), so they are removed for trusted_party. LM-0007 is kept as the weakest row because other threats route it here; its SPARTA text is spacecraft-oriented."
+  },
+  {
+   "finding": "fix pass M8: vendor/partner employee vectors differ from TR53",
+   "action": "fixed in TR53: trusted_party added there; here the partner insider stays IA-0009 and the integrator insider IA-0012."
+  }
+ ]
+}

@@ -1,0 +1,880 @@
+{
+ "threat": "TR51",
+ "status": "proposed",
+ "author": "assistant sub-agent V3G6 (v3 re-map); fix pass Fix1",
+ "date": "2026-10-27",
+ "vectors": [
+  {
+   "vector": "rf_link",
+   "basis": "weak",
+   "enisa_quote": "communications are affected by the amount of traffic sent",
+   "reason": "ENISA says traffic is sent but not by whom; traffic and commands reach the satellite from outside the mission over the TT&C radio link."
+  },
+  {
+   "vector": "ground",
+   "basis": "weak",
+   "enisa_quote": "components such as the payload receive commands to sense, emit, or run whatever mission the satellite has",
+   "reason": "The text states the effect (the payload keeps receiving mission commands), not who sends them; commands the satellite honours under SDLS come from the mission's own ground system or an insider, which is an inference from the text."
+  },
+  {
+   "vector": "user_terminal",
+   "basis": "weak",
+   "enisa_quote": "communications are affected by the amount of traffic sent",
+   "reason": "The assets include payload communications (PLCOM); user traffic on the service link is the traffic a terminal sends, but ENISA does not name terminals."
+  }
+ ],
+ "rows": [
+  {
+   "technique": "IA-0008",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "K-ENABLE",
+   "role": "entry",
+   "vectors": [
+    "rf_link",
+    "user_terminal"
+   ],
+   "enables": "EX-0013",
+   "sparta_quote": "any actor-controlled transmitter, platform, or node",
+   "reason": "An outside transmitter or terminal is how traffic beyond the mission's own volume reaches the satellite."
+  },
+  {
+   "technique": "IA-0008.01",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "K-ENABLE",
+   "role": "entry",
+   "vectors": [
+    "rf_link"
+   ],
+   "enables": [
+    "EX-0013.01",
+    "IMP-0007"
+   ],
+   "sparta_quote": "Adversaries may field their own ground system, transportable or fixed, to transmit and receive mission-compatible signals",
+   "reason": "A rogue ground station sends the mission commands the payload keeps honouring."
+  },
+  {
+   "technique": "IA-0007.02",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "K-ENABLE",
+   "role": "entry",
+   "vectors": [
+    "ground"
+   ],
+   "enables": [
+    "EX-0013.01",
+    "IMP-0007"
+   ],
+   "sparta_quote": "transmit legitimate-looking commands to the target spacecraft",
+   "reason": "Commands the satellite honours repeatedly, 'whatever mission', come from a valid ground system."
+  },
+  {
+   "technique": "EX-0013",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "code": "K-ACTION",
+   "role": "execution",
+   "enisa_quote": "communications are affected by the amount of traffic sent",
+   "sparta_quote": "Flooding overwhelms a communication or processing path by injecting traffic",
+   "reason": "Excess traffic is how ENISA says communications are exhausted.",
+   "vectors": [
+    "rf_link",
+    "user_terminal"
+   ]
+  },
+  {
+   "technique": "EX-0013.01",
+   "sources": [
+    "analyst_added"
+   ],
+   "framework": "SPARTA",
+   "code": "K-ACTION",
+   "role": "execution",
+   "vectors": [
+    "rf_link",
+    "ground"
+   ],
+   "enisa_quote": "receive commands to sense, emit, or run whatever mission the satellite has",
+   "sparta_quote": "saturates paths with legitimate telecommands or bus messages so the spacecraft burns scarce resources honoring them",
+   "reason": "Commands sent constantly so the satellite burns scarce resources honouring them is the satellite-operations exhaustion ENISA describes."
+  },
+  {
+   "technique": "IMP-0007",
+   "sources": [
+    "impact"
+   ],
+   "framework": "SPARTA",
+   "code": "K-EFFECT",
+   "role": "impact",
+   "vectors": [
+    "rf_link",
+    "ground"
+   ],
+   "enisa_quote": "run whatever mission the satellite has - contstantly",
+   "sparta_quote": "The adversary may misuse a function by activating it at the wrong time, repeating it, interrupting it, or directing it toward an unintended purpose.",
+   "reason": "Driving the payload's sense, emit or mission functions without pause is a repeated use of a native function; it is what drains the battery."
+  },
+  {
+   "technique": "IMP-0013",
+   "sources": [
+    "impact"
+   ],
+   "framework": "SPARTA",
+   "code": "K-EFFECT",
+   "role": "impact",
+   "enisa_quote": "to the point that the battery is fully drained/depleted",
+   "sparta_quote": "The resource may support computing, storage, or communications.",
+   "reason": "Battery, storage and communications depletion are the stated outcomes; SPARTA's text also covers power as a resource."
+  },
+  {
+   "technique": "DE-0001",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "code": "D-OTHER",
+   "other_threat": "TR50",
+   "reason": "Disabling fault management is the safeguard deactivation TR50 keeps; ENISA exhaustion describes no such step."
+  },
+  {
+   "technique": "DE-0002",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Denying the telemetry downlink is not described; ENISA exhaustion is about traffic volume and commanded activity."
+  },
+  {
+   "technique": "DE-0002.01",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Inhibiting ground telemetry processing is not described."
+  },
+  {
+   "technique": "DE-0002.02",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "code": "D-OTHER",
+   "other_threat": "TR44",
+   "reason": "Jamming the downlink is TR44, which keeps it; ENISA exhaustion is about traffic volume."
+  },
+  {
+   "technique": "DE-0009.04",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Deceiving on-board proximity sensors is not described."
+  },
+  {
+   "technique": "EX-0001",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Replay is not described; the repeated commands are not said to be captured ones."
+  },
+  {
+   "technique": "EX-0001.01",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Command replay is not described."
+  },
+  {
+   "technique": "EX-0001.02",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Bus replay is not described."
+  },
+  {
+   "technique": "EX-0002",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Position-triggered logic is not described."
+  },
+  {
+   "technique": "EX-0005.02",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Low-level hardware commands are not described, and TR48 does not keep them."
+  },
+  {
+   "technique": "EX-0008",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Time-triggered malicious logic is not described; ENISA's commands arrive constantly, not on a trigger."
+  },
+  {
+   "technique": "EX-0008.02",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Relative-time triggered logic is not described."
+  },
+  {
+   "technique": "EX-0009",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "code": "D-OTHER",
+   "other_threat": "TR48",
+   "reason": "Abusing flaws in on-board code is TR48 (software and vulnerability exploit), which keeps it; ENISA exhaustion needs no flaw."
+  },
+  {
+   "technique": "EX-0009.01",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "code": "D-OTHER",
+   "other_threat": "TR48",
+   "reason": "Flight-software flaws are TR48, which keeps it; not described here."
+  },
+  {
+   "technique": "EX-0012.02",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Rewriting routing tables is not described."
+  },
+  {
+   "technique": "EX-0012.07",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Changing propulsion parameters is not described."
+  },
+  {
+   "technique": "EX-0012.08",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Changing attitude-control parameters is not described."
+  },
+  {
+   "technique": "EX-0012.09",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "ENISA drains the battery by commanded activity, not by altering power parameters."
+  },
+  {
+   "technique": "EX-0012.10",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Rewriting command-handling tables is not described."
+  },
+  {
+   "technique": "EX-0014",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "code": "D-OTHER",
+   "other_threat": "TR54",
+   "reason": "Spoofing is TR54, which keeps it; ENISA exhaustion does not say the traffic is deceptive."
+  },
+  {
+   "technique": "EX-0014.02",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Bus-traffic spoofing is not described, and TR54 does not keep it."
+  },
+  {
+   "technique": "EX-0017",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "code": "D-OTHER",
+   "other_threat": "TR18",
+   "reason": "Kinetic attack is TR18 (ASAT), which keeps it; not exhaustion."
+  },
+  {
+   "technique": "EX-0017.02",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "code": "D-OTHER",
+   "other_threat": "TR18",
+   "reason": "Co-orbital ASAT is TR18, which keeps it; not exhaustion."
+  },
+  {
+   "technique": "EXF-0001",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Replay exfiltration is not described."
+  },
+  {
+   "technique": "EXF-0007",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "code": "D-OTHER",
+   "other_threat": "TR38",
+   "reason": "Exfiltration from a compromised ground system is TR38, which keeps it; ENISA exhaustion has no data theft."
+  },
+  {
+   "technique": "EXF-0010",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Exfiltration through the payload channel is not described."
+  },
+  {
+   "technique": "IA-0001",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-OTHER",
+   "other_threat": "TR55",
+   "reason": "Tampering at manufacture or delivery is TR55, which keeps it; exhaustion is an operational effect."
+  },
+  {
+   "technique": "IA-0001.01",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-OTHER",
+   "other_threat": "TR55",
+   "reason": "Poisoned dependencies and build tools are TR55, which keeps it; not exhaustion."
+  },
+  {
+   "technique": "IA-0001.02",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-OTHER",
+   "other_threat": "TR55",
+   "reason": "Altering delivered software is TR55, which keeps it; not exhaustion."
+  },
+  {
+   "technique": "IA-0001.03",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-OTHER",
+   "other_threat": "TR55",
+   "reason": "Altered hardware before delivery is TR55, which keeps it; not exhaustion."
+  },
+  {
+   "technique": "IA-0002",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Compromising the software-defined radio is not described."
+  },
+  {
+   "technique": "IA-0003",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "No crosslink path is described."
+  },
+  {
+   "technique": "IA-0004",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Using the backup channel is not described."
+  },
+  {
+   "technique": "IA-0004.01",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Using a backup ground station is not described."
+  },
+  {
+   "technique": "IA-0004.02",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "The backup receiver is not described."
+  },
+  {
+   "technique": "IA-0005",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Approaching the satellite by rendezvous and proximity operations; ENISA exhaustion names no co-orbital, physical or media-borne actor."
+  },
+  {
+   "technique": "IA-0005.01",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Analysing emanations from a nearby vantage point; ENISA exhaustion names no co-orbital, physical or media-borne actor."
+  },
+  {
+   "technique": "IA-0005.02",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Riding a docking or servicing event; ENISA exhaustion names no co-orbital, physical or media-borne actor."
+  },
+  {
+   "technique": "IA-0005.03",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Grappling the satellite for physical contact; ENISA exhaustion names no co-orbital, physical or media-borne actor."
+  },
+  {
+   "technique": "IA-0006",
+   "sources": [
+    "crosswalk",
+    "sv:SV-MA-8",
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "ENISA does not say the commands come through the hosted payload's operator."
+  },
+  {
+   "technique": "IA-0007",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "The commanding variant IA-0007.02 is the step ENISA's repeated commands need; the parent adds nothing."
+  },
+  {
+   "technique": "IA-0007.01",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-OTHER",
+   "other_threat": "TR46",
+   "reason": "Poisoning the update pipeline is TR46 (injection into software updates), which keeps it; not exhaustion."
+  },
+  {
+   "technique": "IA-0008.02",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Operating a rogue spacecraft as a local RF peer; ENISA exhaustion names no co-orbital, physical or media-borne actor."
+  },
+  {
+   "technique": "IA-0008.03",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-OTHER",
+   "other_threat": "TR18",
+   "reason": "A counterspace weapon is TR18 (ASAT), which keeps it; not exhaustion."
+  },
+  {
+   "technique": "IA-0009",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Riding a trusted partner, vendor or user connection; ENISA exhaustion names no trusted partner connection."
+  },
+  {
+   "technique": "IA-0009.01",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "A mission collaborator as origin is not described."
+  },
+  {
+   "technique": "IA-0009.02",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-OTHER",
+   "other_threat": "TR55",
+   "reason": "A vendor as origin is TR55, which keeps it; ENISA exhaustion names no vendor."
+  },
+  {
+   "technique": "IA-0009.03",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "SPARTA describes a compromised user domain as a route into mission cores; ENISA's traffic volume needs no foothold in the user segment."
+  },
+  {
+   "technique": "IA-0010",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Timing the attack to safe-mode is not described."
+  },
+  {
+   "technique": "IA-0011",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Abusing peripherals or removable media; ENISA exhaustion names no co-orbital, physical or media-borne actor."
+  },
+  {
+   "technique": "IA-0012",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-OTHER",
+   "other_threat": "TR58",
+   "reason": "Compromise during assembly, test and launch is TR58 (unauthorized use of equipment at production and launch facilities), which keeps it; not described here."
+  },
+  {
+   "technique": "IA-0013",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Reaching a hosted payload from the host spacecraft; ENISA exhaustion names no hosted payload as door."
+  },
+  {
+   "technique": "IMP-0008",
+   "sources": [
+    "impact"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "ENISA does not describe forcing a mode change."
+  },
+  {
+   "technique": "IMP-0009",
+   "sources": [
+    "impact"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "ENISA does not describe changed settings or limits."
+  },
+  {
+   "technique": "IMP-0010",
+   "sources": [
+    "impact"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "ENISA does not describe falsified data."
+  },
+  {
+   "technique": "IMP-0011",
+   "sources": [
+    "impact"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "The outcome is depletion, not altering command flow."
+  },
+  {
+   "technique": "IMP-0012",
+   "sources": [
+    "impact"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "ENISA does not describe altered software."
+  },
+  {
+   "technique": "IMP-0014",
+   "sources": [
+    "impact"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "ENISA does not describe timing manipulation."
+  },
+  {
+   "technique": "LM-0001",
+   "sources": [
+    "crosswalk",
+    "sv:SV-MA-8",
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "No pivot through the hosted payload is described."
+  },
+  {
+   "technique": "LM-0002",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "ENISA does not describe exploiting missing bus segregation, and TR07 is a condition, not a mapped attack."
+  },
+  {
+   "technique": "LM-0003",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "No crosslink spread is described."
+  },
+  {
+   "technique": "LM-0006.01",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "No rideshare payload path is described."
+  },
+  {
+   "technique": "LM-0007",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "code": "D-OTHER",
+   "other_threat": "TR37",
+   "reason": "Traversing with stolen credentials is TR37 (abuse of rights), which keeps it; not described here."
+  },
+  {
+   "technique": "PER-0003",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "code": "D-OTHER",
+   "other_threat": "TR35",
+   "reason": "Staying inside the ground system is TR35 (gaining and maintaining unauthorized access), which keeps it."
+  },
+  {
+   "technique": "PER-0004",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Replacing keys is not described."
+  },
+  {
+   "technique": "PER-0005",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "code": "D-OTHER",
+   "other_threat": "TR35",
+   "reason": "Persisting with stolen credentials is TR35, which keeps it."
+  },
+  {
+   "technique": "RD-0002.01",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Mission-operated ground system as a resource is not described and no kept row needs it."
+  },
+  {
+   "technique": "REC-0001",
+   "sources": [
+    "crosswalk",
+    "sv:SV-MA-8"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Design reconnaissance is not described."
+  },
+  {
+   "technique": "REC-0001.04",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Data-bus reconnaissance is not described."
+  },
+  {
+   "technique": "REC-0001.06",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Maneuver and control reconnaissance is not described."
+  },
+  {
+   "technique": "REC-0001.07",
+   "sources": [
+    "crosswalk",
+    "sv:SV-MA-8"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Payload reconnaissance is not described."
+  },
+  {
+   "technique": "REC-0001.09",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Fault-management reconnaissance is not described."
+  },
+  {
+   "technique": "REC-0004.01",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Flight-termination reconnaissance is not described."
+  }
+ ],
+ "review_response": [
+  {
+   "finding": "A-ground vector quote shows no access path; rf_link quote only says where traffic comes from",
+   "action": "fixed: all three vectors carry basis weak and the reasons say what is inferred; the ground chain rests on the effect sentence only. The lead should know the ground vector is an inference."
+  },
+  {
+   "finding": "A-IMP-0007 Native Functionality Abuse missed",
+   "action": "fixed: IMP-0007 K-EFFECT with the quote 'run whatever mission the satellite has - contstantly'; entered through IA-0008.01 / IA-0007.02."
+  },
+  {
+   "finding": "A-EX-0013.01 describes handler cycles, not driving mission functions",
+   "action": "kept because SPARTA also says the spacecraft 'burns scarce resources honoring' the commands; IMP-0007 carries the mission-function part."
+  },
+  {
+   "finding": "A-storage exhaustion has no action technique",
+   "action": "kept because SPARTA has no technique for filling storage other than IMP-0013 itself; reported as accepted."
+  },
+  {
+   "finding": "A-S5 IMP-0013 stands for several outcomes; battery outcome survives SDLS though EX-0013.01 removed",
+   "action": "fixed: the battery cause is now IMP-0007 and EX-0013.01, both needing accepted commands, so with SDLS on only the communications-flood outcome of IMP-0013 remains through EX-0013; the single IMP-0013 row still covers three outcomes and the report must say which survives."
+  },
+  {
+   "finding": "A-S4 EX-0013 and EX-0013.01 both kept",
+   "action": "kept because the quotes differ (traffic vs commands)."
+  },
+  {
+   "finding": "arch-E-3 vector basis",
+   "action": "fixed: recorded."
+  },
+  {
+   "finding": "v3 IA-0011 now an entry of ground",
+   "action": "fixed: coded D-UNDESCRIBED (media-borne foothold not described)."
+  },
+  {
+   "finding": "v3 feeder_rf / user_terminal",
+   "action": "fixed: user_terminal added (weak); feeder_rf not added, the text's traffic is not tied to the feeder link."
+  },
+  {
+   "finding": "fix pass: validator, EX-0013 kept for ground but enabled only by rf_link/user_terminal entries",
+   "action": "fixed: EX-0013 (traffic volume) restricted to rf_link and user_terminal; the ground vector keeps the command-driven chain IA-0007.02 -> EX-0013.01 -> IMP-0007/IMP-0013."
+  },
+  {
+   "finding": "fix pass m7/M5: which part of IMP-0013 survives SDLS not reported",
+   "action": "fixed: recorded in notes."
+  }
+ ],
+ "notes": [
+  "IMP-0013 stands for three stated outcomes (battery, storage, communications). With SDLS on only the communications flood (EX-0013 -> IMP-0013) survives for an outside transmitter; battery depletion needs accepted commands (EX-0013.01, IMP-0007). Storage exhaustion has no action technique in SPARTA beyond IMP-0013."
+ ]
+}

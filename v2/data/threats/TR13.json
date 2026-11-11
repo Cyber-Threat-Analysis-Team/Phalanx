@@ -1,0 +1,41 @@
+{
+ "id": "TR13",
+ "source": "ENISA Space Threat Landscape 2025, Annex C Table 17 (via Phalanx/framework/enisa_threats_tuple.csv)",
+ "category": "FM",
+ "name": "Failure of communication networks",
+ "cia": [
+  "A"
+ ],
+ "affected_asset_selectors": [
+  "Ground: TTC Ground (Antenna, SLE/SDL protocol)",
+  "Space: BUS (COM)",
+  "User: VSAT"
+ ],
+ "description": "Failrue of communication networks may be caused by malfunction of either hardware of software supporting this network's function or attack directed at them. The satellite lifecycle is dependent on connectivity and so this threat may disrupt functioning of any of its segments.",
+ "projection": {
+  "candidate_assets": [
+   "bus_com",
+   "ground_ttc"
+  ],
+  "candidate_lifecycle": [
+   3,
+   4,
+   5,
+   6,
+   7
+  ],
+  "lifecycle_rule": "ET-P-LC-01 (legacy tuple L field; Annex C has no lifecycle column)",
+  "derivation_provenance": {
+   "kind": "source_field",
+   "source": "Phalanx/framework/enisa_threats_tuple.csv row TR13",
+   "source_sha256": "c086e9d7221893d69e2ff6d380e3b2024aecc144bac8f034218b6814ef060b52",
+   "field": "L (lifecycle)",
+   "note": "candidate_lifecycle copies the legacy tuple L field {3,4,5,6,7}; ENISA STL 2025 Annex C has no lifecycle column, so the basis is the legacy tuple, not the Annex"
+  },
+  "applicable_boundary_roles": [
+   "command_authority"
+  ]
+ },
+ "claims": [],
+ "crosswalk_key": "Failure of communication networks"
+}

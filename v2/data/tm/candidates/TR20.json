@@ -1,0 +1,505 @@
+{
+ "threat": "TR20",
+ "name": "Sabotage through hardware/software",
+ "category": "PA",
+ "cia": [
+  "A",
+  "C",
+  "I"
+ ],
+ "affected_assets": [
+  "Ground: Design, development, and quality assurance & Assembly & Satellite Control Centre"
+ ],
+ "description": "Threats resulting from connection of unauthorized rogue hardware and software, such as USB sticks, unauthorized applications, etc. may endanger the integrity, confidentiality and availability of satellite components. They can be perpetrated as a result of intentional, targeted human intervention or even on the orbit itself (docking of another satellite).",
+ "claims": [
+  {
+   "sv": "SV-AC-5",
+   "quote": "docking of another satellite"
+  }
+ ],
+ "candidates": [
+  {
+   "technique": "DE-0009",
+   "tactic": "Defense Evasion",
+   "name": "Camouflage, Concealment, and Decoys (CCD)",
+   "sources": [
+    "sv:SV-AC-5"
+   ]
+  },
+  {
+   "technique": "DE-0009.01",
+   "tactic": "Defense Evasion",
+   "name": "Debris Field",
+   "sources": [
+    "sv:SV-AC-5"
+   ]
+  },
+  {
+   "technique": "EX-0005",
+   "tactic": "Execution",
+   "name": "Exploit Hardware/Firmware Corruption",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "EX-0015",
+   "tactic": "Execution",
+   "name": "Side-Channel Attack",
+   "sources": [
+    "sv:SV-AC-5"
+   ]
+  },
+  {
+   "technique": "EX-0017",
+   "tactic": "Execution",
+   "name": "Kinetic Physical Attack",
+   "sources": [
+    "sv:SV-AC-5"
+   ]
+  },
+  {
+   "technique": "EX-0017.01",
+   "tactic": "Execution",
+   "name": "Direct Ascent ASAT",
+   "sources": [
+    "sv:SV-AC-5"
+   ]
+  },
+  {
+   "technique": "EX-0017.02",
+   "tactic": "Execution",
+   "name": "Co-Orbital ASAT",
+   "sources": [
+    "sv:SV-AC-5"
+   ]
+  },
+  {
+   "technique": "EX-0018",
+   "tactic": "Execution",
+   "name": "Non-Kinetic Physical Attack",
+   "sources": [
+    "sv:SV-AC-5"
+   ]
+  },
+  {
+   "technique": "EX-0018.01",
+   "tactic": "Execution",
+   "name": "Electromagnetic Pulse (EMP)",
+   "sources": [
+    "sv:SV-AC-5"
+   ]
+  },
+  {
+   "technique": "EXF-0002",
+   "tactic": "Exfiltration",
+   "name": "Side-Channel Exfiltration",
+   "sources": [
+    "sv:SV-AC-5"
+   ]
+  },
+  {
+   "technique": "EXF-0002.01",
+   "tactic": "Exfiltration",
+   "name": "Power Analysis Attacks",
+   "sources": [
+    "sv:SV-AC-5"
+   ]
+  },
+  {
+   "technique": "EXF-0002.02",
+   "tactic": "Exfiltration",
+   "name": "Electromagnetic Leakage Attacks",
+   "sources": [
+    "sv:SV-AC-5"
+   ]
+  },
+  {
+   "technique": "EXF-0002.03",
+   "tactic": "Exfiltration",
+   "name": "Traffic Analysis Attacks",
+   "sources": [
+    "sv:SV-AC-5"
+   ]
+  },
+  {
+   "technique": "EXF-0002.04",
+   "tactic": "Exfiltration",
+   "name": "Timing Attacks",
+   "sources": [
+    "sv:SV-AC-5"
+   ]
+  },
+  {
+   "technique": "EXF-0002.05",
+   "tactic": "Exfiltration",
+   "name": "Thermal Imaging attacks",
+   "sources": [
+    "sv:SV-AC-5"
+   ]
+  },
+  {
+   "technique": "EXF-0005",
+   "tactic": "Exfiltration",
+   "name": "Proximity Operations",
+   "sources": [
+    "sv:SV-AC-5"
+   ]
+  },
+  {
+   "technique": "IA-0001",
+   "tactic": "Initial Access",
+   "name": "Compromise Supply Chain",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0001.01",
+   "tactic": "Initial Access",
+   "name": "Software Dependencies & Development Tools",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0001.02",
+   "tactic": "Initial Access",
+   "name": "Software Supply Chain",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0001.03",
+   "tactic": "Initial Access",
+   "name": "Hardware Supply Chain",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0002",
+   "tactic": "Initial Access",
+   "name": "Compromise Software Defined Radio",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0003",
+   "tactic": "Initial Access",
+   "name": "Crosslink via Compromised Neighbor",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0004",
+   "tactic": "Initial Access",
+   "name": "Secondary/Backup Communication Channel",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0004.01",
+   "tactic": "Initial Access",
+   "name": "Ground Station",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0004.02",
+   "tactic": "Initial Access",
+   "name": "Receiver",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0005",
+   "tactic": "Initial Access",
+   "name": "Rendezvous & Proximity Operations",
+   "sources": [
+    "sv:SV-AC-5",
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0005.01",
+   "tactic": "Initial Access",
+   "name": "Compromise Emanations",
+   "sources": [
+    "sv:SV-AC-5",
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0005.02",
+   "tactic": "Initial Access",
+   "name": "Docked Vehicle / OSAM",
+   "sources": [
+    "sv:SV-AC-5",
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0005.03",
+   "tactic": "Initial Access",
+   "name": "Proximity Grappling",
+   "sources": [
+    "crosswalk",
+    "sv:SV-AC-5",
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0006",
+   "tactic": "Initial Access",
+   "name": "Compromise Hosted Payload",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0007",
+   "tactic": "Initial Access",
+   "name": "Compromise Ground System",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0007.01",
+   "tactic": "Initial Access",
+   "name": "Compromise On-Orbit Update",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0007.02",
+   "tactic": "Initial Access",
+   "name": "Malicious Commanding via Valid GS",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0008",
+   "tactic": "Initial Access",
+   "name": "Rogue External Entity",
+   "sources": [
+    "sv:SV-AC-5",
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0008.01",
+   "tactic": "Initial Access",
+   "name": "Rogue Ground Station",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0008.02",
+   "tactic": "Initial Access",
+   "name": "Rogue Spacecraft",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0008.03",
+   "tactic": "Initial Access",
+   "name": "ASAT/Counterspace Weapon",
+   "sources": [
+    "sv:SV-AC-5",
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0009",
+   "tactic": "Initial Access",
+   "name": "Trusted Relationship",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0009.01",
+   "tactic": "Initial Access",
+   "name": "Mission Collaborator (academia, international, etc.)",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0009.02",
+   "tactic": "Initial Access",
+   "name": "Vendor",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0009.03",
+   "tactic": "Initial Access",
+   "name": "User Segment",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0010",
+   "tactic": "Initial Access",
+   "name": "Unauthorized Access During Safe-Mode",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0011",
+   "tactic": "Initial Access",
+   "name": "Auxiliary Device Compromise",
+   "sources": [
+    "crosswalk",
+    "sv:SV-AC-5",
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0012",
+   "tactic": "Initial Access",
+   "name": "Assembly, Test, and Launch Operation Compromise",
+   "sources": [
+    "sv:SV-AC-5",
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0013",
+   "tactic": "Initial Access",
+   "name": "Compromise Host Spacecraft",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IMP-0007",
+   "tactic": "Impact",
+   "name": "Native Functionality Abuse",
+   "sources": [
+    "impact"
+   ]
+  },
+  {
+   "technique": "IMP-0008",
+   "tactic": "Impact",
+   "name": "State or Mode Manipulation",
+   "sources": [
+    "impact"
+   ]
+  },
+  {
+   "technique": "IMP-0009",
+   "tactic": "Impact",
+   "name": "Configuration Manipulation",
+   "sources": [
+    "impact"
+   ]
+  },
+  {
+   "technique": "IMP-0010",
+   "tactic": "Impact",
+   "name": "Data Manipulation",
+   "sources": [
+    "impact"
+   ]
+  },
+  {
+   "technique": "IMP-0011",
+   "tactic": "Impact",
+   "name": "Command and Data Flow Manipulation",
+   "sources": [
+    "impact"
+   ]
+  },
+  {
+   "technique": "IMP-0012",
+   "tactic": "Impact",
+   "name": "Software, Firmware, or Programmable Logic Manipulation",
+   "sources": [
+    "impact"
+   ]
+  },
+  {
+   "technique": "IMP-0013",
+   "tactic": "Impact",
+   "name": "Resource Exhaustion or Contention",
+   "sources": [
+    "impact"
+   ]
+  },
+  {
+   "technique": "IMP-0014",
+   "tactic": "Impact",
+   "name": "Timing or Synchronization Manipulation",
+   "sources": [
+    "impact"
+   ]
+  },
+  {
+   "technique": "LM-0001",
+   "tactic": "Lateral Movement",
+   "name": "Hosted Payload",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "LM-0003",
+   "tactic": "Lateral Movement",
+   "name": "Constellation Hopping via Crosslink",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "LM-0004",
+   "tactic": "Lateral Movement",
+   "name": "Visiting Vehicle Interface(s)",
+   "sources": [
+    "sv:SV-AC-5"
+   ]
+  },
+  {
+   "technique": "PER-0002.01",
+   "tactic": "Persistence",
+   "name": "Hardware Backdoor",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "REC-0005.03",
+   "tactic": "Reconnaissance",
+   "name": "Proximity Operations",
+   "sources": [
+    "sv:SV-AC-5"
+   ]
+  },
+  {
+   "technique": "REC-0006.02",
+   "tactic": "Reconnaissance",
+   "name": "Security Testing Tools",
+   "sources": [
+    "crosswalk"
+   ]
+  }
+ ]
+}

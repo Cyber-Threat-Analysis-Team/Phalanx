@@ -1,0 +1,46 @@
+{
+ "id": "TR47",
+ "source": "ENISA Space Threat Landscape 2025, Annex C Table 17 (via Phalanx/framework/enisa_threats_tuple.csv)",
+ "category": "NAA",
+ "name": "Malicious code/software/activity: Network exploit",
+ "cia": [
+  "A"
+ ],
+ "affected_asset_selectors": [
+  "Ground: Satellite Control Centre & Centralised Checkout Systems & TTC Ground (Antenna)",
+  "Space: BUS (CDHS, COM) & Payload (PDHS, PLCOM)",
+  "User: VSAT"
+ ],
+ "description": "Exploitation of misconfigurations and software vulnerabilities to gain unauthorized access to critial systems and networks. Exploitation of the computer network (CNE) in ground control stations as a result of poor configuration could, for example, lead to unauthorized access to and hence compromise of satellite lifecycle assets.",
+ "projection": {
+  "candidate_assets": [
+   "bus_cdhs",
+   "bus_cdhs_f",
+   "bus_com",
+   "ground_moc",
+   "ground_ttc"
+  ],
+  "candidate_lifecycle": [
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7
+  ],
+  "lifecycle_rule": "ET-P-LC-01 (legacy tuple L field; Annex C has no lifecycle column)",
+  "derivation_provenance": {
+   "kind": "source_field",
+   "source": "Phalanx/framework/enisa_threats_tuple.csv row TR47",
+   "source_sha256": "c086e9d7221893d69e2ff6d380e3b2024aecc144bac8f034218b6814ef060b52",
+   "field": "L (lifecycle)",
+   "note": "candidate_lifecycle copies the legacy tuple L field {3,4,5,6,7}; ENISA STL 2025 Annex C has no lifecycle column, so the basis is the legacy tuple, not the Annex"
+  },
+  "applicable_boundary_roles": [
+   "command_authority"
+  ]
+ },
+ "claims": [],
+ "crosswalk_key": "Malicious code/software/activity: Network exploit"
+}

@@ -1,0 +1,40 @@
+{
+ "id": "TR53",
+ "source": "ENISA Space Threat Landscape 2025, Annex C Table 17 (via Phalanx/framework/enisa_threats_tuple.csv)",
+ "category": "NAA",
+ "name": "Social Engineering",
+ "cia": [
+  "A",
+  "C",
+  "I"
+ ],
+ "affected_asset_selectors": [
+  "Ground: Design, development, and quality assurance & Satellite Control Centre & Miscellaneous Software/Hardware"
+ ],
+ "description": "Deliberate decpetion regarding the identity and intention of the perpetrator in order to manipulate the victim to perform specific actions that the adversary wants them to do. The threat is mainly materialized through the launch of phishing or spear phishing. This way, all segments of the satellite lifecycle can be affected, since the adversary can achieve anything from gathering sensitive information.",
+ "projection": {
+  "candidate_assets": [
+   "ground_moc"
+  ],
+  "candidate_lifecycle": [
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7
+  ],
+  "lifecycle_rule": "ET-P-LC-01 (legacy tuple L field; Annex C has no lifecycle column)",
+  "derivation_provenance": {
+   "kind": "source_field",
+   "source": "Phalanx/framework/enisa_threats_tuple.csv row TR53",
+   "source_sha256": "c086e9d7221893d69e2ff6d380e3b2024aecc144bac8f034218b6814ef060b52",
+   "field": "L (lifecycle)",
+   "note": "candidate_lifecycle copies the legacy tuple L field {3,4,5,6,7}; ENISA STL 2025 Annex C has no lifecycle column, so the basis is the legacy tuple, not the Annex"
+  },
+  "applicable_boundary_roles": []
+ },
+ "claims": [],
+ "crosswalk_key": "Social Engineering"
+}

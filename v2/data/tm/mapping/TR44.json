@@ -1,0 +1,936 @@
+{
+ "threat": "TR44",
+ "status": "proposed",
+ "author": "assistant sub-agent V3G6 (v3 re-map); fix pass Fix1",
+ "date": "2026-10-27",
+ "vectors": [
+  {
+   "vector": "rf_link",
+   "basis": "quote",
+   "enisa_quote": "disrupt communications between the ground station and the satellite, or vice versa",
+   "reason": "A jammer is external RF equipment acting on the TT&C space-ground link ENISA names."
+  },
+  {
+   "vector": "feeder_rf",
+   "basis": "weak",
+   "enisa_quote": "disrupt communications between the ground station and the satellite",
+   "reason": "ENISA's ground station is the TTC station, but a gateway is also a ground station and the feeder link is a ground-satellite link; the text only implies it."
+  },
+  {
+   "vector": "user_terminal",
+   "basis": "weak",
+   "enisa_quote": "as well as space-link communication",
+   "reason": "ENISA lists 'User: VSAT' among the targets and says 'space-link communication'; a jammer or rogue terminal on the service link is implied, not stated."
+  }
+ ],
+ "rows": [
+  {
+   "technique": "IA-0008",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "K-ENABLE",
+   "role": "entry",
+   "vectors": [
+    "rf_link",
+    "feeder_rf",
+    "user_terminal"
+   ],
+   "enables": "EX-0016",
+   "sparta_quote": "any actor-controlled transmitter, platform, or node",
+   "reason": "The jammer is an outside transmitter on the link; SPARTA notes such entities may apply interference rather than mission-compatible signals."
+  },
+  {
+   "technique": "IA-0008.01",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "K-ENABLE",
+   "role": "entry",
+   "vectors": [
+    "rf_link"
+   ],
+   "enables": "IMP-0011",
+   "sparta_quote": "Adversaries may field their own ground system, transportable or fixed, to transmit and receive mission-compatible signals",
+   "reason": "Sending the unauthorized guidance and control commands ENISA lists as a jamming result needs a mission-compatible transmitter that overpowers the legitimate signal."
+  },
+  {
+   "technique": "EX-0016",
+   "sources": [
+    "crosswalk",
+    "sv:SV-AV-1"
+   ],
+   "framework": "SPARTA",
+   "code": "K-ACTION",
+   "role": "execution",
+   "enisa_quote": "Overpowering the frequency of a legitimate RF signal",
+   "sparta_quote": "electronic attack that uses radio frequency energy to deny the use of a signal",
+   "reason": "This is the overpowering of a legitimate RF signal that ENISA defines as jamming."
+  },
+  {
+   "technique": "EX-0016.01",
+   "sources": [
+    "crosswalk",
+    "sv:SV-AV-1"
+   ],
+   "framework": "SPARTA",
+   "code": "K-ACTION",
+   "role": "execution",
+   "enisa_quote": "disrupt communications between the ground station and the satellite",
+   "sparta_quote": "Uplink jamming prevents acceptance of telecommands",
+   "reason": "The ground-to-satellite direction of the disrupted link is uplink jamming of the telecommand channel, which only a transmitter on the TT&C link can do.",
+   "vectors": [
+    "rf_link"
+   ]
+  },
+  {
+   "technique": "EX-0016.02",
+   "sources": [
+    "crosswalk",
+    "sv:SV-AV-1"
+   ],
+   "framework": "SPARTA",
+   "code": "K-ACTION",
+   "role": "execution",
+   "enisa_quote": "or vice versa",
+   "sparta_quote": "Downlink jammers target the users of a satellite",
+   "reason": "The satellite-to-ground direction ('or vice versa') is downlink jamming, which also reaches VSAT users.",
+   "vectors": [
+    "rf_link",
+    "user_terminal"
+   ]
+  },
+  {
+   "technique": "DE-0002.02",
+   "sources": [
+    "crosswalk",
+    "sv:SV-AV-1"
+   ],
+   "framework": "SPARTA",
+   "code": "K-ACTION",
+   "role": "evasion",
+   "enisa_quote": "or vice versa",
+   "sparta_quote": "overwhelm/jam the downlink signal to prevent transmitted telemetry signals from reaching their destination",
+   "reason": "Jamming the satellite-to-ground telemetry downlink is the 'or vice versa' direction; SPARTA files it under Defense Evasion but the act is the same jamming, aimed at the ground controller's receiver on the TT&C link.",
+   "vectors": [
+    "rf_link"
+   ]
+  },
+  {
+   "technique": "IMP-0011",
+   "sources": [
+    "impact"
+   ],
+   "framework": "SPARTA",
+   "code": "K-EFFECT",
+   "role": "impact",
+   "vectors": [
+    "rf_link"
+   ],
+   "enisa_quote": "Jamming can result in unauthorized commands for guidance and control being sent to the satellite",
+   "sparta_quote": "An adversary may inject an unauthorized command or alter a legitimate command before execution",
+   "reason": "ENISA states unauthorized commands reaching the satellite as a result; IA-0008.01 is the step that sends them."
+  },
+  {
+   "technique": "IMP-0012",
+   "sources": [
+    "impact"
+   ],
+   "framework": "SPARTA",
+   "code": "K-EFFECT",
+   "role": "impact",
+   "vectors": [
+    "rf_link"
+   ],
+   "enisa_quote": "injection of malicious code",
+   "sparta_quote": "An adversary may modify executable code, replace firmware, or load altered programmable logic",
+   "reason": "ENISA states injection of malicious code as a result; the code reaches the satellite through the same command channel IA-0008.01 opens, so no separate loading step is kept (loading is TR46)."
+  },
+  {
+   "technique": "IMP-0013",
+   "sources": [
+    "impact"
+   ],
+   "framework": "SPARTA",
+   "code": "K-EFFECT",
+   "role": "impact",
+   "enisa_quote": "overall Denial of Service",
+   "sparta_quote": "The resource may support computing, storage, or communications.",
+   "reason": "ENISA states denial of service; the contested resource is the communications channel, a link-only outcome."
+  },
+  {
+   "technique": "DE-0002",
+   "sources": [
+    "crosswalk",
+    "sv:SV-AV-1"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "The parent also covers crashing telemetry software and falsified telemetry content; ENISA jamming matches only the jam variant DE-0002.02, which is kept."
+  },
+  {
+   "technique": "DE-0002.01",
+   "sources": [
+    "sv:SV-AV-1"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "ENISA jamming acts on the link, not on ground telemetry processing."
+  },
+  {
+   "technique": "DE-0002.03",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "ENISA jamming does not suppress telemetry at the source on board."
+  },
+  {
+   "technique": "DE-0003.01",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Masking the command counter is not described."
+  },
+  {
+   "technique": "DE-0003.02",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Masking the rejected-command counter is not described."
+  },
+  {
+   "technique": "DE-0003.04",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Altering receiver gain values is not described; jamming is external RF energy."
+  },
+  {
+   "technique": "DE-0003.05",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Tampering with receiver lock indicators is not described."
+  },
+  {
+   "technique": "DE-0003.07",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Manipulating crypto mode selectors is not described; jamming is external RF energy and leaves the link's crypto settings alone."
+  },
+  {
+   "technique": "DE-0003.10",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "GPS ephemeris spoofing is not described; ENISA jamming names the ground-satellite link."
+  },
+  {
+   "technique": "DE-0004",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "code": "D-OTHER",
+   "other_threat": "TR54",
+   "reason": "Presenting as an authorized origin is TR54 (spoofing), which keeps it; not stated for jamming."
+  },
+  {
+   "technique": "EX-0001",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Replay is not described; the unauthorized commands in ENISA's text are not said to be replayed."
+  },
+  {
+   "technique": "EX-0001.01",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Replay of command packets is not described."
+  },
+  {
+   "technique": "EX-0001.02",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Bus traffic replay is not described."
+  },
+  {
+   "technique": "EX-0006",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "code": "D-OTHER",
+   "other_threat": "TR45",
+   "reason": "Defeating encryption is TR45 (cryptographic exploit), which keeps it; ENISA jamming mentions no crypto attack."
+  },
+  {
+   "technique": "EX-0007",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "ENISA jamming does not involve inducing bit flips."
+  },
+  {
+   "technique": "EX-0013",
+   "sources": [
+    "sv:SV-AV-1"
+   ],
+   "framework": "SPARTA",
+   "code": "D-OTHER",
+   "other_threat": "TR40",
+   "reason": "Traffic flooding is TR40 (DoS), which keeps it; ENISA jamming is carrier overpowering (EX-0016)."
+  },
+  {
+   "technique": "EX-0013.01",
+   "sources": [
+    "crosswalk",
+    "sv:SV-AV-1"
+   ],
+   "framework": "SPARTA",
+   "code": "D-OTHER",
+   "other_threat": "TR40",
+   "reason": "Flooding with valid commands is TR40 (DoS), which keeps it; not the jamming ENISA describes."
+  },
+  {
+   "technique": "EX-0013.02",
+   "sources": [
+    "crosswalk",
+    "sv:SV-AV-1"
+   ],
+   "framework": "SPARTA",
+   "code": "D-OTHER",
+   "other_threat": "TR40",
+   "reason": "Near-valid or malformed traffic that keeps parsers busy is a DoS flood, which TR40 keeps; ENISA jamming is carrier overpowering, already EX-0016."
+  },
+  {
+   "technique": "EX-0016.03",
+   "sources": [
+    "crosswalk",
+    "sv:SV-AV-1"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "GNSS-band jamming is not what ENISA describes: the text names the ground-satellite communication link, and the guidance and control commands it mentions are not a navigation-signal effect."
+  },
+  {
+   "technique": "EX-0017",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "code": "D-OTHER",
+   "other_threat": "TR18",
+   "reason": "Kinetic attack is TR18 (ASAT), which keeps it; jamming is reversible RF interference."
+  },
+  {
+   "technique": "EX-0017.01",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "code": "D-OTHER",
+   "other_threat": "TR18",
+   "reason": "Direct-ascent ASAT is TR18, which keeps it; not jamming."
+  },
+  {
+   "technique": "EX-0017.02",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "code": "D-OTHER",
+   "other_threat": "TR18",
+   "reason": "Co-orbital ASAT is TR18, which keeps it; not jamming."
+  },
+  {
+   "technique": "EXF-0001",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Replay exfiltration is not described."
+  },
+  {
+   "technique": "EXF-0002.04",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Timing side-channel exfiltration is not described."
+  },
+  {
+   "technique": "EXF-0003",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "code": "D-OTHER",
+   "other_threat": "TR29",
+   "reason": "Intercepting signals is TR29 (interception of communication), which keeps it; ENISA jamming disrupts the link."
+  },
+  {
+   "technique": "EXF-0003.01",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "code": "D-OTHER",
+   "other_threat": "TR29",
+   "reason": "Uplink interception is TR29, which keeps it; not jamming."
+  },
+  {
+   "technique": "EXF-0003.02",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "code": "D-OTHER",
+   "other_threat": "TR29",
+   "reason": "Downlink interception is TR29, which keeps it; not jamming."
+  },
+  {
+   "technique": "EXF-0005",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Proximity exfiltration is not described and no kept row needs it."
+  },
+  {
+   "technique": "EXF-0006",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Reconfiguring communications to leak data is not described."
+  },
+  {
+   "technique": "IA-0001",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-OTHER",
+   "other_threat": "TR55",
+   "reason": "Tampering at manufacture or delivery is TR55 (supply-chain compromise), which keeps it; jamming is an RF act during operation."
+  },
+  {
+   "technique": "IA-0001.01",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-OTHER",
+   "other_threat": "TR55",
+   "reason": "Poisoned dependencies and build tools are TR55, which keeps it; not jamming."
+  },
+  {
+   "technique": "IA-0001.02",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-OTHER",
+   "other_threat": "TR46",
+   "reason": "Malicious code delivered through the software supply chain is TR46 (malicious injection), which keeps it; ENISA jamming only says code 'injection' may result."
+  },
+  {
+   "technique": "IA-0001.03",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-OTHER",
+   "other_threat": "TR55",
+   "reason": "Altered hardware before delivery is TR55, which keeps it; not jamming."
+  },
+  {
+   "technique": "IA-0002",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Compromising a software-defined radio is not described."
+  },
+  {
+   "technique": "IA-0003",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "No crosslink path is described."
+  },
+  {
+   "technique": "IA-0004",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Forcing the satellite onto a backup channel by jamming is not described by ENISA."
+  },
+  {
+   "technique": "IA-0004.01",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Using a backup or standby ground station; ENISA jamming names no backup path."
+  },
+  {
+   "technique": "IA-0004.02",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Jamming the primary to open the backup receiver is not described by ENISA."
+  },
+  {
+   "technique": "IA-0005",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Proximity operations are not described; ENISA gives no spacecraft-based jammer."
+  },
+  {
+   "technique": "IA-0005.01",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Emanation analysis is not described."
+  },
+  {
+   "technique": "IA-0005.02",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Riding a docking or servicing event; ENISA jamming names no co-orbital or physical actor."
+  },
+  {
+   "technique": "IA-0005.03",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Grappling the satellite for physical contact; ENISA jamming names no co-orbital or physical actor."
+  },
+  {
+   "technique": "IA-0006",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Entering through the hosted payload into the host spacecraft; ENISA jamming names no hosted payload."
+  },
+  {
+   "technique": "IA-0007",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Compromising the mission ground system; ENISA jamming names no compromised ground system."
+  },
+  {
+   "technique": "IA-0007.01",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-OTHER",
+   "other_threat": "TR46",
+   "reason": "Malicious updates pushed through the update pipeline are TR46 (injection into software updates), which keeps it; ENISA jamming names no ground origin."
+  },
+  {
+   "technique": "IA-0007.02",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-OTHER",
+   "other_threat": "TR28",
+   "reason": "Commanding through a compromised ground system is the hijack path TR28 keeps; ENISA jamming names no ground origin for the unauthorized commands."
+  },
+  {
+   "technique": "IA-0008.02",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "A rogue spacecraft is a proximity origin; ENISA jamming does not describe one."
+  },
+  {
+   "technique": "IA-0008.03",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-OTHER",
+   "other_threat": "TR18",
+   "reason": "A counterspace weapon is TR18 (ASAT), which keeps it; ENISA jamming is the RF effect, not the weapon platform."
+  },
+  {
+   "technique": "IA-0009",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Riding a trusted partner, vendor or user connection; ENISA jamming names no trusted partner connection."
+  },
+  {
+   "technique": "IA-0009.01",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Entering through a mission collaborator's connection; ENISA jamming names no trusted partner connection."
+  },
+  {
+   "technique": "IA-0009.02",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Entering through a vendor's remote access; ENISA jamming names no trusted partner connection."
+  },
+  {
+   "technique": "IA-0009.03",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Compromising the user segment as a route into mission cores; ENISA jamming names no trusted partner connection."
+  },
+  {
+   "technique": "IA-0010",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Timing the attack to safe-mode is not described."
+  },
+  {
+   "technique": "IA-0011",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Abusing peripherals or removable media; ENISA jamming names no co-orbital or physical actor."
+  },
+  {
+   "technique": "IA-0012",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-OTHER",
+   "other_threat": "TR58",
+   "reason": "Compromise during assembly, test and launch is TR58, which keeps it; jamming is an operational RF act."
+  },
+  {
+   "technique": "IA-0013",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Reaching a hosted payload from the host spacecraft; ENISA jamming names no hosted payload."
+  },
+  {
+   "technique": "IMP-0007",
+   "sources": [
+    "impact"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "ENISA names no abuse of a native function."
+  },
+  {
+   "technique": "IMP-0008",
+   "sources": [
+    "impact"
+   ],
+   "framework": "SPARTA",
+   "code": "D-OTHER",
+   "other_threat": "TR28",
+   "reason": "A forced state, mode or mission-phase change is how TR28 reads 'unauthorized commands to guidance control'; here ENISA's command outcome is carried by IMP-0011."
+  },
+  {
+   "technique": "IMP-0009",
+   "sources": [
+    "impact"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "ENISA names no change to settings or limits."
+  },
+  {
+   "technique": "IMP-0010",
+   "sources": [
+    "impact"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "ENISA names no falsified or corrupted data."
+  },
+  {
+   "technique": "IMP-0014",
+   "sources": [
+    "impact"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "ENISA names no timing or synchronization change."
+  },
+  {
+   "technique": "LM-0001",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Pivoting from a hosted payload across the host-payload boundary; ENISA jamming names no hosted payload."
+  },
+  {
+   "technique": "LM-0003",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "No crosslink spread is described."
+  },
+  {
+   "technique": "PER-0004",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "code": "D-OTHER",
+   "other_threat": "TR52",
+   "reason": "Replacing the satellite's keys is how TR52 keeps seizure of control; ENISA jamming does not describe key replacement."
+  },
+  {
+   "technique": "RD-0001.01",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "code": "P-PREP",
+   "enables": "IA-0008.01",
+   "reason": "Building an RF ground stack is how the rogue ground station sending the unauthorized commands is obtained."
+  },
+  {
+   "technique": "RD-0003.02",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Obtaining cryptographic keys is not described."
+  },
+  {
+   "technique": "REC-0001.03",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Learning the crypto algorithm is not described."
+  },
+  {
+   "technique": "REC-0003",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "code": "P-PREP",
+   "enables": "EX-0016",
+   "reason": "SPARTA: a jammer must operate in the same frequency band as the target; link frequencies, modulation and polarization come from comms reconnaissance."
+  },
+  {
+   "technique": "REC-0003.02",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "ENISA does not say the commands rely on prior study of the command scheme."
+  },
+  {
+   "technique": "REC-0003.03",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "code": "P-PREP",
+   "enables": "EX-0016",
+   "reason": "Scanning for mission-specific channels finds links 'that could be impersonated or jammed selectively', matching the payload link and VSAT assets ENISA names."
+  },
+  {
+   "technique": "REC-0003.04",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Collecting valid credentials is not described."
+  },
+  {
+   "technique": "REC-0005",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Eavesdropping is not described; jamming is active interference."
+  },
+  {
+   "technique": "REC-0005.01",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Uplink eavesdropping is not described."
+  },
+  {
+   "technique": "REC-0005.04",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Active probing is not described; band knowledge is already covered by the kept preparation rows."
+  }
+ ],
+ "review_response": [
+  {
+   "finding": "A-chain integrity: IMP-0008 and IMP-0012 have no producing step",
+   "action": "fixed: IMP-0008 dropped (D-OTHER TR28, whose mode-change reading it was copied from); IMP-0011 and IMP-0012 are kept as effects of the rogue-ground-station entry IA-0008.01 (enables IMP-0011), restricted to rf_link; loading code stays with TR46. IMP-0012 still has no dedicated action: kept because ENISA states 'injection of malicious code' as a result."
+  },
+  {
+   "finding": "A-DE-0002 parent kept as K-ACTION with DE-0002.02 and EX-0016.02 for one act",
+   "action": "fixed: parent DE-0002 is D-UNDESCRIBED (it also covers crashing telemetry software and falsified content); DE-0002.02 and EX-0016.02 are kept as the two named directions, since DE-0002.02 is the ground-controller telemetry downlink and EX-0016.02 the user downlink."
+  },
+  {
+   "finding": "A-S4 EX-0016/.01/.02 and DE-0002/.02 parent-child inconsistency under SDLS",
+   "action": "fixed: all kept jam rows (EX-0016, EX-0016.01, EX-0016.02, DE-0002.02) are in the link_only default; the parent DE-0002 is no longer kept."
+  },
+  {
+   "finding": "A-S1 jamming effect row removed under SDLS",
+   "action": "kept because IMP-0013 (link-only, kept) carries the denial outcome; IMP-0011 is deliberately not link-only, since it is the unauthorized-command outcome which needs an accepted command."
+  },
+  {
+   "finding": "A-PER-0004 reason carried generator text ('re-pointed after the reconciliation race')",
+   "action": "fixed: reason rewritten; PER-0004 is D-OTHER TR52 (kept there)."
+  },
+  {
+   "finding": "A-EX-0016.03 PNT jamming dropped; D: apply one rule to GNSS-band attacks",
+   "action": "kept because the ENISA text names the ground-satellite communication link; reason reworded. GNSS jamming has no ENISA sentence here."
+  },
+  {
+   "finding": "A-EX-0013.02 homeless / TR44 reason circular",
+   "action": "fixed: TR40 keeps EX-0013.02; TR44 now D-OTHER TR40 with a reason that no longer claims it is jamming."
+  },
+  {
+   "finding": "A-IA-0008.01 enables IMP-0011 is correct under SDLS",
+   "action": "kept because it is correct (command injection is blocked under SDLS, link-only denial survives)."
+  },
+  {
+   "finding": "A-EX-0012.08 ADCS kept by no threat, ENISA says 'guidance and control'",
+   "action": "kept because EX-0012.08 is not a TR44 candidate and ENISA's sentence is about commands sent (IMP-0011), not edited ADCS values; left to TR28's owner."
+  },
+  {
+   "finding": "arch-C-6 rf_link_only list hand-curated; arch-E-3 basis not recorded",
+   "action": "fixed: basis recorded on all three vectors (rf_link quote, feeder_rf and user_terminal weak); link-only behaviour relies on the default list, no TR44 override needed."
+  },
+  {
+   "finding": "v3 new vectors feeder_rf / user_terminal",
+   "action": "fixed: both added as weak vectors with IA-0008 as shared entry; the command-injection steps (IA-0008.01, IMP-0011, IMP-0012) are limited to rf_link because the unauthorized commands travel on the TT&C link."
+  },
+  {
+   "finding": "fix pass M2: TC-uplink and TT&C-downlink jamming accepted on feeder_rf and user_terminal",
+   "action": "fixed: EX-0016.01 and DE-0002.02 restricted to rf_link; EX-0016.02 (user downlink) to rf_link and user_terminal; EX-0016 and IMP-0013 stay on all three vectors."
+  },
+  {
+   "finding": "fix pass m1: TR32 and TR44 code the same uplink jam with different outcome techniques",
+   "action": "kept because ENISA states different outcomes: TR32 suppression of telecommands, TR44 denial of service (IMP-0013) and unauthorized commands (IMP-0011, which needs an accepted command)."
+  },
+  {
+   "finding": "fix pass m3: IMP-0012 has no producing step",
+   "action": "kept because ENISA states injection of malicious code as a result; recorded in notes."
+  },
+  {
+   "finding": "fix pass: feeder_rf weak vector adds only structural differences",
+   "action": "kept because the text 'ground station and the satellite' also fits the gateway; the vector is weak and now carries only the generic jam and its outcome."
+  }
+ ],
+ "notes": [
+  "Not covered: ENISA's jamming of the ground-side receivers is modelled only for the TT&C link; a rogue gateway (feeder_rf) is limited to the generic jam EX-0016, and a user terminal also to the user downlink EX-0016.02.",
+  "IMP-0012 (injection of malicious code) has no dedicated action step: ENISA states it as a result of jamming, and loading of code is TR46."
+ ]
+}

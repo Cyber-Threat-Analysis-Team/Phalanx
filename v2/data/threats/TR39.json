@@ -1,0 +1,42 @@
+{
+ "id": "TR39",
+ "source": "ENISA Space Threat Landscape 2025, Annex C Table 17 (via Phalanx/framework/enisa_threats_tuple.csv)",
+ "category": "NAA",
+ "name": "Data Modification",
+ "cia": [
+  "C",
+  "I"
+ ],
+ "affected_asset_selectors": [
+  "Ground: Production (Document Management incl. Configuration Management System; Prototyping/IDE; ERP software & misc software)",
+  "Email servers, databases, OS",
+  "Phones, laptops, tablets"
+ ],
+ "description": "Although a threat manifestation element of several threat clusters, modification of data as a threat category refers to the potential for adversaries to modify registers, system and authentication processes, and/or cloud compute infrastructure.",
+ "projection": {
+  "candidate_assets": [],
+  "candidate_lifecycle": [
+   1,
+   2,
+   3
+  ],
+  "lifecycle_rule": "ET-P-LC-01 (legacy tuple L field; Annex C has no lifecycle column)",
+  "derivation_provenance": {
+   "kind": "source_field",
+   "source": "Phalanx/framework/enisa_threats_tuple.csv row TR39",
+   "source_sha256": "c086e9d7221893d69e2ff6d380e3b2024aecc144bac8f034218b6814ef060b52",
+   "field": "L (lifecycle)",
+   "note": "candidate_lifecycle copies the legacy tuple L field {3,4,5,6,7}; ENISA STL 2025 Annex C has no lifecycle column, so the basis is the legacy tuple, not the Annex"
+  },
+  "applicable_boundary_roles": []
+ },
+ "claims": [
+  {
+   "sv": "SV-IT-2",
+   "quote": "modification of data",
+   "basis": "enisa_quote",
+   "rationale": "Unauthorized modification of data."
+  }
+ ],
+ "crosswalk_key": "Data Modification"
+}

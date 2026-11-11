@@ -1,0 +1,988 @@
+{
+ "threat": "TR54",
+ "status": "proposed",
+ "author": "assistant sub-agent V3G1-TR54 (v3 re-map); fix pass Fix1",
+ "date": "2026-10-27",
+ "vectors": [
+  {
+   "vector": "rf_link",
+   "basis": "quote",
+   "enisa_quote": "transmitting erroneous data for malicious purposes via what appears to be a legitimate signal",
+   "reason": "The adversary transmits a signal that looks legitimate, from outside the mission, over the radio link."
+  },
+  {
+   "vector": "proximity",
+   "basis": "weak",
+   "enisa_quote": "launched on sensor data and/or guidance control",
+   "reason": "The text names sensor data but not who attacks or from where; optical or electrical stimulation of sensors (EX-0014.03: 'injected electrically at interfaces, optically (blinding/dazzling trackers or sun sensors)') can only be done from close range, so proximity is the best-supported origin."
+  }
+ ],
+ "rows": [
+  {
+   "technique": "DE-0002.02",
+   "code": "D-OTHER",
+   "reason": "Overwhelming the telemetry downlink so it never arrives is jamming (TR44 keeps it), whereas this ENISA text is about a signal that looks legitimate, not one drowned out.",
+   "framework": "SPARTA",
+   "other_threat": "TR44",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "DE-0002.03",
+   "code": "D-UNDESCRIBED",
+   "reason": "Muting telemetry publishers or packet filters on board is an inside manipulation of the spacecraft; ENISA describes a forged signal arriving from outside, with no on-board suppression.",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "DE-0003.01",
+   "code": "D-UNDESCRIBED",
+   "reason": "Zeroing or freezing the Vehicle Command Counter hides accepted commands; ENISA speaks of deceiving the receiver with a legitimate-looking signal, not of covering counters afterwards.",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "DE-0003.02",
+   "code": "D-UNDESCRIBED",
+   "reason": "Clearing or forging the rejected-command counter hides trial-and-error probing, which the ENISA spoofing text never mentions.",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "DE-0003.04",
+   "code": "D-OTHER",
+   "reason": "Tampering with command-receiver gain (AGC) stops commands from being processed, which is telecommand suppression (TR32), not the forged signal described here.",
+   "framework": "SPARTA",
+   "other_threat": "TR32",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "DE-0003.05",
+   "code": "D-UNDESCRIBED",
+   "reason": "Using or masking receiver lock indicators (bit/frame/command lock) to validate geometry or hide readiness is not what a spoofed signal that looks legitimate does.",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "DE-0003.07",
+   "code": "D-UNDESCRIBED",
+   "reason": "Switching on-orbit crypto modes or 'crypto off' states to desynchronise ground and spacecraft is a separate protection-bypass step that ENISA does not mention.",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "DE-0003.10",
+   "code": "D-UNDESCRIBED",
+   "reason": "Spoofing GPS ephemeris so the satellite mis-estimates its position is already carried by EX-0014.04 (false position/velocity/time); this row is its Defense-Evasion variant that conceals activity, which ENISA does not describe.",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "DE-0009.04",
+   "code": "D-UNDESCRIBED",
+   "reason": "Dazzling or fooling the spacecraft's proximity-awareness sensors hides an approaching vehicle from SSA; ENISA describes deceiving the receiver with data, not hiding an approach.",
+   "framework": "SPARTA",
+   "sources": [
+    "sv:SV-IT-1"
+   ]
+  },
+  {
+   "technique": "EX-0001",
+   "code": "D-UNDESCRIBED",
+   "reason": "Replay as a general technique also covers crosslinks and internal buses; only its telecommand-packet child fits the 'malicious commands' wording, so the parent adds no step of its own.",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "EX-0001.02",
+   "code": "D-UNDESCRIBED",
+   "reason": "Retransmitting messages on the internal bus (1553, SpaceWire) needs a foothold already on board; ENISA's spoofer transmits from outside via a signal that appears legitimate.",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "EX-0006",
+   "code": "D-OTHER",
+   "reason": "Toggling flags or algorithms to process traffic in clear or with weak protection is the SLE/SDL protocol compromise of TR28; ENISA spoofing text does not describe defeating the protection.",
+   "framework": "SPARTA",
+   "other_threat": "TR28",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "EX-0007",
+   "code": "D-UNDESCRIBED",
+   "reason": "Inducing single-event upsets by charge or radiation effects is a hardware-fault attack; the ENISA spoofing text names only forged data and signals.",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "EX-0013.01",
+   "code": "D-OTHER",
+   "reason": "Saturating the spacecraft with valid commands to burn resources is flooding (TR40), not forging a legitimate-looking signal.",
+   "framework": "SPARTA",
+   "other_threat": "TR40",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "EX-0013.02",
+   "code": "D-UNDESCRIBED",
+   "reason": "Injecting noise or malformed frames so receivers labour to reject them is not a signal that appears legitimate; the ENISA spoofing text speaks of believable data.",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "EX-0014.01",
+   "code": "D-UNDESCRIBED",
+   "reason": "Forging or biasing the time seen by onboard consumers is not named by ENISA, and false time delivered by a spoofed navigation signal is already covered by EX-0014.04 (false position/velocity/time).",
+   "framework": "SPARTA",
+   "sources": [
+    "sv:SV-IT-1"
+   ]
+  },
+  {
+   "technique": "EX-0014.02",
+   "code": "D-UNDESCRIBED",
+   "reason": "Forging frames on the internal bus (1553, SpaceWire, CAN) is done from inside the spacecraft; ENISA's spoofing arrives as a signal at the receiver or sensor.",
+   "framework": "SPARTA",
+   "sources": [
+    "sv:SV-IT-1"
+   ]
+  },
+  {
+   "technique": "EX-0016",
+   "code": "D-OTHER",
+   "reason": "Jamming denies a signal with RF energy, whereas the ENISA text describes a believable signal, not denial of one.",
+   "framework": "SPARTA",
+   "other_threat": "TR44",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "EX-0016.01",
+   "code": "D-OTHER",
+   "reason": "Driving uplink Eb/N0 below the demodulator threshold blocks telecommands (jamming, TR44), the opposite of a forged but legitimate-looking uplink.",
+   "framework": "SPARTA",
+   "other_threat": "TR44",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "EX-0016.02",
+   "code": "D-OTHER",
+   "reason": "Downlink jammers create noise at the ground receiver; ENISA's erroneous data to the ground stations is data content, not noise on the carrier.",
+   "framework": "SPARTA",
+   "other_threat": "TR44",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "EX-0016.03",
+   "code": "D-UNDESCRIBED",
+   "reason": "Raising the noise floor in GNSS bands so signals are not tracked denies navigation; ENISA spoofing is about false navigation data, which EX-0014.04 covers, not its denial.",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "EX-0017",
+   "code": "D-OTHER",
+   "reason": "Physically striking space assets is the kinetic attack of TR18; spoofing text is about forged data.",
+   "framework": "SPARTA",
+   "other_threat": "TR18",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "EX-0017.01",
+   "code": "D-OTHER",
+   "reason": "A direct-ascent missile that destroys a satellite in orbit is the ASAT threat (TR18), unrelated to deceiving a receiver.",
+   "framework": "SPARTA",
+   "other_threat": "TR18",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "EX-0017.02",
+   "code": "D-OTHER",
+   "reason": "A co-orbital vehicle that collides or detonates near the target is the ASAT threat (TR18), not signal spoofing.",
+   "framework": "SPARTA",
+   "other_threat": "TR18",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "EXF-0001",
+   "code": "D-UNDESCRIBED",
+   "reason": "Re-sending valid commands to make the spacecraft dump data again, then capturing the downlink, is data theft; ENISA states no theft.",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "EXF-0002.04",
+   "code": "D-UNDESCRIBED",
+   "reason": "Timing acknowledgments and framing gaps to learn which code ran is a side-channel leak that the spoofing text does not describe.",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "EXF-0003",
+   "code": "D-OTHER",
+   "reason": "Capturing mission traffic in transit is interception (TR29); the spoofer here transmits rather than listens.",
+   "framework": "SPARTA",
+   "other_threat": "TR29",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "EXF-0003.01",
+   "code": "D-OTHER",
+   "reason": "Collecting telecommand frames from the uplink is interception (TR29) and gives the adversary nothing that ENISA's forged signal requires as a described step.",
+   "framework": "SPARTA",
+   "other_threat": "TR29",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "EXF-0003.02",
+   "code": "D-OTHER",
+   "reason": "Recording telemetry and playbacks off the downlink is interception (TR29), not erroneous data sent to a receiver.",
+   "framework": "SPARTA",
+   "other_threat": "TR29",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "EXF-0004",
+   "code": "D-UNDESCRIBED",
+   "reason": "Co-opting a secondary link (rekeying, beacon, crosslink) as a covert data path is exfiltration; ENISA's spoofing sends data in, not out.",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "EXF-0005",
+   "code": "D-UNDESCRIBED",
+   "reason": "A nearby vehicle collecting emissions as a mobile TEMPEST sensor is listening, while spoofing is transmitting forged data.",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "EXF-0006",
+   "code": "D-UNDESCRIBED",
+   "reason": "Retuning or reconfiguring the radio so mission data leaves over unmonitored paths is exfiltration, which ENISA's spoofing text does not state.",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "EXF-0006.02",
+   "code": "D-UNDESCRIBED",
+   "reason": "Remapping transponder input-output paths toward non-mission receivers is exfiltration through a transponder, not forged data to the receiver.",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "EXF-0010",
+   "code": "D-OTHER",
+   "reason": "Implanting code in a payload or its gateway to route data out is a payload compromise (TR46), not spoofing.",
+   "framework": "SPARTA",
+   "other_threat": "TR46",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "IA-0001",
+   "code": "D-UNDESCRIBED",
+   "reason": "Inserting malicious code or hardware during manufacturing and delivery is the supply-chain origin; ENISA's spoofer acts on a live signal, not before flight.",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0001.01",
+   "code": "D-UNDESCRIBED",
+   "reason": "Poisoned dependencies, base images or build tools are a pre-flight software-supply-chain door; the ENISA spoofing text has no development-stage actor.",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0001.02",
+   "code": "D-OTHER",
+   "reason": "Swapping signed binaries or update metadata upstream of the build is software-supply-chain compromise (TR55), unlike a spoofed in-flight signal.",
+   "framework": "SPARTA",
+   "other_threat": "TR55",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "IA-0001.03",
+   "code": "D-UNDESCRIBED",
+   "reason": "Hardware Trojans in ASIC/FPGA designs before delivery are a supply-chain door, and the ENISA text names no such actor.",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0002",
+   "code": "D-UNDESCRIBED",
+   "reason": "Compromising an SDR's waveform, bitstream or flowgraph gives a programmable foothold inside the radio; ENISA's spoofer stays outside and only imitates a legitimate signal.",
+   "framework": "SPARTA",
+   "sources": [
+    "entry_table"
+   ]
+  },
+  {
+   "technique": "IA-0003",
+   "code": "D-UNDESCRIBED",
+   "reason": "Using a compromised neighbour's crosslink trust as a bridgehead is a space-segment lateral door, with no crosslink actor in the ENISA spoofing text.",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "IA-0004",
+   "code": "D-UNDESCRIBED",
+   "reason": "Reaching the spacecraft through a backup or contingency communication path differing from the primary TT&C is not described; ENISA names only a signal that looks legitimate.",
+   "framework": "SPARTA",
+   "sources": [
+    "entry_table"
+   ]
+  },
+  {
+   "technique": "IA-0004.01",
+   "code": "D-UNDESCRIBED",
+   "reason": "Establishing presence on a standby MOC or alternate ground station is a ground compromise that ENISA's spoofing text does not describe.",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0004.02",
+   "code": "D-UNDESCRIBED",
+   "reason": "Targeting the secondary receive path (alternate antenna or cross-strapped front end) is a variant door; ENISA does not distinguish primary from backup receivers.",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "IA-0005",
+   "code": "D-UNDESCRIBED",
+   "reason": "Manoeuvring to approach the target for local sensing or signalling is rendezvous and proximity; ENISA gives no approach and the proximity vector enters through counterspace IA-0008.03.",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "IA-0005.01",
+   "code": "D-UNDESCRIBED",
+   "reason": "Analysing unintentional emissions from crypto modules and decoders is listening, not transmission of forged data.",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "IA-0005.02",
+   "code": "D-UNDESCRIBED",
+   "reason": "Exploiting a docking or OSAM bridge between vehicles needs a servicing event the ENISA spoofing text never mentions.",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0005.03",
+   "code": "D-UNDESCRIBED",
+   "reason": "Grappling the target with a robotic arm or coupler is physical contact; ENISA's sensor spoofing needs no capture.",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0006",
+   "code": "D-UNDESCRIBED",
+   "reason": "Entering through a hosted payload's command set and telemetry path is a hosted-payload door; ENISA names no hosted payload.",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0007",
+   "code": "D-UNDESCRIBED",
+   "reason": "Compromising operator workstations and mission-control software is a ground-system takeover; ENISA's attacker transmits a signal rather than owning ground systems.",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0007.01",
+   "code": "D-OTHER",
+   "reason": "Tampering with the software-update pipeline of an on-orbit vehicle is the update compromise of TR46, not spoofing.",
+   "framework": "SPARTA",
+   "other_threat": "TR46",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "IA-0007.02",
+   "code": "D-UNDESCRIBED",
+   "reason": "Sending legitimate-looking commands from a compromised mission-owned ground system needs control of the ground; ENISA's spoofer fakes a signal from outside.",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "IA-0008.02",
+   "code": "D-UNDESCRIBED",
+   "reason": "A rogue spacecraft that phases into a local-peer orbit and radiates narrow-band signals is an RF-geometry foothold; ENISA gives no space-based transmitter.",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "IA-0009",
+   "code": "D-UNDESCRIBED",
+   "reason": "Riding connections the mission already trusts (partners, vendors) is third-party compromise, with no trust relationship in the ENISA spoofing text.",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0009.01",
+   "code": "D-UNDESCRIBED",
+   "reason": "Compromising university or international collaborators' portals and credentials is not described by ENISA.",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0009.02",
+   "code": "D-UNDESCRIBED",
+   "reason": "Abusing a vendor's remote administration and licence routes into operations is not described by ENISA.",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0009.03",
+   "code": "D-UNDESCRIBED",
+   "reason": "Compromising SATCOM terminals or customer gateways in the user segment is not described; ENISA's receiver and ground-station ends are not user equipment.",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0010",
+   "code": "D-UNDESCRIBED",
+   "reason": "Timing the first execution to safe-mode, when the vehicle relaxes controls, is an opportunity choice that ENISA does not state.",
+   "framework": "SPARTA",
+   "sources": [
+    "entry_table"
+   ]
+  },
+  {
+   "technique": "IA-0011",
+   "code": "D-UNDESCRIBED",
+   "reason": "Infecting removable media or auxiliary interfaces during I&T or on orbit is a physical-access door absent from the spoofing text.",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0012",
+   "code": "D-UNDESCRIBED",
+   "reason": "Compromising test controllers, EGSE and loaders during assembly, test and launch is a pre-launch door that ENISA does not name.",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0013",
+   "code": "D-UNDESCRIBED",
+   "reason": "Pivoting from the host spacecraft into a hosted payload is a bus-to-payload door not mentioned in the ENISA text.",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IMP-0007",
+   "code": "D-UNDESCRIBED",
+   "reason": "Triggering functions that already exist for harmful use is not what ENISA says; its spoofing yields forged data and commands, with no abuse of a native function.",
+   "framework": "SPARTA",
+   "sources": [
+    "impact"
+   ]
+  },
+  {
+   "technique": "IMP-0008",
+   "code": "D-UNDESCRIBED",
+   "reason": "Forcing or holding a mode or mission-phase change is not stated by ENISA; the 'guidance control' phrase names a target of spoofing, not a mode transition.",
+   "framework": "SPARTA",
+   "sources": [
+    "impact"
+   ]
+  },
+  {
+   "technique": "IMP-0009",
+   "code": "D-OTHER",
+   "reason": "Rewriting thresholds, gains and access rules in non-executable settings is configuration tampering (TR57), not forged input.",
+   "framework": "SPARTA",
+   "other_threat": "TR57",
+   "sources": [
+    "impact"
+   ]
+  },
+  {
+   "technique": "IMP-0012",
+   "code": "D-OTHER",
+   "reason": "Replacing code, firmware or logic is software manipulation (TR42); spoofing alters the input the code sees, not the code.",
+   "framework": "SPARTA",
+   "other_threat": "TR42",
+   "sources": [
+    "impact"
+   ]
+  },
+  {
+   "technique": "IMP-0013",
+   "code": "D-OTHER",
+   "reason": "Depleting or monopolising a finite resource is exhaustion (TR51), not data forged to look legitimate.",
+   "framework": "SPARTA",
+   "other_threat": "TR51",
+   "sources": [
+    "impact"
+   ]
+  },
+  {
+   "technique": "IMP-0014",
+   "code": "D-UNDESCRIBED",
+   "reason": "Shifting the on-board clock or breaking synchronisation is a timing effect; ENISA names no timing consequence, only malicious commands and erroneous data.",
+   "framework": "SPARTA",
+   "sources": [
+    "impact"
+   ]
+  },
+  {
+   "technique": "LM-0001",
+   "code": "D-UNDESCRIBED",
+   "reason": "Pivoting through the host-payload gateway is lateral movement after access; ENISA's spoofing has no on-board movement.",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "LM-0003",
+   "code": "D-UNDESCRIBED",
+   "reason": "Hopping to other satellites over crosslinks is lateral movement across the constellation, with no crosslink in the ENISA text.",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "PER-0004",
+   "code": "D-OTHER",
+   "reason": "Replacing keys to lock out operators is takeover persistence (TR52), unlike spoofing that merely forges input.",
+   "framework": "SPARTA",
+   "other_threat": "TR52",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "RD-0003.02",
+   "code": "D-UNDESCRIBED",
+   "reason": "Stealing keys or PN codes that confer command authority prepares authenticated access; ENISA's signal only appears legitimate, with no key theft named.",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "RD-0004",
+   "code": "D-UNDESCRIBED",
+   "reason": "Pre-positioning tooling and C2 pipelines on adversary infrastructure does not enable any kept spoofing row beyond ground equipment already covered.",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "RD-0004.02",
+   "code": "D-UNDESCRIBED",
+   "reason": "Staging exploits, malicious tables and patch images prepares an execution foothold, whereas no kept row here uploads a payload.",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "REC-0001.03",
+   "code": "D-UNDESCRIBED",
+   "reason": "Studying crypto algorithms, anti-replay windows and counters prepares defeating protections, which no kept row needs.",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "REC-0003.03",
+   "code": "D-UNDESCRIBED",
+   "reason": "Scanning payload downlinks, user terminals and crosslinks to find extra RF surfaces is not needed by the TT&C-band spoofing row.",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "REC-0003.04",
+   "code": "D-UNDESCRIBED",
+   "reason": "Gathering credentials and TT&C keys is preparation for authenticated access; the ENISA spoofer only imitates a legitimate signal.",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "REC-0005",
+   "code": "D-UNDESCRIBED",
+   "reason": "Capturing mission communications broadly is generic eavesdropping; only its uplink-intercept child supports a kept row.",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "REC-0005.04",
+   "code": "D-UNDESCRIBED",
+   "reason": "Active probing to elicit frequencies and device behaviour is scanning that no kept spoofing row depends on.",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "RD-0001.01",
+   "code": "P-PREP",
+   "enables": "IA-0008.01",
+   "reason": "Acquiring or assembling an own RF ground stack is the equipment the rogue ground station needs to transmit the forged signal.",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "REC-0003",
+   "code": "P-PREP",
+   "enables": "EX-0014",
+   "reason": "Frequency, modulation and framing details of the mission link are needed so the spoofed signal passes as legitimate.",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "REC-0003.02",
+   "code": "P-PREP",
+   "enables": "IMP-0011",
+   "reason": "Knowing the telecommand protocol, framing and authentication fields is what lets forged commands reach the satellite.",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "REC-0005.01",
+   "code": "P-PREP",
+   "enables": "EX-0001.01",
+   "reason": "Capturing uplink traffic supplies the accepted telecommands that a replay resends.",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "DE-0002",
+   "code": "D-UNDESCRIBED",
+   "framework": "SPARTA",
+   "reason": "DE-0002 conceals an intruder from operators by manipulating telemetry or disabling telemetry software, while ENISA's erroneous data to the ground stations is a spoofing outcome and no RF-origin technique here delivers false telemetry to a ground receiver.",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "DE-0004",
+   "code": "K-ENABLE",
+   "role": "evasion",
+   "vectors": [
+    "rf_link"
+   ],
+   "enables": "EX-0014",
+   "framework": "SPARTA",
+   "enisa_quote": "what appears to be a legitimate signal",
+   "sparta_quote": "The adversary presents themselves as an authorized origin so activity appears legitimate across RF, protocol, and organizational boundaries",
+   "reason": "Presenting as an authorised origin is what makes the forged signal look legitimate to the receiver.",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "EX-0001.01",
+   "code": "K-ACTION",
+   "role": "execution",
+   "vectors": [
+    "rf_link"
+   ],
+   "framework": "SPARTA",
+   "enisa_quote": "malicious comands being sent to the satellite",
+   "sparta_quote": "resend authentic-looking telecommands that were previously accepted by the spacecraft",
+   "reason": "ENISA does not name replay; a resent captured telecommand is a signal that appears legitimate and carries a malicious command, which is how the text's 'malicious comands being sent' can be realised (inference).",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "EX-0014",
+   "code": "K-ACTION",
+   "role": "execution",
+   "vectors": [
+    "rf_link"
+   ],
+   "framework": "SPARTA",
+   "enisa_quote": "deceiving the receiver",
+   "sparta_quote": "The adversary forges inputs that subsystems treat as trustworthy truth",
+   "reason": "Forged inputs that the receiver treats as genuine are the spoofing ENISA describes.",
+   "sources": [
+    "sv:SV-IT-1"
+   ],
+   "link_only": false,
+   "link_only_reason": "Forged time tags, bus messages or telecommand-borne data are accepted only after the spacecraft takes the frame past link authentication; the RF-layer navigation spoof is carried by EX-0014.04, which needs only the GNSS link."
+  },
+  {
+   "technique": "EX-0014.03",
+   "code": "K-ACTION",
+   "role": "execution",
+   "vectors": [
+    "proximity"
+   ],
+   "framework": "SPARTA",
+   "enisa_quote": "launched on sensor data and/or guidance control",
+   "sparta_quote": "The attacker presents fabricated or biased measurements that estimation and control treat as ground truth",
+   "reason": "ENISA names spoofing of sensor data; the SPARTA spoofs are injected electrically or optically at the sensor, so they need close range.",
+   "sources": [
+    "sv:SV-IT-1"
+   ]
+  },
+  {
+   "technique": "EX-0014.04",
+   "code": "K-ACTION",
+   "role": "execution",
+   "vectors": [
+    "rf_link"
+   ],
+   "framework": "SPARTA",
+   "enisa_quote": "launched on sensor data and/or guidance control",
+   "sparta_quote": "transmits GNSS-like signals",
+   "reason": "Guidance control is fed by the navigation solution, so a transmitted false navigation signal is spoofing of guidance input; it also covers false time. The signal reaches the receiver over the GNSS link, not the telecommand uplink.",
+   "sources": [
+    "sv:SV-IT-1"
+   ]
+  },
+  {
+   "technique": "IA-0008",
+   "code": "K-ENABLE",
+   "role": "entry",
+   "vectors": [
+    "rf_link"
+   ],
+   "enables": "EX-0014",
+   "framework": "SPARTA",
+   "sparta_quote": "Most interact by radiating or exchanging traffic using mission-compatible waveforms, framing, or crosslink protocols",
+   "reason": "An external transmitter using mission-compatible waveforms is the origin of the spoofed signal.",
+   "sources": [
+    "crosswalk",
+    "sv:SV-IT-1"
+   ]
+  },
+  {
+   "technique": "IA-0008.01",
+   "code": "K-ENABLE",
+   "role": "entry",
+   "vectors": [
+    "rf_link"
+   ],
+   "enables": "EX-0014",
+   "framework": "SPARTA",
+   "sparta_quote": "Adversaries may field their own ground system, transportable or fixed, to transmit and receive mission-compatible signals",
+   "reason": "A rogue ground station is the transmitter that sends the signal that appears legitimate.",
+   "sources": [
+    "crosswalk",
+    "sv:SV-IT-1"
+   ]
+  },
+  {
+   "technique": "IA-0008.03",
+   "code": "K-ENABLE",
+   "role": "entry",
+   "vectors": [
+    "proximity"
+   ],
+   "enables": "EX-0014.03",
+   "framework": "SPARTA",
+   "sparta_quote": "directed-energy systems can dazzle sensors or upset electronics",
+   "reason": "A counterspace platform close to the satellite is the actor-controlled node that can dazzle its sensors, the entry for sensor-data spoofing.",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "IMP-0010",
+   "code": "K-EFFECT",
+   "role": "impact",
+   "vectors": [
+    "rf_link",
+    "proximity"
+   ],
+   "link_only": true,
+   "link_only_reason": "A spoofed navigation signal or sensor stimulus falsifies on-board data without any telecommand being accepted, so SDLS does not remove it.",
+   "framework": "SPARTA",
+   "enisa_quote": "transmitting erroneous data for malicious purposes",
+   "sparta_quote": "An adversary may falsify, suppress, replace, delete, or corrupt this information",
+   "reason": "Realises the erroneous data that on-board consumers (sensors, navigation solution) accept as genuine.",
+   "sources": [
+    "impact"
+   ]
+  },
+  {
+   "technique": "IMP-0011",
+   "code": "K-EFFECT",
+   "role": "impact",
+   "vectors": [
+    "rf_link"
+   ],
+   "framework": "SPARTA",
+   "enisa_quote": "malicious comands being sent to the satellite",
+   "sparta_quote": "An adversary may inject an unauthorized command or alter a legitimate command before execution",
+   "reason": "Realises malicious commands reaching the satellite; it needs an accepted command, so SDLS rightly removes it.",
+   "sources": [
+    "impact"
+   ]
+  }
+ ],
+ "review_response": [
+  {
+   "finding": "DE-0002 does not do what ENISA says (conceals an intruder; no RF technique delivers false telemetry to ground)",
+   "action": "fixed: DE-0002 demoted to D-UNDESCRIBED. Limit: no SPARTA technique delivers false telemetry to the ground station from an RF origin, so 'erroneous data to the ground stations' is not modelled; IMP-0010 is kept for sensor/PNT outcomes only."
+  },
+  {
+   "finding": "S3: EX-0014.03 sensor spoofing unreachable by an RF transmitter",
+   "action": "fixed: EX-0014.03 moved to the new proximity vector (weak basis) with IA-0008.03 as entry (also kept by TR18)."
+  },
+  {
+   "finding": "S1: IMP-0010/IMP-0011 removed under SDLS although the spoof survives",
+   "action": "fixed: IMP-0010 is link_only with a reason (spoofed input falsifies data with no telecommand). IMP-0011 kept because command injection needs an accepted command: SDLS-on assumes an intact protocol, so removal is right; EX-0006/EX-0003 are not link_only here."
+  },
+  {
+   "finding": "EX-0001.01 replay is an inference, not ENISA-stated",
+   "action": "kept because it is a plausible means for 'malicious commands'; the row reason now says it is a judgement from 'what appears to be a legitimate signal'."
+  },
+  {
+   "finding": "S4: EX-0014 plus EX-0014.03/.04 parent/child pattern; EX-0014.01 vs PNT time; IMP-0014",
+   "action": "kept because the quotes differ: parent covers RF spoof of the receiver, .03 sensors (proximity), .04 PNT (rf_link); the engine treats each by its link_only list. EX-0014.01 stays D-UNDESCRIBED since EX-0014.04 covers false position/velocity/time; IMP-0014 stays D-UNDESCRIBED as ENISA names no timing effect."
+  },
+  {
+   "finding": "Vector limit: spoofing on both the receiver and the transmitter end",
+   "action": "kept because the surface model has only the satellite receiver as target; a ground-station target does not exist in the surface model. Stated as a limit."
+  },
+  {
+   "finding": "No-issue items (rf_link vector, IA-0008/.01 entries, DE-0004, P-PREP rows, D-OTHER to TR44/TR29/TR18)",
+   "action": "kept; all reasons rewritten one per row, D-OTHER targets re-checked for reciprocity (EX-0006 now TR28)."
+  },
+  {
+   "finding": "fix pass M3: GNSS spoof reaches the bus over a TT&C uplink path and EX-0014 parent is link-only by default",
+   "action": "fixed: the surface now has a GNSS link, so EX-0014.04 needs only that link and its reason says so; EX-0014 gets link_only false with a reason (bus and time-tag forgery needs an accepted frame), so under SDLS only the GNSS-borne spoof and its link-only outcome survive."
+  },
+  {
+   "finding": "fix pass M5: ground-end spoofing limit and SDLS caveat not in the file",
+   "action": "fixed: notes array added."
+  },
+  {
+   "finding": "fix pass m10: DE-0004 K-ENABLE here, K-ACTION in TR43/TR37/TR35",
+   "action": "kept because the role differs: here masquerade only makes the forged signal look legitimate (it enables EX-0014); in TR43/TR37/TR35 masquerade is the threat itself."
+  }
+ ],
+ "notes": [
+  "Not covered: ENISA's 'erroneous data to the ground stations' (spoofing toward the receiving ground end) has no technique and no attack-surface target; only the satellite receiver is modelled.",
+  "SDLS-on results assume an intact protocol; the GNSS spoof (EX-0014.04, IMP-0010 link_only) survives SDLS because it does not use the telecommand uplink, command spoofing (IMP-0011) does not."
+ ]
+}

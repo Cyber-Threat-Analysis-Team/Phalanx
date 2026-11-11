@@ -1,0 +1,647 @@
+{
+ "threat": "TR20",
+ "status": "proposed",
+ "author": "assistant sub-agent V3G8 (v3 re-map); fix pass Fix2",
+ "date": "2026-10-27",
+ "vectors": [
+  {
+   "vector": "proximity",
+   "basis": "quote",
+   "enisa_quote": "even on the orbit itself (docking of another satellite)",
+   "reason": "ENISA names a docked satellite in orbit as one way the rogue connection happens; a docked vehicle is the proximity origin, and the same origin carries physical access to the spacecraft's interfaces (IA-0011)."
+  },
+  {
+   "vector": "supply_chain",
+   "basis": "weak",
+   "enisa_quote": "intentional, targeted human intervention",
+   "reason": "ENISA names a person who connects rogue items but not where; the affected assets are design, development, assembly and the control centre, so the attacker is a person at integration facilities. The weak step is the choice of integration over the control centre."
+  }
+ ],
+ "rows": [
+  {
+   "technique": "DE-0009",
+   "sources": [
+    "sv:SV-AC-5"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Concealment is not mentioned.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "DE-0009.01",
+   "sources": [
+    "sv:SV-AC-5"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Blending into debris is not mentioned.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EX-0005",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Corrupting firmware or driving hardware below the software stack is not stated; ENISA says rogue hardware and software are connected.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EX-0015",
+   "sources": [
+    "sv:SV-AC-5"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Side-channel attack is not described; ENISA states connected rogue items.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EX-0017",
+   "sources": [
+    "sv:SV-AC-5"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR18",
+   "reason": "Kinetic attack is the ASAT weapon behaviour of TR18; this threat is about connecting rogue hardware or software.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EX-0017.01",
+   "sources": [
+    "sv:SV-AC-5"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR18",
+   "reason": "Direct-ascent missile launch is ASAT (TR18), not a rogue connection.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EX-0017.02",
+   "sources": [
+    "sv:SV-AC-5"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR18",
+   "reason": "A co-orbital ramming or detonation is ASAT (TR18); docking here is a connection, not a collision.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EX-0018",
+   "sources": [
+    "sv:SV-AC-5"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR18",
+   "reason": "Non-kinetic physical attack by directed energy is ASAT (TR18).",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EX-0018.01",
+   "sources": [
+    "sv:SV-AC-5"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR18",
+   "reason": "EMP is named in TR18's ASAT list, not in this threat.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EXF-0002",
+   "sources": [
+    "sv:SV-AC-5"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Side-channel exfiltration is not described.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EXF-0002.01",
+   "sources": [
+    "sv:SV-AC-5"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Power analysis is not described.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EXF-0002.02",
+   "sources": [
+    "sv:SV-AC-5"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Electromagnetic leakage analysis is not described.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EXF-0002.03",
+   "sources": [
+    "sv:SV-AC-5"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Traffic analysis is not described.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EXF-0002.04",
+   "sources": [
+    "sv:SV-AC-5"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Timing attacks are not described.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EXF-0002.05",
+   "sources": [
+    "sv:SV-AC-5"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Thermal imaging is not described.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EXF-0005",
+   "sources": [
+    "sv:SV-AC-5"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR18",
+   "reason": "Close-range collection of emissions is the rogue-object spying that TR18 states; this threat states no spying.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0001",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-OTHER",
+   "reason": "Insertion of malicious code or data during manufacturing or delivery is the supply-chain compromise of TR55; TR20's items are connected later, not built in.",
+   "other_threat": "TR55",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0001.01",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-OTHER",
+   "reason": "Poisoned developer dependencies and build tools are a supply-chain method (TR55); TR20's unauthorized applications are introduced by connection.",
+   "other_threat": "TR55",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0001.02",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-OTHER",
+   "reason": "Software altered before delivery is supply-chain compromise (TR55); TR20 does not describe a delivery step.",
+   "other_threat": "TR55",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0001.03",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR15",
+   "reason": "Hardware altered before delivery is the built-in malicious capability of TR15; here the rogue hardware is connected later by a person or a docking vehicle.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0002",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Compromising a software-defined radio is a radio-side route; TR20 names a connected device or docked vehicle.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0003",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "A compromised neighbour satellite over a crosslink is not a docked vehicle; no crosslink is described.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0004",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "A secondary communication path is not mentioned in TR20.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0004.01",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "A backup ground station is not mentioned in TR20.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0004.02",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "The backup RF receive path is not mentioned in TR20.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0005",
+   "sources": [
+    "sv:SV-AC-5",
+    "origin"
+   ],
+   "code": "K-ENABLE",
+   "role": "entry",
+   "vectors": [
+    "proximity"
+   ],
+   "enables": "IA-0005.02",
+   "sparta_quote": "co-orbit and approach a target closely enough for local sensing, signaling, or physical interaction",
+   "reason": "The other satellite must first approach before it can dock.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0005.01",
+   "sources": [
+    "sv:SV-AC-5",
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Analysing emanations is information gathering; this threat is about connecting rogue items.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0005.02",
+   "sources": [
+    "sv:SV-AC-5",
+    "origin"
+   ],
+   "code": "K-ACTION",
+   "role": "entry",
+   "vectors": [
+    "proximity"
+   ],
+   "enisa_quote": "docking of another satellite",
+   "sparta_quote": "creates a high-trust bridge between vehicles",
+   "reason": "Docking of another satellite is named explicitly as a way the rogue connection happens.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0005.03",
+   "sources": [
+    "crosswalk",
+    "sv:SV-AC-5",
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Grappling without docking is not what ENISA says; it names docking of another satellite.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0006",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "A hosted payload as a door into the bus is not mentioned; docking in TR20 reaches the bus through LM-0004.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0007",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Compromising the ground system by cyber means is not a rogue device connected by a person; the ENISA text names USB sticks and docking.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0007.01",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Tampering with the update pipeline is a remote software route; ENISA's connection is physical.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0007.02",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Commanding through a valid ground station is a remote route; the rogue items in TR20 are physically connected.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0008",
+   "sources": [
+    "sv:SV-AC-5",
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Rogue External Entity is an RF foothold from outside the architecture; ENISA's rogue items are physically connected.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0008.01",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "A rogue ground station is an RF foothold; the ENISA rogue items are physically connected.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0008.02",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Rogue Spacecraft in SPARTA is an RF peer emitting or relaying signals; the ENISA case is a docked satellite, covered by IA-0005.02.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0008.03",
+   "sources": [
+    "sv:SV-AC-5",
+    "origin"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR18",
+   "reason": "A counterspace weapon as delivering node is the ASAT scenario of TR18.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0009",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "A trusted relationship is not mentioned; the person in TR20 intervenes physically.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0009.01",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Mission collaborators as access route are not mentioned in TR20.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0009.02",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-OTHER",
+   "reason": "Vendor access is the supply-chain relationship of TR55; TR20 names no vendor.",
+   "other_threat": "TR55",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0009.03",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "End-user equipment as attacker origin is not mentioned in TR20.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0010",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Timing first execution to safe-mode is not described by TR20.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0011",
+   "sources": [
+    "crosswalk",
+    "sv:SV-AC-5",
+    "origin"
+   ],
+   "code": "K-ACTION",
+   "role": "entry",
+   "enisa_quote": "connection of unauthorized rogue hardware and software, such as USB sticks",
+   "sparta_quote": "Adversaries abuse peripherals and removable media that the spacecraft (or its support equipment) ingests",
+   "reason": "A rogue USB stick or other peripheral connected to equipment is the first action ENISA describes. It applies to the proximity vector (physical access to the spacecraft's ports, where it adds nothing beyond the docking entry IA-0005.02) and to the supply_chain vector (a person connecting it during assembly and test).",
+   "framework": "SPARTA",
+   "enables": "EX-0010"
+  },
+  {
+   "technique": "IA-0012",
+   "sources": [
+    "sv:SV-AC-5",
+    "origin"
+   ],
+   "code": "K-ENABLE",
+   "role": "entry",
+   "vectors": [
+    "supply_chain"
+   ],
+   "enables": "EX-0010",
+   "sparta_quote": "compromised laptops or transient cyber assets push images and tables",
+   "reason": "Assembly and test is where people connect laptops, loaders and other devices to the flight interfaces, which is how unauthorized hardware and applications reach the satellite through 'human intervention'; it is the supply_chain entry that leads to the unauthorized application.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0013",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "The host spacecraft as a door into a hosted payload is not mentioned in TR20.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IMP-0007",
+   "sources": [
+    "impact"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Using existing spacecraft functions for harm is not what ENISA says; rogue software changing components is IMP-0012.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IMP-0008",
+   "sources": [
+    "impact"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR28",
+   "reason": "Forcing a state or mode change is the unauthorized-guidance-command behaviour of TR28.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IMP-0009",
+   "sources": [
+    "impact"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR57",
+   "reason": "Altering settings while code stays intact is parameter modification (TR57); this threat's rogue software changes the implementation itself.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IMP-0010",
+   "sources": [
+    "impact"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR39",
+   "reason": "Falsifying or deleting data is data modification (TR39); ENISA names rogue hardware and software.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IMP-0011",
+   "sources": [
+    "impact"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR32",
+   "reason": "Blocking or redirecting commands and data is traffic manipulation (TR32).",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IMP-0012",
+   "sources": [
+    "impact"
+   ],
+   "code": "K-EFFECT",
+   "role": "impact",
+   "enisa_quote": "may endanger the integrity, confidentiality and availability of satellite components",
+   "sparta_quote": "modify executable code, replace firmware, or load altered programmable logic",
+   "reason": "Rogue software changes the implementation of satellite components, which is the integrity effect ENISA states; confidentiality and availability effects are reached through other threats (TR38, TR51), not coded here.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IMP-0013",
+   "sources": [
+    "impact"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR51",
+   "reason": "Depleting a resource is resource exhaustion (TR51); not stated here.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IMP-0014",
+   "sources": [
+    "impact"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Altering the clock or synchronisation is not described.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "LM-0001",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Pivoting from a hosted payload into the host is not described; the docked vehicle pivots through LM-0004.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "LM-0003",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Hopping between satellites over a crosslink is not described by TR20.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "LM-0004",
+   "sources": [
+    "sv:SV-AC-5"
+   ],
+   "code": "K-ENABLE",
+   "role": "lateral",
+   "vectors": [
+    "proximity"
+   ],
+   "enables": "IMP-0012",
+   "sparta_quote": "inject commands, transfer files, or access bus gateways on the host",
+   "reason": "Once docked, the connected vehicle reaches the target's buses and subsystems, which is how its hardware or software endangers the satellite components.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "PER-0002.01",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR15",
+   "reason": "A hardware backdoor designed into a part is the hidden capability of TR15; this threat describes connected devices and software, not built-in backdoors.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "REC-0005.03",
+   "sources": [
+    "sv:SV-AC-5"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Observing emissions from a close vehicle is reconnaissance that no kept row needs.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "REC-0006.02",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Learning an organisation's test tools is reconnaissance that no kept row needs.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EX-0010",
+   "sources": [
+    "analyst_added"
+   ],
+   "code": "K-ACTION",
+   "role": "execution",
+   "framework": "SPARTA",
+   "enisa_quote": "such as USB sticks, unauthorized applications",
+   "sparta_quote": "introducing executable logic that runs on the vehicle",
+   "reason": "The unauthorized application that the connection brings in runs as executable logic on the target; no SPARTA candidate described that step, so it is added (the only analyst_added row of TR20).",
+   "vectors": [
+    "supply_chain"
+   ],
+   "enables": "IMP-0012"
+  }
+ ],
+ "review_response": [
+  {
+   "finding": "Wrong vector for the USB case: proximity attaches to every space bus, ENISA's assets are ground",
+   "action": "fixed: vectors split into proximity (docking: IA-0005 -> IA-0005.02 -> LM-0004 -> IMP-0012, restricted to proximity) and supply_chain (weak, 'human intervention' at assembly/development: IA-0011 or IA-0012 -> EX-0010 -> IMP-0012). IA-0011 is now an entry of supply_chain in attack_surface.json, so the USB case no longer lands on the on-orbit bus only."
+  },
+  {
+   "finding": "IA-0011 K-ACTION with role entry: OK once the vector is fixed",
+   "action": "kept, now valid for both vectors (proximity and supply_chain) after the attack-surface update."
+  },
+  {
+   "finding": "Outcome covers only integrity",
+   "action": "fixed: the IMP-0012 reason says confidentiality and availability effects are reached through other threats (TR38, TR51) and not coded here."
+  },
+  {
+   "finding": "Enabler-coverage validator: EX-0010 (proximity) and IMP-0012 (supply_chain) had no enabler in their vector; IA-0011 USB duplicates IA-0005.02 on proximity (m11)",
+   "action": "fixed: EX-0010 is restricted to supply_chain and enables IMP-0012 there; IA-0011 enables EX-0010; proximity keeps IA-0005 -> IA-0005.02 -> LM-0004 -> IMP-0012. The IA-0011 reason states it adds nothing beyond IA-0005.02 on proximity."
+  }
+ ]
+}

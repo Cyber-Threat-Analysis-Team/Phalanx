@@ -1,0 +1,1200 @@
+{
+ "threat": "TR32",
+ "status": "proposed",
+ "author": "assistant sub-agent V3G1-TR32 (v3 re-map); fix pass Fix1",
+ "date": "2026-10-27",
+ "vectors": [
+  {
+   "vector": "rf_link",
+   "basis": "weak",
+   "enisa_quote": "traffic coming from the ground station (telecommand)",
+   "reason": "Weak: the quote names the traffic (telecommands from the ground station), not the attacker; suppression that stops traffic from reaching the satellite is inferred to be done from equipment outside the mission on the uplink, and the text also names SLE, so an attacker on the ground side is not excluded."
+  }
+ ],
+ "rows": [
+  {
+   "technique": "DE-0001",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR50",
+   "reason": "Muting fault detection, watchdogs and alert routing so actions escape safing is on-board fault-management sabotage, kept by TR50, and ENISA's TC text names no FDIR change."
+  },
+  {
+   "technique": "DE-0002",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Disrupt or Deceive Downlink covers any point of the telemetry chain to blind operators, whereas ENISA's TR32 text is about the telecommand direction and never mentions telemetry."
+  },
+  {
+   "technique": "DE-0002.02",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR44",
+   "reason": "Jam Link Signal overwhelms the telemetry downlink so ground controllers lose sight of the vehicle; TR44 keeps it, whereas this threat concerns the telecommand uplink, not the downlink."
+  },
+  {
+   "technique": "DE-0002.03",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Muting telemetry publishers and altering packet filters at the source hides spacecraft health; ENISA does not describe any change to telemetry generation."
+  },
+  {
+   "technique": "DE-0003",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "On-Board Values Obfuscation falsifies counters, flags and reporting modes to mask activity, and ENISA's text does not describe hiding or falsifying housekeeping values."
+  },
+  {
+   "technique": "DE-0003.01",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "The Vehicle Command Counter is zeroed or frozen to mask accepted commands; the TR32 text concerns commands never accepted, with no counter manipulation."
+  },
+  {
+   "technique": "DE-0003.02",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Suppressing or clearing the Rejected Command Counter hides probing; ENISA's wording says nothing about concealing rejected commands."
+  },
+  {
+   "technique": "DE-0003.04",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "K-ACTION",
+   "role": "execution",
+   "role_reason": "Here it is the attack itself: manipulating the command receiver's received signal parameters blinds it to ground commands, not a step that hides another action.",
+   "enables": "IMP-0011",
+   "enisa_quote": "through TC suppression",
+   "sparta_quote": "stop specific commands or signals from being processed by the spacecraft",
+   "reason": "Altering the command receiver's AGC and signal parameters stops commands from being processed, which is suppression of telecommands at the satellite."
+  },
+  {
+   "technique": "DE-0003.05",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Command Receiver Lock Modes are exploited by reading bit, frame and command lock to test geometry or readiness, a reconnaissance use that TR32 does not describe."
+  },
+  {
+   "technique": "DE-0003.07",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Switching cryptographic modes or selectors to desynchronise ground and spacecraft is a crypto-mode manipulation absent from the TC suppression text."
+  },
+  {
+   "technique": "DE-0003.08",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Editing or pruning histories of received commands conceals activity after the fact, and ENISA names no log tampering."
+  },
+  {
+   "technique": "DE-0003.09",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Biasing the authoritative on-board time so logs appear shifted is a clock manipulation that the TR32 text does not mention."
+  },
+  {
+   "technique": "DE-0003.10",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Spoofing GPS ephemeris to corrupt the satellite's computed position is a navigation attack, unrelated to suppressing telecommands."
+  },
+  {
+   "technique": "DE-0003.11",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Modifying watchdog timeouts or who pets them to hide long-running processes is an on-board evasion step ENISA does not describe."
+  },
+  {
+   "technique": "DE-0003.12",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Poisoning the training data of AI/ML-based monitoring to blind detection is outside a text about telecommand suppression."
+  },
+  {
+   "technique": "DE-0004",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Masquerading presents crafted frames as an authorised origin, but the suppressing attacker only needs to interfere and does not pose as an operator; the technique is kept by TR54 for forged signals, not for this text."
+  },
+  {
+   "technique": "DE-0006",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Modifying on-board whitelists to run or hide malicious programs presumes code execution that TR32 never describes."
+  },
+  {
+   "technique": "DE-0007",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "A rootkit patches APIs and telemetry publishers to hide tasks after boot; ENISA's TR32 text has no implant to hide."
+  },
+  {
+   "technique": "DE-0008",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "A bootkit hides activity by running first in the boot chain, and nothing in the TR32 text involves boot software."
+  },
+  {
+   "technique": "EX-0001",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Parent Replay re-transmits previously captured traffic over RF, crosslinks or buses to repeat its effect, whereas ENISA describes preventing traffic, not repeating it."
+  },
+  {
+   "technique": "EX-0001.01",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR54",
+   "reason": "Resending previously accepted telecommand PDUs is replay of authentic-looking commands, kept by TR54; ENISA's TR32 text describes suppressing commands, not re-sending them."
+  },
+  {
+   "technique": "EX-0001.02",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Replaying or injecting messages on the internal spacecraft bus targets on-board data handling, while the TR32 text concerns the ground-to-satellite link."
+  },
+  {
+   "technique": "EX-0002",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "PNT geofencing triggers malware by orbital geometry or time; ENISA describes no implanted procedure waiting for a trigger."
+  },
+  {
+   "technique": "EX-0003",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR52",
+   "reason": "Patching how the spacecraft validates command authority is an authentication change kept by TR52, while TC suppression leaves the validator untouched."
+  },
+  {
+   "technique": "EX-0004",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR48",
+   "reason": "Compromising boot ROM, loaders and boot configuration is a boot-memory attack kept by TR48, with no counterpart in a text about uplink traffic suppression."
+  },
+  {
+   "technique": "EX-0005",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Exploiting firmware, programmable logic or hardware beneath the software stack is not described by a text about telecommand traffic."
+  },
+  {
+   "technique": "EX-0006",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR28",
+   "reason": "Toggling flags that place links into clear or maintenance mode weakens protection, which TR28 keeps; the TR32 text is about commands being prevented, not exposed."
+  },
+  {
+   "technique": "EX-0007",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Inducing a single-event upset to flip bits and place software in an exploitable state is a radiation-related step that ENISA does not name."
+  },
+  {
+   "technique": "EX-0010",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR46",
+   "reason": "Introducing executable logic that runs on the vehicle is the malicious-code technique kept by TR46; suppressing telecommands needs no on-board code."
+  },
+  {
+   "technique": "EX-0010.03",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR46",
+   "reason": "A rootkit interposes on reporting paths to hide other malware, kept by TR46, and ENISA's TR32 wording has no hidden implant."
+  },
+  {
+   "technique": "EX-0010.04",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR46",
+   "reason": "A bootkit runs before integrity checks and reshapes later trust, kept by TR46; nothing in the TR32 text involves the boot chain."
+  },
+  {
+   "technique": "EX-0012",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR57",
+   "reason": "Altering live or persistent on-board data such as tables and registers is kept by TR57, while ENISA's TR32 text concerns traffic reaching the satellite."
+  },
+  {
+   "technique": "EX-0012.01",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Writing internal registers to alter or disable subsystems is an on-board value change, but TR32 describes commands failing to arrive, not values being written."
+  },
+  {
+   "technique": "EX-0012.02",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Rewriting routing maps that tell software where messages go is an on-board table edit, absent from the TC suppression text."
+  },
+  {
+   "technique": "EX-0012.03",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR46",
+   "reason": "Direct memory writes and block loads that place chosen bytes at addresses are kept by TR46 as code or data injection; TC suppression places nothing in memory."
+  },
+  {
+   "technique": "EX-0012.04",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Editing application and subscriber tables changes message delivery inside the flight framework, which ENISA does not describe."
+  },
+  {
+   "technique": "EX-0012.06",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Altering payload data and its metadata in place degrades mission outputs, whereas the TR32 text is about the command uplink."
+  },
+  {
+   "technique": "EX-0012.11",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR57",
+   "reason": "Changing watchdog timeouts, windows and reset actions is a value manipulation kept by TR57, not the uplink suppression described here."
+  },
+  {
+   "technique": "EX-0012.12",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Writing clock registers or time-distribution sources to shift timetags is a time-base manipulation not present in the TR32 wording."
+  },
+  {
+   "technique": "EX-0012.13",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Poisoning AI/ML training data so models misclassify is outside the uplink-suppression scenario ENISA describes."
+  },
+  {
+   "technique": "EX-0013.01",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR40",
+   "reason": "Saturating paths with legitimate telecommands so the spacecraft burns resources honouring them is kept by TR40; TR32's text speaks of commands that never arrive, not of valid ones overloading it."
+  },
+  {
+   "technique": "EX-0013.02",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "K-ACTION",
+   "role": "execution",
+   "link_only": true,
+   "link_only_reason": "RF-layer variant: noise or malformed frames at the receiver need only the radio link, no accepted command.",
+   "enables": "IMP-0011",
+   "enisa_quote": "through TC suppression",
+   "sparta_quote": "receivers and parsers labor to acquire, decode, and reject it",
+   "reason": "Erroneous input at the RF layer keeps the receiver busy acquiring, decoding and rejecting junk and drives AGC and clock recovery, which suppresses telecommands by congestion."
+  },
+  {
+   "technique": "EX-0014",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR54",
+   "reason": "Forging time tags, sensor values or navigation signals so logic acts on fabricated reality is kept by TR54, whereas TR32 describes suppression rather than fabrication."
+  },
+  {
+   "technique": "EX-0014.01",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Time Spoof biases the time consumers see to reorder commands and break timetag checks; ENISA's text does not describe false time."
+  },
+  {
+   "technique": "EX-0014.02",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Forging messages on internal buses to drive actuators targets on-board traffic, not the ground telecommand uplink named here."
+  },
+  {
+   "technique": "EX-0014.04",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR54",
+   "reason": "Transmitting GNSS-like signals to bias the navigation solution is PNT spoofing kept by TR54; the TR32 text says nothing about navigation."
+  },
+  {
+   "technique": "EX-0016",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR44",
+   "reason": "Parent Jamming technique denies a signal in general and is kept by TR44 with its sub-techniques; this threat is represented by the Uplink Jamming sub-technique alone."
+  },
+  {
+   "technique": "EX-0016.01",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "K-ACTION",
+   "role": "execution",
+   "enables": "IMP-0011",
+   "enisa_quote": "through TC suppression",
+   "sparta_quote": "Uplink jamming prevents acceptance of telecommands",
+   "reason": "Uplink jamming drives the uplink Eb/N0 below the demodulator threshold, which is the way telecommands are suppressed before the satellite handles them."
+  },
+  {
+   "technique": "EX-0016.02",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR44",
+   "reason": "Downlink jamming makes noise on the satellite-to-user frequency and is kept by TR44; the TR32 traffic is the ground-to-satellite telecommand."
+  },
+  {
+   "technique": "EX-0016.03",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "PNT Jamming raises the noise floor in GNSS bands so navigation signals are lost, but TR32's interference acts on the telecommand uplink band."
+  },
+  {
+   "technique": "EXF-0001",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Re-sending valid commands to make the spacecraft downlink data again is exfiltration by replay, while TR32 is about commands being blocked."
+  },
+  {
+   "technique": "EXF-0002.03",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Traffic analysis learns topology from flow patterns, but ENISA's TR32 describes denial of traffic, not learning from it."
+  },
+  {
+   "technique": "EXF-0002.04",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Timing attacks measure acknowledgement latency to learn code paths, a side channel that the TR32 text does not describe."
+  },
+  {
+   "technique": "EXF-0003",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR29",
+   "reason": "Capturing mission traffic in transit for offline reconstruction is interception kept by TR29, and TC suppression captures nothing."
+  },
+  {
+   "technique": "EXF-0003.01",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR29",
+   "reason": "Receiving or tapping the uplink to collect telecommand frames is kept by TR29; TR32's attacker prevents those frames from being accepted rather than reading them."
+  },
+  {
+   "technique": "EXF-0003.02",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR29",
+   "reason": "Recording spacecraft-to-ground telemetry and playbacks is kept by TR29, and the TR32 text is about the opposite direction and purpose."
+  },
+  {
+   "technique": "EXF-0004",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Co-opting a secondary out-of-band link as a covert data path is not what ENISA describes for telecommand suppression."
+  },
+  {
+   "technique": "EXF-0006",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Retuning carriers or modulation so mission data leaves on unmonitored paths is a configuration change that ENISA does not name."
+  },
+  {
+   "technique": "EXF-0006.01",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Adding subcarriers or altering DSP chains in an SDR to piggyback data is an exfiltration channel absent from the TR32 text."
+  },
+  {
+   "technique": "EXF-0006.02",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Remapping transponder paths, polarisation or gain to favour non-mission traffic is a payload-configuration change TR32 does not describe."
+  },
+  {
+   "technique": "EXF-0010",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR46",
+   "reason": "Routing payload-channel data out through an implanted payload is kept by TR46, with no data leaving in a TC suppression text."
+  },
+  {
+   "technique": "IA-0001",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR55",
+   "reason": "Pre-flight insertion of malicious code, data or configuration in manufacturing and delivery is the supply-chain technique kept by TR55; ENISA's TR32 text describes an in-orbit uplink effect."
+  },
+  {
+   "technique": "IA-0001.01",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR55",
+   "reason": "Poisoned dependencies, container images and developer tools are a development-chain attack kept by TR55, unrelated to suppression of uplink traffic."
+  },
+  {
+   "technique": "IA-0001.02",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR55",
+   "reason": "Tampered source, signed binaries or update metadata delivered to flight or ground systems is kept by TR55, not the uplink interference TR32 names."
+  },
+  {
+   "technique": "IA-0001.03",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR55",
+   "reason": "Altering boards, ASIC/FPGA designs and bitstreams before delivery is hardware supply chain, kept by TR55, with no connection to jamming the telecommand link."
+  },
+  {
+   "technique": "IA-0002",
+   "framework": "SPARTA",
+   "sources": [
+    "entry_table"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Compromising SDR firmware or flowgraphs gives a programmable foothold on the radio, while the TR32 interferer needs no access to the receiver."
+  },
+  {
+   "technique": "IA-0003",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Crosslink via compromised neighbour moves from one spacecraft to another over inter-satellite links, which a ground-to-satellite TC text does not describe."
+  },
+  {
+   "technique": "IA-0004",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Reaching the spacecraft through a backup or secondary channel with different monitoring is a distinct access path; ENISA names only the primary telecommand traffic."
+  },
+  {
+   "technique": "IA-0004.01",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Compromising the backup ground segment or standby MOC is a ground-side foothold, but TR32's attacker interferes from outside the mission."
+  },
+  {
+   "technique": "IA-0004.02",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Targeting the secondary RF receive path of the spacecraft is an alternative-receiver access that ENISA does not describe."
+  },
+  {
+   "technique": "IA-0005",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Rendezvous and proximity operations bring an attacker close for local signalling, a proximity origin not chosen for a threat about the ground uplink."
+  },
+  {
+   "technique": "IA-0005.01",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Analysing unintentional emissions from decoders or crypto modules is a local side channel needing proximity, absent from the TR32 text."
+  },
+  {
+   "technique": "IA-0005.02",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Docking or servicing capture creates a trusted bridge between vehicles, with nothing similar in the ENISA wording."
+  },
+  {
+   "technique": "IA-0005.03",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Grappling a vehicle to open covers or reach umbilicals is physical contact that the TR32 text does not involve."
+  },
+  {
+   "technique": "IA-0006",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Compromising a hosted payload as a doorway into the host is not described; ENISA's traffic comes from the ground station."
+  },
+  {
+   "technique": "IA-0007",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Compromise Ground System makes the attacker an insider of the mission ground segment, whereas ENISA's TR32 suppression is done from outside by interference."
+  },
+  {
+   "technique": "IA-0007.01",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR46",
+   "reason": "Manipulating the pipeline that builds and transmits updates to the vehicle is kept by TR46; TR32 involves no update content."
+  },
+  {
+   "technique": "IA-0007.02",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Malicious commanding via a valid ground station sends legitimate-looking commands, but TR32 describes preventing commands, so no command-sending ground foothold is required."
+  },
+  {
+   "technique": "IA-0008",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "K-ENABLE",
+   "role": "entry",
+   "vectors": [
+    "rf_link"
+   ],
+   "enables": "EX-0016.01",
+   "sparta_quote": "apply interference, directed energy, or physical proximity",
+   "reason": "IA-0008 covers an actor with no mission-compatible capability who only applies interference, which is the interference variant needed to suppress telecommands; the jammer sends no command, so the step it enables acts on the link only."
+  },
+  {
+   "technique": "IA-0008.01",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "A rogue ground station transmits and receives mission-compatible signals, but suppressing telecommands needs only interference, so this variant is not what ENISA's text describes."
+  },
+  {
+   "technique": "IA-0008.02",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "A rogue spacecraft achieves proximity and a privileged RF geometry, a proximity origin not chosen for this ground-originated uplink threat."
+  },
+  {
+   "technique": "IA-0008.03",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR18",
+   "reason": "A counterspace weapon that jams or spoofs links is an actor kept by TR18; as a platform it is a proximity origin that this threat's rf_link vector does not use."
+  },
+  {
+   "technique": "IA-0009",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Trusted Relationship rides partner or vendor connections that the mission trusts, and ENISA names no third-party compromise."
+  },
+  {
+   "technique": "IA-0009.01",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Compromising a mission collaborator such as academia or an international partner is not described by the TR32 text."
+  },
+  {
+   "technique": "IA-0009.02",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "A vendor with remote administration of ground software and modems is a supply relationship absent from the uplink suppression wording."
+  },
+  {
+   "technique": "IA-0009.03",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "The user segment of SATCOM terminals and customer gateways is not where ENISA places the attacker of ground telecommand traffic."
+  },
+  {
+   "technique": "IA-0010",
+   "framework": "SPARTA",
+   "sources": [
+    "entry_table"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Unauthorized Access During Safe-Mode times first execution to safe-mode reconfiguration, a spacecraft state ENISA does not mention."
+  },
+  {
+   "technique": "IA-0011",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Abusing peripherals and removable media during development or I&T is an auxiliary-device route absent from the TR32 text."
+  },
+  {
+   "technique": "IA-0012",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "ATLO compromise acts through test controllers and EGSE before launch, whereas ENISA's attack is on operational telecommand traffic."
+  },
+  {
+   "technique": "IA-0013",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Compromising the host spacecraft to reach a hosted payload is the reverse hosting door and not described here."
+  },
+  {
+   "technique": "IMP-0007",
+   "framework": "SPARTA",
+   "sources": [
+    "impact"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Native Functionality Abuse invokes existing spacecraft functions for harmful purposes, but the TR32 outcome is that commands do not reach the satellite."
+  },
+  {
+   "technique": "IMP-0008",
+   "framework": "SPARTA",
+   "sources": [
+    "impact"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "State or Mode Manipulation forces or blocks mode transitions, which ENISA does not describe for telecommand suppression."
+  },
+  {
+   "technique": "IMP-0009",
+   "framework": "SPARTA",
+   "sources": [
+    "impact"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR57",
+   "reason": "Changing thresholds, limits and routing settings is configuration manipulation kept by TR57, while TR32's effect is that commands do not arrive."
+  },
+  {
+   "technique": "IMP-0010",
+   "framework": "SPARTA",
+   "sources": [
+    "impact"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR39",
+   "reason": "Falsifying sensor, external or stored information is data manipulation kept by TR39; ENISA's TR32 outcome is lost commands, not altered data."
+  },
+  {
+   "technique": "IMP-0011",
+   "framework": "SPARTA",
+   "sources": [
+    "impact"
+   ],
+   "code": "K-EFFECT",
+   "role": "impact",
+   "link_only": true,
+   "link_only_reason": "Suppressing telecommands by jamming needs no accepted command; the effect follows from the link attack itself.",
+   "enisa_quote": "ability of a satellite to handle traffic coming from the ground station (telecommand)",
+   "sparta_quote": "prevent traffic from arriving",
+   "reason": "Preventing commands from arriving is the availability outcome ENISA states."
+  },
+  {
+   "technique": "IMP-0012",
+   "framework": "SPARTA",
+   "sources": [
+    "impact"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR42",
+   "reason": "Replacing code, firmware or programmable logic is kept by TR42, and suppressed telecommands leave the implementation unchanged."
+  },
+  {
+   "technique": "IMP-0013",
+   "framework": "SPARTA",
+   "sources": [
+    "impact"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR51",
+   "reason": "Resource Exhaustion or Contention depletes finite resources such as storage, power or traffic volume, kept by TR51; suppression of telecommands is IMP-0011's 'prevent traffic from arriving'."
+  },
+  {
+   "technique": "IMP-0014",
+   "framework": "SPARTA",
+   "sources": [
+    "impact"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Timing or Synchronization Manipulation shifts the on-board clock or breaks synchronisation, a time effect absent from the TR32 text."
+  },
+  {
+   "technique": "LM-0001",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Pivoting across the host-payload boundary to reach more subsystems is a lateral move that ENISA does not describe."
+  },
+  {
+   "technique": "LM-0002",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Exploiting a flat bus so any node can influence others is a lateral movement inside the spacecraft, not named in the TR32 text."
+  },
+  {
+   "technique": "LM-0003",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Hopping between vehicles over crosslinks is lateral movement across the constellation, which this ground-uplink text does not mention."
+  },
+  {
+   "technique": "LM-0006.01",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "A rideshare payload exploiting incomplete isolation during shared launch is a pre-separation route not found in ENISA's TR32 wording."
+  },
+  {
+   "technique": "PER-0001",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Surviving resets by hiding in boot ROM handoffs and non-volatile memory is persistence, which a suppression of uplink traffic does not need."
+  },
+  {
+   "technique": "PER-0002",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "A backdoor gives re-entry bypassing authentication, whereas ENISA's attacker only denies commands and keeps no covert access."
+  },
+  {
+   "technique": "PER-0004",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR52",
+   "reason": "Replacing uplink authentication and link-encryption keys cements control and is kept by TR52, while TR32 attacker needs no key material."
+  },
+  {
+   "technique": "RD-0001.01",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Assembling an own RF ground stack with antennas and modems prepares a transmitter that mimics the mission, while TR32 interference needs no mission-compatible signal."
+  },
+  {
+   "technique": "RD-0001.02",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Renting commercial ground-station-as-a-service gives legitimate-looking access to transmit, not needed to jam the uplink."
+  },
+  {
+   "technique": "RD-0003.02",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Obtaining uplink authentication and link-encryption keys confers command authority, which a suppression attack does not use."
+  },
+  {
+   "technique": "RD-0004",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Staging tooling, exploits and C2 before execution presumes a payload to deliver, absent from the TR32 text."
+  },
+  {
+   "technique": "RD-0004.02",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Pre-positioning exploit binaries, tables and patch images is preparation for on-board execution that ENISA does not describe."
+  },
+  {
+   "technique": "REC-0001.03",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Learning algorithms, key lifecycles and anti-replay windows is crypto reconnaissance, but suppression by interference does not depend on the protection design."
+  },
+  {
+   "technique": "REC-0003",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Parent Gather Spacecraft Communications Information collects the RF and networking posture; only its Mission-Specific Channel Scanning child is kept as preparation here."
+  },
+  {
+   "technique": "REC-0003.02",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Commanding Details studies telecommand framing, MAC fields and anti-replay for forging commands, while TC suppression forges nothing."
+  },
+  {
+   "technique": "REC-0003.03",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "P-PREP",
+   "enables": "EX-0016.01",
+   "reason": "Jamming must match the uplink band and waveform, which mission-specific channel scanning characterises."
+  },
+  {
+   "technique": "REC-0003.04",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Seeking valid credentials to authenticate as a legitimate actor does not match an attacker who needs only interference."
+  },
+  {
+   "technique": "REC-0005",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Eavesdropping captures mission communications to reconstruct protocols, a passive collection that TR32 does not describe."
+  },
+  {
+   "technique": "REC-0005.01",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Uplink Intercept Eavesdropping captures framing and authentication fields from the command path to learn them, not to block the commands."
+  },
+  {
+   "technique": "REC-0005.02",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Downlink Intercept harvests telemetry and logs that reveal state, and ENISA's text is about the uplink direction."
+  },
+  {
+   "technique": "REC-0005.04",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Active scanning transmits probes to elicit identifying responses, which does not appear in a suppression description."
+  }
+ ],
+ "review_response": [
+  {
+   "finding": "S1: link-only effect IMP-0011 removed under SDLS, leaving TR32 incomplete",
+   "action": "fixed: IMP-0011 now has link_only true with a reason (jamming suppresses telecommands without an accepted command)."
+  },
+  {
+   "finding": "IA-0008 entry although tc_unauthenticated authority",
+   "action": "kept because IA-0008 SPARTA covers actors that apply interference with no mission-compatible capability; the jammer sends no command, so the link-only rule handles it."
+  },
+  {
+   "finding": "DE-0003.04 role evasion",
+   "action": "fixed: role execution with role_reason; it is the attack itself, blinding the command receiver."
+  },
+  {
+   "finding": "DE-0002.02 D-OTHER TR44 reason argued wrongly",
+   "action": "fixed: reason now says it jams the telemetry downlink, kept by TR44, while TR32 is the telecommand uplink."
+  },
+  {
+   "finding": "EX-0013.02 Erroneous Input homeless (TR40/TR44 point at each other)",
+   "action": "fixed: kept here as K-ACTION execution, link_only with reason, quote 'through TC suppression'; duplicates with other threats are fine."
+  },
+  {
+   "finding": "S2: SDLS-defeating steps (EX-0006, EX-0003) are removed under SDLS",
+   "action": "kept because modifying on-board validation needs an accepted command first, so the engine removing them under SDLS is correct; the report must read 'SDLS-on assumes an intact protocol'. No link_only override used; both stay D-OTHER (TR28, TR52)."
+  },
+  {
+   "finding": "S3: non-RF steps ride on a rogue-GS entry",
+   "action": "kept because TR32 keeps no non-RF step except DE-0003.04, which is on-board and legitimately needs the radio entry."
+  },
+  {
+   "finding": "SLE side of the text (ground-side TC suppression) not expressible",
+   "action": "kept because SPARTA has no technique for ground-side TC suppression; reported as a gap, no vector added."
+  },
+  {
+   "finding": "No-issue items (rf_link vector and quote, EX-0016.01 quote, D-OTHER rows, P-PREP REC-0003.03, IMP-0013 D-OTHER TR51)",
+   "action": "kept because the review found them correct; IMP-0013 reason rewritten so it no longer argues against itself."
+  },
+  {
+   "finding": "fix pass M7: rf_link vector basis 'quote' overstated",
+   "action": "fixed: basis weak; the quote names the traffic, not the attacker."
+  },
+  {
+   "finding": "fix pass M5: ground-side TC suppression gap and SDLS caveat not in the file",
+   "action": "fixed: notes array added."
+  },
+  {
+   "finding": "fix pass m1: TR32 and TR44 end the same uplink jam in different impact techniques",
+   "action": "kept because the outcomes differ in what ENISA states: TR32 states suppression of telecommands (IMP-0011 with link_only reason), TR44 states denial of service (IMP-0013) and, separately, unauthorized commands (IMP-0011 needing an accepted command)."
+  }
+ ],
+ "notes": [
+  "Not covered: the SLE side of ENISA's text (TC suppression inside the ground segment) has no SPARTA technique; no ground vector is added.",
+  "SDLS-on results assume an intact protocol; the link-level suppression steps (EX-0016.01, EX-0013.02, IMP-0011 as link_only) survive SDLS because they need no accepted command."
+ ]
+}

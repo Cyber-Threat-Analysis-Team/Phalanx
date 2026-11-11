@@ -1,0 +1,129 @@
+{
+  "threat": "TR52",
+  "status": "development; written after TR52 results were seen, not pre-registered",
+  "_about": "MFT / INV / DIR expectations over the TR52 development scenario pairs (protocol v0.3 section 2.3, item 3). Because the author had already seen the TR52 outcomes, these expectations are regression guards and consistency checks, not an independent test: a violation proves a defect in the method as specified, a pass proves nothing about external correctness. Genuine pre-registration happens for held-out SIs (protocol 4.2/5.1). Pair design (what each pair varies): A vs A-CONV = architecture variant only (G-D53 vs G-CONV); A vs B = origin/authority (compromised authorized GS with mission credential vs rogue GS without) plus the SDLS-protected RF edge; B vs B' and C vs C' = platform_state.safe_mode unknown -> false; B vs C and B' vs C' = SDLS use on the TC uplink stated true -> not stated. Each expectation lists the methods for which it is meaningful; candidate-list baselines (B0, B1b) are evaluated on accepted / not_accepted only. Statuses order: accepted > unresolved > rejected (more permissive first).",
+  "relations": {
+    "status_is": "MFT: every (si, technique) has a status in `status`; optional reason_codes / root_facts must be included",
+    "boundary_verdict_is": "MFT: the boundary verdict of `edge` in `si` equals `verdict` (graph methods only)",
+    "status_equal": "INV: both SIs give the same status for every listed technique (`all` = those candidates of both)",
+    "status_changes": "DIR: status moves from `from` in pair[0] to `to` in pair[1]",
+    "not_less_permissive": "DIR: pair[0] is at least as permissive as pair[1] for every technique",
+    "root_facts_removed": "DIR: each fact is a root fact of the technique in pair[0] and not in pair[1]",
+    "boundary_edges_differ_only_by": "INV: the boundary-edge sets differ exactly by only_in_a / only_in_b and all shared edges carry the same verdict"
+  },
+  "expectations": [
+    {
+      "id": "MFT-01", "kind": "MFT", "relation": "status_is", "methods": ["B3", "B2", "B0"],
+      "sis": ["SI-TR52-A"], "techniques": ["IA-0007.02", "IA-0007"], "status": "accepted",
+      "rationale": "valid-GS: a compromised authorized ground system holding a mission-valid credential can issue valid commands (Initial Access: Compromise Ground System / Command Authority) over the SDLS-protected uplink; the uplink MAC does not stop a legitimate key holder"
+    },
+    {
+      "id": "MFT-02", "kind": "MFT", "relation": "status_is", "methods": ["B3", "B2"],
+      "sis": ["SI-TR52-B", "SI-TR52-B'", "SI-TR52-C", "SI-TR52-C'"], "techniques": ["IA-0007.02"],
+      "status": "rejected", "reason_codes": ["authority"],
+      "rationale": "a rogue GS has no mission-valid credential, so the valid-credential command technique fails on authority in every rogue scenario regardless of protection or safe-mode state"
+    },
+    {
+      "id": "MFT-03", "kind": "MFT", "relation": "status_is", "methods": ["B3", "B2"],
+      "sis": ["SI-TR52-B", "SI-TR52-B'"], "techniques": ["IA-0008.01"],
+      "status": "rejected", "reason_codes": ["authority"],
+      "rationale": "SDLS authentication is stated as applied on every uplink entry, so unauthenticated-TC replay/injection (needs TC accepted without MAC) is rejected"
+    },
+    {
+      "id": "MFT-04", "kind": "MFT", "relation": "status_is", "methods": ["B3"],
+      "sis": ["SI-TR52-C", "SI-TR52-C'"], "techniques": ["IA-0008.01"],
+      "status": "unresolved", "root_facts": ["SI.protection_applied.E-RF.sdls_auth"],
+      "rationale": "SDLS use on the RF edge is not stated; the engine must name that fact and leave the candidate open, not accept or reject it. B3 reads the specific edge; B2 reads every entry, so only B3 names the E-RF fact alone"
+    },
+    {
+      "id": "MFT-05", "kind": "MFT", "relation": "status_is", "methods": ["B3", "B2"],
+      "sis": ["SI-TR52-A", "SI-TR52-A-CONV", "SI-TR52-B", "SI-TR52-B'", "SI-TR52-C", "SI-TR52-C'"],
+      "techniques": ["IMP-0002", "IMP-0003"], "status": "rejected", "reason_codes": ["version"],
+      "rationale": "IMP-0002 and IMP-0003 are deprecated in SPARTA v4.0.1 (invariant I10); a deprecated identifier is never accepted whatever the scenario"
+    },
+    {
+      "id": "MFT-06", "kind": "MFT", "relation": "status_is", "methods": ["B3", "B2"],
+      "sis": ["SI-TR52-A", "SI-TR52-A-CONV", "SI-TR52-B", "SI-TR52-B'", "SI-TR52-C", "SI-TR52-C'"],
+      "techniques": ["RD-0002", "REC-0001.01"], "status": "rejected", "reason_codes": ["behavior"],
+      "rationale": "Reconnaissance and Resource Development happen before the SI action window and are never accepted as SI behavior"
+    },
+    {
+      "id": "MFT-07", "kind": "MFT", "relation": "boundary_verdict_is", "methods": ["B3"],
+      "si": "SI-TR52-A", "edge": "E-TCUL", "verdict": "crossed",
+      "rationale": "an accepted command-authority entry traverses the TC uplink edge: crossed (I4: crossed needs an accepted traversing action)"
+    },
+    {
+      "id": "MFT-08", "kind": "MFT", "relation": "boundary_verdict_is", "methods": ["B3"],
+      "si": "SI-TR52-B", "edge": "E-TCUL", "verdict": "applicable",
+      "rationale": "the threat names command_authority and the selected assets terminate the edge, but the rogue GS originates elsewhere and no accepted action traverses it: applicable, held, not crossed"
+    },
+    {
+      "id": "INV-01", "kind": "INV", "relation": "status_equal", "methods": ["B3"],
+      "pair": ["SI-TR52-A", "SI-TR52-A-CONV"], "techniques": "all", "reasons": true,
+      "rationale": "G-D53 vs G-CONV: TR52 selects no asset on F1, so no technique decision may differ between the variants (H4 architecture-variant invariance); B2 has no graph and B0 ignores the scenario, so both are trivially invariant and excluded"
+    },
+    {
+      "id": "INV-02", "kind": "INV", "relation": "boundary_edges_differ_only_by", "methods": ["B3"],
+      "pair": ["SI-TR52-A", "SI-TR52-A-CONV"], "only_in_a": ["E-F1"], "only_in_b": [],
+      "rationale": "the only architectural difference visible at the boundary is that G-D53 has an F1 edge (DU on service satellite, CU on feeder) which G-CONV lacks; every shared edge keeps its verdict"
+    },
+    {
+      "id": "INV-03", "kind": "INV", "relation": "status_equal", "methods": ["B3", "B2"],
+      "pair": ["SI-TR52-B", "SI-TR52-C"],
+      "techniques": ["IA-0007", "IA-0007.02", "IMP-0002", "RD-0002"],
+      "rationale": "stating or withholding SDLS use changes only techniques whose authority rule reads the SDLS flags; credential, access, version and behavior outcomes must not move"
+    },
+    {
+      "id": "INV-04", "kind": "INV", "relation": "status_equal", "methods": ["B3", "B2"],
+      "pair": ["SI-TR52-B", "SI-TR52-B'"],
+      "techniques": ["IA-0007", "IA-0007.02", "IA-0008.01", "EX-0001.01", "IMP-0002"],
+      "rationale": "safe_mode unknown -> false changes only techniques that require_fact platform_state.safe_mode or depend on a foothold; authority, access and version outcomes must not move"
+    },
+    {
+      "id": "DIR-01", "kind": "DIR", "relation": "status_changes", "methods": ["B3", "B2", "B0"],
+      "pair": ["SI-TR52-A", "SI-TR52-B"], "techniques": ["IA-0007", "IA-0007.02"], "from": "accepted", "to": "rejected",
+      "rationale": "H4 authority/origin pair: replacing the compromised authorized GS with a rogue GS must reject the credential-based entry. A scenario-blind method (B0) cannot move"
+    },
+    {
+      "id": "DIR-02", "kind": "DIR", "relation": "status_changes", "methods": ["B3", "B2"],
+      "pair": ["SI-TR52-A", "SI-TR52-B"], "techniques": ["EX-0012.10", "IMP-0008", "PER-0004"],
+      "from": "accepted", "to": ["unresolved", "rejected"],
+      "rationale": "on-board steps are accepted only through an accepted entry; once the entry is gone (rogue GS, no credential) they must not stay accepted. B2 has no foothold check, so this is the expected B3-B2 separation"
+    },
+    {
+      "id": "DIR-03", "kind": "DIR", "relation": "not_less_permissive", "methods": ["B3", "B2"],
+      "pair": ["SI-TR52-B", "SI-TR52-B'"], "techniques": "all",
+      "rationale": "resolving an unknown (safe_mode) to a known value never raises acceptance: B' is never more permissive than B, so no technique gains acceptance"
+    },
+    {
+      "id": "DIR-04", "kind": "DIR", "relation": "status_changes", "methods": ["B3", "B2"],
+      "pair": ["SI-TR52-B", "SI-TR52-B'"], "techniques": ["IA-0010"], "from": "unresolved", "to": "rejected",
+      "rationale": "IA-0010 requires safe_mode = true; B leaves safe_mode unknown (unresolved), B' states it false (rejected)"
+    },
+    {
+      "id": "DIR-05", "kind": "DIR", "relation": "root_facts_removed", "methods": ["B3", "B2"],
+      "pair": ["SI-TR52-B", "SI-TR52-B'"], "techniques": ["IA-0010"], "facts": ["SI.platform_state.safe_mode"],
+      "rationale": "the rationale for the changed decision is the changed condition: the missing fact named in B is no longer missing in B'"
+    },
+    {
+      "id": "DIR-06", "kind": "DIR", "relation": "not_less_permissive", "methods": ["B3", "B2"],
+      "pair": ["SI-TR52-C", "SI-TR52-B"], "techniques": "all",
+      "rationale": "replacing a stated SDLS=true with 'not stated' can only open decisions: C is never less permissive than B"
+    },
+    {
+      "id": "DIR-07", "kind": "DIR", "relation": "status_changes", "methods": ["B3", "B2"],
+      "pair": ["SI-TR52-B", "SI-TR52-C"], "techniques": ["IA-0008.01"], "from": "rejected", "to": "unresolved",
+      "rationale": "the SDLS-protected TC uplink rejects unauthenticated TC (B); with SDLS use unstated the same candidate is unresolved (C)"
+    },
+    {
+      "id": "DIR-08", "kind": "DIR", "relation": "status_changes", "methods": ["B3", "B2"],
+      "pair": ["SI-TR52-B'", "SI-TR52-C'"], "techniques": ["IA-0008.01"], "from": "rejected", "to": "unresolved",
+      "rationale": "the same SDLS contrast holds when safe_mode is known false (paired-case-7 control)"
+    },
+    {
+      "id": "DIR-09", "kind": "DIR", "relation": "not_less_permissive", "methods": ["B3", "B2"],
+      "pair": ["SI-TR52-C", "SI-TR52-C'"], "techniques": "all",
+      "rationale": "safe_mode unknown -> false on the SDLS-unstated pair: C' is never more permissive than C"
+    }
+  ]
+}

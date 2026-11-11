@@ -1,0 +1,48 @@
+{
+ "id": "TR17",
+ "source": "ENISA Space Threat Landscape 2025, Annex C Table 17 (via Phalanx/framework/enisa_threats_tuple.csv)",
+ "category": "PA",
+ "name": "Damage/Destruction of segment assets",
+ "cia": [
+  "A"
+ ],
+ "affected_asset_selectors": [
+  "Ground: Production & Assembly & Transport & Launch & Satellite Control Centre & TTC Ground",
+  "Space: all assets"
+ ],
+ "description": "Intentional damage or destruction of satellite infrastructure (hardware and/or software) as a result of intentional adversary action can negatively impact availability of each segment of satellite lifecycle.",
+ "projection": {
+  "candidate_assets": [
+   "bus_cdhs",
+   "bus_cdhs_f",
+   "bus_com",
+   "ground_moc",
+   "ground_ttc",
+   "integration_site",
+   "ran_cu",
+   "ran_du"
+  ],
+  "candidate_lifecycle": [
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7
+  ],
+  "lifecycle_rule": "ET-P-LC-01 (legacy tuple L field; Annex C has no lifecycle column)",
+  "derivation_provenance": {
+   "kind": "source_field",
+   "source": "Phalanx/framework/enisa_threats_tuple.csv row TR17",
+   "source_sha256": "c086e9d7221893d69e2ff6d380e3b2024aecc144bac8f034218b6814ef060b52",
+   "field": "L (lifecycle)",
+   "note": "candidate_lifecycle copies the legacy tuple L field {3,4,5,6,7}; ENISA STL 2025 Annex C has no lifecycle column, so the basis is the legacy tuple, not the Annex"
+  },
+  "applicable_boundary_roles": [
+   "command_authority"
+  ]
+ },
+ "claims": [],
+ "crosswalk_key": "Damage/Destruction of segment assets"
+}

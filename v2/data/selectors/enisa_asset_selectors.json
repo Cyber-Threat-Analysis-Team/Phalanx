@@ -1,0 +1,3249 @@
+{
+ "id": "ENISA-ASSET-SELECTORS",
+ "version": "1",
+ "rules": {
+  "ET-P-SEL-01": "documented scope of each ENISA affected-asset selector clause",
+  "SI-I-SEL-01": "resolution of selectors against the SI's variant graph"
+ },
+ "source": {
+  "document": "ENISA Space Threat Landscape 2025, Annex C Table 17 (pp.85-95), column 'Affected assets', as transcribed in v2/data/legacy_v1/enisa_threats_tuple.csv",
+  "file": "v2/data/legacy_v1/enisa_threats_tuple.csv",
+  "sha256": "c086e9d7221893d69e2ff6d380e3b2024aecc144bac8f034218b6814ef060b52",
+  "reliability": "the transcription's own note: affected-asset text approximate (segments reliable); Annex C itself defines none of the asset terms, so every asset-class reading below is a documented interpretation"
+ },
+ "policy": [
+  "Selectors stay symbolic at ET/ETP level; they are resolved only against the selected SI and its variant graph G.",
+  "An asset resolves only when its node's segment is named by the component and, for non-wildcard components, its class is the component's class or a descendant.",
+  "Attacker-scoped nodes are never affected assets.",
+  "A selector clause absent from this file is unresolved, never guessed.",
+  "Parenthesised member lists narrow the scope to the listed members; parenthesised attributes (antenna, SLE/SDL protocol) are aspects of the host asset and do not narrow it."
+ ],
+ "segments": {
+  "Ground": {
+   "g_segments": [
+    "Ground"
+   ],
+   "basis": "assumed: ENISA segment name equals the architecture node segment of the same name"
+  },
+  "Space": {
+   "g_segments": [
+    "Space"
+   ],
+   "basis": "assumed: ENISA segment name equals the architecture node segment of the same name"
+  },
+  "User": {
+   "g_segments": [
+    "User"
+   ],
+   "basis": "assumed: ENISA segment name equals the architecture node segment of the same name; current G variants model no User nodes"
+  },
+  "Human Resources": {
+   "g_segments": [
+    "Human Resources"
+   ],
+   "basis": "assumed: no G variant models people; the segment exists only for completeness"
+  }
+ },
+ "classes": {
+  "ground.satellite_control_centre": {
+   "segment": "Ground",
+   "label": "Satellite Control Centre",
+   "basis": "assumed: ENISA names the control centre under several labels (Satellite Control Centre / Satellite Operations Centre (Mission Control System) / Mission Control System / Satellite Control); treated as one class (assumed synonymy)"
+  },
+  "ground.satellite_control_centre.egse_mgse": {
+   "segment": "Ground",
+   "label": "Satellite Control Centre (EGSE/MGSE)",
+   "basis": "source: named in Annex C affected-assets column"
+  },
+  "ground.satellite_control_centre.crypto_unit_ground": {
+   "segment": "Ground",
+   "label": "Satellite Control Centre (Crypto Unit Ground)",
+   "basis": "source: named in Annex C affected-assets column"
+  },
+  "ground.satellite_control_centre.gsaas_cloud": {
+   "segment": "Ground",
+   "label": "Satellite Control (GSaaS/Cloud)",
+   "basis": "source: named in Annex C affected-assets column"
+  },
+  "ground.ttc": {
+   "segment": "Ground",
+   "label": "TTC Ground",
+   "basis": "source: named in Annex C affected-assets column"
+  },
+  "ground.production": {
+   "segment": "Ground",
+   "label": "Production (bare)",
+   "basis": "assumed: ENISA gives no member list for bare 'Production'; only the parenthesised members of other rows are known, so bare Production is its own class and includes no other class"
+  },
+  "ground.manufacturing": {
+   "segment": "Ground",
+   "label": "Manufacturing systems",
+   "basis": "assumed: Manufacturing / Manufacturing system(s) / Manufacturing Systems treated as one class (assumed synonymy)"
+  },
+  "ground.assembly": {
+   "segment": "Ground",
+   "label": "Assembly",
+   "basis": "source: named in Annex C affected-assets column"
+  },
+  "ground.assembly.egse_mgse": {
+   "segment": "Ground",
+   "label": "Assembly (EGSE/MGSE)",
+   "basis": "source: named in Annex C affected-assets column"
+  },
+  "ground.egse_mgse": {
+   "segment": "Ground",
+   "label": "EGSE/MGSE",
+   "basis": "source: named in Annex C affected-assets column"
+  },
+  "ground.simulators": {
+   "segment": "Ground",
+   "label": "Simulators",
+   "basis": "source: named in Annex C affected-assets column"
+  },
+  "ground.test_tools": {
+   "segment": "Ground",
+   "label": "Soft/Hardware Test Tools",
+   "basis": "source: named in Annex C affected-assets column"
+  },
+  "ground.checkout": {
+   "segment": "Ground",
+   "label": "Centralised Checkout Systems",
+   "basis": "assumed: Centralised Checkout System(s) / Checkout systems treated as one class (assumed synonymy)"
+  },
+  "ground.transport": {
+   "segment": "Ground",
+   "label": "Transport",
+   "basis": "source: named in Annex C affected-assets column"
+  },
+  "ground.transport_container": {
+   "segment": "Ground",
+   "label": "Transport Container",
+   "basis": "source: named in Annex C affected-assets column"
+  },
+  "ground.transport_container.crypto_unit_board": {
+   "segment": "Ground",
+   "label": "Transport Container (Crypto Unit Board)",
+   "basis": "source: named in Annex C affected-assets column"
+  },
+  "ground.launch": {
+   "segment": "Ground",
+   "label": "Launch",
+   "basis": "source: named in Annex C affected-assets column"
+  },
+  "ground.launch_facility": {
+   "segment": "Ground",
+   "label": "launch facility",
+   "basis": "source: named in Annex C affected-assets column"
+  },
+  "ground.manufacturing_assembly_facilities": {
+   "segment": "Ground",
+   "label": "Manufacturing/Assembly facilities",
+   "basis": "source: named in Annex C affected-assets column"
+  },
+  "ground.design_dev_qa": {
+   "segment": "Ground",
+   "label": "Design, development and quality assurance",
+   "basis": "assumed: Design/dev/QA / Design, development, and quality assurance / development, and quality assurance treated as one class (assumed synonymy)"
+  },
+  "ground.crypto_hwsw": {
+   "segment": "Ground",
+   "label": "Crypto Hardware/Software",
+   "basis": "source: named in Annex C affected-assets column"
+  },
+  "ground.document_management": {
+   "segment": "Ground",
+   "label": "Document Management (incl. Configuration Management System)",
+   "basis": "source: named in Annex C affected-assets column"
+  },
+  "ground.prototyping_ide": {
+   "segment": "Ground",
+   "label": "Prototyping/IDE",
+   "basis": "source: named in Annex C affected-assets column"
+  },
+  "ground.erp_software": {
+   "segment": "Ground",
+   "label": "ERP software",
+   "basis": "source: named in Annex C affected-assets column"
+  },
+  "ground.misc_software": {
+   "segment": "Ground",
+   "label": "misc software",
+   "basis": "source: named in Annex C affected-assets column"
+  },
+  "ground.misc_hwsw": {
+   "segment": "Ground",
+   "label": "Miscellaneous Software/Hardware",
+   "basis": "source: named in Annex C affected-assets column"
+  },
+  "ground.misc_endpoint_devices": {
+   "segment": "Ground",
+   "label": "Misc (endpoint devices)",
+   "basis": "source: named in Annex C affected-assets column"
+  },
+  "ground.logistics_management": {
+   "segment": "Ground",
+   "label": "Logistics Management System",
+   "basis": "source: named in Annex C affected-assets column"
+  },
+  "ground.network_wan": {
+   "segment": "Ground",
+   "label": "Network (WAN)",
+   "basis": "source: named in Annex C affected-assets column"
+  },
+  "ground.email_servers": {
+   "segment": "Ground",
+   "label": "Email servers",
+   "basis": "source: named in Annex C affected-assets column"
+  },
+  "ground.databases": {
+   "segment": "Ground",
+   "label": "databases",
+   "basis": "source: named in Annex C affected-assets column"
+  },
+  "ground.os": {
+   "segment": "Ground",
+   "label": "OS",
+   "basis": "source: named in Annex C affected-assets column"
+  },
+  "ground.phones": {
+   "segment": "Ground",
+   "label": "Phones",
+   "basis": "source: named in Annex C affected-assets column"
+  },
+  "ground.laptops": {
+   "segment": "Ground",
+   "label": "laptops",
+   "basis": "source: named in Annex C affected-assets column"
+  },
+  "ground.tablets": {
+   "segment": "Ground",
+   "label": "tablets",
+   "basis": "source: named in Annex C affected-assets column"
+  },
+  "space.bus": {
+   "segment": "Space",
+   "label": "BUS",
+   "basis": "source: named in Annex C affected-assets column"
+  },
+  "space.bus.cdhs": {
+   "segment": "Space",
+   "label": "CDHS",
+   "basis": "assumed: CDHS/COM/EPS are BUS subsystems per 'BUS (CDHS/COM)' rows; rows that name CDHS or EPS without BUS ('Space: CDHS (...)', 'Space: EPS') are read as the same classes (assumed)"
+  },
+  "space.bus.cdhs.obsw": {
+   "segment": "Space",
+   "label": "OBSW",
+   "basis": "source: named in Annex C affected-assets column"
+  },
+  "space.bus.cdhs.obc": {
+   "segment": "Space",
+   "label": "OBC",
+   "basis": "assumed: OBC placed under CDHS from 'CDHS (OBSW, OBC)' (assumed hierarchy)"
+  },
+  "space.bus.cdhs.rtos": {
+   "segment": "Space",
+   "label": "RTOS",
+   "basis": "assumed: RTOS placed under CDHS from 'CDHS (RTOS components)' and TR41 'EPS, RTOS and AOCS' (assumed hierarchy)"
+  },
+  "space.bus.com": {
+   "segment": "Space",
+   "label": "COM",
+   "basis": "source: named in Annex C affected-assets column"
+  },
+  "space.bus.eps": {
+   "segment": "Space",
+   "label": "EPS",
+   "basis": "source: named in Annex C affected-assets column"
+  },
+  "space.bus.eps.solar_wings": {
+   "segment": "Space",
+   "label": "Solar Wings",
+   "basis": "source: named in Annex C affected-assets column"
+  },
+  "space.bus.eps.batteries": {
+   "segment": "Space",
+   "label": "Batteries",
+   "basis": "source: named in Annex C affected-assets column"
+  },
+  "space.bus.aocs": {
+   "segment": "Space",
+   "label": "AOCS",
+   "basis": "assumed: AOCS placed under BUS (assumed): ENISA lists it only in 'Space: EPS, RTOS and AOCS'"
+  },
+  "space.bus.crypto_unit_board": {
+   "segment": "Space",
+   "label": "Crypto Unit Board",
+   "basis": "assumed: 'Space: Crypto Unit Board' (TR45) read as the BUS Crypto Unit Board of TR56 (assumed)"
+  },
+  "space.payload": {
+   "segment": "Space",
+   "label": "Payload",
+   "basis": "source: named in Annex C affected-assets column"
+  },
+  "space.payload.pdhs": {
+   "segment": "Space",
+   "label": "PDHS",
+   "basis": "source: named in Annex C affected-assets column"
+  },
+  "space.payload.plcom": {
+   "segment": "Space",
+   "label": "PLCOM",
+   "basis": "source: named in Annex C affected-assets column"
+  },
+  "space.payload.udhs": {
+   "segment": "Space",
+   "label": "UDHS",
+   "basis": "source: named in Annex C affected-assets column"
+  },
+  "space.decommissioned_infrastructure": {
+   "segment": "Space",
+   "label": "disposed/recycled media or decommissioned infrastructure",
+   "basis": "assumed: free text in TR27 attached to the Space segment (assumed)"
+  },
+  "user.vsat": {
+   "segment": "User",
+   "label": "VSAT",
+   "basis": "source: named in Annex C affected-assets column"
+  },
+  "user.endpoint_device": {
+   "segment": "User",
+   "label": "Consumer endpoint devices",
+   "basis": "assumed: 'devices' / 'Consumer endpoint devices' treated as one class (assumed synonymy)"
+  },
+  "user.endpoint_interface": {
+   "segment": "User",
+   "label": "Consumer/endpoint interfaces",
+   "basis": "assumed: 'Consumer Interfaces' / 'endpoint interfaces' treated as one class (assumed synonymy)"
+  }
+ },
+ "asset_classification": {
+  "ground_moc": {
+   "classes": [
+    "ground.satellite_control_centre"
+   ],
+   "basis": "assumed: node function 'mission operations control' read as the Satellite Control Centre"
+  },
+  "ground_ttc": {
+   "classes": [
+    "ground.ttc"
+   ],
+   "basis": "assumed: node function 'TT&C ground station (SLE/SDL)' read as TTC Ground"
+  },
+  "rogue_ttc": {
+   "classes": [
+    "ground.ttc"
+   ],
+   "basis": "assumed: adversary TT&C station; classified for completeness but its node is attacker-scoped, so it never resolves"
+  },
+  "fsw_update": {
+   "classes": [],
+   "basis": "assumed: flight-software update pipeline: ENISA names no matching class, so only segment wildcards cover it (no expansion by guess)"
+  },
+  "core_5gc": {
+   "classes": [],
+   "basis": "assumed: 5G core network: ENISA names no matching ground class, so only segment wildcards cover it"
+  },
+  "integration_site": {
+   "classes": [
+    "ground.assembly",
+    "ground.launch"
+   ],
+   "basis": "assumed: 'assembly, test and launch operations site' read as Assembly + Launch"
+  },
+  "bus_cdhs": {
+   "classes": [
+    "space.bus.cdhs"
+   ],
+   "basis": "assumed: on-board command and data handling"
+  },
+  "bus_cdhs_f": {
+   "classes": [
+    "space.bus.cdhs"
+   ],
+   "basis": "assumed: feeder-satellite CDHS instance"
+  },
+  "bus_com": {
+   "classes": [
+    "space.bus.com"
+   ],
+   "basis": "assumed: on-board communications / TT&C receiver"
+  },
+  "ran_du": {
+   "classes": [
+    "space.payload"
+   ],
+   "basis": "assumed: gNB-DU on a regenerative payload; ENISA gives no PDHS/PLCOM split, so only the Payload parent class (and wildcards) cover it"
+  },
+  "ran_cu": {
+   "classes": [
+    "space.payload"
+   ],
+   "basis": "assumed: gNB-CU on the feeder satellite; same reading as ran_du"
+  }
+ },
+ "survey": {
+  "threats": 58,
+  "distinct_clauses": 73,
+  "clause_occurrences": 111,
+  "clauses_by_form": {
+   "free_text_object": 1,
+   "named_assets": 64,
+   "protocol_interface": 2,
+   "segment_wildcard": 6
+  },
+  "threats_with_form": {
+   "free_text_object": 1,
+   "named_assets": 47,
+   "protocol_interface": 4,
+   "segment_wildcard": 15
+  },
+  "segment_wildcard_by_segment": {
+   "Human Resources": 2,
+   "Space": 1,
+   "Ground": 2,
+   "User": 1
+  },
+  "wildcard_threats": [
+   "TR05",
+   "TR09",
+   "TR10",
+   "TR16",
+   "TR17",
+   "TR18",
+   "TR21",
+   "TR24",
+   "TR25",
+   "TR35",
+   "TR40",
+   "TR42",
+   "TR43",
+   "TR49",
+   "TR55"
+  ],
+  "protocol_only_threats": [
+   "TR09",
+   "TR32",
+   "TR34",
+   "TR38"
+  ],
+  "clauses_with_broad_parent_class": 37,
+  "clauses_with_aspect_qualifier": 9,
+  "clauses_scope_assumed": 22,
+  "clauses_segment_inherited": 5,
+  "clauses_multi_segment": 1
+ },
+ "selectors": {
+  "Ground: Simulators & Centralised Checkout System": {
+   "form": "named_assets",
+   "segments": [
+    "Ground"
+   ],
+   "segment_inherited": false,
+   "components": [
+    {
+     "id": "Ground|ground.simulators",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.simulators",
+     "text": "Simulators"
+    },
+    {
+     "id": "Ground|ground.checkout",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.checkout",
+     "text": "Centralised Checkout System"
+    }
+   ],
+   "scope_basis": "source",
+   "threats": [
+    "TR01"
+   ],
+   "locator": "ENISA STL 2025 Annex C Table 17 (pp.85-95), 'Affected assets' column, rows TR01"
+  },
+  "Space: BUS (CDHS)": {
+   "form": "named_assets",
+   "segments": [
+    "Space"
+   ],
+   "segment_inherited": false,
+   "components": [
+    {
+     "id": "Space|space.bus.cdhs",
+     "kind": "asset_class",
+     "segments": [
+      "Space"
+     ],
+     "class": "space.bus.cdhs",
+     "text": "BUS (CDHS)"
+    }
+   ],
+   "scope_basis": "source",
+   "threats": [
+    "TR01"
+   ],
+   "locator": "ENISA STL 2025 Annex C Table 17 (pp.85-95), 'Affected assets' column, rows TR01"
+  },
+  "Ground: Manufacturing system & Assembly & Soft/Hardware Test Tools & Transport & Launch & Satellite Control Centre & TTC Ground": {
+   "form": "named_assets",
+   "segments": [
+    "Ground"
+   ],
+   "segment_inherited": false,
+   "components": [
+    {
+     "id": "Ground|ground.manufacturing",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.manufacturing",
+     "text": "Manufacturing system"
+    },
+    {
+     "id": "Ground|ground.assembly",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.assembly",
+     "text": "Assembly"
+    },
+    {
+     "id": "Ground|ground.test_tools",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.test_tools",
+     "text": "Soft/Hardware Test Tools"
+    },
+    {
+     "id": "Ground|ground.transport",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.transport",
+     "text": "Transport"
+    },
+    {
+     "id": "Ground|ground.launch",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.launch",
+     "text": "Launch"
+    },
+    {
+     "id": "Ground|ground.satellite_control_centre",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.satellite_control_centre",
+     "text": "Satellite Control Centre"
+    },
+    {
+     "id": "Ground|ground.ttc",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.ttc",
+     "text": "TTC Ground"
+    }
+   ],
+   "scope_basis": "source",
+   "threats": [
+    "TR02"
+   ],
+   "locator": "ENISA STL 2025 Annex C Table 17 (pp.85-95), 'Affected assets' column, rows TR02"
+  },
+  "Space: EPS (Solar Wings & Batteries)": {
+   "form": "named_assets",
+   "segments": [
+    "Space"
+   ],
+   "segment_inherited": false,
+   "components": [
+    {
+     "id": "Space|space.bus.eps.solar_wings",
+     "kind": "asset_class",
+     "segments": [
+      "Space"
+     ],
+     "class": "space.bus.eps.solar_wings",
+     "text": "EPS (Solar Wings & Batteries)"
+    },
+    {
+     "id": "Space|space.bus.eps.batteries",
+     "kind": "asset_class",
+     "segments": [
+      "Space"
+     ],
+     "class": "space.bus.eps.batteries",
+     "text": "EPS (Solar Wings & Batteries)"
+    }
+   ],
+   "scope_basis": "source",
+   "threats": [
+    "TR02"
+   ],
+   "locator": "ENISA STL 2025 Annex C Table 17 (pp.85-95), 'Affected assets' column, rows TR02"
+  },
+  "User: VSAT": {
+   "form": "named_assets",
+   "segments": [
+    "User"
+   ],
+   "segment_inherited": false,
+   "components": [
+    {
+     "id": "User|user.vsat",
+     "kind": "asset_class",
+     "segments": [
+      "User"
+     ],
+     "class": "user.vsat",
+     "text": "VSAT"
+    }
+   ],
+   "scope_basis": "source",
+   "threats": [
+    "TR02",
+    "TR04",
+    "TR13",
+    "TR29",
+    "TR30",
+    "TR44",
+    "TR47",
+    "TR54"
+   ],
+   "locator": "ENISA STL 2025 Annex C Table 17 (pp.85-95), 'Affected assets' column, rows TR02, TR04, TR13, TR29, TR30, TR44, TR47, TR54"
+  },
+  "Ground: Production (development, and quality assurance)": {
+   "form": "named_assets",
+   "segments": [
+    "Ground"
+   ],
+   "segment_inherited": false,
+   "components": [
+    {
+     "id": "Ground|ground.design_dev_qa",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.design_dev_qa",
+     "text": "Production (development, and quality assurance)"
+    }
+   ],
+   "scope_basis": "assumed",
+   "assumptions": [
+    "'Production (...)' read as the listed members only"
+   ],
+   "threats": [
+    "TR03"
+   ],
+   "locator": "ENISA STL 2025 Annex C Table 17 (pp.85-95), 'Affected assets' column, rows TR03"
+  },
+  "Ground: Production (Manufacturing systems & Assembly & Simulators) & Satellite Operations Centre (Mission Control System) & TTC Ground": {
+   "form": "named_assets",
+   "segments": [
+    "Ground"
+   ],
+   "segment_inherited": false,
+   "components": [
+    {
+     "id": "Ground|ground.manufacturing",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.manufacturing",
+     "text": "Production (Manufacturing systems & Assembly & Simulators)"
+    },
+    {
+     "id": "Ground|ground.assembly",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.assembly",
+     "text": "Production (Manufacturing systems & Assembly & Simulators)"
+    },
+    {
+     "id": "Ground|ground.simulators",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.simulators",
+     "text": "Production (Manufacturing systems & Assembly & Simulators)"
+    },
+    {
+     "id": "Ground|ground.satellite_control_centre",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.satellite_control_centre",
+     "text": "Satellite Operations Centre (Mission Control System)"
+    },
+    {
+     "id": "Ground|ground.ttc",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.ttc",
+     "text": "TTC Ground"
+    }
+   ],
+   "scope_basis": "assumed",
+   "assumptions": [
+    "'Production (...)' read as the listed members only",
+    "'Satellite Operations Centre (Mission Control System)' read as the Satellite Control Centre class"
+   ],
+   "threats": [
+    "TR04"
+   ],
+   "locator": "ENISA STL 2025 Annex C Table 17 (pp.85-95), 'Affected assets' column, rows TR04"
+  },
+  "Space: Bus & Payload": {
+   "form": "named_assets",
+   "segments": [
+    "Space"
+   ],
+   "segment_inherited": false,
+   "components": [
+    {
+     "id": "Space|space.bus",
+     "kind": "asset_class",
+     "segments": [
+      "Space"
+     ],
+     "class": "space.bus",
+     "text": "Bus"
+    },
+    {
+     "id": "Space|space.payload",
+     "kind": "asset_class",
+     "segments": [
+      "Space"
+     ],
+     "class": "space.payload",
+     "text": "Payload"
+    }
+   ],
+   "scope_basis": "source",
+   "threats": [
+    "TR04"
+   ],
+   "locator": "ENISA STL 2025 Annex C Table 17 (pp.85-95), 'Affected assets' column, rows TR04"
+  },
+  "Human Resources: all assets": {
+   "form": "segment_wildcard",
+   "segments": [
+    "Human Resources"
+   ],
+   "segment_inherited": false,
+   "components": [
+    {
+     "id": "Human Resources|*",
+     "kind": "asset_class",
+     "segments": [
+      "Human Resources"
+     ],
+     "class": "*",
+     "text": "all assets"
+    }
+   ],
+   "scope_basis": "source",
+   "threats": [
+    "TR05",
+    "TR10",
+    "TR24"
+   ],
+   "locator": "ENISA STL 2025 Annex C Table 17 (pp.85-95), 'Affected assets' column, rows TR05, TR10, TR24"
+  },
+  "Ground: Satellite control / TT&C system (security safeguards: firewalls, virus scans, log monitoring unavailable)": {
+   "form": "named_assets",
+   "segments": [
+    "Ground"
+   ],
+   "segment_inherited": false,
+   "components": [
+    {
+     "id": "Ground|ground.satellite_control_centre",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.satellite_control_centre",
+     "text": "Satellite control / TT&C system (security safeguards: firewalls, virus scans, log monitoring unavailable)"
+    },
+    {
+     "id": "Ground|ground.ttc",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.ttc",
+     "text": "Satellite control / TT&C system (security safeguards: firewalls, virus scans, log monitoring unavailable)"
+    }
+   ],
+   "scope_basis": "assumed",
+   "assumptions": [
+    "'Satellite control / TT&C system' read as Satellite Control Centre + TTC Ground; the parenthesis is a threat note"
+   ],
+   "threats": [
+    "TR06"
+   ],
+   "locator": "ENISA STL 2025 Annex C Table 17 (pp.85-95), 'Affected assets' column, rows TR06"
+  },
+  "Space: BUS (CDHS/COM) & Payload (PDHS/PLCOM/UDHS)": {
+   "form": "named_assets",
+   "segments": [
+    "Space"
+   ],
+   "segment_inherited": false,
+   "components": [
+    {
+     "id": "Space|space.bus.cdhs",
+     "kind": "asset_class",
+     "segments": [
+      "Space"
+     ],
+     "class": "space.bus.cdhs",
+     "text": "BUS (CDHS/COM)"
+    },
+    {
+     "id": "Space|space.bus.com",
+     "kind": "asset_class",
+     "segments": [
+      "Space"
+     ],
+     "class": "space.bus.com",
+     "text": "BUS (CDHS/COM)"
+    },
+    {
+     "id": "Space|space.payload.pdhs",
+     "kind": "asset_class",
+     "segments": [
+      "Space"
+     ],
+     "class": "space.payload.pdhs",
+     "text": "Payload (PDHS/PLCOM/UDHS)"
+    },
+    {
+     "id": "Space|space.payload.plcom",
+     "kind": "asset_class",
+     "segments": [
+      "Space"
+     ],
+     "class": "space.payload.plcom",
+     "text": "Payload (PDHS/PLCOM/UDHS)"
+    },
+    {
+     "id": "Space|space.payload.udhs",
+     "kind": "asset_class",
+     "segments": [
+      "Space"
+     ],
+     "class": "space.payload.udhs",
+     "text": "Payload (PDHS/PLCOM/UDHS)"
+    }
+   ],
+   "scope_basis": "source",
+   "threats": [
+    "TR07"
+   ],
+   "locator": "ENISA STL 2025 Annex C Table 17 (pp.85-95), 'Affected assets' column, rows TR07"
+  },
+  "Ground: Design, development, and quality assurance & Manufacturing systems & Assembly & Simulators & Satellite Control Centre": {
+   "form": "named_assets",
+   "segments": [
+    "Ground"
+   ],
+   "segment_inherited": false,
+   "components": [
+    {
+     "id": "Ground|ground.design_dev_qa",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.design_dev_qa",
+     "text": "Design/dev/QA"
+    },
+    {
+     "id": "Ground|ground.manufacturing",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.manufacturing",
+     "text": "Manufacturing systems"
+    },
+    {
+     "id": "Ground|ground.assembly",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.assembly",
+     "text": "Assembly"
+    },
+    {
+     "id": "Ground|ground.simulators",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.simulators",
+     "text": "Simulators"
+    },
+    {
+     "id": "Ground|ground.satellite_control_centre",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.satellite_control_centre",
+     "text": "Satellite Control Centre"
+    }
+   ],
+   "scope_basis": "source",
+   "threats": [
+    "TR08"
+   ],
+   "locator": "ENISA STL 2025 Annex C Table 17 (pp.85-95), 'Affected assets' column, rows TR08"
+  },
+  "Ground: Design/dev/QA & Manufacturing & Assembly & Simulators & Satellite Control Centre": {
+   "form": "named_assets",
+   "segments": [
+    "Ground"
+   ],
+   "segment_inherited": false,
+   "components": [
+    {
+     "id": "Ground|ground.design_dev_qa",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.design_dev_qa",
+     "text": "Design/dev/QA"
+    },
+    {
+     "id": "Ground|ground.manufacturing",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.manufacturing",
+     "text": "Manufacturing"
+    },
+    {
+     "id": "Ground|ground.assembly",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.assembly",
+     "text": "Assembly"
+    },
+    {
+     "id": "Ground|ground.simulators",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.simulators",
+     "text": "Simulators"
+    },
+    {
+     "id": "Ground|ground.satellite_control_centre",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.satellite_control_centre",
+     "text": "Satellite Control Centre"
+    }
+   ],
+   "scope_basis": "source",
+   "threats": [
+    "TR09"
+   ],
+   "locator": "ENISA STL 2025 Annex C Table 17 (pp.85-95), 'Affected assets' column, rows TR09"
+  },
+  "Ground & Space: SLE/SDL protocols": {
+   "form": "protocol_interface",
+   "segments": [
+    "Ground",
+    "Space"
+   ],
+   "segment_inherited": false,
+   "components": [
+    {
+     "id": "Ground+Space|protocol:sle_sdl",
+     "kind": "protocol_interface",
+     "segments": [
+      "Ground",
+      "Space"
+     ],
+     "class": "protocol:sle_sdl",
+     "text": "SLE/SDL protocols"
+    }
+   ],
+   "scope_basis": "source",
+   "threats": [
+    "TR09",
+    "TR32",
+    "TR34"
+   ],
+   "locator": "ENISA STL 2025 Annex C Table 17 (pp.85-95), 'Affected assets' column, rows TR09, TR32, TR34"
+  },
+  "Space: all assets": {
+   "form": "segment_wildcard",
+   "segments": [
+    "Space"
+   ],
+   "segment_inherited": false,
+   "components": [
+    {
+     "id": "Space|*",
+     "kind": "asset_class",
+     "segments": [
+      "Space"
+     ],
+     "class": "*",
+     "text": "all assets"
+    }
+   ],
+   "scope_basis": "source",
+   "threats": [
+    "TR09",
+    "TR10",
+    "TR17",
+    "TR18",
+    "TR25",
+    "TR40",
+    "TR42",
+    "TR49",
+    "TR55"
+   ],
+   "locator": "ENISA STL 2025 Annex C Table 17 (pp.85-95), 'Affected assets' column, rows TR09, TR10, TR17, TR18, TR25, TR40, TR42, TR49, TR55"
+  },
+  "Ground: all assets": {
+   "form": "segment_wildcard",
+   "segments": [
+    "Ground"
+   ],
+   "segment_inherited": false,
+   "components": [
+    {
+     "id": "Ground|*",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "*",
+     "text": "all assets"
+    }
+   ],
+   "scope_basis": "source",
+   "threats": [
+    "TR10",
+    "TR21",
+    "TR25",
+    "TR40",
+    "TR42",
+    "TR49"
+   ],
+   "locator": "ENISA STL 2025 Annex C Table 17 (pp.85-95), 'Affected assets' column, rows TR10, TR21, TR25, TR40, TR42, TR49"
+  },
+  "User: all assets": {
+   "form": "segment_wildcard",
+   "segments": [
+    "User"
+   ],
+   "segment_inherited": false,
+   "components": [
+    {
+     "id": "User|*",
+     "kind": "asset_class",
+     "segments": [
+      "User"
+     ],
+     "class": "*",
+     "text": "all assets"
+    }
+   ],
+   "scope_basis": "source",
+   "threats": [
+    "TR10",
+    "TR25",
+    "TR49"
+   ],
+   "locator": "ENISA STL 2025 Annex C Table 17 (pp.85-95), 'Affected assets' column, rows TR10, TR25, TR49"
+  },
+  "Ground: Satellite Control (ground segment; overheating from air conditioning / water supply failure)": {
+   "form": "named_assets",
+   "segments": [
+    "Ground"
+   ],
+   "segment_inherited": false,
+   "components": [
+    {
+     "id": "Ground|ground.satellite_control_centre",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.satellite_control_centre",
+     "text": "Satellite Control (ground segment; overheating from air conditioning / water supply failure)"
+    }
+   ],
+   "scope_basis": "assumed",
+   "assumptions": [
+    "'Satellite Control' read as the Satellite Control Centre class; the parenthesis is a threat note, not a scope narrowing"
+   ],
+   "threats": [
+    "TR11"
+   ],
+   "locator": "ENISA STL 2025 Annex C Table 17 (pp.85-95), 'Affected assets' column, rows TR11"
+  },
+  "Ground: Satellite Control (GSaaS/Cloud)": {
+   "form": "named_assets",
+   "segments": [
+    "Ground"
+   ],
+   "segment_inherited": false,
+   "components": [
+    {
+     "id": "Ground|ground.satellite_control_centre.gsaas_cloud",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.satellite_control_centre.gsaas_cloud",
+     "text": "Satellite Control (GSaaS/Cloud)"
+    }
+   ],
+   "scope_basis": "source",
+   "threats": [
+    "TR12"
+   ],
+   "locator": "ENISA STL 2025 Annex C Table 17 (pp.85-95), 'Affected assets' column, rows TR12"
+  },
+  "Space: BUS (CDHS) & Payload": {
+   "form": "named_assets",
+   "segments": [
+    "Space"
+   ],
+   "segment_inherited": false,
+   "components": [
+    {
+     "id": "Space|space.bus.cdhs",
+     "kind": "asset_class",
+     "segments": [
+      "Space"
+     ],
+     "class": "space.bus.cdhs",
+     "text": "BUS (CDHS)"
+    },
+    {
+     "id": "Space|space.payload",
+     "kind": "asset_class",
+     "segments": [
+      "Space"
+     ],
+     "class": "space.payload",
+     "text": "Payload"
+    }
+   ],
+   "scope_basis": "source",
+   "threats": [
+    "TR12"
+   ],
+   "locator": "ENISA STL 2025 Annex C Table 17 (pp.85-95), 'Affected assets' column, rows TR12"
+  },
+  "Ground: TTC Ground (Antenna, SLE/SDL protocol)": {
+   "form": "named_assets",
+   "segments": [
+    "Ground"
+   ],
+   "segment_inherited": false,
+   "components": [
+    {
+     "id": "Ground|ground.ttc",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.ttc",
+     "text": "TTC Ground (Antenna, SLE/SDL protocol)",
+     "aspects": [
+      "antenna",
+      "sle_sdl_protocol"
+     ]
+    }
+   ],
+   "scope_basis": "source",
+   "threats": [
+    "TR13",
+    "TR54"
+   ],
+   "locator": "ENISA STL 2025 Annex C Table 17 (pp.85-95), 'Affected assets' column, rows TR13, TR54"
+  },
+  "Space: BUS (COM)": {
+   "form": "named_assets",
+   "segments": [
+    "Space"
+   ],
+   "segment_inherited": false,
+   "components": [
+    {
+     "id": "Space|space.bus.com",
+     "kind": "asset_class",
+     "segments": [
+      "Space"
+     ],
+     "class": "space.bus.com",
+     "text": "BUS (COM)"
+    }
+   ],
+   "scope_basis": "source",
+   "threats": [
+    "TR13",
+    "TR32",
+    "TR54"
+   ],
+   "locator": "ENISA STL 2025 Annex C Table 17 (pp.85-95), 'Affected assets' column, rows TR13, TR32, TR54"
+  },
+  "Ground: Production & Assembly & Transport & Checkout systems": {
+   "form": "named_assets",
+   "segments": [
+    "Ground"
+   ],
+   "segment_inherited": false,
+   "components": [
+    {
+     "id": "Ground|ground.production",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.production",
+     "text": "Production"
+    },
+    {
+     "id": "Ground|ground.assembly",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.assembly",
+     "text": "Assembly"
+    },
+    {
+     "id": "Ground|ground.transport",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.transport",
+     "text": "Transport"
+    },
+    {
+     "id": "Ground|ground.checkout",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.checkout",
+     "text": "Checkout systems"
+    }
+   ],
+   "scope_basis": "source",
+   "threats": [
+    "TR14"
+   ],
+   "locator": "ENISA STL 2025 Annex C Table 17 (pp.85-95), 'Affected assets' column, rows TR14"
+  },
+  "Space: BUS (EPS)": {
+   "form": "named_assets",
+   "segments": [
+    "Space"
+   ],
+   "segment_inherited": false,
+   "components": [
+    {
+     "id": "Space|space.bus.eps",
+     "kind": "asset_class",
+     "segments": [
+      "Space"
+     ],
+     "class": "space.bus.eps",
+     "text": "BUS (EPS)"
+    }
+   ],
+   "scope_basis": "source",
+   "threats": [
+    "TR14"
+   ],
+   "locator": "ENISA STL 2025 Annex C Table 17 (pp.85-95), 'Affected assets' column, rows TR14"
+  },
+  "Ground: Assembly (EGSE/MGSE) & Crypto Hardware/Software & Satellite Control Centre": {
+   "form": "named_assets",
+   "segments": [
+    "Ground"
+   ],
+   "segment_inherited": false,
+   "components": [
+    {
+     "id": "Ground|ground.assembly.egse_mgse",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.assembly.egse_mgse",
+     "text": "Assembly (EGSE/MGSE)"
+    },
+    {
+     "id": "Ground|ground.crypto_hwsw",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.crypto_hwsw",
+     "text": "Crypto Hardware/Software"
+    },
+    {
+     "id": "Ground|ground.satellite_control_centre",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.satellite_control_centre",
+     "text": "Satellite Control Centre"
+    }
+   ],
+   "scope_basis": "source",
+   "threats": [
+    "TR15"
+   ],
+   "locator": "ENISA STL 2025 Annex C Table 17 (pp.85-95), 'Affected assets' column, rows TR15"
+  },
+  "Human resources: all assets": {
+   "form": "segment_wildcard",
+   "segments": [
+    "Human Resources"
+   ],
+   "segment_inherited": false,
+   "components": [
+    {
+     "id": "Human Resources|*",
+     "kind": "asset_class",
+     "segments": [
+      "Human Resources"
+     ],
+     "class": "*",
+     "text": "all assets"
+    }
+   ],
+   "scope_basis": "source",
+   "threats": [
+    "TR16",
+    "TR25",
+    "TR43"
+   ],
+   "locator": "ENISA STL 2025 Annex C Table 17 (pp.85-95), 'Affected assets' column, rows TR16, TR25, TR43"
+  },
+  "Ground: Production & Assembly & Transport & Launch & Satellite Control Centre & TTC Ground": {
+   "form": "named_assets",
+   "segments": [
+    "Ground"
+   ],
+   "segment_inherited": false,
+   "components": [
+    {
+     "id": "Ground|ground.production",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.production",
+     "text": "Production"
+    },
+    {
+     "id": "Ground|ground.assembly",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.assembly",
+     "text": "Assembly"
+    },
+    {
+     "id": "Ground|ground.transport",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.transport",
+     "text": "Transport"
+    },
+    {
+     "id": "Ground|ground.launch",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.launch",
+     "text": "Launch"
+    },
+    {
+     "id": "Ground|ground.satellite_control_centre",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.satellite_control_centre",
+     "text": "Satellite Control Centre"
+    },
+    {
+     "id": "Ground|ground.ttc",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.ttc",
+     "text": "TTC Ground"
+    }
+   ],
+   "scope_basis": "source",
+   "threats": [
+    "TR17"
+   ],
+   "locator": "ENISA STL 2025 Annex C Table 17 (pp.85-95), 'Affected assets' column, rows TR17"
+  },
+  "Ground: TTC Ground": {
+   "form": "named_assets",
+   "segments": [
+    "Ground"
+   ],
+   "segment_inherited": false,
+   "components": [
+    {
+     "id": "Ground|ground.ttc",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.ttc",
+     "text": "TTC Ground"
+    }
+   ],
+   "scope_basis": "source",
+   "threats": [
+    "TR18"
+   ],
+   "locator": "ENISA STL 2025 Annex C Table 17 (pp.85-95), 'Affected assets' column, rows TR18"
+  },
+  "Ground: Transport Container": {
+   "form": "named_assets",
+   "segments": [
+    "Ground"
+   ],
+   "segment_inherited": false,
+   "components": [
+    {
+     "id": "Ground|ground.transport_container",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.transport_container",
+     "text": "Transport Container"
+    }
+   ],
+   "scope_basis": "source",
+   "threats": [
+    "TR19"
+   ],
+   "locator": "ENISA STL 2025 Annex C Table 17 (pp.85-95), 'Affected assets' column, rows TR19"
+  },
+  "Ground: Design, development, and quality assurance & Assembly & Satellite Control Centre": {
+   "form": "named_assets",
+   "segments": [
+    "Ground"
+   ],
+   "segment_inherited": false,
+   "components": [
+    {
+     "id": "Ground|ground.design_dev_qa",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.design_dev_qa",
+     "text": "Design/dev/QA"
+    },
+    {
+     "id": "Ground|ground.assembly",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.assembly",
+     "text": "Assembly"
+    },
+    {
+     "id": "Ground|ground.satellite_control_centre",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.satellite_control_centre",
+     "text": "Satellite Control Centre"
+    }
+   ],
+   "scope_basis": "source",
+   "threats": [
+    "TR20"
+   ],
+   "locator": "ENISA STL 2025 Annex C Table 17 (pp.85-95), 'Affected assets' column, rows TR20"
+  },
+  "Ground: Production (Document Management, ERP software, Crypto hw/sw, Simulators, Soft/Hardware Test Tools)": {
+   "form": "named_assets",
+   "segments": [
+    "Ground"
+   ],
+   "segment_inherited": false,
+   "components": [
+    {
+     "id": "Ground|ground.document_management",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.document_management",
+     "text": "Production (Document Management, ERP software, Crypto hw/sw, Simulators, Soft/Hardware Test Tools)"
+    },
+    {
+     "id": "Ground|ground.erp_software",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.erp_software",
+     "text": "Production (Document Management, ERP software, Crypto hw/sw, Simulators, Soft/Hardware Test Tools)"
+    },
+    {
+     "id": "Ground|ground.crypto_hwsw",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.crypto_hwsw",
+     "text": "Production (Document Management, ERP software, Crypto hw/sw, Simulators, Soft/Hardware Test Tools)"
+    },
+    {
+     "id": "Ground|ground.simulators",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.simulators",
+     "text": "Production (Document Management, ERP software, Crypto hw/sw, Simulators, Soft/Hardware Test Tools)"
+    },
+    {
+     "id": "Ground|ground.test_tools",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.test_tools",
+     "text": "Production (Document Management, ERP software, Crypto hw/sw, Simulators, Soft/Hardware Test Tools)"
+    }
+   ],
+   "scope_basis": "assumed",
+   "assumptions": [
+    "'Production (...)' read as the listed members only"
+   ],
+   "threats": [
+    "TR22"
+   ],
+   "locator": "ENISA STL 2025 Annex C Table 17 (pp.85-95), 'Affected assets' column, rows TR22"
+  },
+  "Ground: Satellite Control Centre (EGSE/MGSE)": {
+   "form": "named_assets",
+   "segments": [
+    "Ground"
+   ],
+   "segment_inherited": false,
+   "components": [
+    {
+     "id": "Ground|ground.satellite_control_centre.egse_mgse",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.satellite_control_centre.egse_mgse",
+     "text": "Satellite Control Centre (EGSE/MGSE)"
+    }
+   ],
+   "scope_basis": "source",
+   "threats": [
+    "TR23"
+   ],
+   "locator": "ENISA STL 2025 Annex C Table 17 (pp.85-95), 'Affected assets' column, rows TR23"
+  },
+  "Ground: Production": {
+   "form": "named_assets",
+   "segments": [
+    "Ground"
+   ],
+   "segment_inherited": false,
+   "components": [
+    {
+     "id": "Ground|ground.production",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.production",
+     "text": "Production"
+    }
+   ],
+   "scope_basis": "source",
+   "threats": [
+    "TR26"
+   ],
+   "locator": "ENISA STL 2025 Annex C Table 17 (pp.85-95), 'Affected assets' column, rows TR26"
+  },
+  "Space: Payload (PLCOM)": {
+   "form": "named_assets",
+   "segments": [
+    "Space"
+   ],
+   "segment_inherited": false,
+   "components": [
+    {
+     "id": "Space|space.payload.plcom",
+     "kind": "asset_class",
+     "segments": [
+      "Space"
+     ],
+     "class": "space.payload.plcom",
+     "text": "Payload (PLCOM)"
+    }
+   ],
+   "scope_basis": "source",
+   "threats": [
+    "TR26",
+    "TR27"
+   ],
+   "locator": "ENISA STL 2025 Annex C Table 17 (pp.85-95), 'Affected assets' column, rows TR26, TR27"
+  },
+  "disposed/recycled media or decommissioned infrastructure": {
+   "form": "free_text_object",
+   "segments": [
+    "Space"
+   ],
+   "segment_inherited": true,
+   "components": [
+    {
+     "id": "Space|space.decommissioned_infrastructure",
+     "kind": "asset_class",
+     "segments": [
+      "Space"
+     ],
+     "class": "space.decommissioned_infrastructure",
+     "text": "disposed/recycled media or decommissioned infrastructure"
+    }
+   ],
+   "scope_basis": "assumed",
+   "assumptions": [
+    "segment inherited from the preceding clause (clause has no segment prefix)",
+    "free text attached to the preceding Space clause"
+   ],
+   "threats": [
+    "TR27"
+   ],
+   "locator": "ENISA STL 2025 Annex C Table 17 (pp.85-95), 'Affected assets' column, rows TR27"
+  },
+  "Ground: Satellite Control Centre & TTC Ground (SLE/SDL protocol)": {
+   "form": "named_assets",
+   "segments": [
+    "Ground"
+   ],
+   "segment_inherited": false,
+   "components": [
+    {
+     "id": "Ground|ground.satellite_control_centre",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.satellite_control_centre",
+     "text": "Satellite Control Centre"
+    },
+    {
+     "id": "Ground|ground.ttc",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.ttc",
+     "text": "TTC Ground (SLE/SDL protocol)",
+     "aspects": [
+      "sle_sdl_protocol"
+     ]
+    }
+   ],
+   "scope_basis": "source",
+   "threats": [
+    "TR28",
+    "TR30"
+   ],
+   "locator": "ENISA STL 2025 Annex C Table 17 (pp.85-95), 'Affected assets' column, rows TR28, TR30"
+  },
+  "Space: BUS (CDHS & COM) & Payload (PDHS & PLCOM)": {
+   "form": "named_assets",
+   "segments": [
+    "Space"
+   ],
+   "segment_inherited": false,
+   "components": [
+    {
+     "id": "Space|space.bus.cdhs",
+     "kind": "asset_class",
+     "segments": [
+      "Space"
+     ],
+     "class": "space.bus.cdhs",
+     "text": "BUS (CDHS & COM)"
+    },
+    {
+     "id": "Space|space.bus.com",
+     "kind": "asset_class",
+     "segments": [
+      "Space"
+     ],
+     "class": "space.bus.com",
+     "text": "BUS (CDHS & COM)"
+    },
+    {
+     "id": "Space|space.payload.pdhs",
+     "kind": "asset_class",
+     "segments": [
+      "Space"
+     ],
+     "class": "space.payload.pdhs",
+     "text": "Payload (PDHS & PLCOM)"
+    },
+    {
+     "id": "Space|space.payload.plcom",
+     "kind": "asset_class",
+     "segments": [
+      "Space"
+     ],
+     "class": "space.payload.plcom",
+     "text": "Payload (PDHS & PLCOM)"
+    }
+   ],
+   "scope_basis": "source",
+   "threats": [
+    "TR28"
+   ],
+   "locator": "ENISA STL 2025 Annex C Table 17 (pp.85-95), 'Affected assets' column, rows TR28"
+  },
+  "Ground: Satellite Control Centre & TTC Ground (Antenna, SLE/SDL protocol)": {
+   "form": "named_assets",
+   "segments": [
+    "Ground"
+   ],
+   "segment_inherited": false,
+   "components": [
+    {
+     "id": "Ground|ground.satellite_control_centre",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.satellite_control_centre",
+     "text": "Satellite Control Centre"
+    },
+    {
+     "id": "Ground|ground.ttc",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.ttc",
+     "text": "TTC Ground (Antenna, SLE/SDL protocol)",
+     "aspects": [
+      "antenna",
+      "sle_sdl_protocol"
+     ]
+    }
+   ],
+   "scope_basis": "source",
+   "threats": [
+    "TR29"
+   ],
+   "locator": "ENISA STL 2025 Annex C Table 17 (pp.85-95), 'Affected assets' column, rows TR29"
+  },
+  "Space: BUS (COM) & Payload (PLCOM)": {
+   "form": "named_assets",
+   "segments": [
+    "Space"
+   ],
+   "segment_inherited": false,
+   "components": [
+    {
+     "id": "Space|space.bus.com",
+     "kind": "asset_class",
+     "segments": [
+      "Space"
+     ],
+     "class": "space.bus.com",
+     "text": "BUS (COM)"
+    },
+    {
+     "id": "Space|space.payload.plcom",
+     "kind": "asset_class",
+     "segments": [
+      "Space"
+     ],
+     "class": "space.payload.plcom",
+     "text": "Payload (PLCOM)"
+    }
+   ],
+   "scope_basis": "source",
+   "threats": [
+    "TR29",
+    "TR44"
+   ],
+   "locator": "ENISA STL 2025 Annex C Table 17 (pp.85-95), 'Affected assets' column, rows TR29, TR44"
+  },
+  "Space: BUS & Payload": {
+   "form": "named_assets",
+   "segments": [
+    "Space"
+   ],
+   "segment_inherited": false,
+   "components": [
+    {
+     "id": "Space|space.bus",
+     "kind": "asset_class",
+     "segments": [
+      "Space"
+     ],
+     "class": "space.bus",
+     "text": "BUS"
+    },
+    {
+     "id": "Space|space.payload",
+     "kind": "asset_class",
+     "segments": [
+      "Space"
+     ],
+     "class": "space.payload",
+     "text": "Payload"
+    }
+   ],
+   "scope_basis": "source",
+   "threats": [
+    "TR30"
+   ],
+   "locator": "ENISA STL 2025 Annex C Table 17 (pp.85-95), 'Affected assets' column, rows TR30"
+  },
+  "Space: BUS (CDHS & COM) & Payload (PLCOM & PDHS & UDHS)": {
+   "form": "named_assets",
+   "segments": [
+    "Space"
+   ],
+   "segment_inherited": false,
+   "components": [
+    {
+     "id": "Space|space.bus.cdhs",
+     "kind": "asset_class",
+     "segments": [
+      "Space"
+     ],
+     "class": "space.bus.cdhs",
+     "text": "BUS (CDHS & COM)"
+    },
+    {
+     "id": "Space|space.bus.com",
+     "kind": "asset_class",
+     "segments": [
+      "Space"
+     ],
+     "class": "space.bus.com",
+     "text": "BUS (CDHS & COM)"
+    },
+    {
+     "id": "Space|space.payload.pdhs",
+     "kind": "asset_class",
+     "segments": [
+      "Space"
+     ],
+     "class": "space.payload.pdhs",
+     "text": "Payload (PLCOM & PDHS & UDHS)"
+    },
+    {
+     "id": "Space|space.payload.plcom",
+     "kind": "asset_class",
+     "segments": [
+      "Space"
+     ],
+     "class": "space.payload.plcom",
+     "text": "Payload (PLCOM & PDHS & UDHS)"
+    },
+    {
+     "id": "Space|space.payload.udhs",
+     "kind": "asset_class",
+     "segments": [
+      "Space"
+     ],
+     "class": "space.payload.udhs",
+     "text": "Payload (PLCOM & PDHS & UDHS)"
+    }
+   ],
+   "scope_basis": "source",
+   "threats": [
+    "TR31"
+   ],
+   "locator": "ENISA STL 2025 Annex C Table 17 (pp.85-95), 'Affected assets' column, rows TR31"
+  },
+  "Ground: Satellite Control Centre & TTC Ground (Antenna)": {
+   "form": "named_assets",
+   "segments": [
+    "Ground"
+   ],
+   "segment_inherited": false,
+   "components": [
+    {
+     "id": "Ground|ground.satellite_control_centre",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.satellite_control_centre",
+     "text": "Satellite Control Centre"
+    },
+    {
+     "id": "Ground|ground.ttc",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.ttc",
+     "text": "TTC Ground (Antenna)",
+     "aspects": [
+      "antenna"
+     ]
+    }
+   ],
+   "scope_basis": "source",
+   "threats": [
+    "TR32"
+   ],
+   "locator": "ENISA STL 2025 Annex C Table 17 (pp.85-95), 'Affected assets' column, rows TR32"
+  },
+  "Space: CDHS (OBSW, OBC)": {
+   "form": "named_assets",
+   "segments": [
+    "Space"
+   ],
+   "segment_inherited": false,
+   "components": [
+    {
+     "id": "Space|space.bus.cdhs.obsw",
+     "kind": "asset_class",
+     "segments": [
+      "Space"
+     ],
+     "class": "space.bus.cdhs.obsw",
+     "text": "CDHS (OBSW, OBC)"
+    },
+    {
+     "id": "Space|space.bus.cdhs.obc",
+     "kind": "asset_class",
+     "segments": [
+      "Space"
+     ],
+     "class": "space.bus.cdhs.obc",
+     "text": "CDHS (OBSW, OBC)"
+    }
+   ],
+   "scope_basis": "assumed",
+   "assumptions": [
+    "'Space: CDHS' without BUS read as the BUS CDHS class"
+   ],
+   "threats": [
+    "TR33"
+   ],
+   "locator": "ENISA STL 2025 Annex C Table 17 (pp.85-95), 'Affected assets' column, rows TR33"
+  },
+  "Ground: all assets (including SLE/SDL protocol)": {
+   "form": "segment_wildcard",
+   "segments": [
+    "Ground"
+   ],
+   "segment_inherited": false,
+   "components": [
+    {
+     "id": "Ground|*",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "*",
+     "text": "all assets (including SLE/SDL protocol)",
+     "aspects": [
+      "sle_sdl_protocol"
+     ]
+    }
+   ],
+   "scope_basis": "source",
+   "threats": [
+    "TR35"
+   ],
+   "locator": "ENISA STL 2025 Annex C Table 17 (pp.85-95), 'Affected assets' column, rows TR35"
+  },
+  "Ground: Production (Document Management incl. Configuration Management System; Prototyping/IDE; ERP software & misc software)": {
+   "form": "named_assets",
+   "segments": [
+    "Ground"
+   ],
+   "segment_inherited": false,
+   "components": [
+    {
+     "id": "Ground|ground.document_management",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.document_management",
+     "text": "Production (Document Management incl. Configuration Management System; Prototyping/IDE; ERP software & misc software)"
+    },
+    {
+     "id": "Ground|ground.prototyping_ide",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.prototyping_ide",
+     "text": "Production (Document Management incl. Configuration Management System; Prototyping/IDE; ERP software & misc software)"
+    },
+    {
+     "id": "Ground|ground.erp_software",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.erp_software",
+     "text": "Production (Document Management incl. Configuration Management System; Prototyping/IDE; ERP software & misc software)"
+    },
+    {
+     "id": "Ground|ground.misc_software",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.misc_software",
+     "text": "Production (Document Management incl. Configuration Management System; Prototyping/IDE; ERP software & misc software)"
+    }
+   ],
+   "scope_basis": "assumed",
+   "assumptions": [
+    "'Production (...)' read as the listed members only"
+   ],
+   "threats": [
+    "TR36",
+    "TR39"
+   ],
+   "locator": "ENISA STL 2025 Annex C Table 17 (pp.85-95), 'Affected assets' column, rows TR36, TR39"
+  },
+  "Email servers, databases, OS": {
+   "form": "named_assets",
+   "segments": [
+    "Ground"
+   ],
+   "segment_inherited": true,
+   "components": [
+    {
+     "id": "Ground|ground.email_servers",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.email_servers",
+     "text": "Email servers"
+    },
+    {
+     "id": "Ground|ground.databases",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.databases",
+     "text": "databases"
+    },
+    {
+     "id": "Ground|ground.os",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.os",
+     "text": "OS"
+    }
+   ],
+   "scope_basis": "assumed",
+   "assumptions": [
+    "segment inherited from the preceding clause (clause has no segment prefix)"
+   ],
+   "threats": [
+    "TR36",
+    "TR39"
+   ],
+   "locator": "ENISA STL 2025 Annex C Table 17 (pp.85-95), 'Affected assets' column, rows TR36, TR39"
+  },
+  "Phones, laptops, tablets": {
+   "form": "named_assets",
+   "segments": [
+    "Ground"
+   ],
+   "segment_inherited": true,
+   "components": [
+    {
+     "id": "Ground|ground.phones",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.phones",
+     "text": "Phones"
+    },
+    {
+     "id": "Ground|ground.laptops",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.laptops",
+     "text": "laptops"
+    },
+    {
+     "id": "Ground|ground.tablets",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.tablets",
+     "text": "tablets"
+    }
+   ],
+   "scope_basis": "assumed",
+   "assumptions": [
+    "segment inherited from the preceding clause (clause has no segment prefix)"
+   ],
+   "threats": [
+    "TR36",
+    "TR39"
+   ],
+   "locator": "ENISA STL 2025 Annex C Table 17 (pp.85-95), 'Affected assets' column, rows TR36, TR39"
+  },
+  "Ground: Design/dev/QA, Assembly, Manufacturing Systems, Misc (software), Misc (endpoint devices), Logistics Management System, Checkout systems, Mission Control System, Network (WAN)": {
+   "form": "named_assets",
+   "segments": [
+    "Ground"
+   ],
+   "segment_inherited": false,
+   "components": [
+    {
+     "id": "Ground|ground.design_dev_qa",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.design_dev_qa",
+     "text": "Design/dev/QA"
+    },
+    {
+     "id": "Ground|ground.assembly",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.assembly",
+     "text": "Assembly"
+    },
+    {
+     "id": "Ground|ground.manufacturing",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.manufacturing",
+     "text": "Manufacturing Systems"
+    },
+    {
+     "id": "Ground|ground.misc_software",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.misc_software",
+     "text": "Misc (software)"
+    },
+    {
+     "id": "Ground|ground.misc_endpoint_devices",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.misc_endpoint_devices",
+     "text": "Misc (endpoint devices)"
+    },
+    {
+     "id": "Ground|ground.logistics_management",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.logistics_management",
+     "text": "Logistics Management System"
+    },
+    {
+     "id": "Ground|ground.checkout",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.checkout",
+     "text": "Checkout systems"
+    },
+    {
+     "id": "Ground|ground.satellite_control_centre",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.satellite_control_centre",
+     "text": "Mission Control System"
+    },
+    {
+     "id": "Ground|ground.network_wan",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.network_wan",
+     "text": "Network (WAN)"
+    }
+   ],
+   "scope_basis": "assumed",
+   "assumptions": [
+    "'Mission Control System' read as the Satellite Control Centre class"
+   ],
+   "threats": [
+    "TR37"
+   ],
+   "locator": "ENISA STL 2025 Annex C Table 17 (pp.85-95), 'Affected assets' column, rows TR37"
+  },
+  "User: Consumer endpoint devices": {
+   "form": "named_assets",
+   "segments": [
+    "User"
+   ],
+   "segment_inherited": false,
+   "components": [
+    {
+     "id": "User|user.endpoint_device",
+     "kind": "asset_class",
+     "segments": [
+      "User"
+     ],
+     "class": "user.endpoint_device",
+     "text": "Consumer endpoint devices"
+    }
+   ],
+   "scope_basis": "source",
+   "threats": [
+    "TR37"
+   ],
+   "locator": "ENISA STL 2025 Annex C Table 17 (pp.85-95), 'Affected assets' column, rows TR37"
+  },
+  "Ground: SLE/SDL protocols": {
+   "form": "protocol_interface",
+   "segments": [
+    "Ground"
+   ],
+   "segment_inherited": false,
+   "components": [
+    {
+     "id": "Ground|protocol:sle_sdl",
+     "kind": "protocol_interface",
+     "segments": [
+      "Ground"
+     ],
+     "class": "protocol:sle_sdl",
+     "text": "SLE/SDL protocols"
+    }
+   ],
+   "scope_basis": "source",
+   "threats": [
+    "TR38"
+   ],
+   "locator": "ENISA STL 2025 Annex C Table 17 (pp.85-95), 'Affected assets' column, rows TR38"
+  },
+  "User: endpoint interfaces and devices": {
+   "form": "named_assets",
+   "segments": [
+    "User"
+   ],
+   "segment_inherited": false,
+   "components": [
+    {
+     "id": "User|user.endpoint_interface",
+     "kind": "asset_class",
+     "segments": [
+      "User"
+     ],
+     "class": "user.endpoint_interface",
+     "text": "endpoint interfaces and devices"
+    },
+    {
+     "id": "User|user.endpoint_device",
+     "kind": "asset_class",
+     "segments": [
+      "User"
+     ],
+     "class": "user.endpoint_device",
+     "text": "endpoint interfaces and devices"
+    }
+   ],
+   "scope_basis": "source",
+   "threats": [
+    "TR38"
+   ],
+   "locator": "ENISA STL 2025 Annex C Table 17 (pp.85-95), 'Affected assets' column, rows TR38"
+  },
+  "User: Consumer Interfaces & devices": {
+   "form": "named_assets",
+   "segments": [
+    "User"
+   ],
+   "segment_inherited": false,
+   "components": [
+    {
+     "id": "User|user.endpoint_interface",
+     "kind": "asset_class",
+     "segments": [
+      "User"
+     ],
+     "class": "user.endpoint_interface",
+     "text": "Consumer Interfaces"
+    },
+    {
+     "id": "User|user.endpoint_device",
+     "kind": "asset_class",
+     "segments": [
+      "User"
+     ],
+     "class": "user.endpoint_device",
+     "text": "devices"
+    }
+   ],
+   "scope_basis": "source",
+   "threats": [
+    "TR40"
+   ],
+   "locator": "ENISA STL 2025 Annex C Table 17 (pp.85-95), 'Affected assets' column, rows TR40"
+  },
+  "Space: EPS, RTOS and AOCS": {
+   "form": "named_assets",
+   "segments": [
+    "Space"
+   ],
+   "segment_inherited": false,
+   "components": [
+    {
+     "id": "Space|space.bus.eps",
+     "kind": "asset_class",
+     "segments": [
+      "Space"
+     ],
+     "class": "space.bus.eps",
+     "text": "EPS"
+    },
+    {
+     "id": "Space|space.bus.cdhs.rtos",
+     "kind": "asset_class",
+     "segments": [
+      "Space"
+     ],
+     "class": "space.bus.cdhs.rtos",
+     "text": "RTOS and AOCS"
+    },
+    {
+     "id": "Space|space.bus.aocs",
+     "kind": "asset_class",
+     "segments": [
+      "Space"
+     ],
+     "class": "space.bus.aocs",
+     "text": "RTOS and AOCS"
+    }
+   ],
+   "scope_basis": "assumed",
+   "assumptions": [
+    "'EPS' without BUS read as the BUS EPS class",
+    "RTOS/AOCS placed under BUS"
+   ],
+   "threats": [
+    "TR41"
+   ],
+   "locator": "ENISA STL 2025 Annex C Table 17 (pp.85-95), 'Affected assets' column, rows TR41"
+  },
+  "Ground: TTC Ground (Antenna)": {
+   "form": "named_assets",
+   "segments": [
+    "Ground"
+   ],
+   "segment_inherited": false,
+   "components": [
+    {
+     "id": "Ground|ground.ttc",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.ttc",
+     "text": "TTC Ground (Antenna)",
+     "aspects": [
+      "antenna"
+     ]
+    }
+   ],
+   "scope_basis": "source",
+   "threats": [
+    "TR44"
+   ],
+   "locator": "ENISA STL 2025 Annex C Table 17 (pp.85-95), 'Affected assets' column, rows TR44"
+  },
+  "Ground: Crypto Hardware/Software & Transport Container (Crypto Unit Board) & Satellite Control Centre (Crypto Unit Ground)": {
+   "form": "named_assets",
+   "segments": [
+    "Ground"
+   ],
+   "segment_inherited": false,
+   "components": [
+    {
+     "id": "Ground|ground.crypto_hwsw",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.crypto_hwsw",
+     "text": "Crypto Hardware/Software"
+    },
+    {
+     "id": "Ground|ground.transport_container.crypto_unit_board",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.transport_container.crypto_unit_board",
+     "text": "Transport Container (Crypto Unit Board)"
+    },
+    {
+     "id": "Ground|ground.satellite_control_centre.crypto_unit_ground",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.satellite_control_centre.crypto_unit_ground",
+     "text": "Satellite Control Centre (Crypto Unit Ground)"
+    }
+   ],
+   "scope_basis": "source",
+   "threats": [
+    "TR45",
+    "TR56"
+   ],
+   "locator": "ENISA STL 2025 Annex C Table 17 (pp.85-95), 'Affected assets' column, rows TR45, TR56"
+  },
+  "Space: Crypto Unit Board": {
+   "form": "named_assets",
+   "segments": [
+    "Space"
+   ],
+   "segment_inherited": false,
+   "components": [
+    {
+     "id": "Space|space.bus.crypto_unit_board",
+     "kind": "asset_class",
+     "segments": [
+      "Space"
+     ],
+     "class": "space.bus.crypto_unit_board",
+     "text": "Crypto Unit Board"
+    }
+   ],
+   "scope_basis": "assumed",
+   "assumptions": [
+    "'Space: Crypto Unit Board' read as the BUS Crypto Unit Board"
+   ],
+   "threats": [
+    "TR45"
+   ],
+   "locator": "ENISA STL 2025 Annex C Table 17 (pp.85-95), 'Affected assets' column, rows TR45"
+  },
+  "Ground: Production (Manufacturing systems & Simulators & Crypto hw/sw) & Centralised Checkout Systems & Satellite Operations Centre (Mission Control System)": {
+   "form": "named_assets",
+   "segments": [
+    "Ground"
+   ],
+   "segment_inherited": false,
+   "components": [
+    {
+     "id": "Ground|ground.manufacturing",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.manufacturing",
+     "text": "Production (Manufacturing systems & Simulators & Crypto hw/sw)"
+    },
+    {
+     "id": "Ground|ground.simulators",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.simulators",
+     "text": "Production (Manufacturing systems & Simulators & Crypto hw/sw)"
+    },
+    {
+     "id": "Ground|ground.crypto_hwsw",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.crypto_hwsw",
+     "text": "Production (Manufacturing systems & Simulators & Crypto hw/sw)"
+    },
+    {
+     "id": "Ground|ground.checkout",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.checkout",
+     "text": "Centralised Checkout Systems"
+    },
+    {
+     "id": "Ground|ground.satellite_control_centre",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.satellite_control_centre",
+     "text": "Satellite Operations Centre (Mission Control System)"
+    }
+   ],
+   "scope_basis": "assumed",
+   "assumptions": [
+    "'Production (...)' read as the listed members only",
+    "'Satellite Operations Centre (Mission Control System)' read as the Satellite Control Centre class"
+   ],
+   "threats": [
+    "TR46"
+   ],
+   "locator": "ENISA STL 2025 Annex C Table 17 (pp.85-95), 'Affected assets' column, rows TR46"
+  },
+  "Space: BUS (CDHS/COM) & Payload (PDHS/PLCOM)": {
+   "form": "named_assets",
+   "segments": [
+    "Space"
+   ],
+   "segment_inherited": false,
+   "components": [
+    {
+     "id": "Space|space.bus.cdhs",
+     "kind": "asset_class",
+     "segments": [
+      "Space"
+     ],
+     "class": "space.bus.cdhs",
+     "text": "BUS (CDHS/COM)"
+    },
+    {
+     "id": "Space|space.bus.com",
+     "kind": "asset_class",
+     "segments": [
+      "Space"
+     ],
+     "class": "space.bus.com",
+     "text": "BUS (CDHS/COM)"
+    },
+    {
+     "id": "Space|space.payload.pdhs",
+     "kind": "asset_class",
+     "segments": [
+      "Space"
+     ],
+     "class": "space.payload.pdhs",
+     "text": "Payload (PDHS/PLCOM)"
+    },
+    {
+     "id": "Space|space.payload.plcom",
+     "kind": "asset_class",
+     "segments": [
+      "Space"
+     ],
+     "class": "space.payload.plcom",
+     "text": "Payload (PDHS/PLCOM)"
+    }
+   ],
+   "scope_basis": "source",
+   "threats": [
+    "TR46"
+   ],
+   "locator": "ENISA STL 2025 Annex C Table 17 (pp.85-95), 'Affected assets' column, rows TR46"
+  },
+  "Ground: Satellite Control Centre & Centralised Checkout Systems & TTC Ground (Antenna)": {
+   "form": "named_assets",
+   "segments": [
+    "Ground"
+   ],
+   "segment_inherited": false,
+   "components": [
+    {
+     "id": "Ground|ground.satellite_control_centre",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.satellite_control_centre",
+     "text": "Satellite Control Centre"
+    },
+    {
+     "id": "Ground|ground.checkout",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.checkout",
+     "text": "Centralised Checkout Systems"
+    },
+    {
+     "id": "Ground|ground.ttc",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.ttc",
+     "text": "TTC Ground (Antenna)",
+     "aspects": [
+      "antenna"
+     ]
+    }
+   ],
+   "scope_basis": "source",
+   "threats": [
+    "TR47"
+   ],
+   "locator": "ENISA STL 2025 Annex C Table 17 (pp.85-95), 'Affected assets' column, rows TR47"
+  },
+  "Space: BUS (CDHS, COM) & Payload (PDHS, PLCOM)": {
+   "form": "named_assets",
+   "segments": [
+    "Space"
+   ],
+   "segment_inherited": false,
+   "components": [
+    {
+     "id": "Space|space.bus.cdhs",
+     "kind": "asset_class",
+     "segments": [
+      "Space"
+     ],
+     "class": "space.bus.cdhs",
+     "text": "BUS (CDHS, COM)"
+    },
+    {
+     "id": "Space|space.bus.com",
+     "kind": "asset_class",
+     "segments": [
+      "Space"
+     ],
+     "class": "space.bus.com",
+     "text": "BUS (CDHS, COM)"
+    },
+    {
+     "id": "Space|space.payload.pdhs",
+     "kind": "asset_class",
+     "segments": [
+      "Space"
+     ],
+     "class": "space.payload.pdhs",
+     "text": "Payload (PDHS, PLCOM)"
+    },
+    {
+     "id": "Space|space.payload.plcom",
+     "kind": "asset_class",
+     "segments": [
+      "Space"
+     ],
+     "class": "space.payload.plcom",
+     "text": "Payload (PDHS, PLCOM)"
+    }
+   ],
+   "scope_basis": "source",
+   "threats": [
+    "TR47"
+   ],
+   "locator": "ENISA STL 2025 Annex C Table 17 (pp.85-95), 'Affected assets' column, rows TR47"
+  },
+  "Ground: Production (Manufacturing systems & Simulators) & Centralised Checkout Systems & Satellite Operations Centre (Mission Control System)": {
+   "form": "named_assets",
+   "segments": [
+    "Ground"
+   ],
+   "segment_inherited": false,
+   "components": [
+    {
+     "id": "Ground|ground.manufacturing",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.manufacturing",
+     "text": "Production (Manufacturing systems & Simulators)"
+    },
+    {
+     "id": "Ground|ground.simulators",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.simulators",
+     "text": "Production (Manufacturing systems & Simulators)"
+    },
+    {
+     "id": "Ground|ground.checkout",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.checkout",
+     "text": "Centralised Checkout Systems"
+    },
+    {
+     "id": "Ground|ground.satellite_control_centre",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.satellite_control_centre",
+     "text": "Satellite Operations Centre (Mission Control System)"
+    }
+   ],
+   "scope_basis": "assumed",
+   "assumptions": [
+    "'Production (...)' read as the listed members only",
+    "'Satellite Operations Centre (Mission Control System)' read as the Satellite Control Centre class"
+   ],
+   "threats": [
+    "TR48"
+   ],
+   "locator": "ENISA STL 2025 Annex C Table 17 (pp.85-95), 'Affected assets' column, rows TR48"
+  },
+  "Space: Satellite Bus, Satellite payload": {
+   "form": "named_assets",
+   "segments": [
+    "Space"
+   ],
+   "segment_inherited": false,
+   "components": [
+    {
+     "id": "Space|space.bus",
+     "kind": "asset_class",
+     "segments": [
+      "Space"
+     ],
+     "class": "space.bus",
+     "text": "Satellite Bus"
+    },
+    {
+     "id": "Space|space.payload",
+     "kind": "asset_class",
+     "segments": [
+      "Space"
+     ],
+     "class": "space.payload",
+     "text": "Satellite payload"
+    }
+   ],
+   "scope_basis": "source",
+   "threats": [
+    "TR48"
+   ],
+   "locator": "ENISA STL 2025 Annex C Table 17 (pp.85-95), 'Affected assets' column, rows TR48"
+  },
+  "Ground: Production (Design, development, QA & Assembly) & Satellite Control Centre": {
+   "form": "named_assets",
+   "segments": [
+    "Ground"
+   ],
+   "segment_inherited": false,
+   "components": [
+    {
+     "id": "Ground|ground.design_dev_qa",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.design_dev_qa",
+     "text": "Production (Design, development, QA & Assembly)"
+    },
+    {
+     "id": "Ground|ground.assembly",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.assembly",
+     "text": "Production (Design, development, QA & Assembly)"
+    },
+    {
+     "id": "Ground|ground.satellite_control_centre",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.satellite_control_centre",
+     "text": "Satellite Control Centre"
+    }
+   ],
+   "scope_basis": "assumed",
+   "assumptions": [
+    "'Production (...)' read as the listed members only"
+   ],
+   "threats": [
+    "TR50"
+   ],
+   "locator": "ENISA STL 2025 Annex C Table 17 (pp.85-95), 'Affected assets' column, rows TR50"
+  },
+  "Space: BUS (CDHS/COM) & Payload (PLCOM/PDHS) [satellite ops]": {
+   "form": "named_assets",
+   "segments": [
+    "Space"
+   ],
+   "segment_inherited": false,
+   "components": [
+    {
+     "id": "Space|space.bus.cdhs",
+     "kind": "asset_class",
+     "segments": [
+      "Space"
+     ],
+     "class": "space.bus.cdhs",
+     "text": "BUS (CDHS/COM)"
+    },
+    {
+     "id": "Space|space.bus.com",
+     "kind": "asset_class",
+     "segments": [
+      "Space"
+     ],
+     "class": "space.bus.com",
+     "text": "BUS (CDHS/COM)"
+    },
+    {
+     "id": "Space|space.payload.pdhs",
+     "kind": "asset_class",
+     "segments": [
+      "Space"
+     ],
+     "class": "space.payload.pdhs",
+     "text": "Payload (PLCOM/PDHS)"
+    },
+    {
+     "id": "Space|space.payload.plcom",
+     "kind": "asset_class",
+     "segments": [
+      "Space"
+     ],
+     "class": "space.payload.plcom",
+     "text": "Payload (PLCOM/PDHS)"
+    }
+   ],
+   "scope_basis": "assumed",
+   "assumptions": [
+    "bracketed context tag [satellite ops] is a use-context label, not a scope narrowing"
+   ],
+   "threats": [
+    "TR51"
+   ],
+   "locator": "ENISA STL 2025 Annex C Table 17 (pp.85-95), 'Affected assets' column, rows TR51"
+  },
+  "BUS (CDHS, OBSW) [logical storage]": {
+   "form": "named_assets",
+   "segments": [
+    "Space"
+   ],
+   "segment_inherited": true,
+   "components": [
+    {
+     "id": "Space|space.bus.cdhs",
+     "kind": "asset_class",
+     "segments": [
+      "Space"
+     ],
+     "class": "space.bus.cdhs",
+     "text": "BUS (CDHS, OBSW)"
+    },
+    {
+     "id": "Space|space.bus.cdhs.obsw",
+     "kind": "asset_class",
+     "segments": [
+      "Space"
+     ],
+     "class": "space.bus.cdhs.obsw",
+     "text": "BUS (CDHS, OBSW)"
+    }
+   ],
+   "scope_basis": "assumed",
+   "assumptions": [
+    "segment inherited from the preceding clause (clause has no segment prefix)",
+    "bracketed context tag [logical storage] is a use-context label, not a scope narrowing"
+   ],
+   "threats": [
+    "TR51"
+   ],
+   "locator": "ENISA STL 2025 Annex C Table 17 (pp.85-95), 'Affected assets' column, rows TR51"
+  },
+  "BUS (COM, antenna) [communications]": {
+   "form": "named_assets",
+   "segments": [
+    "Space"
+   ],
+   "segment_inherited": true,
+   "components": [
+    {
+     "id": "Space|space.bus.com",
+     "kind": "asset_class",
+     "segments": [
+      "Space"
+     ],
+     "class": "space.bus.com",
+     "text": "BUS (COM, antenna)",
+     "aspects": [
+      "antenna"
+     ]
+    }
+   ],
+   "scope_basis": "assumed",
+   "assumptions": [
+    "segment inherited from the preceding clause (clause has no segment prefix)",
+    "bracketed context tag [communications] is a use-context label, not a scope narrowing"
+   ],
+   "threats": [
+    "TR51"
+   ],
+   "locator": "ENISA STL 2025 Annex C Table 17 (pp.85-95), 'Affected assets' column, rows TR51"
+  },
+  "Ground: TTC Ground (SLE/SDL protocol)": {
+   "form": "named_assets",
+   "segments": [
+    "Ground"
+   ],
+   "segment_inherited": false,
+   "components": [
+    {
+     "id": "Ground|ground.ttc",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.ttc",
+     "text": "TTC Ground (SLE/SDL protocol)",
+     "aspects": [
+      "sle_sdl_protocol"
+     ]
+    }
+   ],
+   "scope_basis": "source",
+   "threats": [
+    "TR52"
+   ],
+   "locator": "ENISA STL 2025 Annex C Table 17 (pp.85-95), 'Affected assets' column, rows TR52"
+  },
+  "Space: BUS (CDHS/COM)": {
+   "form": "named_assets",
+   "segments": [
+    "Space"
+   ],
+   "segment_inherited": false,
+   "components": [
+    {
+     "id": "Space|space.bus.cdhs",
+     "kind": "asset_class",
+     "segments": [
+      "Space"
+     ],
+     "class": "space.bus.cdhs",
+     "text": "BUS (CDHS/COM)"
+    },
+    {
+     "id": "Space|space.bus.com",
+     "kind": "asset_class",
+     "segments": [
+      "Space"
+     ],
+     "class": "space.bus.com",
+     "text": "BUS (CDHS/COM)"
+    }
+   ],
+   "scope_basis": "source",
+   "threats": [
+    "TR52"
+   ],
+   "locator": "ENISA STL 2025 Annex C Table 17 (pp.85-95), 'Affected assets' column, rows TR52"
+  },
+  "Ground: Design, development, and quality assurance & Satellite Control Centre & Miscellaneous Software/Hardware": {
+   "form": "named_assets",
+   "segments": [
+    "Ground"
+   ],
+   "segment_inherited": false,
+   "components": [
+    {
+     "id": "Ground|ground.design_dev_qa",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.design_dev_qa",
+     "text": "Design/dev/QA"
+    },
+    {
+     "id": "Ground|ground.satellite_control_centre",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.satellite_control_centre",
+     "text": "Satellite Control Centre"
+    },
+    {
+     "id": "Ground|ground.misc_hwsw",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.misc_hwsw",
+     "text": "Miscellaneous Software/Hardware"
+    }
+   ],
+   "scope_basis": "source",
+   "threats": [
+    "TR53"
+   ],
+   "locator": "ENISA STL 2025 Annex C Table 17 (pp.85-95), 'Affected assets' column, rows TR53"
+  },
+  "Ground: Production (Manufacturing systems & Assembly & Simulators) & Centralised Checkout Systems & Satellite Operations Centre (Mission Control System) & TTC Ground": {
+   "form": "named_assets",
+   "segments": [
+    "Ground"
+   ],
+   "segment_inherited": false,
+   "components": [
+    {
+     "id": "Ground|ground.manufacturing",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.manufacturing",
+     "text": "Production (Manufacturing systems & Assembly & Simulators)"
+    },
+    {
+     "id": "Ground|ground.assembly",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.assembly",
+     "text": "Production (Manufacturing systems & Assembly & Simulators)"
+    },
+    {
+     "id": "Ground|ground.simulators",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.simulators",
+     "text": "Production (Manufacturing systems & Assembly & Simulators)"
+    },
+    {
+     "id": "Ground|ground.checkout",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.checkout",
+     "text": "Centralised Checkout Systems"
+    },
+    {
+     "id": "Ground|ground.satellite_control_centre",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.satellite_control_centre",
+     "text": "Satellite Operations Centre (Mission Control System)"
+    },
+    {
+     "id": "Ground|ground.ttc",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.ttc",
+     "text": "TTC Ground"
+    }
+   ],
+   "scope_basis": "assumed",
+   "assumptions": [
+    "'Production (...)' read as the listed members only",
+    "'Satellite Operations Centre (Mission Control System)' read as the Satellite Control Centre class"
+   ],
+   "threats": [
+    "TR55"
+   ],
+   "locator": "ENISA STL 2025 Annex C Table 17 (pp.85-95), 'Affected assets' column, rows TR55"
+  },
+  "Space: BUS (Crypto Unit Board)": {
+   "form": "named_assets",
+   "segments": [
+    "Space"
+   ],
+   "segment_inherited": false,
+   "components": [
+    {
+     "id": "Space|space.bus.crypto_unit_board",
+     "kind": "asset_class",
+     "segments": [
+      "Space"
+     ],
+     "class": "space.bus.crypto_unit_board",
+     "text": "BUS (Crypto Unit Board)"
+    }
+   ],
+   "scope_basis": "source",
+   "threats": [
+    "TR56"
+   ],
+   "locator": "ENISA STL 2025 Annex C Table 17 (pp.85-95), 'Affected assets' column, rows TR56"
+  },
+  "Space: CDHS (RTOS components)": {
+   "form": "named_assets",
+   "segments": [
+    "Space"
+   ],
+   "segment_inherited": false,
+   "components": [
+    {
+     "id": "Space|space.bus.cdhs.rtos",
+     "kind": "asset_class",
+     "segments": [
+      "Space"
+     ],
+     "class": "space.bus.cdhs.rtos",
+     "text": "CDHS (RTOS components)"
+    }
+   ],
+   "scope_basis": "assumed",
+   "assumptions": [
+    "'Space: CDHS' without BUS read as the BUS CDHS class"
+   ],
+   "threats": [
+    "TR57"
+   ],
+   "locator": "ENISA STL 2025 Annex C Table 17 (pp.85-95), 'Affected assets' column, rows TR57"
+  },
+  "Ground: Production (Manufacturing/Assembly facilities & launch facility) & Satellite Control Centre & EGSE/MGSE": {
+   "form": "named_assets",
+   "segments": [
+    "Ground"
+   ],
+   "segment_inherited": false,
+   "components": [
+    {
+     "id": "Ground|ground.manufacturing_assembly_facilities",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.manufacturing_assembly_facilities",
+     "text": "Production (Manufacturing/Assembly facilities & launch facility)"
+    },
+    {
+     "id": "Ground|ground.launch_facility",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.launch_facility",
+     "text": "Production (Manufacturing/Assembly facilities & launch facility)"
+    },
+    {
+     "id": "Ground|ground.satellite_control_centre",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.satellite_control_centre",
+     "text": "Satellite Control Centre"
+    },
+    {
+     "id": "Ground|ground.egse_mgse",
+     "kind": "asset_class",
+     "segments": [
+      "Ground"
+     ],
+     "class": "ground.egse_mgse",
+     "text": "EGSE/MGSE"
+    }
+   ],
+   "scope_basis": "assumed",
+   "assumptions": [
+    "'Production (...)' read as the listed members only"
+   ],
+   "threats": [
+    "TR58"
+   ],
+   "locator": "ENISA STL 2025 Annex C Table 17 (pp.85-95), 'Affected assets' column, rows TR58"
+  }
+ }
+}

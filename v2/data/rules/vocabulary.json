@@ -1,0 +1,108 @@
+{
+  "_about": "Closed vocabularies used by the engine. Semantics live in data/rules, not in code (plan v5 §0.1-2).",
+  "version": "0.1.0-draft",
+  "reason_codes": [
+    "version",
+    "behavior",
+    "access_position",
+    "authority",
+    "target",
+    "effect",
+    "lifecycle",
+    "reachability",
+    "evidence"
+  ],
+  "tactic_order": [
+    "Reconnaissance",
+    "Resource Development",
+    "Initial Access",
+    "Execution",
+    "Persistence",
+    "Defense Evasion",
+    "Lateral Movement",
+    "Exfiltration",
+    "Impact"
+  ],
+  "technique_kinds": {
+    "prep": "preparatory; outside the scenario action window",
+    "entry": "crosses into the spacecraft over a graph edge",
+    "ground": "acts on mission ground infrastructure the attacker occupies",
+    "onboard": "runs on the spacecraft; needs an on-board foothold"
+  },
+  "boundary_roles": {
+    "operator_policy": {
+      "transition": "AUTHORITY",
+      "meaning": "operator/policy/enforcement change"
+    },
+    "command_authority": {
+      "transition": "AUTHORITY",
+      "meaning": "command authority and acceptance by the spacecraft"
+    },
+    "artifact_admission": {
+      "transition": "ARTIFACT_ADMISSION",
+      "meaning": "admission of external software/artifacts"
+    },
+    "f1_over_isl": {
+      "transition": "COMMUNICATION",
+      "meaning": "F1 between DU and CU over an inter-satellite link"
+    },
+    "ng_over_feeder": {
+      "transition": "COMMUNICATION",
+      "meaning": "Ng between RAN and core over the feeder link"
+    },
+    "physical_custody": {
+      "transition": "PHYSICAL_CUSTODY",
+      "meaning": "physical custody transfer (integration, launch)"
+    }
+  },
+  "traversal_only_roles": [
+    "crosslink",
+    "proximity"
+  ],
+  "paper_boundaries": {
+    "_source": "ASIANComNet 2026 manuscript §III-D and Table I (five trust boundaries)",
+    "TB1": "UE <-> RAN (service-link access)",
+    "TB2": "Ground <-> Space (feeder link, TT&C command path)",
+    "TB3": "Ground <-> Core (backhaul, orchestration)",
+    "TB4": "Development/update pipeline (supply chain)",
+    "TB5": "Human resources <-> technical segment (organizational)"
+  },
+  "candidate_generators": {
+    "MAP-CG-01": {
+      "kind": "baseline",
+      "text": "T1 crosswalk: ENISA threat -> workbook Threat-based controls -> SafeMode 2026.09.23-1 enisa_control edges -> SPARTA technique"
+    },
+    "MAP-CG-02": {
+      "kind": "attacker_seed",
+      "text": "Attacker-class seeds: techniques whose access position matches the SI attacker class but that T1 does not reach"
+    },
+    "MAP-CG-03": {
+      "kind": "regression",
+      "text": "Legacy chain: techniques in the superseded Phalanx TR52 mapping (regression only)"
+    },
+    "MAP-CG-04": {
+      "kind": "deprecation_successor",
+      "text": "Deprecation successors: the non-deprecated v4.0.1 Impact techniques (IMP-0007..IMP-0014), added because every v3.x IMP-0001..0006 is [DEPRECATED] and T1 reaches none of the successors"
+    },
+    "MAP-CG-05": {
+      "kind": "sv_claim",
+      "text": "SV claims: SPARTA techniques that SPARTA v4.0.1 relates (related-to) to an SV-* threat statement the ET claims; deprecated techniques dropped; a claimed SV related to a deprecated IMP-* passes its claim to the MAP-CG-04 successors"
+    }
+  },
+  "authority_rules": {
+    "tc_unauthenticated": {
+      "edge_role": "command_authority",
+      "protection_flag": "sdls_auth",
+      "needs": "TC accepted without MAC"
+    },
+    "tc_no_antireplay": {
+      "edge_role": "command_authority",
+      "protection_flag": "sdls_antireplay",
+      "needs": "TC accepted without anti-replay"
+    },
+    "valid_credential": {
+      "credential": "mission_valid",
+      "needs": "mission-valid credential"
+    }
+  }
+}

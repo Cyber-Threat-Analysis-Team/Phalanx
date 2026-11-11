@@ -1,0 +1,40 @@
+{
+ "id": "TR08",
+ "source": "ENISA Space Threat Landscape 2025, Annex C Table 17 (via Phalanx/framework/enisa_threats_tuple.csv)",
+ "category": "UD",
+ "name": "Operating errors",
+ "cia": [
+  "A",
+  "I"
+ ],
+ "affected_asset_selectors": [
+  "Ground: Design, development, and quality assurance & Manufacturing systems & Assembly & Simulators & Satellite Control Centre"
+ ],
+ "description": "Improper handling of systems or applications of satellite lifecycle assets can negatively impact each aspect of satellite lifecycle operations. It can lead to limitations, degradation or outright disruption of function of these assets.",
+ "projection": {
+  "candidate_assets": [
+   "ground_moc",
+   "integration_site"
+  ],
+  "candidate_lifecycle": [
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7
+  ],
+  "lifecycle_rule": "ET-P-LC-01 (legacy tuple L field; Annex C has no lifecycle column)",
+  "derivation_provenance": {
+   "kind": "source_field",
+   "source": "Phalanx/framework/enisa_threats_tuple.csv row TR08",
+   "source_sha256": "c086e9d7221893d69e2ff6d380e3b2024aecc144bac8f034218b6814ef060b52",
+   "field": "L (lifecycle)",
+   "note": "candidate_lifecycle copies the legacy tuple L field {3,4,5,6,7}; ENISA STL 2025 Annex C has no lifecycle column, so the basis is the legacy tuple, not the Annex"
+  },
+  "applicable_boundary_roles": []
+ },
+ "claims": [],
+ "crosswalk_key": "Operating errors"
+}

@@ -1,0 +1,47 @@
+{
+ "id": "TR51",
+ "source": "ENISA Space Threat Landscape 2025, Annex C Table 17 (via Phalanx/framework/enisa_threats_tuple.csv)",
+ "category": "NAA",
+ "name": "Resource exhaustion",
+ "cia": [
+  "A"
+ ],
+ "affected_asset_selectors": [
+  "Space: BUS (CDHS/COM) & Payload (PLCOM/PDHS) [satellite ops]",
+  "BUS (CDHS, OBSW) [logical storage]",
+  "BUS (COM, antenna) [communications]"
+ ],
+ "description": "Threats of resource exhaustion affect the space segment and can be targeted both at the satellite bus and payload (incl. overall satellite operations, logical storage, and communications). In the case of satellite operations, components such as the payload receive commands to sense, emit, or run whatever mission the satellite has - contstantly, to the point that the battery is fully drained/depleted. In the case of logical storage, this includes utilization of storage capacity until the full limit is reached. Finally, communications are affected by the amount of traffic sent.",
+ "projection": {
+  "candidate_assets": [
+   "bus_cdhs",
+   "bus_cdhs_f",
+   "bus_com"
+  ],
+  "candidate_lifecycle": [
+   3,
+   4,
+   5,
+   6,
+   7
+  ],
+  "lifecycle_rule": "ET-P-LC-01 (legacy tuple L field; Annex C has no lifecycle column)",
+  "derivation_provenance": {
+   "kind": "source_field",
+   "source": "Phalanx/framework/enisa_threats_tuple.csv row TR51",
+   "source_sha256": "c086e9d7221893d69e2ff6d380e3b2024aecc144bac8f034218b6814ef060b52",
+   "field": "L (lifecycle)",
+   "note": "candidate_lifecycle copies the legacy tuple L field {3,4,5,6,7}; ENISA STL 2025 Annex C has no lifecycle column, so the basis is the legacy tuple, not the Annex"
+  },
+  "applicable_boundary_roles": []
+ },
+ "claims": [
+  {
+   "sv": "SV-MA-8",
+   "quote": "to the point that the battery is fully drained/depleted",
+   "basis": "enisa_quote",
+   "rationale": "Constant mission commands draining battery."
+  }
+ ],
+ "crosswalk_key": "Resource exhaustion"
+}

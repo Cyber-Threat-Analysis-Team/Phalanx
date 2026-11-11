@@ -1,0 +1,41 @@
+{
+ "id": "TR33",
+ "source": "ENISA Space Threat Landscape 2025, Annex C Table 17 (via Phalanx/framework/enisa_threats_tuple.csv)",
+ "category": "EIH",
+ "name": "Position detection (telemetry)",
+ "cia": [
+  "C"
+ ],
+ "affected_asset_selectors": [
+  "Space: CDHS (OBSW, OBC)"
+ ],
+ "description": "Adversaries obtaining information on the orientation of the satellite enabling them to draw conclusions on its function/mission, orbit, etc. and possibly launch subsequent targeted attacks.",
+ "projection": {
+  "candidate_assets": [],
+  "candidate_lifecycle": [
+   3,
+   4,
+   5,
+   6,
+   7
+  ],
+  "lifecycle_rule": "ET-P-LC-01 (legacy tuple L field; Annex C has no lifecycle column)",
+  "derivation_provenance": {
+   "kind": "source_field",
+   "source": "Phalanx/framework/enisa_threats_tuple.csv row TR33",
+   "source_sha256": "c086e9d7221893d69e2ff6d380e3b2024aecc144bac8f034218b6814ef060b52",
+   "field": "L (lifecycle)",
+   "note": "candidate_lifecycle copies the legacy tuple L field {3,4,5,6,7}; ENISA STL 2025 Annex C has no lifecycle column, so the basis is the legacy tuple, not the Annex"
+  },
+  "applicable_boundary_roles": []
+ },
+ "claims": [
+  {
+   "sv": "SV-CF-4",
+   "quote": "Adversaries obtaining information on the orientation of the satellite",
+   "basis": "enisa_quote",
+   "rationale": "Monitoring telemetry state to learn satellite condition before launching targeted attacks."
+  }
+ ],
+ "crosswalk_key": "Position detection (telemetry)"
+}

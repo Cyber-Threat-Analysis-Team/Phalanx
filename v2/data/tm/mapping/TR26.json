@@ -1,0 +1,806 @@
+{
+ "threat": "TR26",
+ "status": "proposed",
+ "author": "assistant sub-agent V3G5 (v3 re-map); fix pass Fix2",
+ "date": "2026-10-27",
+ "vectors": [
+  {
+   "vector": "supply_chain",
+   "basis": "quote",
+   "enisa_quote": "the provision of hardware components that contian back doors",
+   "reason": "Non-compliant components, pirated software and back-doored hardware, reach the mission through the supply chain before operations."
+  }
+ ],
+ "notes": [
+  "The C rating comes from the clause 'that have access to sensitive data'; only EXF-0008 comes close and it is an approximation."
+ ],
+ "review_response": [
+  {
+   "finding": "The only confidentiality outcome (CIA = C) is dropped; chain does not reflect ENISA's CIA",
+   "action": "fixed as an approximation: EXF-0008 is K-EFFECT with quote 'that have access to sensitive data'. ENISA describes no breach, so the reason says it is the closest data-exposure technique, not an exact match."
+  },
+  {
+   "finding": "IA-0001 keep rests on a quote that does not describe insertion",
+   "action": "fixed: IA-0001 now quotes the examples ('may contain malware, such as disk wiper malware, or the provision of hardware components that contian back doors'); IA-0001.02 and IA-0001.03 quote the software and hardware example each."
+  },
+  {
+   "finding": "EX-0010.02 wiper is a ground-IT example; chain ends at IMP-0010 while TR42 uses IMP-0012",
+   "action": "kept because ENISA names disk wiper malware as its malware example; IMP-0010 (deleting or corrupting data) is the wiper's outcome, and IMP-0012 would be the alteration of the implementation, which TR26 does not state."
+  },
+  {
+   "finding": "TR26 is a near-duplicate of TR55",
+   "action": "kept because ENISA's examples differ: TR26 names pirated software, a wiper and back-doored hardware and rates C only; TR55 names open-source tainting, supplier-site compromise and leaks. The shared keeps are coded identically."
+  },
+  {
+   "finding": "Hardware-backdoor chain inconsistent with TR15 (EX-0005 to TR42)",
+   "action": "fixed: EX-0005 is D-UNDESCRIBED here rather than D-OTHER TR42; the same coding of IA-0001.03 and PER-0002.01 as in TR55 and TR15."
+  },
+  {
+   "finding": "M1: hardware backdoor persisted with no hardware entry; wiper accepted with the software entry removed",
+   "action": "re-checked after the engine change: software entries (IA-0001, IA-0001.02) enable EX-0010 and the wiper EX-0010.02; hardware entries (IA-0001, IA-0001.03) enable PER-0002/PER-0002.01; EX-0010.02 enables IMP-0010, so each outcome needs its own entry."
+  },
+  {
+   "finding": "m4: EXF-0008 approximates a breach ENISA does not describe",
+   "action": "kept as a stated approximation in the reason (ENISA rates the threat C and says third parties 'have access to sensitive data'); no vector depends on it."
+  }
+ ],
+ "rows": [
+  {
+   "technique": "IA-0001",
+   "framework": "SPARTA",
+   "code": "K-ACTION",
+   "role": "entry",
+   "enables": [
+    "EX-0010",
+    "EX-0010.02",
+    "PER-0002",
+    "PER-0002.01"
+   ],
+   "enisa_quote": "may contain malware, such as disk wiper malware, or the provision of hardware components that contian back doors",
+   "sparta_quote": "inserting malicious code, data, or configuration during manufacturing, integration, or delivery",
+   "reason": "ENISA's examples, malware in pirated software and back doors in supplied hardware, are both artifacts inserted during delivery by a third party; the technique is kept as the parent of those two children.",
+   "sources": [
+    "crosswalk",
+    "sv:SV-SP-4",
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0001.02",
+   "framework": "SPARTA",
+   "code": "K-ACTION",
+   "role": "entry",
+   "enables": [
+    "EX-0010",
+    "EX-0010.02"
+   ],
+   "enisa_quote": "use of counterfeit or copied software (e.g. pirated software) that may contain malware",
+   "sparta_quote": "the manipulation targets software delivered to flight or ground systems",
+   "reason": "Counterfeit or pirated software carrying malware is software delivered through an unvetted source, which this technique covers.",
+   "sources": [
+    "sv:SV-SP-4",
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0001.03",
+   "framework": "SPARTA",
+   "code": "K-ACTION",
+   "role": "entry",
+   "enables": [
+    "PER-0002",
+    "PER-0002.01"
+   ],
+   "enisa_quote": "the provision of hardware components that contian back doors",
+   "sparta_quote": "Adversaries alter boards, modules, or programmable logic prior to delivery to create latent access or reliability sabotage",
+   "reason": "ENISA's hardware components that contain back doors are hardware altered before delivery; coded the same way in TR55 and TR15.",
+   "sources": [
+    "crosswalk",
+    "sv:SV-SP-4",
+    "origin"
+   ]
+  },
+  {
+   "technique": "EX-0010",
+   "framework": "SPARTA",
+   "code": "K-ACTION",
+   "role": "execution",
+   "enisa_quote": "that may contain malware",
+   "sparta_quote": "introducing executable logic that runs on the vehicle",
+   "reason": "The malware in pirated or copied software runs on the platform that hosts the software.",
+   "sources": [
+    "sv:SV-SP-3"
+   ],
+   "enables": "EX-0010.02"
+  },
+  {
+   "technique": "EX-0010.02",
+   "framework": "SPARTA",
+   "code": "K-ACTION",
+   "role": "execution",
+   "enisa_quote": "such as disk wiper malware",
+   "sparta_quote": "Wipers deliberately destroy or irreversibly corrupt data",
+   "reason": "Disk wiper malware is the only malware class ENISA names; SPARTA's wiper is the on-board form of it.",
+   "sources": [
+    "sv:SV-SP-3"
+   ],
+   "enables": "IMP-0010"
+  },
+  {
+   "technique": "IMP-0010",
+   "framework": "SPARTA",
+   "code": "K-EFFECT",
+   "role": "impact",
+   "enisa_quote": "such as disk wiper malware",
+   "sparta_quote": "An adversary may falsify, suppress, replace, delete, or corrupt this information",
+   "reason": "A disk wiper destroys or corrupts stored data, which is the outcome of the one malware example ENISA gives.",
+   "sources": [
+    "impact"
+   ]
+  },
+  {
+   "technique": "PER-0002",
+   "framework": "SPARTA",
+   "code": "K-ACTION",
+   "role": "persistence",
+   "enisa_quote": "hardware components that contian back doors",
+   "sparta_quote": "A backdoor is a covert access path that bypasses normal authentication, authorization, or operational checks",
+   "reason": "ENISA names back doors in supplied hardware components; this is the generic technique, kept with its hardware child.",
+   "sources": [
+    "sv:SV-SP-4"
+   ]
+  },
+  {
+   "technique": "PER-0002.01",
+   "framework": "SPARTA",
+   "code": "K-ACTION",
+   "role": "persistence",
+   "enisa_quote": "the provision of hardware components that contian back doors",
+   "sparta_quote": "Hardware backdoors leverage properties of the physical design to provide durable, low-visibility reentry",
+   "reason": "ENISA ties the back doors to hardware components, so the hardware backdoor child is the exact technique; same coding as TR55 and TR15.",
+   "sources": [
+    "crosswalk",
+    "sv:SV-SP-4"
+   ]
+  },
+  {
+   "technique": "EXF-0008",
+   "framework": "SPARTA",
+   "code": "K-EFFECT",
+   "role": "exfiltration",
+   "enisa_quote": "that have access to sensitive data",
+   "sparta_quote": "the adversary gains access to source code, test vectors, telemetry captures, build artifacts, documentation, and configuration data",
+   "reason": "Approximation: ENISA rates the threat C and says the third parties 'have access to sensitive data'; SPARTA's breach of a contractor's development environment is the closest data-exposure technique, but ENISA describes no breach.",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "DE-0007",
+   "framework": "SPARTA",
+   "code": "D-OTHER",
+   "other_threat": "TR46",
+   "reason": "Runtime concealment by a rootkit is a malware class that ENISA TR46 names; TR26 names malware and back doors but no hiding.",
+   "sources": [
+    "sv:SV-SP-3"
+   ]
+  },
+  {
+   "technique": "DE-0008",
+   "framework": "SPARTA",
+   "code": "D-OTHER",
+   "other_threat": "TR46",
+   "reason": "Pre-boot concealment by a bootkit is a malware class that ENISA TR46 names; TR26 names malware and back doors but no hiding.",
+   "sources": [
+    "sv:SV-SP-3"
+   ]
+  },
+  {
+   "technique": "DE-0009.05",
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Targets terrestrial space-domain-awareness pipelines; ENISA names none.",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "DE-0012",
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Component collusion is cooperative evasion between modules; ENISA describes non-compliant components, not coordinated concealment.",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "EX-0002",
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Geofenced activation of malware is not described; the malware example carries no trigger condition.",
+   "sources": [
+    "sv:SV-SP-3"
+   ]
+  },
+  {
+   "technique": "EX-0004",
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Boot-memory tampering is not described; ENISA gives malware in pirated software and hardware back doors.",
+   "sources": [
+    "sv:SV-SP-4"
+   ]
+  },
+  {
+   "technique": "EX-0005",
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Hardware back doors in ENISA's wording are a latent capability, not a firmware overwrite or hardware-command exploit; no execution step below the software stack is described.",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "EX-0010.01",
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Ransomware is not named; ENISA's malware example is a disk wiper.",
+   "sources": [
+    "sv:SV-SP-3"
+   ]
+  },
+  {
+   "technique": "EX-0010.03",
+   "framework": "SPARTA",
+   "code": "D-OTHER",
+   "other_threat": "TR46",
+   "reason": "Rootkit is a malware class that ENISA TR46 names ('rootkits, bootkits, backdoors'); TR26 gives only 'malware' and a wiper example.",
+   "sources": [
+    "sv:SV-SP-3"
+   ]
+  },
+  {
+   "technique": "EX-0010.04",
+   "framework": "SPARTA",
+   "code": "D-OTHER",
+   "other_threat": "TR46",
+   "reason": "Bootkit is a malware class that ENISA TR46 names ('rootkits, bootkits, backdoors'); TR26 gives only 'malware' and a wiper example.",
+   "sources": [
+    "sv:SV-SP-3"
+   ]
+  },
+  {
+   "technique": "EX-0010.05",
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Injecting code into running flight-software processes is not described.",
+   "sources": [
+    "sv:SV-SP-3"
+   ]
+  },
+  {
+   "technique": "EXF-0009",
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Data capture through partner infrastructure is not described; TR26's 'access to sensitive data' belongs to the delivered component's supplier, not to a mission partner's site.",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "EXF-0010",
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Exfiltration over the payload channel is not described; ENISA names no data theft path.",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "IA-0001.01",
+   "framework": "SPARTA",
+   "code": "D-OTHER",
+   "other_threat": "TR55",
+   "reason": "Tainted dependencies, open-source packages and development tools are what ENISA TR55 names ('malicious use of open-source materials'); TR26's examples are pirated software and hardware.",
+   "sources": [
+    "sv:SV-SP-4",
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0002",
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Compromise of a software-defined radio is not named; ENISA's examples are pirated software and back-doored hardware.",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0003",
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Hopping in from a neighbouring satellite is on-orbit; TR26 is a pre-flight supply chain threat.",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0004",
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "A secondary or backup communication channel is not mentioned.",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0004.01",
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "A backup ground station is not mentioned.",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0004.02",
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "A receiver foothold is not mentioned; ENISA's non-compliant components are delivered, not attacked over a link.",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0005",
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Rendezvous and proximity operations are on-orbit events; TR26 is pre-flight.",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0005.01",
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Emanations collection from a close spacecraft is not described.",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0005.02",
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Docking or servicing access is on-orbit; TR26 is a pre-flight supply chain threat.",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0005.03",
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Grappling a satellite is a proximity attack; ENISA names none.",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0006",
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Access through a hosted payload operated by another party is not described.",
+   "sources": [
+    "crosswalk",
+    "sv:SV-SP-4",
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0007",
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Entering the operator's own ground system is not described; the third parties deliver components.",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0007.01",
+   "framework": "SPARTA",
+   "code": "D-OTHER",
+   "other_threat": "TR46",
+   "reason": "Compromising the on-orbit update pipeline is behaviour ENISA TR46 states ('injected into software updates'); TR26 names delivered components, not updates.",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0007.02",
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Commanding through a valid ground system is not described.",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0008",
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "An outside RF transmitter is not described.",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0008.01",
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "A rogue ground station is not described.",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0008.02",
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "A rogue spacecraft is not described.",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0008.03",
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "A counterspace weapon is not described.",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0009",
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Trusted-relationship access through a partner's routes is not described; ENISA's third parties deliver components.",
+   "sources": [
+    "crosswalk",
+    "sv:SV-SP-3",
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0009.01",
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Mission collaborators are not named as the non-compliant third party.",
+   "sources": [
+    "crosswalk",
+    "sv:SV-SP-3",
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0009.02",
+   "framework": "SPARTA",
+   "code": "D-OTHER",
+   "other_threat": "TR55",
+   "reason": "A compromised vendor site and its approved routes are the supplier-site compromise ENISA TR55 describes; TR26's third parties are weakly vetted component suppliers, not an attacked vendor.",
+   "sources": [
+    "crosswalk",
+    "sv:SV-SP-3",
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0009.03",
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "User segment access is not described.",
+   "sources": [
+    "sv:SV-SP-3",
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0010",
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Timing access to safe mode is not described.",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0011",
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Tainted peripherals or media are not named; ENISA's artifacts are the delivered software and hardware.",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0012",
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Assembly, test and launch operations are not named; TR26 is about third-party development and delivery of components.",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0013",
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Using a host spacecraft to reach a payload is not described.",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ]
+  },
+  {
+   "technique": "IMP-0007",
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Invoking existing spacecraft functions is not described.",
+   "sources": [
+    "impact"
+   ]
+  },
+  {
+   "technique": "IMP-0008",
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Forcing a state or mode change is not described.",
+   "sources": [
+    "impact"
+   ]
+  },
+  {
+   "technique": "IMP-0009",
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Altering settings or tables is not described.",
+   "sources": [
+    "impact"
+   ]
+  },
+  {
+   "technique": "IMP-0012",
+   "framework": "SPARTA",
+   "code": "D-OTHER",
+   "other_threat": "TR55",
+   "reason": "Altering the controlling software, firmware or logic through malicious software or backdoors is the outcome ENISA TR55 states; TR26 is rated C only and names no alteration.",
+   "sources": [
+    "impact"
+   ]
+  },
+  {
+   "technique": "IMP-0011",
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Manipulating command or data flow is not described.",
+   "sources": [
+    "impact"
+   ]
+  },
+  {
+   "technique": "IMP-0013",
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Resource exhaustion is not described.",
+   "sources": [
+    "impact"
+   ]
+  },
+  {
+   "technique": "IMP-0014",
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Timing manipulation is not described.",
+   "sources": [
+    "impact"
+   ]
+  },
+  {
+   "technique": "LM-0001",
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Pivoting from a hosted payload to the bus is not described.",
+   "sources": [
+    "crosswalk",
+    "sv:SV-SP-4",
+    "origin"
+   ]
+  },
+  {
+   "technique": "LM-0003",
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Hopping between satellites over crosslinks is not described.",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "LM-0004",
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Visiting-vehicle interfaces are not described.",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "LM-0006",
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Launch-vehicle interface movement is not described.",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "LM-0006.01",
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Rideshare payload pivots are not described.",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "PER-0001",
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Persistence in boot memory or stored images is not described; ENISA's persistence is back doors.",
+   "sources": [
+    "sv:SV-SP-4"
+   ]
+  },
+  {
+   "technique": "PER-0002.02",
+   "framework": "SPARTA",
+   "code": "D-OTHER",
+   "other_threat": "TR55",
+   "reason": "ENISA TR55 names 'malicious software or backdoors' in third-party components; TR26 ties back doors only to hardware and gives malware as a separate example.",
+   "sources": [
+    "sv:SV-SP-3"
+   ]
+  },
+  {
+   "technique": "RD-0001.02",
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Renting commercial ground station services is attacker preparation, not described.",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "RD-0002",
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Compromising infrastructure as an attacker resource is not described.",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "RD-0002.02",
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Compromising a third-party ground system as an attacker resource is not described.",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "RD-0002.03",
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Compromising a third-party spacecraft as an attacker resource is not described.",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "RD-0003",
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Obtaining cyber capabilities is attacker preparation; ENISA's malware comes embedded in the third party's pirated software.",
+   "sources": [
+    "sv:SV-SP-3"
+   ]
+  },
+  {
+   "technique": "RD-0003.01",
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Building or buying an exploit or payload is attacker preparation; ENISA does not describe who writes the malware.",
+   "sources": [
+    "sv:SV-SP-3"
+   ]
+  },
+  {
+   "technique": "RD-0004",
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Staging capabilities is attacker preparation ENISA does not describe.",
+   "sources": [
+    "sv:SV-SP-4"
+   ]
+  },
+  {
+   "technique": "RD-0004.01",
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Selecting a delivery mechanism is attacker preparation ENISA does not describe.",
+   "sources": [
+    "sv:SV-SP-4"
+   ]
+  },
+  {
+   "technique": "RD-0004.02",
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Uploading an exploit or payload is attacker preparation ENISA does not describe.",
+   "sources": [
+    "sv:SV-SP-4"
+   ]
+  },
+  {
+   "technique": "REC-0004",
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Gathering launch information is attacker preparation ENISA does not describe.",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "REC-0006",
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Gathering flight-software development information is attacker preparation ENISA does not describe.",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "REC-0008",
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Gathering supply chain information is attacker preparation ENISA does not describe.",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "REC-0008.01",
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Hardware reconnaissance is attacker preparation ENISA does not describe.",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "REC-0008.04",
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Mapping business relationships is attacker preparation; ENISA's concern is weak vetting of third parties, not attacker research.",
+   "sources": [
+    "crosswalk"
+   ]
+  }
+ ]
+}

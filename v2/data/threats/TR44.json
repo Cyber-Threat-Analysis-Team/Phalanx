@@ -1,0 +1,48 @@
+{
+ "id": "TR44",
+ "source": "ENISA Space Threat Landscape 2025, Annex C Table 17 (via Phalanx/framework/enisa_threats_tuple.csv)",
+ "category": "NAA",
+ "name": "Jamming",
+ "cia": [
+  "A"
+ ],
+ "affected_asset_selectors": [
+  "Ground: TTC Ground (Antenna)",
+  "Space: BUS (COM) & Payload (PLCOM)",
+  "User: VSAT"
+ ],
+ "description": "Overpowering the frequency of a legitimate RF signal in order to disrupt communications between the ground station and the satellite, or vice versa. Jamming can result in unauthorized commands for guidance and control being sent to the satellite, injection of malicious code, and/or overall Denial of Service. It is one of the most common threats to space infrastructure targeting both ground and space segments as well as space-link communication and has been increasingly employed by a wide range of threat actors.",
+ "projection": {
+  "candidate_assets": [
+   "bus_com",
+   "ground_ttc"
+  ],
+  "candidate_lifecycle": [
+   3,
+   4,
+   5,
+   6,
+   7
+  ],
+  "lifecycle_rule": "ET-P-LC-01 (legacy tuple L field; Annex C has no lifecycle column)",
+  "derivation_provenance": {
+   "kind": "source_field",
+   "source": "Phalanx/framework/enisa_threats_tuple.csv row TR44",
+   "source_sha256": "c086e9d7221893d69e2ff6d380e3b2024aecc144bac8f034218b6814ef060b52",
+   "field": "L (lifecycle)",
+   "note": "candidate_lifecycle copies the legacy tuple L field {3,4,5,6,7}; ENISA STL 2025 Annex C has no lifecycle column, so the basis is the legacy tuple, not the Annex"
+  },
+  "applicable_boundary_roles": [
+   "command_authority"
+  ]
+ },
+ "claims": [
+  {
+   "sv": "SV-AV-1",
+   "quote": "Overpowering the frequency of a legitimate RF signal in order to disrupt communications",
+   "basis": "enisa_quote",
+   "rationale": "Direct description of RF jamming causing DoS."
+  }
+ ],
+ "crosswalk_key": "Jamming"
+}

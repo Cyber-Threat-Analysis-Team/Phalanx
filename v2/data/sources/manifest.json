@@ -1,0 +1,38 @@
+{
+  "_about": "Pinned external inputs. `phalanx sources --verify` checks every hash.",
+  "sources": {
+    "sparta": {
+      "path": "sparta_data_v4.0.1.json",
+      "version": "SPARTA v4.0.1",
+      "sha256": "18f510632bcd6ea1dc9df3771e550c4795b74202ef02420a0c6728ba51847c08",
+      "license": "SPARTA Terms of Service (non-exclusive, royalty-free; reproduce Aerospace copyright designation and licence); licenses/SPARTA-terms-of-service.txt",
+      "description": "SPARTA v4.0.1 STIX bundle"
+    },
+    "safemode": {
+      "path": "safemode-mappings-v2026.09.23-1.json.gz",
+      "version": "SafeMode Space mappings 2026.09.23-1",
+      "sha256": "e26f96a92294b45428e1fa064c474173186c4b041e2c6b5ea34b7f436812f059",
+      "license": "CC BY 4.0; licenses/CC-BY-4.0.txt"
+    },
+    "enisa_controls": {
+      "path": "enisa-stl-control-framework-2025-03.xlsx",
+      "version": "ENISA STL 2025 control framework workbook (git blob ac602576)",
+      "sha256": "d78cfbf4a2eca83ecdf267a79439cb3fd7266a6e305d5f2f7b5b3073d98fb2a8",
+      "license": "CC BY 4.0; licenses/CC-BY-4.0.txt"
+    },
+    "phalanx_v1": {
+      "path": "phalanx-v1-mappings.json",
+      "version": "PHALANX v1 prototype mappings.json",
+      "sha256": "a0dddb0e6a0e06539984ed666b8c41d392906555720bde60f2a4518fcf21d06f",
+      "license": "own work"
+    },
+    "fight": {
+      "path": "fight-v3.1.0.yaml",
+      "version": "MITRE FiGHT v3.1.0 (github.com/mitre/FiGHT commit 097cd5f7, fight.yaml)",
+      "sha256": "59a9addbd75d8680091797d66d5b237d9d026512990c61a6f51692ca94d2a7a8",
+      "license": "Apache-2.0; licenses/FiGHT-LICENSE.txt, licenses/Apache-2.0.txt",
+      "description": "MITRE FiGHT 5G technique catalogue"
+    }
+  },
+  "_licenses": "Third-party notices: v2/THIRD_PARTY_NOTICES.md"
+}

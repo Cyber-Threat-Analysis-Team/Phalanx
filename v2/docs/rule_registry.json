@@ -1,0 +1,817 @@
+{
+  "_about": "PHALANX rule registry (protocol v0.3 s1.2). Protocol names rules/rule_registry.yaml; kept here as JSON in docs/ because data/rules/ is frozen and the engine reads JSON only (no pyyaml). Machine-checked by phalanx.registry.check().",
+  "registry_version": "0.1.0",
+  "engine_version": "0.1.0",
+  "legacy_source_sha256": "12462d05da59dc64e8cf37dc073698f51dd202b14543cf1665d0c6b23b92ed5a",
+  "prefixes": {
+    "LEG-R": "legacy v1 rules R1-R13, frozen",
+    "ET-P": "ET template projection",
+    "SI-I": "scenario instantiation",
+    "BC-GEN": "boundary candidate generation",
+    "MAP-CG": "SPARTA candidate generation",
+    "MAP-CHK": "mapping compatibility checks and decision composition",
+    "BX-CHK": "crossing validation",
+    "AFG-CHK": "attack-flow consistency",
+    "CP-CHK": "control placement"
+  },
+  "statuses": [
+    "active",
+    "frozen_legacy",
+    "unlocated"
+  ],
+  "relations": [
+    "equivalent",
+    "split",
+    "merged",
+    "dropped",
+    "new"
+  ],
+  "rules": [
+    {
+      "id": "LEG-R00",
+      "prefix": "LEG-R",
+      "title": "Pass-1 derivation of S, TB and L from affected assets A (unnumbered in v1)",
+      "status": "frozen_legacy",
+      "version": "v1-frozen",
+      "description": "Derives segments (Ground/Space/User/Human Resources) from the 'Segment:' prefixes of A, trust boundaries from segment pairs plus a Ground<->Core (NG) boundary from asset keywords or 'Ground: all assets', and lifecycle phases from per-segment spans and asset keywords; validates S against the stored value. v1 gives this block no rule number; LEG-R00 is a registry-assigned id (it was filed under LEG-R11 until 2026-10-18, when R11 was found defined as a separate boundary rule in the August 2026 mapping review).",
+      "source": {
+        "file": "v2/data/legacy_v1/ntn_threat_algorithm.py",
+        "locator": "derive_segments l.56-68; CORE_KW/RFGROUND_KW/_crosses_ground_core l.71-79; derive_trust_boundaries l.81-91; derive_lifecycle l.94-107; run l.148-152"
+      },
+      "aliases": [
+        "Pass-1"
+      ],
+      "components": [
+        "segments",
+        "trust_boundaries",
+        "lifecycle"
+      ]
+    },
+    {
+      "id": "LEG-R01",
+      "prefix": "LEG-R",
+      "title": "Adversarial category -> TTP expected",
+      "status": "frozen_legacy",
+      "version": "v1-frozen",
+      "description": "ENISA category in {NAA, EIH, PA}: nature=adversarial, SPARTA TTP arm 'expected' (reported PENDING until the analyst maps).",
+      "source": {
+        "file": "v2/data/legacy_v1/ntn_threat_algorithm.py",
+        "locator": "ADVERSARIAL l.37; classify_nature l.45; run l.156"
+      },
+      "aliases": [
+        "R1"
+      ]
+    },
+    {
+      "id": "LEG-R02",
+      "prefix": "LEG-R",
+      "title": "Failure category -> TTP N/A",
+      "status": "frozen_legacy",
+      "version": "v1-frozen",
+      "description": "ENISA category in {FM, UD}: operational/unintentional, TTP arm N/A.",
+      "source": {
+        "file": "v2/data/legacy_v1/ntn_threat_algorithm.py",
+        "locator": "FAILURE l.38; classify_nature l.48; run l.157"
+      },
+      "aliases": [
+        "R2"
+      ]
+    },
+    {
+      "id": "LEG-R03",
+      "prefix": "LEG-R",
+      "title": "State/outage category -> TTP N/A, kept as precondition",
+      "status": "frozen_legacy",
+      "version": "v1-frozen",
+      "description": "ENISA category OUT: state/outage, TTP N/A; recorded as enabling precondition, the adversarial pair is a separate record.",
+      "source": {
+        "file": "v2/data/legacy_v1/ntn_threat_algorithm.py",
+        "locator": "STATE l.39; classify_nature l.47; run l.158; report l.231"
+      },
+      "aliases": [
+        "R3"
+      ]
+    },
+    {
+      "id": "LEG-R04",
+      "prefix": "LEG-R",
+      "title": "Environmental category -> TTP N/A",
+      "status": "frozen_legacy",
+      "version": "v1-frozen",
+      "description": "ENISA category DIS: physical/environmental, TTP N/A.",
+      "source": {
+        "file": "v2/data/legacy_v1/ntn_threat_algorithm.py",
+        "locator": "ENVIRON l.40; classify_nature l.49; run l.159"
+      },
+      "aliases": [
+        "R4"
+      ]
+    },
+    {
+      "id": "LEG-R05",
+      "prefix": "LEG-R",
+      "title": "Enabling/legacy category -> TTP expected, spawns adversarial chain",
+      "status": "frozen_legacy",
+      "version": "v1-frozen",
+      "description": "ENISA category in {LEI, ACQ}: enabling/legacy; TTP expected; spawns an adversarial chain.",
+      "source": {
+        "file": "v2/data/legacy_v1/ntn_threat_algorithm.py",
+        "locator": "ENABLING l.41; classify_nature l.46; run l.160"
+      },
+      "aliases": [
+        "R5"
+      ]
+    },
+    {
+      "id": "LEG-R06",
+      "prefix": "LEG-R",
+      "title": "One threat -> many techniques",
+      "status": "frozen_legacy",
+      "version": "v1-frozen",
+      "description": "Flag added for adversarial/enabling records (R1/R5): 1<->many ENISA threat to SPARTA techniques. A flag only; v1 computes no mapping.",
+      "source": {
+        "file": "v2/data/legacy_v1/ntn_threat_algorithm.py",
+        "locator": "run l.161-162"
+      },
+      "aliases": [
+        "R6"
+      ]
+    },
+    {
+      "id": "LEG-R07",
+      "prefix": "LEG-R",
+      "title": "Confidence tagging",
+      "status": "frozen_legacy",
+      "version": "v1-frozen",
+      "description": "Flag added to every record: each mapping carries a confidence grade (High/Med/Low). v1 only reports Conf as the analyst-entered value or PENDING.",
+      "source": {
+        "file": "v2/data/legacy_v1/ntn_threat_algorithm.py",
+        "locator": "run l.163, l.167-172; webapp/src/engine/ui.ts RULE_TIPS.R7"
+      },
+      "aliases": [
+        "R7"
+      ]
+    },
+    {
+      "id": "LEG-R08",
+      "prefix": "LEG-R",
+      "title": "Countermeasure linkage",
+      "status": "frozen_legacy",
+      "version": "v1-frozen",
+      "description": "Flag added for adversarial/enabling records: countermeasures attach to specific assets and interfaces, not whole categories. v1 emits CM=PENDING and computes no linkage.",
+      "source": {
+        "file": "v2/data/legacy_v1/ntn_threat_algorithm.py",
+        "locator": "run l.162; report l.232; webapp/src/engine/ui.ts RULE_TIPS.R8"
+      },
+      "aliases": [
+        "R8"
+      ]
+    },
+    {
+      "id": "LEG-R09",
+      "prefix": "LEG-R",
+      "title": "Multi-segment footprint -> bridging sub-chain",
+      "status": "frozen_legacy",
+      "version": "v1-frozen",
+      "description": "Derived segment set S has >=2 members: flag; report asks for a bridging sub-chain IA->EX/LM->IMP across the segments. v1 does not emit the sub-chain. Revised in the August 2026 mapping review (slide 10): valid only when exactly one interface joins the two segments; outside that condition no boundary is assigned (removed false positives TR01, TR14, TR26). The frozen v1 code implements the unrevised form.",
+      "source": {
+        "file": "v2/data/legacy_v1/ntn_threat_algorithm.py",
+        "locator": "run l.164; report l.229"
+      },
+      "aliases": [
+        "R9"
+      ]
+    },
+    {
+      "id": "LEG-R10",
+      "prefix": "LEG-R",
+      "title": "Multi-lifecycle footprint",
+      "status": "frozen_legacy",
+      "version": "v1-frozen",
+      "description": "Derived lifecycle set L has >=2 phases: flag; 'split only if TTP/CM differ'.",
+      "source": {
+        "file": "v2/data/legacy_v1/ntn_threat_algorithm.py",
+        "locator": "run l.165; report l.230"
+      },
+      "aliases": [
+        "R10"
+      ]
+    },
+    {
+      "id": "LEG-R11",
+      "prefix": "LEG-R",
+      "title": "Interface boundary where the operator or security domain changes",
+      "status": "frozen_legacy",
+      "version": "2026-08 review",
+      "description": "Condition: an asset pair is joined by an interface and the operator or the security domain changes across it. Action: assign one interface boundary; endpoint location is recorded as an attribute, not a separate boundary. Layer: computed. Defined in the August 2026 mapping-rule review; not implemented in the frozen v1 code.",
+      "source": {
+        "file": "연구노트/mapping_review/ENISA-SPARTA 매핑 규칙 검증 중간보고 2026-08.pptx",
+        "locator": "slide 10 (rule table; build_mapping_review.py l.196-212); slide 11 evidence grades E1-E4"
+      },
+      "aliases": [
+        "R11"
+      ],
+      "components": [
+        "segments",
+        "trust_boundaries",
+        "lifecycle"
+      ]
+    },
+    {
+      "id": "LEG-R12",
+      "prefix": "LEG-R",
+      "title": "Artifact admission boundary (design / manufacturing / transport / update)",
+      "status": "frozen_legacy",
+      "version": "2026-08 review",
+      "description": "Condition: an artifact enters through the design, manufacturing, transport or update path and its effect is realised in operation. Action: the analyst assigns the boundary; confidence from evidence grades E1 (ENISA name/description names supply chain, third party, transport or update) - E2 (a SPARTA supply-chain technique realises it) - E3 (pre-operational asset with effect on operational assets) - E4 (analyst inference only, flagged for review). Negative rule: hazards acting on pre-operational assets are not admissions. Layer: judged. Defined in the August 2026 review; not implemented in v1 code.",
+      "source": {
+        "file": "연구노트/mapping_review/ENISA-SPARTA 매핑 규칙 검증 중간보고 2026-08.pptx",
+        "locator": "slide 10 (rule table; build_mapping_review.py l.196-212); slide 11 evidence grades E1-E4"
+      },
+      "aliases": [
+        "R12"
+      ]
+    },
+    {
+      "id": "LEG-R13",
+      "prefix": "LEG-R",
+      "title": "Authority exercised over equipment",
+      "status": "frozen_legacy",
+      "version": "2026-08 review",
+      "description": "Condition: a party exercises authority over equipment. Action: computed when HR and technical assets are both present; judged when only descriptive evidence exists. Layer: mixed. Defined in the August 2026 review; not implemented in v1 code.",
+      "source": {
+        "file": "연구노트/mapping_review/ENISA-SPARTA 매핑 규칙 검증 중간보고 2026-08.pptx",
+        "locator": "slide 10 (rule table; build_mapping_review.py l.196-212); slide 11 evidence grades E1-E4"
+      },
+      "aliases": [
+        "R13"
+      ]
+    },
+    {
+      "id": "ET-P-LC-01",
+      "prefix": "ET-P",
+      "title": "Candidate lifecycle of the ETP",
+      "status": "active",
+      "version": "0.1.0-draft",
+      "description": "Candidate lifecycle phases of a threat projection are copied from the legacy tuple L field (ENISA Annex C has no lifecycle column); the SI realized_lifecycle must lie inside. Replaces the v1 derivation from A for TR52.",
+      "source": {
+        "file": "data/threats/TR52.json",
+        "locator": "projection.lifecycle_rule; Workspace._check_scenario"
+      }
+    },
+    {
+      "id": "ET-P-SEL-01",
+      "prefix": "ET-P",
+      "title": "ETP selector scope definition",
+      "status": "active",
+      "version": "0.1.0-draft",
+      "description": "Each ENISA Annex C affected-asset selector clause maps symbolically to documented segment/asset-class scope components (`assumed` where ENISA is silent). Registered from the SelectorPolicy slice's report.",
+      "source": {
+        "file": "data/selectors/enisa_asset_selectors.json",
+        "locator": "src/phalanx/selectors.py"
+      }
+    },
+    {
+      "id": "SI-I-WIN-01",
+      "prefix": "SI-I",
+      "title": "SI action window",
+      "status": "active",
+      "version": "0.1.0-draft",
+      "description": "The SI covers initial access through effect; Reconnaissance and Resource Development are preparatory and outside the window (kind 'prep' fails the behavior check).",
+      "source": {
+        "file": "data/rules/techniques.json",
+        "locator": "action_window; engine.check behavior"
+      }
+    },
+    {
+      "id": "SI-I-INST-01",
+      "prefix": "SI-I",
+      "title": "Attacker-scoped graph instantiation",
+      "status": "active",
+      "version": "0.1.0-draft",
+      "description": "Nodes/edges with scope 'attacker' exist in the instantiated graph only when the SI's attacker originates there.",
+      "source": {
+        "file": "src/phalanx/engine.py",
+        "locator": "engine.instantiate"
+      }
+    },
+    {
+      "id": "SI-I-SEL-01",
+      "prefix": "SI-I",
+      "title": "SI+G selector resolution",
+      "status": "active",
+      "version": "0.1.0-draft",
+      "description": "Resolves each selector only against the selected SI's variant graph G, within ET-P-SEL-01 scope, yielding symbolic|scoped_resolved|partially_resolved|unresolved with evidence (invariant I8 bounds the scope). Registered from the SelectorPolicy slice's report.",
+      "source": {
+        "file": "src/phalanx/selectors.py",
+        "locator": "selectors.resolve -> selector_resolution"
+      }
+    },
+    {
+      "id": "MAP-CG-01",
+      "prefix": "MAP-CG",
+      "title": "Candidate generator: T1 crosswalk",
+      "status": "active",
+      "version": "0.1.0-draft",
+      "description": "ENISA threat -> workbook threat-based controls -> SafeMode enisa_control edges -> SPARTA technique.",
+      "source": {
+        "file": "data/rules/vocabulary.json",
+        "locator": "candidate_generators.MAP-CG-01; engine.candidates; sources.Crosswalk"
+      },
+      "generator_kind": "baseline"
+    },
+    {
+      "id": "MAP-CG-02",
+      "prefix": "MAP-CG",
+      "title": "Candidate generator: attacker-class seeds",
+      "status": "active",
+      "version": "0.1.0-draft",
+      "description": "Techniques whose access position matches the SI attacker class but that T1 does not reach. Additionally, the compromised authorized GS class is seeded with its entry steps IA-0007 and IA-0007.02, so on-board steps no longer depend on a threat's crosswalk for their entry.",
+      "source": {
+        "file": "data/rules/vocabulary.json",
+        "locator": "candidate_generators.MAP-CG-02; techniques.attacker_seeds"
+      },
+      "generator_kind": "attacker_seed"
+    },
+    {
+      "id": "MAP-CG-03",
+      "prefix": "MAP-CG",
+      "title": "Candidate generator: legacy chain (regression)",
+      "status": "active",
+      "version": "0.1.0-draft",
+      "description": "Techniques in the superseded Phalanx TR52 mapping; regression only.",
+      "source": {
+        "file": "data/rules/vocabulary.json",
+        "locator": "candidate_generators.MAP-CG-03; Workspace.v1_mapping"
+      },
+      "generator_kind": "regression"
+    },
+    {
+      "id": "MAP-CG-04",
+      "prefix": "MAP-CG",
+      "title": "Candidate generator: deprecation successors",
+      "status": "active",
+      "version": "0.1.0-draft",
+      "description": "Non-deprecated v4.0.1 Impact techniques IMP-0007..IMP-0014 (all v3.x IMP-0001..0006 are deprecated; T1 reaches no successor).",
+      "source": {
+        "file": "data/rules/vocabulary.json",
+        "locator": "candidate_generators.MAP-CG-04; techniques.deprecation_successors"
+      },
+      "generator_kind": "deprecation_successor"
+    },
+    {
+      "id": "MAP-CG-05",
+      "prefix": "MAP-CG",
+      "title": "Candidate generator: SPARTA SV-* claims",
+      "status": "active",
+      "version": "0.1.0-draft",
+      "description": "Techniques SPARTA v4.0.1 relates to an SV-* threat statement claimed by the ET (threat `claims`); deprecated techniques dropped; Impact bridge to MAP-CG-04 successors. The same links supply the evidence check (MAP-CHK-09) when no authored clause covers the technique.",
+      "source": {
+        "file": "src/phalanx/engine.py",
+        "locator": "engine.claim_links; vocabulary.candidate_generators.MAP-CG-05"
+      },
+      "generator_kind": "sv_claim"
+    },
+    {
+      "id": "MAP-CHK-01",
+      "prefix": "MAP-CHK",
+      "title": "Check: technique valid in the pinned SPARTA version",
+      "status": "active",
+      "version": "0.1.0-draft",
+      "description": "Fails when the catalog marks the technique [DEPRECATED].",
+      "source": {
+        "file": "src/phalanx/engine.py",
+        "locator": "engine.check version"
+      },
+      "reason_code": "version"
+    },
+    {
+      "id": "MAP-CHK-02",
+      "prefix": "MAP-CHK",
+      "title": "Check: behavior inside the SI action window",
+      "status": "active",
+      "version": "0.1.0-draft",
+      "description": "Fails for preparatory (kind prep) tactics (rule SI-I-WIN-01); prep techniques return after this check.",
+      "source": {
+        "file": "src/phalanx/engine.py",
+        "locator": "engine.check behavior; techniques.tactic_defaults.kind"
+      },
+      "reason_code": "behavior"
+    },
+    {
+      "id": "MAP-CHK-03",
+      "prefix": "MAP-CHK",
+      "title": "Check: attacker class holds the required access position",
+      "status": "active",
+      "version": "0.1.0-draft",
+      "description": "For entry/ground techniques the attacker class must be in profile.access; on-board techniques are not_applicable here and checked via reachability.",
+      "source": {
+        "file": "src/phalanx/engine.py",
+        "locator": "engine.check access_position"
+      },
+      "reason_code": "access_position"
+    },
+    {
+      "id": "MAP-CHK-04",
+      "prefix": "MAP-CHK",
+      "title": "Check: authority precondition",
+      "status": "active",
+      "version": "0.1.0-draft",
+      "description": "B3: reads protection_applied.<edge>.<flag> on the command_authority edge from the attacker origin to a target asset (protected -> fail, unprotected -> pass, missing -> unknown; no edge -> fail). B2: reads every protection entry. Credential rule compares the SI credential.",
+      "source": {
+        "file": "src/phalanx/engine.py",
+        "locator": "engine.check authority; vocabulary.authority_rules"
+      },
+      "reason_code": "authority",
+      "data_rows": {
+        "file": "data/rules/vocabulary.json",
+        "path": "authority_rules",
+        "ids": [
+          "tc_unauthenticated",
+          "tc_no_antireplay",
+          "valid_credential"
+        ]
+      }
+    },
+    {
+      "id": "MAP-CHK-05",
+      "prefix": "MAP-CHK",
+      "title": "Check: technique target intersects SI selected assets",
+      "status": "active",
+      "version": "0.1.0-draft",
+      "description": "Passes when profile.target meets SI.selected_asset_instances.",
+      "source": {
+        "file": "src/phalanx/engine.py",
+        "locator": "engine.check target"
+      },
+      "reason_code": "target"
+    },
+    {
+      "id": "MAP-CHK-06",
+      "prefix": "MAP-CHK",
+      "title": "Check: technique effect intersects SI intended effect",
+      "status": "active",
+      "version": "0.1.0-draft",
+      "description": "Enabling techniques are not_applicable; others need an effect in the SI intended_effect (CIA set).",
+      "source": {
+        "file": "src/phalanx/engine.py",
+        "locator": "engine.check effect"
+      },
+      "reason_code": "effect"
+    },
+    {
+      "id": "MAP-CHK-07",
+      "prefix": "MAP-CHK",
+      "title": "Check: SI realized lifecycle in technique phases",
+      "status": "active",
+      "version": "0.1.0-draft",
+      "description": "Passes when SI.realized_lifecycle is in profile.lifecycle.",
+      "source": {
+        "file": "src/phalanx/engine.py",
+        "locator": "engine.check lifecycle"
+      },
+      "reason_code": "lifecycle"
+    },
+    {
+      "id": "MAP-CHK-08",
+      "prefix": "MAP-CHK",
+      "title": "Check: path and on-board foothold",
+      "status": "active",
+      "version": "0.1.0-draft",
+      "description": "B3 only (B2 not_applicable). Entry: a role edge from the attacker origin to a target asset; ground: attacker resides on a mission ground node; on-board: foothold from pass 1 (accepted entry -> pass; only unresolved entries -> unknown; none -> fail); plus requires_fact SI paths (missing -> unknown). Worst result wins.",
+      "source": {
+        "file": "src/phalanx/engine.py",
+        "locator": "engine.check reachability; engine.run_scenario passes 1-2; engine.edge_from"
+      },
+      "reason_code": "reachability"
+    },
+    {
+      "id": "MAP-CHK-09",
+      "prefix": "MAP-CHK",
+      "title": "Check: ET-linked evidence clause supports the technique",
+      "status": "active",
+      "version": "0.1.0-draft",
+      "description": "not_applicable when another check already failed; pass with the clause text when the technique is in an ET evidence clause; otherwise unknown. Clause rows are data rows of rules/evidence/<ET>.json. Additionally, also pass with the claimed SV id and its quote when the technique is related to a claimed SV-* statement; an authored clause takes precedence.",
+      "source": {
+        "file": "src/phalanx/engine.py",
+        "locator": "engine.check evidence; Rules.evidence_index"
+      },
+      "reason_code": "evidence",
+      "data_rows": {
+        "file": "data/rules/evidence/TR52.json",
+        "path": "clauses",
+        "ids": [
+          "ET-EV-01",
+          "ET-EV-02",
+          "ET-EV-03",
+          "ET-EV-04",
+          "ET-EV-05"
+        ]
+      }
+    },
+    {
+      "id": "MAP-CHK-10",
+      "prefix": "MAP-CHK",
+      "title": "Technique profile resolution",
+      "status": "active",
+      "version": "0.1.0-draft",
+      "description": "Profile = tactic default, then exact-id override; parents never leak into sub-techniques.",
+      "source": {
+        "file": "src/phalanx/engine.py",
+        "locator": "Rules.profile; techniques.tactic_defaults/overrides"
+      }
+    },
+    {
+      "id": "MAP-CHK-11",
+      "prefix": "MAP-CHK",
+      "title": "Decision composition",
+      "status": "active",
+      "version": "0.1.0-draft",
+      "description": "Any fail -> rejected (reason codes = failing checks); else any unknown -> unresolved (reason codes = unknown checks); else accepted. Codes keep check order.",
+      "source": {
+        "file": "src/phalanx/engine.py",
+        "locator": "engine.decide"
+      }
+    },
+    {
+      "id": "MAP-CHK-12",
+      "prefix": "MAP-CHK",
+      "title": "Assurance-finding derivation",
+      "status": "active",
+      "version": "0.1.0-draft",
+      "description": "AF types: insufficient_evidence, missing_system_state (unresolved MRs), candidate_inclusion_gap (a generator of kind attacker_seed/deprecation_successor without a baseline generator), unreachable (nothing accepted), no_framework_coverage (zero candidates; no MR, I11).",
+      "source": {
+        "file": "src/phalanx/engine.py",
+        "locator": "engine.findings; engine.run_threat"
+      }
+    },
+    {
+      "id": "BC-GEN-01",
+      "prefix": "BC-GEN",
+      "title": "Boundary-edge verdict candidates (applicable/adjacent/not_applicable)",
+      "status": "active",
+      "version": "0.1.0-draft",
+      "description": "Per boundary-role edge: applicable = selected asset terminates it, edge active in the realized lifecycle, role named by the ETP; adjacent = same but role not named; else not_applicable. Candidate/adjacency classification only; 'crossed' belongs to BX-CHK-01. Full boundary candidate generation is Phase 3.",
+      "source": {
+        "file": "src/phalanx/engine.py",
+        "locator": "engine.boundary_verdicts (flags applicable/adjacent)"
+      }
+    },
+    {
+      "id": "BX-CHK-01",
+      "prefix": "BX-CHK",
+      "title": "Crossing validation",
+      "status": "active",
+      "version": "0.1.0-draft",
+      "description": "'crossed' is recorded only on an edge that an accepted entry action traverses (I4); precedence crossed > applicable > adjacent > not_applicable.",
+      "source": {
+        "file": "src/phalanx/engine.py",
+        "locator": "engine.attack_flow crossings; engine.boundary_verdicts; invariants I4"
+      }
+    },
+    {
+      "id": "AFG-CHK-01",
+      "prefix": "AFG-CHK",
+      "title": "AFG: on-board actions are preceded by an accepted entry",
+      "status": "active",
+      "version": "0.1.0-draft",
+      "description": "pass if every accepted on-board action has an accepted traversing entry; not_applicable without a graph (B2).",
+      "source": {
+        "file": "src/phalanx/engine.py",
+        "locator": "engine.attack_flow check_AFG-CHK-01"
+      }
+    },
+    {
+      "id": "AFG-CHK-02",
+      "prefix": "AFG-CHK",
+      "title": "AFG: an accepted Impact step realises the intended effect",
+      "status": "active",
+      "version": "0.1.0-draft",
+      "description": "pass when an accepted Impact action's effect meets SI.intended_effect; not_applicable with no accepted chain.",
+      "source": {
+        "file": "src/phalanx/engine.py",
+        "locator": "engine.attack_flow check_AFG-CHK-02"
+      }
+    },
+    {
+      "id": "AFG-CHK-03",
+      "prefix": "AFG-CHK",
+      "title": "AFG: ordering of accepted actions",
+      "status": "active",
+      "version": "0.1.0-draft",
+      "description": "Accepted actions ordered ground, entry, then others; within a group by tactic order then id; consecutive actions form the edges. Construction rule, no verdict.",
+      "source": {
+        "file": "src/phalanx/engine.py",
+        "locator": "engine.run_scenario accepted sort; engine.attack_flow"
+      }
+    },
+    {
+      "id": "CP-CHK-01",
+      "prefix": "CP-CHK",
+      "title": "Control-placement listing (no placement check yet)",
+      "status": "active",
+      "version": "0.1.0-draft",
+      "description": "Lists SPARTA countermeasures of accepted techniques and the ENISA Annex D controls of the T1 crosswalk with placement 'not_adjudicated'. No placement check exists; Phase 3.",
+      "source": {
+        "file": "src/phalanx/engine.py",
+        "locator": "engine.run_scenario cpr_sparta/cpr_enisa_annex_d"
+      }
+    }
+  ],
+  "crosswalk": [
+    {
+      "legacy": [
+        "LEG-R01",
+        "LEG-R05"
+      ],
+      "relation": "merged",
+      "current": [
+        "MAP-CG-01"
+      ],
+      "delta": "v1 branched on the ENISA category (R1 adversarial, R5 enabling) and only flagged 'TTP expected'; it never computed techniques. The engine has no category gate: candidate generation runs for whichever ET is requested (pilot: TR52, category NAA) and every candidate is decided by MAP-CHK. R5's 'spawns an adversarial chain' is not modelled; enabling is a technique-profile effect value, not an ET category."
+    },
+    {
+      "legacy": [
+        "LEG-R02"
+      ],
+      "relation": "dropped",
+      "current": [],
+      "delta": "No current rule gates on failure categories (FM, UD); the pilot has no non-adversarial ET. Before the engine runs such an ET a rule must decide between no candidates (I11 no_framework_coverage) and not_applicable cells (protocol s1.1/s6.1).",
+      "see_also": [
+        "MAP-CHK-12"
+      ]
+    },
+    {
+      "legacy": [
+        "LEG-R03"
+      ],
+      "relation": "dropped",
+      "current": [],
+      "delta": "State/outage-as-precondition is not modelled; no current rule consumes an ET category. Same open decision as LEG-R02."
+    },
+    {
+      "legacy": [
+        "LEG-R04"
+      ],
+      "relation": "dropped",
+      "current": [],
+      "delta": "Environmental category gate not modelled. Same open decision as LEG-R02."
+    },
+    {
+      "legacy": [
+        "LEG-R06"
+      ],
+      "relation": "split",
+      "current": [
+        "MAP-CG-01",
+        "MAP-CG-02",
+        "MAP-CG-03",
+        "MAP-CG-04",
+        "MAP-CG-05",
+        "MAP-CHK-11"
+      ],
+      "delta": "v1 asserted a one-to-many cardinality flag. Now four generators propose candidates with recorded provenance (MR.generators) and each candidate gets its own decision; many-to-many is a computed result, not an assertion."
+    },
+    {
+      "legacy": [
+        "LEG-R07"
+      ],
+      "relation": "dropped",
+      "current": [],
+      "delta": "No High/Med/Low confidence grade exists. Replaced by status accepted|rejected|unresolved with system-state reason codes and root facts (MAP-CHK-11); the two are not convertible.",
+      "see_also": [
+        "MAP-CHK-11"
+      ]
+    },
+    {
+      "legacy": [
+        "LEG-R08"
+      ],
+      "relation": "dropped",
+      "current": [],
+      "delta": "Legacy intent: countermeasures attach to specific assets and interfaces. Current CP-CHK-01 only lists countermeasures with placement 'not_adjudicated'; the attachment semantics return in Phase 3.",
+      "see_also": [
+        "CP-CHK-01"
+      ]
+    },
+    {
+      "legacy": [
+        "LEG-R09"
+      ],
+      "relation": "split",
+      "current": [
+        "BC-GEN-01",
+        "AFG-CHK-03"
+      ],
+      "delta": "v1 flagged records spanning >=2 segments and asked for a bridging IA->EX/LM->IMP sub-chain. Now boundaries come from graph edges (BC-GEN-01) and the chain is built from accepted actions in order (AFG-CHK-03; AFG-CHK-01 requires entry before on-board action). The segment-count trigger is gone."
+    },
+    {
+      "legacy": [
+        "LEG-R10"
+      ],
+      "relation": "split",
+      "current": [
+        "ET-P-LC-01",
+        "MAP-CHK-07"
+      ],
+      "delta": "v1 flagged multi-phase lifecycle and deferred any split. Now the ETP states candidate phases (ET-P-LC-01) and each SI fixes one realized phase that is checked against the technique phases (MAP-CHK-07); a multi-phase ET becomes several SIs rather than a flag."
+    },
+    {
+      "legacy": [
+        "LEG-R00"
+      ],
+      "relation": "split",
+      "current": [
+        "ET-P-LC-01",
+        "BC-GEN-01"
+      ],
+      "delta": "The Pass-1 block is split by output. Lifecycle (L): derived from A by keyword in v1, copied from the legacy tuple field in ET-P-LC-01 (provenance recorded; not equivalent in method, identical value for TR52). Trust boundaries (TB): v1 output as asserted boundaries is reclassified per plan v5 s10 as candidate/adjacency (BC-GEN-01) over graph edges; the Ground<->Core keyword heuristic is replaced by the architecture graph and security-domain membership. Segments (S): derivation from 'Segment:' prefixes is dropped (nodes carry segment/domain in G); selector scope is handled by ET-P-SEL-01 and SI-I-SEL-01.",
+      "see_also": [
+        "ET-P-SEL-01",
+        "SI-I-SEL-01"
+      ]
+    },
+    {
+      "legacy": [],
+      "relation": "new",
+      "current": [
+        "SI-I-WIN-01",
+        "SI-I-INST-01",
+        "SI-I-SEL-01",
+        "ET-P-SEL-01"
+      ],
+      "delta": "No v1 counterpart: scenario action window, attacker-scoped instantiation, selector scope and resolution."
+    },
+    {
+      "legacy": [],
+      "relation": "new",
+      "current": [
+        "MAP-CG-02",
+        "MAP-CG-03",
+        "MAP-CG-04"
+      ],
+      "delta": "No v1 counterpart: attacker-seed, legacy-regression and deprecation-successor generators (v1 had no candidate generation)."
+    },
+    {
+      "legacy": [],
+      "relation": "new",
+      "current": [
+        "MAP-CHK-01",
+        "MAP-CHK-02",
+        "MAP-CHK-03",
+        "MAP-CHK-04",
+        "MAP-CHK-05",
+        "MAP-CHK-06",
+        "MAP-CHK-08",
+        "MAP-CHK-09",
+        "MAP-CHK-10",
+        "MAP-CHK-12"
+      ],
+      "delta": "No v1 counterpart: v1 left TTP, CM and Conf blank for the analyst. The nine compatibility dimensions (version, behavior, access_position, authority, target, effect, lifecycle, reachability, evidence), profile resolution and finding derivation are new (MAP-CHK-07 appears under LEG-R10)."
+    },
+    {
+      "legacy": [],
+      "relation": "new",
+      "current": [
+        "BX-CHK-01",
+        "AFG-CHK-01",
+        "AFG-CHK-02",
+        "CP-CHK-01"
+      ],
+      "delta": "No v1 counterpart: crossing validation (I4), attack-flow consistency checks, and control listing."
+    },
+    {
+      "legacy": [
+        "LEG-R11"
+      ],
+      "relation": "split",
+      "current": [
+        "BC-GEN-01",
+        "BX-CHK-01"
+      ],
+      "delta": "R11 assigned a boundary whenever operator or security domain changes across an interface. v2 records the change as data (node security_domain, edge crosses_security_domain, validated against endpoint domains) and does not derive a boundary from it: every edge carries a role, BC-GEN-01 gives the per-SI verdict (applicable/adjacent/not_applicable) from the threat's roles and the selected assets, and BX-CHK-01 allows 'crossed' only when an accepted action traverses the edge. A domain change alone neither creates nor crosses a boundary."
+    },
+    {
+      "legacy": [
+        "LEG-R12"
+      ],
+      "relation": "dropped",
+      "current": [],
+      "see_also": [
+        "BC-GEN-01"
+      ],
+      "delta": "Not carried over as a rule. v2 models artifact admission structurally (boundary role artifact_admission on integration/update edges, verdicts via BC-GEN-01); the analyst assignment and the E1-E4 evidence grading have no v2 counterpart."
+    },
+    {
+      "legacy": [
+        "LEG-R13"
+      ],
+      "relation": "split",
+      "current": [
+        "MAP-CHK-04",
+        "SI-I-INST-01"
+      ],
+      "delta": "R13 decided whether a party has authority over equipment, computed from HR + technical assets or judged from text. v2 checks authority per technique from the SI's attacker credential and the protection state on the attacker's command_authority edge (MAP-CHK-04), with the attacker's origin and reachable nodes from SI-I-INST-01. HR assets are not modelled; there is no judged path."
+    }
+  ]
+}

@@ -1,0 +1,823 @@
+{
+ "threat": "TR42",
+ "status": "proposed",
+ "author": "assistant sub-agent V3G3 (v3 re-map); fix pass Fix2",
+ "date": "2026-10-27",
+ "vectors": [
+  {
+   "vector": "ground",
+   "basis": "weak",
+   "enisa_quote": "adversaries overwriting or corrupting firmware devices",
+   "reason": "ENISA names no origin; the weak inference is that firmware images reach the devices through the operator's update and load chain, which the ground origin attacks."
+  },
+  {
+   "vector": "supply_chain",
+   "basis": "weak",
+   "enisa_quote": "adversaries overwriting or corrupting firmware devices",
+   "reason": "ENISA names no origin; the weak inference is that firmware is also written before flight (I&T, LEOP loads) by the supply chain; the text lists 'Space: all assets' and 'Ground: all assets'."
+  }
+ ],
+ "rows": [
+  {
+   "technique": "DE-0001",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Disabling FDIR is not described; ENISA states only overwriting or corrupting firmware.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "DE-0003",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Falsifying on-board values is not part of firmware overwriting.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "DE-0003.01",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Masking the command counter is not described.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "DE-0003.08",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Editing command history is not described.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "DE-0003.11",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Watchdog parameter tampering for evasion is not described.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "DE-0003.12",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Poisoning ML training for evasion is not described.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "DE-0005",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Safe-mode abuse is not described.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "DE-0006",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Whitelist editing is not described.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "DE-0007",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR46",
+   "reason": "Rootkit concealment belongs to injected malware (TR46); ENISA's firmware text is about destroying images.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "DE-0008",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR46",
+   "reason": "Bootkit concealment belongs to injected malware (TR46); ENISA's firmware text is about destroying images.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EX-0003",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Modifying the authentication process is not described.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EX-0004",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-OTHER",
+   "reason": "Corrupting boot memory is the 'compromise of boot memory' TR48 names; ENISA here states unusable firmware, not code that runs before protections.",
+   "other_threat": "TR48",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EX-0005",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "K-ACTION",
+   "role": "execution",
+   "enisa_quote": "adversaries overwriting or corrupting firmware devices",
+   "sparta_quote": "tampering with firmware images or configuration blobs burned into non-volatile memory",
+   "reason": "Exploit Hardware/Firmware Corruption is the firmware overwrite or corruption ENISA describes.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EX-0006",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Weakening encryption or integrity settings is not described; ENISA states overwriting or corrupting firmware.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EX-0007",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Radiation-induced bit flips are not an adversary overwrite ENISA describes.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EX-0009",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR48",
+   "reason": "Abusing code flaws is TR48's software exploit, not the overwrite itself.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EX-0009.01",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR48",
+   "reason": "Flight-software flaw exploitation is TR48's behaviour.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EX-0009.02",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR48",
+   "reason": "OS-level flaw exploitation is TR48's behaviour.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EX-0009.03",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR48",
+   "reason": "Using known COTS/FOSS defects is TR48's vulnerability exploitation.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EX-0010",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR46",
+   "reason": "Planting general malicious code is TR46; here the action is overwriting firmware, covered by the rows kept.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EX-0010.02",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-OTHER",
+   "reason": "A wiper is malware (disk-wiper example in TR26); ENISA here mentions no malware, and EX-0005/EX-0005.02 already carry the overwrite.",
+   "other_threat": "TR26",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EX-0010.03",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR46",
+   "reason": "Rootkits are injected malware (TR46), not firmware overwriting.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EX-0010.04",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR46",
+   "reason": "Bootkits are injected malware (TR46); unbootable firmware here is covered by boot-memory corruption.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EX-0011",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Safe-mode timing is not described.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EX-0012",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR57",
+   "reason": "Generic modification of on-board values is TR57's parameter tampering.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EX-0012.01",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR39",
+   "reason": "Register modification is the data-modification threat TR39.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EX-0012.03",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-OTHER",
+   "reason": "Direct memory writes are named by TR46 as the route for injected code; the overwrite of firmware stores is carried by EX-0005 and EX-0005.02.",
+   "other_threat": "TR46",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EX-0012.04",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Editing subscriber tables does not overwrite firmware.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EX-0012.06",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Altering payload data in place is not firmware overwriting and TR39 does not keep it.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EX-0012.11",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR57",
+   "reason": "Watchdog manipulation causing resets is TR57's outcome, not firmware overwrite.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EX-0012.13",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Poisoning ML training data is not described and TR39 does not keep it.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EXF-0002.04",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Timing side channels are not described.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EXF-0006",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Altering communications configuration to leak data is not described; ENISA states loss of availability.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EXF-0006.01",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "SDR configuration for exfiltration is not described.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EXF-0006.02",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Transponder remapping for exfiltration is not described.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0001.02",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "K-ENABLE",
+   "reason": "Weak inference only: firmware loads during I&T or LEOP are written by the supplier chain; ENISA names neither, so it is kept as the supply-chain counterpart of IA-0007.01, not as a stated route.",
+   "role": "entry",
+   "enables": "EX-0005",
+   "vectors": [
+    "supply_chain"
+   ],
+   "sparta_quote": "firmware loads during I&T or LEOP",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0002",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "SDR compromise is not described.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0004.01",
+   "sources": [
+    "entry_table"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Backup ground station access is not described.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0007",
+   "sources": [
+    "entry_table"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Ground compromise as such is not stated; only its update-pipeline step (IA-0007.01) is used, on a weak inference.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0007.01",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "K-ENABLE",
+   "role": "entry",
+   "enables": "EX-0005",
+   "sparta_quote": "bootloader or device firmware loads",
+   "reason": "Weak inference only: bootloader and device firmware loads travel in the update pipeline, so manipulating it is a way to overwrite firmware images; coded like IA-0001.02, which rests on the same inference.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0007.02",
+   "sources": [
+    "entry_table"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Sending valid commands through a compromised ground system is not what ENISA describes.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0010",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Safe-mode timing is not described.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IMP-0007",
+   "sources": [
+    "impact"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Abusing native functions is not described.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IMP-0008",
+   "sources": [
+    "impact"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Mode manipulation is not described; unbootable devices are covered by firmware manipulation.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IMP-0009",
+   "sources": [
+    "impact"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR57",
+   "reason": "Changing settings while leaving firmware intact is TR57; here the firmware itself is overwritten.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IMP-0010",
+   "sources": [
+    "impact"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR39",
+   "reason": "Altering information, not the firmware implementation, is TR39.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IMP-0011",
+   "sources": [
+    "impact"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Command/data flow manipulation is not described.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IMP-0012",
+   "sources": [
+    "impact"
+   ],
+   "code": "K-EFFECT",
+   "role": "impact",
+   "enisa_quote": "making them inoperable or unable to boot",
+   "sparta_quote": "An adversary may modify executable code, replace firmware, or load altered programmable logic",
+   "reason": "Replaced or corrupted firmware is the outcome ENISA states: devices inoperable or unable to boot.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IMP-0013",
+   "sources": [
+    "impact"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR51",
+   "reason": "Resource exhaustion is TR51.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IMP-0014",
+   "sources": [
+    "impact"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Timing manipulation is not described.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "LM-0005",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Partition escape is not described.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "PER-0001",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "ENISA states overwriting, not survival of resets; boot-memory persistence is not described here.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "PER-0002",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR46",
+   "reason": "Backdoors are injected malware (TR46).",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "RD-0003.01",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Obtaining exploits is not needed by the overwrite rows and is not described.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "REC-0007",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Watching for safe-mode is not described.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "REC-0008.03",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Cataloguing vulnerabilities is not described.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EX-0005.02",
+   "sources": [
+    "analyst_added"
+   ],
+   "code": "K-ACTION",
+   "role": "execution",
+   "enisa_quote": "flahs memory contents of system OS",
+   "sparta_quote": "file/sector operations to on-board non-volatile stores",
+   "reason": "Low-level sector operations on non-volatile stores are how flash contents of the system OS are overwritten.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0001",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR55",
+   "reason": "General insertion of malicious code during manufacturing or delivery is TR55's supply-chain compromise; the overwrite here has no stated delivery.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0001.01",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR55",
+   "reason": "Poisoned dependencies and development tools are TR55's open-source supply-chain case; no software dependency is named here.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0001.03",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR55",
+   "reason": "Hardware or bitstream tampering before delivery is TR55's compromise of supplied components; ENISA names overwriting of firmware, not component tampering.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0003",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Crosslink access from a neighbour satellite is not described.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0004",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "A secondary command channel is not described.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0004.02",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "A backup RF receive path is not described.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0005",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Rendezvous and proximity operations are not described.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0005.01",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Emanation capture reads information and does not overwrite firmware.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0005.02",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Docked-vehicle access is not described.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0005.03",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Grappling is not described.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0006",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "A hosted-payload doorway is not described.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0008",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "An external transmitter is not named as the origin of the overwrite.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0008.01",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "A rogue ground station is not named as the origin of the overwrite.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0008.02",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "A rogue spacecraft is not named as the origin of the overwrite.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0008.03",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Counterspace platforms produce no firmware overwrite and are not described.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0009",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Trusted-relationship access is not described.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0009.01",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Collaborator access is not described.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0009.02",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Vendor remote access is not described; ENISA gives no vendor or delivery route.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0009.03",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "User-segment access is not described.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0011",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR20",
+   "reason": "Malicious code carried in by peripherals or removable media is the rogue hardware/software threat TR20; no media is named here.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0012",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR58",
+   "reason": "Compromise of the assembly and test environment is TR58's equipment misuse; ENISA names no test activity.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0013",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Pivot from the host spacecraft into a hosted payload is not described.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "LM-0001",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Pivoting from a hosted payload into the host is not described.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "LM-0003",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Hopping across a crosslink to other satellites is not described.",
+   "framework": "SPARTA"
+  }
+ ],
+ "review_response": [
+  {
+   "finding": "Vector justification is factually wrong: supply_chain entry techniques also name firmware loads; no basis label (major).",
+   "action": "fixed: false claim removed; both ground and supply_chain are chosen with basis 'weak' and the reason says what is only implied."
+  },
+  {
+   "finding": "IA-0007.01 kept K-ENABLE while IA-0001.02 dropped to TR55 although both descriptions name firmware loads (major).",
+   "action": "fixed: both are K-ENABLE entries enabling EX-0005, each with a reason that says the route is inferred, not stated."
+  },
+  {
+   "finding": "EX-0004 fits 'unable to boot' only loosely (minor).",
+   "action": "fixed: dropped, D-OTHER to TR48 whose text names 'compromise of boot memory'; unbootable outcome held by IMP-0012, EX-0005, EX-0005.02."
+  },
+  {
+   "finding": "EX-0010.02 Wiper and EX-0012.03 over-keep; duplicate TR26 and TR46 (minor).",
+   "action": "fixed: both dropped (D-OTHER to TR26 and TR46); EX-0005 and EX-0005.02 are the core."
+  },
+  {
+   "finding": "IMP-0012 as K-EFFECT states the action itself (minor).",
+   "action": "kept because: ENISA's outcome is 'inoperable or unable to boot'; IMP-0012 (replace firmware) is the only SPARTA impact that fits replaced or corrupted firmware."
+  },
+  {
+   "finding": "Reason text contains process commentary (EX-0006) (minor).",
+   "action": "fixed: EX-0006 is D-UNDESCRIBED with a clean one-sentence reason; no re-pointing text left."
+  },
+  {
+   "finding": "review2_B: no finding requiring a change",
+   "action": "kept; re-validated after the engine change."
+  }
+ ]
+}

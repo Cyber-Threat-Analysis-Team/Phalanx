@@ -1,0 +1,61 @@
+{
+ "id": "TR10",
+ "source": "ENISA Space Threat Landscape 2025, Annex C Table 17 (via Phalanx/framework/enisa_threats_tuple.csv)",
+ "category": "UD",
+ "name": "Inadequate security planning/management",
+ "cia": [
+  "A",
+  "C",
+  "I"
+ ],
+ "affected_asset_selectors": [
+  "Ground: all assets",
+  "Space: all assets",
+  "User: all assets",
+  "Human Resources: all assets"
+ ],
+ "description": "Lack of appropriate security planning in the Planning/Design phases of the lifecycle, resulting in a lack of testing, for example. Lack of adequate security management once the satellite infrastructure is in the operation phase may lead to unidentified or exposed critical assets, which results in a lack of relevant security measures due to limited visibility of the infrastructure in its entirety.",
+ "projection": {
+  "candidate_assets": [
+   "bus_cdhs",
+   "bus_cdhs_f",
+   "bus_com",
+   "core_5gc",
+   "fsw_update",
+   "ground_moc",
+   "ground_ttc",
+   "integration_site",
+   "ran_cu",
+   "ran_du"
+  ],
+  "candidate_lifecycle": [
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7
+  ],
+  "lifecycle_rule": "ET-P-LC-01 (legacy tuple L field; Annex C has no lifecycle column)",
+  "derivation_provenance": {
+   "kind": "source_field",
+   "source": "Phalanx/framework/enisa_threats_tuple.csv row TR10",
+   "source_sha256": "c086e9d7221893d69e2ff6d380e3b2024aecc144bac8f034218b6814ef060b52",
+   "field": "L (lifecycle)",
+   "note": "candidate_lifecycle copies the legacy tuple L field {3,4,5,6,7}; ENISA STL 2025 Annex C has no lifecycle column, so the basis is the legacy tuple, not the Annex"
+  },
+  "applicable_boundary_roles": [
+   "command_authority"
+  ]
+ },
+ "claims": [
+  {
+   "sv": "SV-SP-2",
+   "quote": "resulting in a lack of testing",
+   "basis": "enisa_quote",
+   "rationale": "SV-SP-2 describes inadequate testing from poor security planning."
+  }
+ ],
+ "crosswalk_key": "Inadequate security planning/management"
+}

@@ -1,0 +1,55 @@
+{
+  "threat": "TR52",
+  "status": "draft (analyst-authored, not frozen)",
+  "source_text": "ENISA STL 2025 Annex C Table 17, TR52 description",
+  "clauses": {
+    "ET-EV-01": {
+      "clause": "taking control of space assets by exploiting existing vulnerabilities",
+      "techniques": [
+        "EX-0009",
+        "EX-0009.01",
+        "EX-0009.02",
+        "EX-0005.01"
+      ],
+      "rationale": "semantic"
+    },
+    "ET-EV-02": {
+      "clause": "overtaking control of the management segment",
+      "techniques": [
+        "IA-0007",
+        "PER-0003",
+        "IA-0004.01"
+      ],
+      "rationale": "semantic"
+    },
+    "ET-EV-03": {
+      "clause": "to execute malicious commands",
+      "techniques": [
+        "IA-0007.02",
+        "IA-0008.01",
+        "EX-0001.01",
+        "EX-0005.02",
+        "EX-0012.10"
+      ],
+      "rationale": "semantic"
+    },
+    "ET-EV-04": {
+      "clause": "complete lockout of legitimate satellite users by overtaking access control",
+      "techniques": [
+        "PER-0004",
+        "EX-0003",
+        "PER-0005"
+      ],
+      "rationale": "semantic"
+    },
+    "ET-EV-05": {
+      "clause": "Threats to the availability of the satellite bus",
+      "techniques": [
+        "IMP-0008",
+        "IMP-0011",
+        "IMP-0013"
+      ],
+      "rationale": "semantic"
+    }
+  }
+}

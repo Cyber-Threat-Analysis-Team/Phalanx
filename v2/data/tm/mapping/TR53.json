@@ -1,0 +1,766 @@
+{
+  "threat": "TR53",
+  "status": "proposed",
+  "author": "assistant sub-agent V3G5 (v3 re-map); fix pass Fix1",
+  "date": "2026-10-27",
+  "vectors": [
+    {
+      "vector": "ground",
+      "basis": "weak",
+      "enisa_quote": "all segments of the satellite lifecycle can be affected",
+      "reason": "ENISA names no site; the control centre and ground design and development staff are implied by 'the victim' being a person who works on the lifecycle and by the ground assets listed, not by any quoted place."
+    },
+    {
+      "vector": "supply_chain",
+      "basis": "weak",
+      "enisa_quote": "all segments of the satellite lifecycle can be affected",
+      "reason": "Implied by 'all segments of the satellite lifecycle': manufacture and integration staff are victims too; the text does not name vendors or integrators."
+    },
+    {
+      "vector": "trusted_party",
+      "basis": "weak",
+      "enisa_quote": "all segments of the satellite lifecycle can be affected",
+      "reason": "Phishing reaches partner and vendor staff too, whose approved connections the mission trusts; ENISA names no partner or vendor, so the path is inferred from 'all segments'."
+    }
+  ],
+  "notes": [
+    "EXF-0008 is analyst_added for the supply_chain vector: no source proposed a development-site exfiltration for TR53, and the supply_chain vector needs an outcome for 'gathering sensitive information'."
+  ],
+  "review_response": [
+    {
+      "finding": "Vector reason says 'control centre, design and development' but only ground is chosen; RD-0002 reason invents vendors; IA-0009.01 dropped as 'names no external party'",
+      "action": "fixed: ground is marked basis weak with a reason that says what it is implied from; a second vector supply_chain (weak, same quote) covers the vendor and integrator side, kept entry IA-0009.02 -> EXF-0008. The RD-0002 reason now cites SPARTA's own description (spear-phishing of operators and vendors), not ENISA. IA-0009.01 stays dropped because the text names no collaborator."
+    },
+    {
+      "finding": "'design and development' is not a ground-system site in attack_surface.json",
+      "action": "kept because the ground origin attaches from the operations centre and the flight-software pipeline (fsw_pipeline), which is where design and development staff work; the reason now says so."
+    },
+    {
+      "finding": "IA-0007 K-ENABLE has no enisa_quote",
+      "action": "fixed: enisa_quote 'launch of phishing or spear phishing' added to IA-0007 and IA-0009.02."
+    },
+    {
+      "finding": "IMP-0008 -> TR28 reason adds nothing about why social engineering is not the cause",
+      "action": "kept because TR28 keeps IMP-0008 and TR53 states no outcome on the spacecraft; the reason says so."
+    },
+    {
+      "finding": "Inconsistent routing of IA-0007.02 (TR16 keeps; TR43, TR53, TR37, TR35 send to TR52)",
+      "action": "kept because ENISA's 'perform specific actions that the adversary wants them to do' names no commanding; IA-0007.02 stays D-OTHER TR52, the routing the review recommends for all threats."
+    },
+    {
+      "finding": "fix pass M8: a phished vendor employee is supply_chain here but trusted_party in TR43, TR37 and TR16",
+      "action": "fixed: trusted_party vector added (weak) with IA-0009 enabling EXF-0007; IA-0009.02 stays the supply_chain entry for the vendor's own environment, and the reason says how the two differ. TR16 now ends its supply_chain vector in EXF-0008 as TR53 does."
+    }
+  ],
+  "rows": [
+    {
+      "technique": "IA-0007",
+      "framework": "SPARTA",
+      "code": "K-ENABLE",
+      "role": "entry",
+      "enables": "EXF-0007",
+      "vectors": [
+        "ground"
+      ],
+      "enisa_quote": "launch of phishing or spear phishing",
+      "sparta_quote": "Compromising the ground segment gives an adversary the most direct path to first execution against a spacecraft",
+      "reason": "A phished operator or contractor gives the adversary a foothold in the mission's ground systems; this is the route to the information-gathering outcome ENISA names.",
+      "sources": [
+        "crosswalk",
+        "origin"
+      ]
+    },
+    {
+      "technique": "EXF-0007",
+      "framework": "SPARTA",
+      "code": "K-EFFECT",
+      "role": "exfiltration",
+      "vectors": [
+        "ground",
+        "trusted_party"
+      ],
+      "enisa_quote": "gathering sensitive information",
+      "sparta_quote": "The adversary resides in mission ground infrastructure and uses its trusted position to siphon data at scale",
+      "reason": "Gathering sensitive information is the outcome ENISA names; from a phished ground foothold the adversary siphons mission data.",
+      "sources": [
+        "crosswalk"
+      ]
+    },
+    {
+      "technique": "IA-0009.02",
+      "framework": "SPARTA",
+      "code": "K-ENABLE",
+      "role": "entry",
+      "enables": "EXF-0008",
+      "vectors": [
+        "supply_chain"
+      ],
+      "enisa_quote": "launch of phishing or spear phishing",
+      "sparta_quote": "Vendors that design, integrate, or support mission systems often hold elevated, persistent routes into operations",
+      "reason": "ENISA says all lifecycle segments are affected, which includes suppliers and integrators; a phished vendor employee gives the attacker the vendor's own development and build environment, whereas the trusted_party vector rides the vendor's approved route into the mission.",
+      "sources": [
+        "origin"
+      ]
+    },
+    {
+      "technique": "EXF-0008",
+      "framework": "SPARTA",
+      "code": "K-EFFECT",
+      "role": "exfiltration",
+      "vectors": [
+        "supply_chain"
+      ],
+      "enisa_quote": "gathering sensitive information",
+      "sparta_quote": "the adversary gains access to source code, test vectors, telemetry captures, build artifacts, documentation, and configuration data",
+      "reason": "The development and integration environment is where 'gathering sensitive information' lands in the design, development and integration phases ENISA lists; no candidate source proposed an exfiltration for that side.",
+      "sources": [
+        "analyst_added"
+      ]
+    },
+    {
+      "technique": "RD-0002",
+      "framework": "SPARTA",
+      "code": "P-PREP",
+      "enables": "IA-0007",
+      "reason": "SPARTA's own description of compromising infrastructure lists 'spear-phishing of operators and vendors' as a way in, and ENISA names spear phishing; the compromised account or mailbox is the attacker resource used to reach the victim.",
+      "sources": [
+        "crosswalk"
+      ]
+    },
+    {
+      "technique": "RD-0002.01",
+      "framework": "SPARTA",
+      "code": "P-PREP",
+      "enables": "IA-0007",
+      "reason": "SPARTA names 'phishing an operator or contractor' as the typical path into a mission-operated ground system, the phishing ENISA states.",
+      "sources": [
+        "crosswalk"
+      ]
+    },
+    {
+      "technique": "REC-0002.02",
+      "framework": "SPARTA",
+      "code": "P-PREP",
+      "enables": "IA-0007",
+      "reason": "Mapping the people and roles around the mission finds the targets of spear phishing, whose victim is chosen by the attacker.",
+      "sources": [
+        "crosswalk"
+      ]
+    },
+    {
+      "technique": "DE-0002.01",
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Inhibiting ground functionality is not described; ENISA states information gathering.",
+      "sources": [
+        "crosswalk"
+      ]
+    },
+    {
+      "technique": "DE-0004",
+      "framework": "SPARTA",
+      "code": "D-OTHER",
+      "other_threat": "TR43",
+      "reason": "Presenting oneself as an authorized origin with insider credentials is identity takeover (TR43); TR53 states deception of the victim, not use of stolen identity.",
+      "sources": [
+        "crosswalk"
+      ]
+    },
+    {
+      "technique": "DE-0005",
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Using safe mode to subvert protections is not described.",
+      "sources": [
+        "crosswalk"
+      ]
+    },
+    {
+      "technique": "DE-0011",
+      "framework": "SPARTA",
+      "code": "D-OTHER",
+      "other_threat": "TR43",
+      "reason": "Using valid credentials to evade detection is identity-takeover behaviour (TR43), not stated for phishing.",
+      "sources": [
+        "crosswalk"
+      ]
+    },
+    {
+      "technique": "EX-0001.01",
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Replaying command packets is not described; the phished victim acts, no packet is replayed.",
+      "sources": [
+        "crosswalk"
+      ]
+    },
+    {
+      "technique": "EX-0005.01",
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Exploiting hardware design flaws is not described; phishing targets people.",
+      "sources": [
+        "crosswalk"
+      ]
+    },
+    {
+      "technique": "EX-0005.02",
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Misusing hardware commands is not described.",
+      "sources": [
+        "crosswalk"
+      ]
+    },
+    {
+      "technique": "EX-0011",
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Exploiting reduced protection in safe mode is not described.",
+      "sources": [
+        "crosswalk"
+      ]
+    },
+    {
+      "technique": "EX-0014",
+      "framework": "SPARTA",
+      "code": "D-OTHER",
+      "other_threat": "TR54",
+      "reason": "Spoofing a signal to a receiver is TR54; TR53 deceives a person, not a receiver.",
+      "sources": [
+        "crosswalk"
+      ]
+    },
+    {
+      "technique": "EXF-0001",
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Replay of captured traffic is not described.",
+      "sources": [
+        "crosswalk"
+      ]
+    },
+    {
+      "technique": "EXF-0003.01",
+      "framework": "SPARTA",
+      "code": "D-OTHER",
+      "other_threat": "TR29",
+      "reason": "Intercepting the uplink is interception of communication (TR29); phishing does not reach the RF link.",
+      "sources": [
+        "crosswalk"
+      ]
+    },
+    {
+      "technique": "EXF-0010",
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Exfiltration through a payload channel is not described; ENISA names no channel.",
+      "sources": [
+        "crosswalk"
+      ]
+    },
+    {
+      "technique": "IA-0001",
+      "framework": "SPARTA",
+      "code": "D-OTHER",
+      "other_threat": "TR55",
+      "reason": "Inserting malicious artifacts into delivered components is the supply chain compromise ENISA TR55 describes; TR53 names deception and information gathering, no insertion.",
+      "sources": [
+        "origin"
+      ]
+    },
+    {
+      "technique": "IA-0001.01",
+      "framework": "SPARTA",
+      "code": "D-OTHER",
+      "other_threat": "TR55",
+      "reason": "Tainting dependencies and development tools is the open-source compromise named in TR55; a phished developer is not described as altering them.",
+      "sources": [
+        "origin"
+      ]
+    },
+    {
+      "technique": "IA-0001.02",
+      "framework": "SPARTA",
+      "code": "D-OTHER",
+      "other_threat": "TR55",
+      "reason": "Delivering altered software is the supply chain compromise ENISA TR55 describes; TR53 states no software delivery.",
+      "sources": [
+        "origin"
+      ]
+    },
+    {
+      "technique": "IA-0001.03",
+      "framework": "SPARTA",
+      "code": "D-OTHER",
+      "other_threat": "TR55",
+      "reason": "Altering hardware before delivery is the third-party component compromise ENISA TR55 describes; TR53 states no change to hardware.",
+      "sources": [
+        "origin"
+      ]
+    },
+    {
+      "technique": "IA-0002",
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Compromise of a software-defined radio is not described; phishing targets people.",
+      "sources": [
+        "origin"
+      ]
+    },
+    {
+      "technique": "IA-0003",
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Reaching a satellite over a crosslink is not described; phishing targets staff.",
+      "sources": [
+        "crosswalk",
+        "origin"
+      ]
+    },
+    {
+      "technique": "IA-0004",
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "A secondary or backup channel is not mentioned.",
+      "sources": [
+        "crosswalk",
+        "origin"
+      ]
+    },
+    {
+      "technique": "IA-0004.01",
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "A backup ground station is not mentioned.",
+      "sources": [
+        "crosswalk",
+        "origin"
+      ]
+    },
+    {
+      "technique": "IA-0004.02",
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "A receiver foothold is not mentioned.",
+      "sources": [
+        "crosswalk",
+        "origin"
+      ]
+    },
+    {
+      "technique": "IA-0005",
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Rendezvous and proximity operations are not described; phishing is remote.",
+      "sources": [
+        "origin"
+      ]
+    },
+    {
+      "technique": "IA-0005.01",
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Emanations collection is not described; phishing is by message.",
+      "sources": [
+        "origin"
+      ]
+    },
+    {
+      "technique": "IA-0005.02",
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Docked-vehicle access is not described.",
+      "sources": [
+        "origin"
+      ]
+    },
+    {
+      "technique": "IA-0005.03",
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Grappling a satellite is not described.",
+      "sources": [
+        "origin"
+      ]
+    },
+    {
+      "technique": "IA-0006",
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "A hosted payload is not mentioned.",
+      "sources": [
+        "crosswalk",
+        "origin"
+      ]
+    },
+    {
+      "technique": "IA-0007.01",
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Tampering with the update pipeline is not described.",
+      "sources": [
+        "origin"
+      ]
+    },
+    {
+      "technique": "IA-0007.02",
+      "framework": "SPARTA",
+      "code": "D-OTHER",
+      "other_threat": "TR52",
+      "reason": "Sending valid-looking commands from a compromised ground system is the malicious commanding of TR52; TR53 states no commanding.",
+      "sources": [
+        "crosswalk",
+        "origin"
+      ]
+    },
+    {
+      "technique": "IA-0008",
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "An outside RF transmitter is not described; the deception is aimed at people.",
+      "sources": [
+        "crosswalk",
+        "origin"
+      ]
+    },
+    {
+      "technique": "IA-0008.01",
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "A rogue ground station is not described; the deception is aimed at people.",
+      "sources": [
+        "crosswalk",
+        "origin"
+      ]
+    },
+    {
+      "technique": "IA-0008.02",
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "A rogue spacecraft is not described.",
+      "sources": [
+        "crosswalk",
+        "origin"
+      ]
+    },
+    {
+      "technique": "IA-0008.03",
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "A counterspace weapon is not described.",
+      "sources": [
+        "origin"
+      ]
+    },
+    {
+      "technique": "IA-0009",
+      "framework": "SPARTA",
+      "code": "K-ENABLE",
+      "role": "entry",
+      "enables": "EXF-0007",
+      "vectors": [
+        "trusted_party"
+      ],
+      "enisa_quote": "launch of phishing or spear phishing",
+      "sparta_quote": "riding connections that the mission already trusts",
+      "reason": "A phished partner or vendor employee gives the adversary the approved connection into the mission's enclaves; the parent technique covers collaborator and vendor identities alike, as in TR43, TR37 and TR16.",
+      "sources": [
+        "origin"
+      ]
+    },
+    {
+      "technique": "IA-0009.01",
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Compromise of a mission collaborator is not mentioned; the text names no external party.",
+      "sources": [
+        "crosswalk",
+        "origin"
+      ]
+    },
+    {
+      "technique": "IA-0009.03",
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "User-segment access is not described.",
+      "sources": [
+        "origin"
+      ]
+    },
+    {
+      "technique": "IA-0010",
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Timing access to safe mode is not described.",
+      "sources": [
+        "crosswalk",
+        "origin"
+      ]
+    },
+    {
+      "technique": "IA-0011",
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Tainted peripherals are not described; phishing is by message.",
+      "sources": [
+        "crosswalk",
+        "origin"
+      ]
+    },
+    {
+      "technique": "IA-0012",
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Assembly, test and launch operations are not described.",
+      "sources": [
+        "crosswalk",
+        "origin"
+      ]
+    },
+    {
+      "technique": "IA-0013",
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Using a host spacecraft to reach a hosted payload is not described.",
+      "sources": [
+        "origin"
+      ]
+    },
+    {
+      "technique": "IMP-0007",
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Using existing spacecraft functions for harm is not described; ENISA names information gathering.",
+      "sources": [
+        "impact"
+      ]
+    },
+    {
+      "technique": "IMP-0008",
+      "framework": "SPARTA",
+      "code": "D-OTHER",
+      "other_threat": "TR28",
+      "reason": "Forcing a state or mode change is the unauthorized-guidance-command behaviour of TR28; TR53 states no outcome on the spacecraft.",
+      "sources": [
+        "impact"
+      ]
+    },
+    {
+      "technique": "IMP-0009",
+      "framework": "SPARTA",
+      "code": "D-OTHER",
+      "other_threat": "TR57",
+      "reason": "Altering settings while code stays intact is parameter modification (TR57); TR53 states no such change.",
+      "sources": [
+        "impact"
+      ]
+    },
+    {
+      "technique": "IMP-0010",
+      "framework": "SPARTA",
+      "code": "D-OTHER",
+      "other_threat": "TR39",
+      "reason": "Falsifying or deleting data is data modification (TR39); TR53 states information gathering.",
+      "sources": [
+        "impact"
+      ]
+    },
+    {
+      "technique": "IMP-0011",
+      "framework": "SPARTA",
+      "code": "D-OTHER",
+      "other_threat": "TR32",
+      "reason": "Blocking or redirecting commands and data is traffic manipulation (TR32); not stated in TR53.",
+      "sources": [
+        "impact"
+      ]
+    },
+    {
+      "technique": "IMP-0012",
+      "framework": "SPARTA",
+      "code": "D-OTHER",
+      "other_threat": "TR42",
+      "reason": "Replacing firmware or logic is firmware corruption (TR42); not stated in TR53.",
+      "sources": [
+        "impact"
+      ]
+    },
+    {
+      "technique": "IMP-0013",
+      "framework": "SPARTA",
+      "code": "D-OTHER",
+      "other_threat": "TR51",
+      "reason": "Depleting a resource is resource exhaustion (TR51); not stated in TR53.",
+      "sources": [
+        "impact"
+      ]
+    },
+    {
+      "technique": "IMP-0014",
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Altering the clock or synchronisation is not described.",
+      "sources": [
+        "impact"
+      ]
+    },
+    {
+      "technique": "LM-0001",
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Moving into a hosted payload is not described.",
+      "sources": [
+        "crosswalk",
+        "origin"
+      ]
+    },
+    {
+      "technique": "LM-0003",
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Hopping between satellites over crosslinks is not described.",
+      "sources": [
+        "crosswalk",
+        "origin"
+      ]
+    },
+    {
+      "technique": "LM-0007",
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Reusing credentials to cross boundaries is not stated; ENISA gives no steps after the deception.",
+      "sources": [
+        "crosswalk"
+      ]
+    },
+    {
+      "technique": "PER-0003",
+      "framework": "SPARTA",
+      "code": "D-OTHER",
+      "other_threat": "TR35",
+      "reason": "Staying inside the ground infrastructure is the maintained unauthorized access of TR35; TR53 states no persistence.",
+      "sources": [
+        "crosswalk"
+      ]
+    },
+    {
+      "technique": "PER-0004",
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Replacing cryptographic keys is not described.",
+      "sources": [
+        "crosswalk"
+      ]
+    },
+    {
+      "technique": "PER-0005",
+      "framework": "SPARTA",
+      "code": "D-OTHER",
+      "other_threat": "TR35",
+      "reason": "Keeping access with valid credentials is the 'gaining and maintaining unauthorized access' of TR35, which names phishing as a route; TR53 states no persistence.",
+      "sources": [
+        "crosswalk"
+      ]
+    },
+    {
+      "technique": "RD-0001.01",
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Acquiring ground station equipment is not needed for phishing.",
+      "sources": [
+        "crosswalk"
+      ]
+    },
+    {
+      "technique": "RD-0003.02",
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Obtaining cryptographic keys is not described.",
+      "sources": [
+        "crosswalk"
+      ]
+    },
+    {
+      "technique": "RD-0004.01",
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Choosing a delivery mechanism in general terms does not say what phishing does; its description names no phishing.",
+      "sources": [
+        "crosswalk"
+      ]
+    },
+    {
+      "technique": "REC-0001",
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Gathering spacecraft design information is not what spear phishing needs; ENISA mentions nothing about design.",
+      "sources": [
+        "crosswalk"
+      ]
+    },
+    {
+      "technique": "REC-0003.02",
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Commanding details are not described as the target of the deception.",
+      "sources": [
+        "crosswalk"
+      ]
+    },
+    {
+      "technique": "REC-0003.04",
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Credential theft is not what ENISA says; it states manipulation of the victim, and no kept row needs credentials.",
+      "sources": [
+        "crosswalk"
+      ]
+    },
+    {
+      "technique": "REC-0004",
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Launch information is not described.",
+      "sources": [
+        "crosswalk"
+      ]
+    },
+    {
+      "technique": "REC-0005.01",
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Eavesdropping on the uplink is not part of phishing.",
+      "sources": [
+        "crosswalk"
+      ]
+    },
+    {
+      "technique": "REC-0008",
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Supply-chain information is not what ENISA's phishing targets.",
+      "sources": [
+        "crosswalk"
+      ]
+    },
+    {
+      "technique": "REC-0008.01",
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Hardware reconnaissance is not described.",
+      "sources": [
+        "crosswalk"
+      ]
+    },
+    {
+      "technique": "REC-0008.04",
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Business relationships of suppliers are not named; the ENISA text speaks of victims in general.",
+      "sources": [
+        "crosswalk"
+      ]
+    }
+  ]
+}

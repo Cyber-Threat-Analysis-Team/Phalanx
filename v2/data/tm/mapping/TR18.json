@@ -1,0 +1,633 @@
+{
+ "threat": "TR18",
+ "status": "proposed",
+ "author": "assistant sub-agent V3G8 (v3 re-map); fix pass Fix2",
+ "date": "2026-10-27",
+ "vectors": [
+  {
+   "vector": "proximity",
+   "basis": "quote",
+   "enisa_quote": "proximity operations where rogue space objects approach space assets",
+   "reason": "ENISA names rogue space objects approaching the satellite and space- or ground-based weapons acting on it; both are the proximity origin (a close vehicle or a counterspace weapon node)."
+  }
+ ],
+ "rows": [
+  {
+   "technique": "DE-0009",
+   "sources": [
+    "sv:SV-AC-5"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Concealment and decoys are not mentioned; ENISA says rogue objects approach but not that they hide.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "DE-0009.01",
+   "sources": [
+    "sv:SV-AC-5"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Blending into a debris field is a stealth posture that ENISA does not describe.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EX-0015",
+   "sources": [
+    "sv:SV-AC-5"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Observing or perturbing physical byproducts of computation extracts secrets; ENISA's spying is capability assessment, not side-channel attack.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EX-0017",
+   "sources": [
+    "crosswalk",
+    "sv:SV-AC-5"
+   ],
+   "code": "K-EFFECT",
+   "role": "impact",
+   "vectors": [
+    "proximity"
+   ],
+   "enisa_quote": "Deliberate physical damage to the satellite or some of its segments",
+   "sparta_quote": "The adversary inflicts damage by physically striking space assets",
+   "reason": "Physical destruction of the satellite by a kinetic strike is the outcome ENISA states.",
+   "role_reason": "EX-0017 is a SPARTA Execution technique, but the physical destruction by an ASAT is the outcome ENISA states, so it closes the chain as impact",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EX-0017.01",
+   "sources": [
+    "crosswalk",
+    "sv:SV-AC-5"
+   ],
+   "code": "K-ACTION",
+   "role": "execution",
+   "enisa_quote": "space or ground based directed nergy weapons or kinetic weapons",
+   "sparta_quote": "launching from the Earth to damage or destroy a satellite in orbit",
+   "reason": "Ground-launched kinetic ASAT is described.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EX-0017.02",
+   "sources": [
+    "crosswalk",
+    "sv:SV-AC-5"
+   ],
+   "code": "K-ACTION",
+   "role": "execution",
+   "enisa_quote": "making physical contact (ramming)",
+   "sparta_quote": "deliberate collision or near-field detonation",
+   "reason": "A rogue space object ramming the satellite is the co-orbital ASAT.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EX-0018",
+   "sources": [
+    "crosswalk",
+    "sv:SV-AC-5"
+   ],
+   "code": "K-EFFECT",
+   "role": "impact",
+   "vectors": [
+    "proximity"
+   ],
+   "enisa_quote": "Deliberate physical damage to the satellite or some of its segments",
+   "sparta_quote": "The adversary inflicts physical effects on a satellite without mechanical contact",
+   "reason": "Physical damage by directed energy without contact is the outcome ENISA states for energy weapons.",
+   "role_reason": "EX-0018 is a SPARTA Execution technique, but physical damage by energy weapons is the outcome ENISA states, so it closes the chain as impact",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EX-0018.01",
+   "sources": [
+    "crosswalk",
+    "sv:SV-AC-5"
+   ],
+   "code": "K-ACTION",
+   "role": "execution",
+   "enisa_quote": "lectromagnetic pulse (EMP), high-powered laser weapons",
+   "sparta_quote": "An EMP delivers a broadband, high-amplitude electromagnetic transient",
+   "reason": "ENISA names EMP and high-altitude nuclear detonation.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EX-0018.02",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "K-ACTION",
+   "role": "execution",
+   "enisa_quote": "high-powered laser weapons, laser dazzling and blinding",
+   "sparta_quote": "If directed toward a satellite’s optical center, the attack is known as blinding or dazzling",
+   "reason": "ENISA names high-powered laser weapons, dazzling and blinding.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EX-0018.03",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "K-ACTION",
+   "role": "execution",
+   "enisa_quote": "high-powered microwave (HPM) weapons",
+   "sparta_quote": "High-powered microwave (HPM) weapons can be used to disrupt or destroy a satellite’s electronics",
+   "reason": "ENISA names high-powered microwave weapons.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EXF-0002",
+   "sources": [
+    "sv:SV-AC-5"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Side-channel exfiltration infers secrets from physical byproducts; ENISA names no secret extraction.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EXF-0002.01",
+   "sources": [
+    "sv:SV-AC-5"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Power analysis needs measurement of the target's own power draw; not stated for an approaching object.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EXF-0002.02",
+   "sources": [
+    "sv:SV-AC-5"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Electromagnetic-leakage analysis is a signal-analysis method; the ENISA text states only spying in general, which EXF-0005 covers.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EXF-0002.03",
+   "sources": [
+    "sv:SV-AC-5"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Traffic analysis of relays and constellations is not described by the ASAT text.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EXF-0002.04",
+   "sources": [
+    "sv:SV-AC-5"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Timing attacks on responses are not described.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EXF-0002.05",
+   "sources": [
+    "sv:SV-AC-5"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Thermal imaging of processors is not described.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EXF-0005",
+   "sources": [
+    "crosswalk",
+    "sv:SV-AC-5"
+   ],
+   "code": "K-EFFECT",
+   "role": "exfiltration",
+   "enisa_quote": "for the purpose of assessing their capabilities (spying)",
+   "sparta_quote": "A nearby vehicle serves as the collection platform for unintended emissions",
+   "reason": "Proximity spying on the satellite is stated as a purpose of the approach.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0001",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-OTHER",
+   "reason": "Insertion of malicious code or data during manufacturing or delivery is the supply-chain compromise of TR55; ASAT damage is not delivered through a supplier.",
+   "other_threat": "TR55",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0001.01",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-OTHER",
+   "reason": "Poisoning developer dependencies and build tools is a supply-chain method (TR55); no software is mentioned in TR18.",
+   "other_threat": "TR55",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0001.02",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-OTHER",
+   "reason": "Altering software before delivery is supply-chain compromise (TR55); no delivery step in the ASAT text.",
+   "other_threat": "TR55",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0001.03",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-OTHER",
+   "reason": "Altering boards or programmable logic before delivery is the built-in tainted hardware of TR15, not an ASAT attack.",
+   "other_threat": "TR15",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0002",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Compromising a software-defined radio is a radio-side foothold; not part of the weapons or proximity operations that ENISA lists.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0003",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "A compromised neighbour satellite over an inter-satellite link is not a rogue object in the ENISA sense; no crosslink is described.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0004",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "A secondary communication path is not mentioned in the ASAT description.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0004.01",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "A backup ground station is not mentioned; the ground element of TR18 is a weapon, not a station foothold.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0004.02",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "The backup RF receive path is not mentioned in the ASAT description.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0005",
+   "sources": [
+    "crosswalk",
+    "sv:SV-AC-5",
+    "origin"
+   ],
+   "code": "K-ENABLE",
+   "role": "entry",
+   "enables": "EX-0017.02",
+   "sparta_quote": "co-orbit and approach a target closely enough for local sensing, signaling, or physical interaction",
+   "reason": "A rogue space object reaches the satellite by rendezvous and proximity operations before spying or ramming; it is the entry of the co-orbital ramming step (single-valued enables; the spying entry is IA-0005.01).",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0005.01",
+   "sources": [
+    "sv:SV-AC-5",
+    "origin"
+   ],
+   "code": "K-ENABLE",
+   "role": "entry",
+   "enables": "EXF-0005",
+   "sparta_quote": "an adversary analyzes unintentional emissions to infer sensitive information",
+   "reason": "ENISA says the approach is 'for the purpose of assessing their capabilities (spying)'; observing emissions from a local vantage point is how a nearby object assesses a spacecraft, and EXF-0005 (kept) is the same activity, so the entry that leads to it is kept.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0005.02",
+   "sources": [
+    "sv:SV-AC-5",
+    "origin"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR20",
+   "reason": "Docking or OSAM capture is a connection of another vehicle (TR20 'docking of another satellite'), not an ASAT strike.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0005.03",
+   "sources": [
+    "crosswalk",
+    "sv:SV-AC-5",
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "ENISA says 'physical contact (ramming)': the parenthesis defines contact as a collision, while grappling captures the target to reach ports and debug pads; the text does not describe capture.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0006",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "A hosted payload as a door into the bus is not mentioned; the ASAT text does not describe an interface.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0007",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Compromising the mission ground system is a cyber foothold; TR18 describes weapons and approaching objects.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0007.01",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Tampering with the update pipeline is not part of an ASAT attack as ENISA describes it.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0007.02",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Commanding through a valid ground station is not an ASAT attack; no commanding is described.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0008",
+   "sources": [
+    "sv:SV-AC-5",
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Rogue External Entity is an actor-controlled transmitter interacting over RF to gain a foothold; ENISA's rogue objects act physically or with weapons.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0008.01",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "A rogue ground station transmitting mission signals is not what TR18 describes; its ground-based weapons are directed-energy or kinetic.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0008.02",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Rogue Spacecraft in SPARTA is a local RF peer emitting or relaying signals; ENISA's rogue objects spy, ram or fire weapons.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0008.03",
+   "sources": [
+    "crosswalk",
+    "sv:SV-AC-5",
+    "origin"
+   ],
+   "code": "K-ENABLE",
+   "role": "entry",
+   "enables": "EX-0018",
+   "sparta_quote": "directed-energy systems can dazzle sensors or upset electronics",
+   "reason": "The counterspace weapon is the node that delivers the directed-energy or kinetic attack from space or ground.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0009",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "A trusted relationship is not mentioned in the ASAT description.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0009.01",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Mission collaborators as access route are not mentioned in TR18.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0009.02",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-OTHER",
+   "reason": "Vendor access is a supply-chain relationship (TR55); no vendor appears in TR18.",
+   "other_threat": "TR55",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0009.03",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "End-user equipment as attacker origin is not mentioned in the ASAT description.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0010",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Timing first execution to safe-mode is not described; the ASAT effects are physical.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0011",
+   "sources": [
+    "sv:SV-AC-5",
+    "origin"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR20",
+   "reason": "Tainted peripherals and removable media are the rogue hardware/software connection of TR20, not an ASAT attack.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0012",
+   "sources": [
+    "sv:SV-AC-5",
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Compromise of assembly, test and launch operations is a pre-launch cyber compromise; the ASAT text has no ground-test setting.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0013",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "The host spacecraft as a door into a hosted payload is not mentioned in TR18.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IMP-0007",
+   "sources": [
+    "impact"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Using functions that already exist is not destruction by an ASAT weapon.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IMP-0008",
+   "sources": [
+    "impact"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR28",
+   "reason": "Forcing a state or mode change is the unauthorized-guidance-command behaviour of TR28, not weapon damage.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IMP-0009",
+   "sources": [
+    "impact"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR57",
+   "reason": "Altering settings while the code remains intact is parameter modification (TR57), not physical damage.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IMP-0010",
+   "sources": [
+    "impact"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR39",
+   "reason": "Falsifying or deleting data is data modification (TR39), not physical damage.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IMP-0011",
+   "sources": [
+    "impact"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR32",
+   "reason": "Blocking or redirecting commands and data is the traffic manipulation of TR32.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IMP-0012",
+   "sources": [
+    "impact"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR42",
+   "reason": "Replacing firmware or logic is firmware corruption (TR42), not physical damage.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IMP-0013",
+   "sources": [
+    "impact"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR51",
+   "reason": "Depleting a resource is resource exhaustion (TR51); ASAT damage is physical.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IMP-0014",
+   "sources": [
+    "impact"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Altering the clock or synchronisation is not described by the ASAT text.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "LM-0001",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Pivoting from a hosted payload into the host is not described; an ASAT strike does not pivot.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "LM-0003",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Hopping between satellites over a crosslink is not described by TR18.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "LM-0004",
+   "sources": [
+    "sv:SV-AC-5"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR20",
+   "reason": "A visiting-vehicle interface used for lateral movement after docking is the docking scenario of TR20; ASAT proximity operations here do not connect to the target.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "REC-0005.03",
+   "sources": [
+    "sv:SV-AC-5"
+   ],
+   "code": "P-PREP",
+   "enables": "EXF-0005",
+   "reason": "Close-range observation of the target is how the approach assesses capabilities (spying); it feeds the kept information gathering.",
+   "framework": "SPARTA"
+  }
+ ],
+ "review_response": [
+  {
+   "finding": "IA-0005.01 D-UNDESCRIBED but EXF-0005 K-EFFECT (same behaviour, two verdicts)",
+   "action": "fixed: IA-0005.01 is K-ENABLE entry enabling EXF-0005 (spying by observing emissions from a nearby object)."
+  },
+  {
+   "finding": "IA-0005.03 (grappling) D-UNDESCRIBED; ENISA allows 'physical contact'",
+   "action": "kept as D-UNDESCRIBED, reason sharpened: ENISA's 'physical contact (ramming)' defines contact as a collision; grappling captures the target to reach ports/debug pads, which the text does not describe."
+  },
+  {
+   "finding": "enables is single-valued, IA-0005 enables only EX-0017.02",
+   "action": "kept because the validator and engine take one enabler per row: IA-0005 enables EX-0017.02, IA-0005.01 enables EXF-0005, IA-0008.03 enables EX-0018. EX-0017.01 and EX-0018.01-.03 have no enabler row, so the engine reaches them from any accepted entry."
+  },
+  {
+   "finding": "EX-0017/EX-0018 K-EFFECT in TR17 and TR18",
+   "action": "fixed: both rows now carry role_reason (Execution technique that is the stated outcome); TR18 is the chain that presents the ASAT kill chain."
+  },
+  {
+   "finding": "m13: TR17/TR18 duplication",
+   "action": "TR18 is the presenting ASAT chain; TR17 holds the generic outcome only."
+  }
+ ]
+}

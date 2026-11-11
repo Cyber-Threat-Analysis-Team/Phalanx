@@ -1,0 +1,91 @@
+{
+  "_about": "Adversary role per ENISA threat. Default from the Annex C category: NAA, EIH, PA = adversarial; others = none. Overrides below use the ENISA description itself (the report is used as far as possible). 'adversarial' threats are mapped to SPARTA; 'enabling' threats are conditions that open the door for attacks (old rule R5) and are listed, not chained; 'none' have no attacker. Analyst-drafted, unreviewed.",
+  "default_adversarial_categories": [
+    "NAA",
+    "EIH",
+    "PA"
+  ],
+  "overrides": {
+    "TR06": {
+      "role": "enabling",
+      "quote": "Unavailability of security safeguards such as firewalls, virus scans, log monitoring",
+      "reason": "Unavailable safeguards are a condition for other attacks; the deliberate deactivation is TR50."
+    },
+    "TR13": {
+      "role": "adversarial",
+      "quote": "or attack directed at them",
+      "reason": "ENISA names attacks on the communication networks."
+    },
+    "TR15": {
+      "role": "adversarial",
+      "quote": "hidden, malicious capabilities that are built in during the design and development and assembly stages",
+      "reason": "Malicious capabilities are implanted on purpose."
+    },
+    "TR26": {
+      "role": "adversarial",
+      "quote": "counterfeit or copied software (e.g. pirated software) that may contain malware, such as disk wiper malware, or the provision of hardware components that contian back doors",
+      "reason": "Malware and backdoors delivered through third parties."
+    },
+    "TR27": {
+      "role": "adversarial",
+      "quote": "Third parties get access to information from disposed/recycled media",
+      "reason": "A third party obtains information it should not have."
+    },
+    "TR04": {
+      "role": "enabling",
+      "quote": "Unpatched/Outdated/Legacy COTS software deployed among the platform",
+      "reason": "A vulnerable condition, not an attack."
+    },
+    "TR07": {
+      "role": "enabling",
+      "quote": "potential materialization of threats to the satellite bus can impact a wider set of assets, including the satellite payload",
+      "reason": "Missing segregation widens other attacks."
+    },
+    "TR09": {
+      "role": "enabling",
+      "quote": "may lead to unauthorized access enabling data corruption/modification (intentional or non-intentional) by threat actors",
+      "reason": "Misconfiguration enables threat actors."
+    },
+    "TR10": {
+      "role": "enabling",
+      "quote": "results in a lack of relevant security measures",
+      "reason": "A planning gap that leaves assets unprotected."
+    },
+    "TR22": {
+      "role": "enabling",
+      "quote": "Leaked information can subsequently be abused for launching attacks",
+      "reason": "The leak enables later attacks; the leak itself has no stated attacker."
+    },
+    "TR24": {
+      "role": "enabling",
+      "quote": "could be a source of vulnerabilities and open the doors for subsequent threats and attacks",
+      "reason": "Negligence creates vulnerabilities."
+    },
+    "TR25": {
+      "role": "enabling",
+      "quote": "Postponing or ignoring security requirements (e.g. reporting, updates, patches)",
+      "reason": "Ignored patches leave vulnerabilities open."
+    },
+    "TR19": {
+      "role": "none",
+      "quote": "During the transfer, the asset may be lost",
+      "reason": "Loss in transit; ENISA names no attacker (category PA by default)."
+    },
+    "TR12": {
+      "role": "none",
+      "quote": "threats to Cloud infrastructure can deny availability of satellite receivers in the ground segment",
+      "reason": "A cloud/GSaaS tenant origin is not in the model (analyst decision); kept as a failure threat. Revisit if that origin is added."
+    }
+  },
+  "enabling_switches": {
+    "_about": "Which scenario setting each enabling threat corresponds to: the control it switches off, or 'vulnerability' when it only makes exploitation possible.",
+    "TR04": "vulnerability",
+    "TR06": "controls_off",
+    "TR07": "segregation",
+    "TR09": "controls_off",
+    "TR10": "controls_off",
+    "TR22": "reconnaissance",
+    "TR24": "vulnerability",
+    "TR25": "vulnerability"
+  }
+}

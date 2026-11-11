@@ -1,0 +1,556 @@
+{
+ "threat": "TR17",
+ "status": "proposed",
+ "author": "assistant sub-agent V3G8 (v3 re-map); fix pass Fix2",
+ "date": "2026-10-27",
+ "vectors": [
+  {
+   "vector": "proximity",
+   "basis": "weak",
+   "enisa_quote": "damage or destruction of satellite infrastructure (hardware and/or software)",
+   "reason": "ENISA names no place the attacker acts from; destroying hardware implies a weapon or object acting on the spacecraft from outside, which the model's proximity origin carries (counterspace weapon node). The weak step is the inference from 'hardware' to an external physical attacker."
+  },
+  {
+   "vector": "ground",
+   "basis": "weak",
+   "enisa_quote": "negatively impact availability of each segment of satellite lifecycle",
+   "reason": "ENISA names no attacker location; destruction of 'software' with availability lost in 'each segment' implies the attacker also reaches software in the ground systems. The weak step is that ENISA never says the software is attacked from the ground."
+  }
+ ],
+ "rows": [
+  {
+   "technique": "EX-0017",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "K-EFFECT",
+   "role": "impact",
+   "vectors": [
+    "proximity"
+   ],
+   "enisa_quote": "Intentional damage or destruction of satellite infrastructure",
+   "sparta_quote": "The adversary inflicts damage by physically striking space assets or their supporting elements",
+   "reason": "A physical strike is the intentional damage or destruction of satellite hardware that ENISA states; ENISA names no weapon, so the parent technique is kept and the weapon types stay with TR18.",
+   "role_reason": "EX-0017 is a SPARTA Execution technique, but physical destruction is the outcome ENISA states for hardware, so it closes the chain as impact",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EX-0017.01",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR18",
+   "reason": "Direct-ascent missile launch is the ASAT weapon that ENISA's ASAT threat TR18 spells out; TR17 only states intentional damage in general.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EX-0017.02",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR18",
+   "reason": "A co-orbital vehicle that rams or detonates is the rogue-space-object ASAT case that TR18 describes.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EX-0018",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "K-EFFECT",
+   "role": "impact",
+   "vectors": [
+    "proximity"
+   ],
+   "enisa_quote": "Intentional damage or destruction of satellite infrastructure",
+   "sparta_quote": "The adversary inflicts physical effects on a satellite without mechanical contact",
+   "reason": "Energy delivered without contact that damages hardware is intentional damage ENISA states without naming a weapon; the specific weapons stay with TR18.",
+   "role_reason": "EX-0018 is a SPARTA Execution technique, but non-contact physical damage is the outcome ENISA states for hardware, so it closes the chain as impact",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EX-0018.01",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR18",
+   "reason": "EMP and high-altitude nuclear detonation are named in TR18's ASAT list, not in this threat.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EX-0018.02",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR18",
+   "reason": "High-powered laser, dazzling and blinding are named in TR18's ASAT list, not in this threat.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EX-0018.03",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR18",
+   "reason": "High-powered microwave weapons are named in TR18's ASAT list, not in this threat.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EXF-0005",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR18",
+   "reason": "Close-range collection of emissions is the rogue-object spying that TR18 states; TR17 has no information-gathering purpose.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0001",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-OTHER",
+   "reason": "Inserting malicious code or data during manufacturing or delivery is the supply-chain compromise of TR55; TR17 describes destruction by an attacker, not a compromised supplier.",
+   "other_threat": "TR55",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0001.01",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-OTHER",
+   "reason": "Poisoning developer dependencies and build tools is a supply-chain method (TR55); not described by TR17.",
+   "other_threat": "TR55",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0001.02",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-OTHER",
+   "reason": "Altering software before it is delivered to flight or ground systems is the supply-chain case of TR55; TR17 names no delivery step.",
+   "other_threat": "TR55",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0001.03",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-OTHER",
+   "reason": "Tampering with boards or programmable logic before delivery is the built-in tainted hardware of TR15; TR17's hardware destruction is an attack, not a latent defect.",
+   "other_threat": "TR15",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0002",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Compromising a software-defined radio is a radio-side foothold; TR17 describes no attack on the radio.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0003",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "A compromised neighbour satellite as origin is not mentioned; TR17 names no crosslink.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0004",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "A secondary communication path is not mentioned; TR17 names no access path of this kind.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0004.01",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "A backup or standby ground station as foothold is not mentioned; ENISA names no ground access path.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0004.02",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "The backup RF receive path is not mentioned in TR17.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0005",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "code": "D-OTHER",
+   "reason": "Rendezvous and approach is the rogue-object proximity operation that TR18 states; TR17 never mentions an approach, so it is not kept here.",
+   "other_threat": "TR18",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0005.01",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Analysing emissions from a local vantage point is information gathering; TR17 states only damage.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0005.02",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-OTHER",
+   "reason": "Docking or OSAM capture is the connection of another vehicle that TR20 describes ('docking of another satellite'); TR17 does not mention connecting to the satellite.",
+   "other_threat": "TR20",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0005.03",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Grappling to reach service ports or test points is a way into interfaces, not a way to damage the structure; TR17 does not describe it.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0006",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "A hosted payload as a door into the bus is not mentioned; TR17 does not describe the host-payload boundary.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0007",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Foothold in the ground systems is kept only through its specific form IA-0007.02, which is the delivery path chosen for the wiper; the generic technique adds no step.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0007.01",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Tampering with the update pipeline is another delivery route for software destruction; ENISA names no route, so the single commanding route IA-0007.02 stands for the ground vector.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0007.02",
+   "sources": [
+    "origin"
+   ],
+   "code": "K-ENABLE",
+   "role": "entry",
+   "vectors": [
+    "ground"
+   ],
+   "enables": "EX-0010.02",
+   "sparta_quote": "Adversaries may use a compromised, mission-owned ground system to transmit legitimate-looking commands to the target spacecraft",
+   "reason": "A wiper has to reach on-board software; ENISA gives no route, and commands through a compromised mission ground station are the route that needs no further assumption (SPARTA's wiper description cites spacecraft-side effects).",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0008",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Rogue External Entity is an RF foothold from outside the ground pathway; TR17 describes destruction, not an RF interaction.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0008.01",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "A rogue ground station transmitting mission-compatible signals is not what ENISA describes; the destruction is physical or software destruction.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0008.02",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Rogue Spacecraft in SPARTA is a local RF peer emitting or relaying signals, not an attacker that damages hardware.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0008.03",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "code": "K-ENABLE",
+   "role": "entry",
+   "vectors": [
+    "proximity"
+   ],
+   "enables": "EX-0017",
+   "sparta_quote": "Adversaries leverage counterspace platforms to create conditions under which initial execution becomes possible or to impose effects directly",
+   "reason": "An actor-controlled counterspace node is the least-assuming way for an outside attacker to damage the hardware, since it needs no approach manoeuvre that TR17 never describes; it is TR17's only kept proximity entry.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0009",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "A trusted relationship as the way in is not mentioned in TR17.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0009.01",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Mission collaborators as an access route are not mentioned in TR17.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0009.02",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-OTHER",
+   "reason": "Vendor access to mission systems is the supply-chain relationship of TR55; TR17 does not name vendors.",
+   "other_threat": "TR55",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0009.03",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "End-user equipment as attacker origin is not mentioned; TR17 speaks of segments of the satellite lifecycle.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0010",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Timing the first execution to safe-mode is not described; TR17 states no timing.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0011",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "code": "D-OTHER",
+   "reason": "Tainted peripherals and removable media carrying malware are the rogue hardware/software connection of TR20, not stated in TR17.",
+   "other_threat": "TR20",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0012",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Compromise of assembly, test and launch is not described; TR17 names no integration setting.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0013",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "The host spacecraft as a door into a hosted payload is not mentioned in TR17.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IMP-0007",
+   "sources": [
+    "impact"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Triggering existing spacecraft functions for harm is not what ENISA says; it states physical or software destruction.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IMP-0008",
+   "sources": [
+    "impact"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR28",
+   "reason": "Forcing a state or mode change is the unauthorized-guidance-command behaviour of TR28, not destruction.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IMP-0009",
+   "sources": [
+    "impact"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR57",
+   "reason": "Altering settings while code stays intact is parameter modification (TR57); ENISA states destruction, not altered settings.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IMP-0010",
+   "sources": [
+    "impact"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR39",
+   "reason": "Falsifying or deleting data is the data modification of TR39; ENISA states destruction of infrastructure.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IMP-0011",
+   "sources": [
+    "impact"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR32",
+   "reason": "Blocking or redirecting commands and data is the traffic manipulation of TR32; it is not what TR17 says.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IMP-0012",
+   "sources": [
+    "impact"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR42",
+   "reason": "Replacing firmware or logic is firmware corruption (TR42); TR17 states destruction of hardware and software in general.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IMP-0013",
+   "sources": [
+    "impact"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR51",
+   "reason": "Depleting power, propellant or capacity is resource exhaustion (TR51); TR17 states no depletion.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IMP-0014",
+   "sources": [
+    "impact"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Shifting the on-board clock or sync is not described in the ENISA text.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "LM-0001",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Pivoting from a hosted payload into the host is not described by TR17.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "LM-0003",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Hopping between satellites over a crosslink is not described by TR17.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "PER-0002.01",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR15",
+   "reason": "A hardware backdoor built into the design is the hidden malicious capability of TR15; TR17 describes no persistence.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "REC-0006.02",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Learning an organisation's test tools is reconnaissance that no kept row of TR17 needs.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EX-0010.02",
+   "sources": [
+    "analyst_added"
+   ],
+   "code": "K-EFFECT",
+   "role": "impact",
+   "vectors": [
+    "ground"
+   ],
+   "enisa_quote": "satellite infrastructure (hardware and/or software)",
+   "sparta_quote": "Wipers deliberately destroy or irreversibly corrupt data and, in some cases, executable images to impair or end mission operations",
+   "reason": "'Destruction of ... software' is what a wiper does; SPARTA's wiper acts on spacecraft data and executables, so it is coded as an on-board execution step (SPARTA has no technique for wiping ground software).",
+   "framework": "SPARTA",
+   "role_reason": "EX-0010.02 is a SPARTA Execution technique, but destruction of software is the outcome ENISA states for software, so it closes the ground branch as impact"
+  }
+ ],
+ "review_response": [
+  {
+   "finding": "Wiper chain has no way to reach the spacecraft and the reason misdescribes the technique (EX-0010.02 ground wiper, only IA-0007 kept)",
+   "action": "fixed: EX-0010.02 is now K-ACTION (execution) on-board, reason states SPARTA's wiper acts on spacecraft data/executables; IA-0007.02 (commanding via valid GS) kept as entry enabling it; generic IA-0007 and IA-0007.01 dropped. SPARTA has no ground-software wiper technique (sparta_gap for that reading), so the ground reading is not coded."
+  },
+  {
+   "finding": "No ENISA text for either vector origin (proximity, ground)",
+   "action": "fixed: both vectors now carry basis 'weak' with a reason naming the inference (hardware destruction implies an external physical attacker; software destruction in 'each segment' implies ground software). The ENISA ground quote now matches the text ('availability of each segment') and the false claim 'ground segments' is removed. Not marked no-fit because contract v3 says a missing access path is not a no-fit."
+  },
+  {
+   "finding": "IA-0005 K-ENABLE (rendezvous) not supported by TR17",
+   "action": "fixed: IA-0005 is D-OTHER to TR18 (which states the approach). TR17's proximity entry is now IA-0008.03 (counterspace weapon node), which needs no approach manoeuvre."
+  },
+  {
+   "finding": "EX-0017 and EX-0018 K-EFFECT in both TR17 and TR18; say which presents the chain",
+   "action": "kept both: TR18 is the ASAT chain (weapon types as K-ACTION, entries, EXF-0005); TR17 is the generic 'damage/destruction' outcome (parents only, K-EFFECT with role_reason) plus the software-destruction branch. Report should show the weapon-specific chain under TR18 and not count TR17 as a second complete ASAT chain."
+  },
+  {
+   "finding": "M5: wiper branch had no outcome (complete never reached)",
+   "action": "fixed: EX-0010.02 is K-EFFECT with role impact and role_reason, like EX-0017/EX-0018, so the wiper closes the ground branch with 'destruction of software'."
+  },
+  {
+   "finding": "m13: TR17/TR18 duplication",
+   "action": "kept: TR18 is the presenting ASAT chain; TR17 proximity is the generic damage outcome and the report must not count it as a second complete ASAT chain."
+  }
+ ]
+}

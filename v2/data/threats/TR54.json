@@ -1,0 +1,49 @@
+{
+ "id": "TR54",
+ "source": "ENISA Space Threat Landscape 2025, Annex C Table 17 (via Phalanx/framework/enisa_threats_tuple.csv)",
+ "category": "NAA",
+ "name": "Spoofing",
+ "cia": [
+  "A",
+  "I"
+ ],
+ "affected_asset_selectors": [
+  "Ground: TTC Ground (Antenna, SLE/SDL protocol)",
+  "Space: BUS (COM)",
+  "User: VSAT"
+ ],
+ "description": "Also known as \"malicious misdirecton\". Threat aimed at deceiving the receiver, seeing adversaries transmitting erroneous data for malicious purposes via what appears to be a legitimate signal. Attacks involving spoofing can be launched on sensor data and/or guidance control, that is, on both the receiver and the transmitter end. Spoofing threats can result in malicious comands being sent to the satellite or erroneous data to the ground stations.",
+ "projection": {
+  "candidate_assets": [
+   "bus_com",
+   "ground_ttc"
+  ],
+  "candidate_lifecycle": [
+   3,
+   4,
+   5,
+   6,
+   7
+  ],
+  "lifecycle_rule": "ET-P-LC-01 (legacy tuple L field; Annex C has no lifecycle column)",
+  "derivation_provenance": {
+   "kind": "source_field",
+   "source": "Phalanx/framework/enisa_threats_tuple.csv row TR54",
+   "source_sha256": "c086e9d7221893d69e2ff6d380e3b2024aecc144bac8f034218b6814ef060b52",
+   "field": "L (lifecycle)",
+   "note": "candidate_lifecycle copies the legacy tuple L field {3,4,5,6,7}; ENISA STL 2025 Annex C has no lifecycle column, so the basis is the legacy tuple, not the Annex"
+  },
+  "applicable_boundary_roles": [
+   "command_authority"
+  ]
+ },
+ "claims": [
+  {
+   "sv": "SV-IT-1",
+   "quote": "transmitting erroneous data for malicious purposes via what appears to be a legitimate signal",
+   "basis": "enisa_quote",
+   "rationale": "Communications spoofing."
+  }
+ ],
+ "crosswalk_key": "Spoofing"
+}

@@ -1,0 +1,60 @@
+{
+ "id": "TR49",
+ "source": "ENISA Space Threat Landscape 2025, Annex C Table 17 (via Phalanx/framework/enisa_threats_tuple.csv)",
+ "category": "NAA",
+ "name": "Manipulation of hardware and software: Zero-Day exploit",
+ "cia": [
+  "A",
+  "C",
+  "I"
+ ],
+ "affected_asset_selectors": [
+  "Ground: all assets",
+  "Space: all assets",
+  "User: all assets"
+ ],
+ "description": "Exploitation of software vulnerabilities that are at the time of the exploitation unknown to the user. Presenting the so-called \"unknown unknown\" phenomenon, the Zero-Day exploits are especially threatening, since the users are not aware of the fact that they should be remediating them. Because of the exploitation window, limited detection and response, and significant risk and impact, zero-day vulnerabilities are treated with heightened urgency and specialized approaches in cybersecurity compared to regular software exploits. The Zero-Day exploit may be present in any segment of the satellite lifecycle.",
+ "projection": {
+  "candidate_assets": [
+   "bus_cdhs",
+   "bus_cdhs_f",
+   "bus_com",
+   "core_5gc",
+   "fsw_update",
+   "ground_moc",
+   "ground_ttc",
+   "integration_site",
+   "ran_cu",
+   "ran_du"
+  ],
+  "candidate_lifecycle": [
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7
+  ],
+  "lifecycle_rule": "ET-P-LC-01 (legacy tuple L field; Annex C has no lifecycle column)",
+  "derivation_provenance": {
+   "kind": "source_field",
+   "source": "Phalanx/framework/enisa_threats_tuple.csv row TR49",
+   "source_sha256": "c086e9d7221893d69e2ff6d380e3b2024aecc144bac8f034218b6814ef060b52",
+   "field": "L (lifecycle)",
+   "note": "candidate_lifecycle copies the legacy tuple L field {3,4,5,6,7}; ENISA STL 2025 Annex C has no lifecycle column, so the basis is the legacy tuple, not the Annex"
+  },
+  "applicable_boundary_roles": [
+   "command_authority"
+  ]
+ },
+ "claims": [
+  {
+   "sv": "SV-SP-1",
+   "quote": "Exploitation of software vulnerabilities",
+   "basis": "enisa_quote",
+   "rationale": "Exploitation of software vulnerabilities (bugs)."
+  }
+ ],
+ "crosswalk_key": "Manipulation of hardware and software: Zero-Day exploit"
+}

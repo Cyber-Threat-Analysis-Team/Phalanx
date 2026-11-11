@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "phalanx"
+version = "0.1.0"
+description = "Scenario-conditioned ENISA -> SPARTA threat-modeling engine for 6G NTN (SCI(E) plan v5)"
+requires-python = ">=3.11"
+dependencies = ["jsonschema>=4.17"]
+
+[project.optional-dependencies]
+test = ["pytest>=8"]
+
+[project.scripts]
+phalanx = "phalanx.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+phalanx = ["schemas/*.json"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

@@ -1,0 +1,168 @@
+{
+ "_about": "B1 input for the OPS-SAT SI (protocol §6.1, §1.6): EMB3D TIDs asserted per attack step, and the SPARTA IDs asserted for the same step, as paired in the only published source that gives both legs step by step. Used only by the B1 benchmark; never used to translate anchors.",
+ "source": "https://www.spacesecurity.info/en/mitre-estm-emb3d-in-action-analyzing-ops-sat-through-these-dual-frameworks/",
+ "vault_note": "research/notes/mitre-estm-emb3d-in-action-analyzing-ops-sat-through-these-dual-frameworks-space.md",
+ "source_kind": "secondary",
+ "scope": "steps 1-4; step 5 lists no EMB3D TID ('EMB3D Implied Threats: Sensor/Actuator Tampering', file line 180)",
+ "steps": [
+  {
+   "step": "1 deserialization",
+   "emb3d_tids": [
+    {
+     "tid": "TID-326",
+     "label": "Insecure Deserialization",
+     "locator": "file line 84 (hint)",
+     "quote": "EMB3D.TID-326]("
+    }
+   ],
+   "sparta_asserted": [
+    "EX-0009",
+    "EX-0009.01"
+   ],
+   "sparta_locator": "file lines 87-88 (hint)",
+   "sparta_quotes": [
+    "EX-0009](",
+    "EX-0009.01]("
+   ],
+   "step_quote": "**Step 1: Unsafe Java Deserialization**"
+  },
+  {
+   "step": "2 binaries modified",
+   "emb3d_tids": [
+    {
+     "tid": "TID-301",
+     "label": "Applications Binaries Modified",
+     "locator": "file line 110 (hint)",
+     "quote": "EMB3D.TID-301]("
+    },
+    {
+     "tid": "TID-302",
+     "label": "Install Untrusted Application",
+     "locator": "file line 111 (hint)",
+     "quote": "EMB3D.TID-302]("
+    },
+    {
+     "tid": "TID-307",
+     "label": "Device Code Representations Inconsistent",
+     "locator": "file line 112 (hint)",
+     "quote": "EMB3D.TID-307]("
+    },
+    {
+     "tid": "TID-308",
+     "label": "Code Overwritten to Avoid Detection",
+     "locator": "file line 113 (hint)",
+     "quote": "EMB3D.TID-308]("
+    },
+    {
+     "tid": "TID-309",
+     "label": "Device Exploits Engineering Workstation",
+     "locator": "file line 114 (hint)",
+     "quote": "EMB3D.TID-309]("
+    }
+   ],
+   "sparta_asserted": [
+    "IA-0001.02",
+    "IA-0006",
+    "RD-0003.01",
+    "RD-0004.02"
+   ],
+   "sparta_locator": "file lines 117-120 (hint)",
+   "sparta_quotes": [
+    "IA-0001.02](",
+    "IA-0006](",
+    "RD-0003.01](",
+    "RD-0004.02]("
+   ],
+   "step_quote": "**Step 2: Applications Binaries Modified**"
+  },
+  {
+   "step": "3 CAN-bus privilege escalation",
+   "emb3d_tids": [
+    {
+     "tid": "TID-114",
+     "label": "Peripheral Data Bus Interception",
+     "locator": "file line 136 (hint)",
+     "quote": "EMB3D.TID-114]("
+    },
+    {
+     "tid": "TID-412",
+     "label": "Network Routing Capability Abuse",
+     "locator": "file line 137 (hint)",
+     "quote": "EMB3D.TID-412]("
+    },
+    {
+     "tid": "TID-204",
+     "label": "Untrusted Programs Can Access Privileged OS Functions",
+     "locator": "file line 138 (hint)",
+     "quote": "EMB3D.TID-204]("
+    },
+    {
+     "tid": "TID-219",
+     "label": "OS/Kernel Privilege Escalation",
+     "locator": "file line 139 (hint)",
+     "quote": "EMB3D.TID-219]("
+    }
+   ],
+   "sparta_asserted": [
+    "EX-0009.02",
+    "LM-0002"
+   ],
+   "sparta_locator": "file lines 142-143 (hint)",
+   "sparta_quotes": [
+    "EX-0009.02](",
+    "LM-0002]("
+   ],
+   "step_quote": "**Step 3: Privilege Escalation via CAN Bus**"
+  },
+  {
+   "step": "4 persistence",
+   "emb3d_tids": [
+    {
+     "tid": "TID-304",
+     "label": "Manipulate Runtime Environment",
+     "locator": "file line 159 (hint)",
+     "quote": "EMB3D.TID-304]("
+    },
+    {
+     "tid": "TID-305",
+     "label": "Program Executes Dangerous System Calls",
+     "locator": "file line 160 (hint)",
+     "quote": "EMB3D.TID-305]("
+    },
+    {
+     "tid": "TID-203",
+     "label": "Malicious OS Kernel Driver/Module Installable",
+     "locator": "file line 161 (hint)",
+     "quote": "EMB3D.TID-203]("
+    },
+    {
+     "tid": "TID-202",
+     "label": "Exploitable System Network Stack Component",
+     "locator": "file line 162 (hint)",
+     "quote": "EMB3D.TID-202]("
+    },
+    {
+     "tid": "TID-307",
+     "label": "Device Code Representations Inconsistent",
+     "locator": "file line 163 (hint)",
+     "quote": "EMB3D.TID-307]("
+    },
+    {
+     "tid": "TID-308",
+     "label": "Code Overwritten to Avoid Detection",
+     "locator": "file line 164 (hint)",
+     "quote": "EMB3D.TID-308]("
+    }
+   ],
+   "sparta_asserted": [
+    "PER-0002.02"
+   ],
+   "sparta_locator": "file lines 167 (hint)",
+   "sparta_quotes": [
+    "PER-0002.02]("
+   ],
+   "step_quote": "**Step 4: Persistence**"
+  }
+ ],
+ "locator_convention": "`step_quote` must occur exactly once in the note; each TID and SPARTA quote must occur inside that step's section (up to the next '**Step'). Line numbers are hints only."
+}

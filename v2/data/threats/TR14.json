@@ -1,0 +1,41 @@
+{
+ "id": "TR14",
+ "source": "ENISA Space Threat Landscape 2025, Annex C Table 17 (via Phalanx/framework/enisa_threats_tuple.csv)",
+ "category": "FM",
+ "name": "Failure of power supply",
+ "cia": [
+  "A"
+ ],
+ "affected_asset_selectors": [
+  "Ground: Production & Assembly & Transport & Checkout systems",
+  "Space: BUS (EPS)"
+ ],
+ "description": "Disruption or failure of the satellite's power supply, resulting in satellite becoming unresponsive due to a shut down. This can happen several times as a result of, for example, faulty batteries, damage to, or malfunction of other power sources, such as solar panels, are also possible.",
+ "projection": {
+  "candidate_assets": [
+   "integration_site"
+  ],
+  "candidate_lifecycle": [
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7
+  ],
+  "lifecycle_rule": "ET-P-LC-01 (legacy tuple L field; Annex C has no lifecycle column)",
+  "derivation_provenance": {
+   "kind": "source_field",
+   "source": "Phalanx/framework/enisa_threats_tuple.csv row TR14",
+   "source_sha256": "c086e9d7221893d69e2ff6d380e3b2024aecc144bac8f034218b6814ef060b52",
+   "field": "L (lifecycle)",
+   "note": "candidate_lifecycle copies the legacy tuple L field {3,4,5,6,7}; ENISA STL 2025 Annex C has no lifecycle column, so the basis is the legacy tuple, not the Annex"
+  },
+  "applicable_boundary_roles": [
+   "command_authority"
+  ]
+ },
+ "claims": [],
+ "crosswalk_key": "Failure of power supply"
+}

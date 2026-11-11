@@ -1,0 +1,52 @@
+{
+ "id": "TR15",
+ "source": "ENISA Space Threat Landscape 2025, Annex C Table 17 (via Phalanx/framework/enisa_threats_tuple.csv)",
+ "category": "FM",
+ "name": "Rogue hardware",
+ "cia": [
+  "C",
+  "I"
+ ],
+ "affected_asset_selectors": [
+  "Ground: Assembly (EGSE/MGSE) & Crypto Hardware/Software & Satellite Control Centre"
+ ],
+ "description": "Tainted hardware components may be built into both space and ground segments, ultimately resulting in hardware failure. Failure or malfunction may occur as a result of hidden, malicious capabilities that are built in during the design and development and assembly stages of a satellite's lifecycle. Apart from built-in malicious capabilities, the hardware may simply not be produced according to the specification provided by the manufacturer, or it may be counterfeit.",
+ "projection": {
+  "candidate_assets": [
+   "ground_moc"
+  ],
+  "candidate_lifecycle": [
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7
+  ],
+  "lifecycle_rule": "ET-P-LC-01 (legacy tuple L field; Annex C has no lifecycle column)",
+  "derivation_provenance": {
+   "kind": "source_field",
+   "source": "Phalanx/framework/enisa_threats_tuple.csv row TR15",
+   "source_sha256": "c086e9d7221893d69e2ff6d380e3b2024aecc144bac8f034218b6814ef060b52",
+   "field": "L (lifecycle)",
+   "note": "candidate_lifecycle copies the legacy tuple L field {3,4,5,6,7}; ENISA STL 2025 Annex C has no lifecycle column, so the basis is the legacy tuple, not the Annex"
+  },
+  "applicable_boundary_roles": []
+ },
+ "claims": [
+  {
+   "sv": "SV-SP-5",
+   "quote": "Tainted hardware components",
+   "basis": "enisa_quote",
+   "rationale": "SV-SP-5 is tainted hardware."
+  },
+  {
+   "sv": "SV-AV-7",
+   "quote": "it may be counterfeit",
+   "basis": "enisa_quote",
+   "rationale": "SV-AV-7 calls for ensuring equipment is not counterfeit."
+  }
+ ],
+ "crosswalk_key": "Rogue hardware"
+}

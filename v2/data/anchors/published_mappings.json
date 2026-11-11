@@ -1,0 +1,597 @@
+{
+ "_about": "Published anchor technique assertions, transcribed exactly as printed (ID and label), with locators. Input to `phalanx anchors`. Gate role per protocol v0.3 §4.2: native SPARTA anchors are in the gate; EMB3D/ESTM/ATT&CK anchors are descriptive only and are never translated into SPARTA IDs.",
+ "status": "transcribed 2026-10-18 from primary-source vault notes; not frozen",
+ "anchors": [
+  {
+   "id": "OPS-SAT-SPARTA",
+   "name": "OPS-SAT / CYSAT 2023, SPARTA leg (Bailey & Roeher, The Aerospace Corporation)",
+   "gate_role": "native",
+   "source": "https://medium.com/the-aerospace-corporation/hacking-an-on-orbit-satellite-an-analysis-of-the-cysat-2023-demo-ae241e5b8ee5",
+   "vault_note": "research/notes/hacking-an-on-orbit-satellite-an-analysis-of-the-cysat-2023-demo-by-the-aerospac.md",
+   "id_encoding": "IDs are published only as hyperlinks (sparta.aerospace.org/technique/<ID>/<sub>/); raw_token keeps the URL path, printed_id is the ID it encodes",
+   "prior_figure": "protocol §1.5/§4.2: '11; 10/11 (EX-0007.02 → EX-0012.06)' — describes the secondary transcription, not this post",
+   "assertions": [
+    {
+     "step": "reconnaissance",
+     "raw_token": "/technique/REC-0003/04/",
+     "printed_id": "REC-0003.04",
+     "printed_label": "Gather Spacecraft Communications Information: Valid Credentials",
+     "locator": "file line 54 (hint, 2026-10-18)",
+     "execution": "executed",
+     "quote": "[**Reconnaissance:**](https://sparta.aerospace.org/technique/REC-0003/04/) Gather Spacecraft Communications Information: Valid Credentials"
+    },
+    {
+     "step": "resource development",
+     "raw_token": "/technique/RD-0003/01/",
+     "printed_id": "RD-0003.01",
+     "printed_label": "Exploit/Payload",
+     "locator": "file line 55 (hint, 2026-10-18)",
+     "execution": "executed",
+     "quote": "[**Resource Development:**](https://sparta.aerospace.org/technique/RD-0003/01/)Exploit/Payload"
+    },
+    {
+     "step": "resource development",
+     "raw_token": "/technique/RD-0004/01/",
+     "printed_id": "RD-0004.01",
+     "printed_label": "Identify/Select Delivery Mechanism",
+     "locator": "file line 56 (hint, 2026-10-18)",
+     "execution": "executed",
+     "quote": "[**Resource Development:**](https://sparta.aerospace.org/technique/RD-0004/01/)Identify/Select Delivery Mechanism"
+    },
+    {
+     "step": "resource development",
+     "raw_token": "/technique/RD-0004/02/",
+     "printed_id": "RD-0004.02",
+     "printed_label": "Upload Exploit/Payload",
+     "locator": "file line 57 (hint, 2026-10-18)",
+     "execution": "executed",
+     "quote": "[**Resource Development:**](https://sparta.aerospace.org/technique/RD-0004/02/)Upload Exploit/Payload"
+    },
+    {
+     "step": "initial access",
+     "raw_token": "/technique/IA-0006/",
+     "printed_id": "IA-0006",
+     "printed_label": "Compromise Hosted Payload",
+     "locator": "file line 58 (hint, 2026-10-18)",
+     "execution": "executed",
+     "quote": "[**Initial Access:**](https://sparta.aerospace.org/technique/IA-0006/)Compromise Hosted Payload"
+    },
+    {
+     "step": "initial access",
+     "raw_token": "/technique/IA-0001/02/",
+     "printed_id": "IA-0001.02",
+     "printed_label": "Compromise Supply Chain: Software Supply Chain",
+     "locator": "file line 59 (hint, 2026-10-18)",
+     "execution": "executed",
+     "quote": "[**Initial Access:**](https://sparta.aerospace.org/technique/IA-0001/02/)Compromise Supply Chain: Software Supply Chain"
+    },
+    {
+     "step": "deserialization",
+     "raw_token": "/technique/EX-0009/",
+     "printed_id": "EX-0009",
+     "printed_label": "Exploit Code Flaws",
+     "locator": "file line 72 (hint, 2026-10-18)",
+     "execution": "executed",
+     "quote": "[**Execution:**](https://sparta.aerospace.org/technique/EX-0009/) Exploit Code Flaws"
+    },
+    {
+     "step": "deserialization",
+     "raw_token": "/technique/EX-0009/01/",
+     "printed_id": "EX-0009.01",
+     "printed_label": "Exploit Code Flaws: Flight Software",
+     "locator": "file line 73 (hint, 2026-10-18)",
+     "execution": "executed",
+     "quote": "[**Execution:**](https://sparta.aerospace.org/technique/EX-0009/01/)Exploit Code Flaws: Flight Software"
+    },
+    {
+     "step": "privilege escalation",
+     "raw_token": "/technique/EX-0009/02/",
+     "printed_id": "EX-0009.02",
+     "printed_label": "Exploit Code Flaws: Operating System",
+     "locator": "file line 90 (hint, 2026-10-18)",
+     "execution": "executed",
+     "quote": "[**Execution:**](https://sparta.aerospace.org/technique/EX-0009/02/)Exploit Code Flaws: Operating System"
+    },
+    {
+     "step": "privilege escalation",
+     "raw_token": "/technique/LM-0002/",
+     "printed_id": "LM-0002",
+     "printed_label": "Exploit Lack of Bus Segregation",
+     "locator": "file line 91 (hint, 2026-10-18)",
+     "execution": "executed",
+     "quote": "[**Lateral Movement:**](https://sparta.aerospace.org/technique/LM-0002/)Exploit Lack of Bus Segregation"
+    },
+    {
+     "step": "persistence",
+     "raw_token": "/technique/PER-0002/02/",
+     "printed_id": "PER-0002.02",
+     "printed_label": "Backdoor: Software",
+     "locator": "file line 95 (hint, 2026-10-18)",
+     "execution": "executed",
+     "quote": "[**Persistence** :](https://sparta.aerospace.org/technique/PER-0002/02/) Backdoor: Software"
+    },
+    {
+     "step": "mission effect",
+     "raw_token": "/technique/EX-0012/06/",
+     "printed_id": "EX-0012.06",
+     "printed_label": "Modify On-Board Values: Science/Payload Data",
+     "locator": "file line 103 (hint, 2026-10-18)",
+     "execution": "executed",
+     "quote": "[**Execution:**](https://sparta.aerospace.org/technique/EX-0012/06/)Modify On-Board Values: Science/Payload Data"
+    },
+    {
+     "step": "possible further effects",
+     "raw_token": "/technique/EX-0012/08/",
+     "printed_id": "EX-0012.08",
+     "printed_label": "Attitude Determination & Control Subsystem",
+     "locator": "file line 107 (hint, 2026-10-18)",
+     "execution": "possible_not_executed",
+     "note": "file line 106: effects that 'could be achieved post-escalation and persistence, but were not executed'",
+     "quote": "[**Execution** :](https://sparta.aerospace.org/technique/EX-0012/08/) Attitude Determination & Control Subsystem"
+    },
+    {
+     "step": "possible further effects",
+     "raw_token": "/technique/EX-0012/09/",
+     "printed_id": "EX-0012.09",
+     "printed_label": "Electrical Power Subsystem",
+     "locator": "file line 108 (hint, 2026-10-18)",
+     "execution": "possible_not_executed",
+     "note": "file line 106: effects that 'could be achieved post-escalation and persistence, but were not executed'",
+     "quote": "[**Execution:**](https://sparta.aerospace.org/technique/EX-0012/09/)Electrical Power Subsystem"
+    },
+    {
+     "step": "possible further effects",
+     "raw_token": "/technique/EXF-0003/",
+     "printed_id": "EXF-0003",
+     "printed_label": "Eavesdropping",
+     "locator": "file line 109 (hint, 2026-10-18)",
+     "execution": "possible_not_executed",
+     "note": "file line 106: effects that 'could be achieved post-escalation and persistence, but were not executed'",
+     "quote": "[**Exfiltration:**](https://sparta.aerospace.org/technique/EXF-0003/)Eavesdropping"
+    },
+    {
+     "step": "possible further effects",
+     "raw_token": "/technique/IMP-0001/",
+     "printed_id": "IMP-0001",
+     "printed_label": "Deception (or Misdirection), Disruption, Denial, Degradation, Destruction",
+     "locator": "file line 110 (hint, 2026-10-18)",
+     "execution": "possible_not_executed",
+     "note": "file line 106: effects that 'could be achieved post-escalation and persistence, but were not executed'",
+     "quote": "[**Impact:**](https://sparta.aerospace.org/technique/IMP-0001/) Deception (or Misdirection), Disruption, Denial, Degradation, Destruction"
+    }
+   ],
+   "source_kind": "primary",
+   "id_from": "link_url",
+   "note": "File lines 60–102 checked: no further technique links (file lines 65 and 80 link tactics ST0006 and ST0005 only)."
+  },
+  {
+   "id": "OPS-SAT-SPARTA-SECONDARY",
+   "name": "OPS-SAT SPARTA leg as reproduced by spacesecurity.info (secondary)",
+   "gate_role": "secondary_transcription",
+   "source_kind": "secondary",
+   "id_from": "printed_text",
+   "source": "https://www.spacesecurity.info/en/mitre-estm-emb3d-in-action-analyzing-ops-sat-through-these-dual-frameworks/",
+   "vault_note": "research/notes/mitre-estm-emb3d-in-action-analyzing-ops-sat-through-these-dual-frameworks-space.md",
+   "prior_figure": "interim report / protocol §4.2: 11 IDs, 10/11 usable — the vault copy shows 10 printed IDs",
+   "note": "secondary transcription lists 10 IDs: prints EX-0007.02 for the primary's EX-0012.06 (its own hyperlink still targets EX-0012/06), and omits REC-0003.04 and RD-0004.01",
+   "assertions": [
+    {
+     "step": "1 deserialization",
+     "raw_token": "EX-0009",
+     "printed_id": "EX-0009",
+     "printed_label": "Exploit Code Flaws",
+     "locator": "file line 87 (hint, 2026-10-18)",
+     "execution": "executed",
+     "quote": "EX-0009]("
+    },
+    {
+     "step": "1 deserialization",
+     "raw_token": "EX-0009.01",
+     "printed_id": "EX-0009.01",
+     "printed_label": "Exploit Code Flaws: Flight Software",
+     "locator": "file line 88 (hint, 2026-10-18)",
+     "execution": "executed",
+     "quote": "EX-0009.01]("
+    },
+    {
+     "step": "2 binaries modified",
+     "raw_token": "IA-0001.02",
+     "printed_id": "IA-0001.02",
+     "printed_label": "Compromise Supply Chain: Software Supply Chain",
+     "locator": "file line 117 (hint, 2026-10-18)",
+     "execution": "executed",
+     "quote": "IA-0001.02]("
+    },
+    {
+     "step": "2 binaries modified",
+     "raw_token": "IA-0006",
+     "printed_id": "IA-0006",
+     "printed_label": "Compromise Hosted Payload",
+     "locator": "file line 118 (hint, 2026-10-18)",
+     "execution": "executed",
+     "quote": "IA-0006]("
+    },
+    {
+     "step": "2 binaries modified",
+     "raw_token": "RD-0003.01",
+     "printed_id": "RD-0003.01",
+     "printed_label": "Exploit/Payload",
+     "locator": "file line 119 (hint, 2026-10-18)",
+     "execution": "executed",
+     "quote": "RD-0003.01]("
+    },
+    {
+     "step": "2 binaries modified",
+     "raw_token": "RD-0004.02",
+     "printed_id": "RD-0004.02",
+     "printed_label": "Upload Exploit/Payload",
+     "locator": "file line 120 (hint, 2026-10-18)",
+     "execution": "executed",
+     "quote": "RD-0004.02]("
+    },
+    {
+     "step": "3 CAN-bus privilege escalation",
+     "raw_token": "EX-0009.02",
+     "printed_id": "EX-0009.02",
+     "printed_label": "Exploit Code Flaws: Operating System",
+     "locator": "file line 142 (hint, 2026-10-18)",
+     "execution": "executed",
+     "quote": "EX-0009.02]("
+    },
+    {
+     "step": "3 CAN-bus privilege escalation",
+     "raw_token": "LM-0002",
+     "printed_id": "LM-0002",
+     "printed_label": "Exploit Lack of Bus Segregation",
+     "locator": "file line 143 (hint, 2026-10-18)",
+     "execution": "executed",
+     "quote": "LM-0002]("
+    },
+    {
+     "step": "4 persistence",
+     "raw_token": "PER-0002.02",
+     "printed_id": "PER-0002.02",
+     "printed_label": "Backdoor: Software",
+     "locator": "file line 167 (hint, 2026-10-18)",
+     "execution": "executed",
+     "quote": "PER-0002.02]("
+    },
+    {
+     "step": "5 demo effects",
+     "raw_token": "EX-0007.02",
+     "printed_id": "EX-0007.02",
+     "printed_label": "Modify On-Board Values: Science/Payload Data",
+     "locator": "file line 183 (hint, 2026-10-18) (hyperlink targets /technique/EX-0012/06/)",
+     "execution": "executed",
+     "quote": "EX-0007.02]("
+    }
+   ]
+  },
+  {
+   "id": "FROSETH-2024",
+   "name": "Frøseth et al., ESORICS-WS 2024, maritime satcom",
+   "gate_role": "native",
+   "source": "https://link.springer.com/chapter/10.1007/978-3-031-82349-7_26",
+   "vault_note": "research/notes/threat-modeling-in-satellite-communications-for-maritime-operations-springer-nat.md",
+   "assertions": [
+    {
+     "step": "reconnaissance",
+     "printed_id": "REC-0005.04",
+     "printed_label": "Active Scanning (RF)",
+     "locator": "file line 278 (hint, 2026-10-18)",
+     "raw_token": "REC-0005.04",
+     "execution": "asserted",
+     "quote": "Technique ID:** REC-0005.04 - "
+    },
+    {
+     "step": "resource development",
+     "printed_id": "REC-0003",
+     "printed_label": "Obtain Cyber Capabilities",
+     "locator": "file line 293 (hint, 2026-10-18) (filed under ST0002 Resource Development)",
+     "raw_token": "REC-0003",
+     "execution": "asserted",
+     "quote": "Technique ID:** REC-0003 - "
+    },
+    {
+     "step": "initial access",
+     "printed_id": "IA-0004.01",
+     "printed_label": "Secondary/Backup Communication Channel",
+     "locator": "file line 306 (hint, 2026-10-18)",
+     "raw_token": "IA-0004.01",
+     "execution": "asserted",
+     "quote": "Technique ID:** IA-0004.01 - "
+    },
+    {
+     "step": "initial access",
+     "printed_id": "IA-0001",
+     "printed_label": "Compromise Supply Chain",
+     "locator": "file line 307 (hint, 2026-10-18)",
+     "raw_token": "IA-0001",
+     "execution": "asserted",
+     "quote": "Technique ID:** IA-0001 - "
+    },
+    {
+     "step": "execution",
+     "printed_id": "EX-0014",
+     "printed_label": "Spoofing",
+     "locator": "file line 324 (hint, 2026-10-18)",
+     "raw_token": "EX-0014",
+     "execution": "asserted",
+     "quote": "Technique ID:** EX-0014 - "
+    },
+    {
+     "step": "persistence",
+     "printed_id": "PER-0003",
+     "printed_label": "Ground System Presence",
+     "locator": "file line 339 (hint, 2026-10-18)",
+     "raw_token": "PER-0003",
+     "execution": "asserted",
+     "quote": "Technique ID:** PER-0003 - "
+    },
+    {
+     "step": "defense evasion",
+     "printed_id": "DE-0009",
+     "printed_label": "Camouflage, Concealment and Decoys",
+     "locator": "file line 340 (hint, 2026-10-18)",
+     "raw_token": "DE-0009",
+     "execution": "asserted",
+     "quote": "Technique ID:** DE-0009 - "
+    },
+    {
+     "step": "lateral movement",
+     "printed_id": "LM-0003",
+     "printed_label": "Constellation Hopping via Crosslink",
+     "locator": "file line 356 (hint, 2026-10-18)",
+     "raw_token": "LM-0003",
+     "execution": "asserted",
+     "quote": "Technique ID:** LM-0003 - "
+    },
+    {
+     "step": "impact",
+     "printed_id": "IMP-0002",
+     "printed_label": "Disruption",
+     "locator": "file line 371 (hint, 2026-10-18)",
+     "raw_token": "IMP-0002",
+     "execution": "asserted",
+     "quote": "Technique ID:** IMP-0002 - "
+    }
+   ],
+   "prior_figure": "interim report and protocol §4.2: 9/9 resolve, 3 drifted (REC-0003, IA-0004.01, IMP-0002 deprecated)",
+   "source_kind": "primary",
+   "id_from": "printed_text"
+  },
+  {
+   "id": "SPYCHAIN-2025",
+   "name": "SpyChain, arXiv 2510.06535, Table 3",
+   "gate_role": "native",
+   "source": "https://arxiv.org/abs/2510.06535",
+   "vault_note": "research/notes/spychain-multi-vector-supply-chain-attacks-on-small-satellite-systems-2.md",
+   "assertions": [
+    {
+     "step": "recon",
+     "printed_id": "REC-0001.01",
+     "printed_label": "Gather Spacecraft Design Information: Software Design",
+     "locator": "Table 3",
+     "raw_token": "REC-0001.01",
+     "execution": "asserted",
+     "quote": "REC-0001.01\nGather Spacecraft Design Information:"
+    },
+    {
+     "step": "recon",
+     "printed_id": "REC-0001.04",
+     "printed_label": "Gather Spacecraft Design Information: Data Bus",
+     "locator": "Table 3",
+     "raw_token": "REC-0001.04",
+     "execution": "asserted",
+     "quote": "REC-0001.04\nGather Spacecraft Design Information: Data"
+    },
+    {
+     "step": "initial access",
+     "printed_id": "IA-0010",
+     "printed_label": "Unauthorized Access During Safe-Mode",
+     "locator": "Table 3",
+     "raw_token": "IA-0010",
+     "execution": "asserted",
+     "quote": "IA-0010\nUnauthorized Access During Safe-Mode"
+    },
+    {
+     "step": "initial access",
+     "printed_id": "IA-0001.02",
+     "printed_label": "Compromise Supply Chain: Software Supply Chain",
+     "locator": "Table 3",
+     "raw_token": "IA-0001.02",
+     "execution": "asserted",
+     "quote": "IA-0001.02\nCompromise Supply Chain: Software Supply"
+    },
+    {
+     "step": "initial access",
+     "printed_id": "IA-0009.0",
+     "printed_label": "Trusted Relationship: Vendor",
+     "locator": "Table 3",
+     "raw_token": "IA-0009.0",
+     "execution": "asserted",
+     "quote": "IA-0009.0\nTrusted Relationship: Vendor"
+    },
+    {
+     "step": "execution",
+     "printed_id": "EX-0002",
+     "printed_label": "Position, Navigation, and Timing Geofencing",
+     "locator": "Table 3",
+     "raw_token": "EX-0002",
+     "execution": "asserted",
+     "quote": "EX-0002\nPosition, Navigation, and Timing Geofencing"
+    },
+    {
+     "step": "execution",
+     "printed_id": "EX-0010",
+     "printed_label": "Malicious Code",
+     "locator": "Table 3",
+     "raw_token": "EX-0010",
+     "execution": "asserted",
+     "quote": "EX-0010\nMalicious Code"
+    },
+    {
+     "step": "execution",
+     "printed_id": "EX-0009.01",
+     "printed_label": "Exploit Code Flaws: Flight Software",
+     "locator": "Table 3",
+     "raw_token": "EX-0009.01",
+     "execution": "asserted",
+     "quote": "EX-0009.01\nExploit Code Flaws: Flight Software"
+    },
+    {
+     "step": "execution",
+     "printed_id": "EX-0008",
+     "printed_label": "Time Synchronized Execution",
+     "locator": "Table 3",
+     "raw_token": "EX-0008",
+     "execution": "asserted",
+     "quote": "EX-0008\nTime Synchronized Execution"
+    },
+    {
+     "step": "execution",
+     "printed_id": "EX-0013",
+     "printed_label": "Flooding",
+     "locator": "Table 3",
+     "raw_token": "EX-0013",
+     "execution": "asserted",
+     "quote": "EX-0013\nFlooding"
+    },
+    {
+     "step": "persistence",
+     "printed_id": "PER-0002.01",
+     "printed_label": "Backdoor: Hardware Backdoor",
+     "locator": "Table 3",
+     "raw_token": "PER-0002.01",
+     "execution": "asserted",
+     "quote": "PER-0002.01\nBackdoor: Hardware Backdoor"
+    },
+    {
+     "step": "exfiltration",
+     "printed_id": "EXF-0003.02",
+     "printed_label": "Signal Interception: Downlink Exfiltration",
+     "locator": "Table 3",
+     "raw_token": "EXF-0003.02",
+     "execution": "asserted",
+     "quote": "EXF-0003.02\nSignal Interception: Downlink Exfiltration"
+    },
+    {
+     "step": "impact",
+     "printed_id": "IMP-0001",
+     "printed_label": "Deception",
+     "locator": "Table 3",
+     "raw_token": "IMP-0001",
+     "execution": "asserted",
+     "quote": "IMP-0001\nDeception"
+    },
+    {
+     "step": "impact",
+     "printed_id": "IMP-0002",
+     "printed_label": "Disruption",
+     "locator": "Table 3",
+     "raw_token": "IMP-0002",
+     "execution": "asserted",
+     "quote": "IMP-0002\nDisruption"
+    },
+    {
+     "step": "impact",
+     "printed_id": "IMP-0003",
+     "printed_label": "Denial",
+     "locator": "Table 3",
+     "raw_token": "IMP-0003",
+     "execution": "asserted",
+     "quote": "IMP-0003\nDenial"
+    },
+    {
+     "step": "impact",
+     "printed_id": "IMP-0006",
+     "printed_label": "Theft",
+     "locator": "Table 3",
+     "raw_token": "IMP-0006",
+     "execution": "asserted",
+     "quote": "IMP-0006\nTheft"
+    },
+    {
+     "step": "defense evasion",
+     "printed_id": "DE-0012",
+     "printed_label": "Component Collusion",
+     "locator": "Table 3",
+     "raw_token": "DE-0012",
+     "execution": "asserted",
+     "quote": "DE-0012\nComponent Collusion"
+    }
+   ],
+   "prior_figure": "protocol §4.2: 17 IDs, DE-0012 added at authors' request, 4 IMP-* deprecated, IA-0009.0 malformed",
+   "source_kind": "primary",
+   "id_from": "printed_text"
+  },
+  {
+   "id": "EAR-CH6-SPARTA",
+   "name": "Ear PhD dissertation Ch. VI, SPARTA subset of AT_A (SATCOM testbed)",
+   "gate_role": "native",
+   "source": "https://arxiv.org/pdf/2508.16991",
+   "vault_note": "research/notes/towards-principled-analysis-and.md (summary: source-analysis-ear-dissertation-principled-analysis-and-mitigation-of-space-cyb.md)",
+   "note": "AT_A also holds ATT&CK IDs T1210, T1199, T1595, T1592, T1566.001; excluded (cross-framework, not translated). No printed labels.",
+   "assertions": [
+    {
+     "step": "AT_A",
+     "printed_id": "EX-0012",
+     "printed_label": null,
+     "locator": "Ch. VI, AT_A",
+     "raw_token": "EX-0012",
+     "execution": "asserted",
+     "quote": "EX-0012, EX-0009.03, IA-0007.02, IA-0008.01, REC-0005.02}"
+    },
+    {
+     "step": "AT_A",
+     "printed_id": "EX-0009.03",
+     "printed_label": null,
+     "locator": "Ch. VI, AT_A",
+     "raw_token": "EX-0009.03",
+     "execution": "asserted",
+     "quote": "EX-0012, EX-0009.03, IA-0007.02, IA-0008.01, REC-0005.02}"
+    },
+    {
+     "step": "AT_A",
+     "printed_id": "IA-0007.02",
+     "printed_label": null,
+     "locator": "Ch. VI, AT_A",
+     "raw_token": "IA-0007.02",
+     "execution": "asserted",
+     "quote": "EX-0012, EX-0009.03, IA-0007.02, IA-0008.01, REC-0005.02}"
+    },
+    {
+     "step": "AT_A",
+     "printed_id": "IA-0008.01",
+     "printed_label": null,
+     "locator": "Ch. VI, AT_A",
+     "raw_token": "IA-0008.01",
+     "execution": "asserted",
+     "quote": "EX-0012, EX-0009.03, IA-0007.02, IA-0008.01, REC-0005.02}"
+    },
+    {
+     "step": "AT_A",
+     "printed_id": "REC-0005.02",
+     "printed_label": null,
+     "locator": "Ch. VI, AT_A",
+     "raw_token": "REC-0005.02",
+     "execution": "asserted",
+     "quote": "EX-0012, EX-0009.03, IA-0007.02, IA-0008.01, REC-0005.02}"
+    }
+   ],
+   "prior_figure": "none: protocol §4.2 lists the five IDs; no prior resolution figure (new count)",
+   "source_kind": "primary",
+   "id_from": "printed_text"
+  },
+  {
+   "id": "VIASAT-KA-SAT",
+   "name": "Viasat KA-SAT (ATT&CK Enterprise v13, 36 IDs)",
+   "gate_role": "cross_framework_descriptive",
+   "note": "ATT&CK-only; never resolved against SPARTA (protocol §4.2: no cross-namespace translation in v1).",
+   "assertions": [],
+   "source_kind": "primary",
+   "id_from": "printed_text"
+  }
+ ],
+ "locator_convention": "`quote` is verbatim text that occurs exactly once in the vault note (tests/test_anchors.py); Ear's five IDs share the one line that defines AT_A. Line numbers are hints only (curation rewrites note frontmatter and shifts lines)."
+}

@@ -1,0 +1,641 @@
+{
+ "threat": "TR13",
+ "status": "proposed",
+ "author": "assistant sub-agent V3G6 (v3 re-map); fix pass Fix1; fix pass Fix1",
+ "date": "2026-10-27",
+ "vectors": [
+  {
+   "vector": "rf_link",
+   "basis": "weak",
+   "enisa_quote": "attack directed at them",
+   "reason": "ENISA names an attack on the communication networks but no origin; the affected assets list the TTC ground antenna and BUS (COM), i.e. the TT&C link."
+  },
+  {
+   "vector": "feeder_rf",
+   "basis": "weak",
+   "enisa_quote": "attack directed at them",
+   "reason": "The same attack could be aimed at the feeder link that carries Ng between gateway and satellite RAN; ENISA does not say which network."
+  },
+  {
+   "vector": "user_terminal",
+   "basis": "weak",
+   "enisa_quote": "attack directed at them",
+   "reason": "The affected assets include VSAT, so the service link reached from a terminal is a network the attack could be directed at; the text only implies it."
+  }
+ ],
+ "rows": [
+  {
+   "technique": "IA-0008",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "K-ENABLE",
+   "role": "entry",
+   "enables": "IMP-0013",
+   "sparta_quote": "any actor-controlled transmitter, platform, or node",
+   "reason": "ENISA names no attack method; an attack directed at a radio network is assumed to need a transmitter on that link, and no more specific entry is supported."
+  },
+  {
+   "technique": "IMP-0013",
+   "sources": [
+    "impact"
+   ],
+   "framework": "SPARTA",
+   "code": "K-EFFECT",
+   "role": "impact",
+   "enisa_quote": "Failrue of communication networks",
+   "sparta_quote": "The resource may support computing, storage, or communications.",
+   "reason": "ENISA's only stated outcome is the loss of the communication network; SPARTA's depletion or monopolization of a communications resource is the outcome-level technique, with no attack method named."
+  },
+  {
+   "technique": "DE-0003.07",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Manipulating crypto mode selectors is not described."
+  },
+  {
+   "technique": "DE-0004",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "code": "D-OTHER",
+   "other_threat": "TR54",
+   "reason": "Presenting as an authorized origin is TR54 (spoofing), which keeps it; ENISA names no impersonation."
+  },
+  {
+   "technique": "EX-0001",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Replay is not described."
+  },
+  {
+   "technique": "EX-0006",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "code": "D-OTHER",
+   "other_threat": "TR45",
+   "reason": "Disabling or bypassing encryption is TR45 (cryptographic exploit), which keeps it; ENISA names no crypto attack."
+  },
+  {
+   "technique": "EX-0015",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Side-channel attacks are not described."
+  },
+  {
+   "technique": "EXF-0002",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Side-channel exfiltration is not described; ENISA's outcome is lost connectivity."
+  },
+  {
+   "technique": "EXF-0002.01",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Power analysis is not described."
+  },
+  {
+   "technique": "EXF-0002.02",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Electromagnetic leakage is not described."
+  },
+  {
+   "technique": "EXF-0002.03",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Traffic analysis is not described; ENISA names loss of connectivity."
+  },
+  {
+   "technique": "EXF-0002.05",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Thermal imaging is not described."
+  },
+  {
+   "technique": "EXF-0003",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "code": "D-OTHER",
+   "other_threat": "TR29",
+   "reason": "Intercepting signals is TR29 (interception of communication), which keeps it; ENISA names no interception."
+  },
+  {
+   "technique": "EXF-0003.01",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "code": "D-OTHER",
+   "other_threat": "TR29",
+   "reason": "Uplink interception is TR29, which keeps it."
+  },
+  {
+   "technique": "EXF-0003.02",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "code": "D-OTHER",
+   "other_threat": "TR29",
+   "reason": "Downlink interception is TR29, which keeps it."
+  },
+  {
+   "technique": "EXF-0004",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Covert use of a secondary link is not described."
+  },
+  {
+   "technique": "EXF-0005",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Proximity exfiltration is not described."
+  },
+  {
+   "technique": "IA-0001",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-OTHER",
+   "other_threat": "TR55",
+   "reason": "Tampering at manufacture or delivery is TR55, which keeps it; ENISA's malfunction branch is not an attack on the supply chain."
+  },
+  {
+   "technique": "IA-0001.01",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-OTHER",
+   "other_threat": "TR55",
+   "reason": "Poisoned dependencies and build tools are TR55, which keeps it; not named for the network."
+  },
+  {
+   "technique": "IA-0001.02",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-OTHER",
+   "other_threat": "TR55",
+   "reason": "Altering delivered software is TR55, which keeps it; not named for the network."
+  },
+  {
+   "technique": "IA-0001.03",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-OTHER",
+   "other_threat": "TR55",
+   "reason": "Altered hardware before delivery is TR55, which keeps it; not named for the network."
+  },
+  {
+   "technique": "IA-0002",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Compromising a software-defined radio; ENISA names no backup path."
+  },
+  {
+   "technique": "IA-0003",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "No crosslink path is described."
+  },
+  {
+   "technique": "IA-0004",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Backup-channel use is not described."
+  },
+  {
+   "technique": "IA-0004.01",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Using a backup or standby ground station; ENISA names no backup path."
+  },
+  {
+   "technique": "IA-0004.02",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "The backup receiver is not described."
+  },
+  {
+   "technique": "IA-0005",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Approaching the satellite by rendezvous and proximity operations; ENISA names no co-orbital or physical actor."
+  },
+  {
+   "technique": "IA-0005.01",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Emanation analysis is not described."
+  },
+  {
+   "technique": "IA-0005.02",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Riding a docking or servicing event; ENISA names no co-orbital or physical actor."
+  },
+  {
+   "technique": "IA-0005.03",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Grappling the satellite for physical contact; ENISA names no co-orbital or physical actor."
+  },
+  {
+   "technique": "IA-0006",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Entering through the hosted payload into the host spacecraft; ENISA names no hosted payload."
+  },
+  {
+   "technique": "IA-0007",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "A compromised ground system is a ground-side attack on the SLE/SDL network, which the attack-surface model does not target; ENISA names no ground compromise."
+  },
+  {
+   "technique": "IA-0007.01",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-OTHER",
+   "other_threat": "TR46",
+   "reason": "Poisoning the update pipeline is TR46 (injection into software updates), which keeps it; ENISA names no update."
+  },
+  {
+   "technique": "IA-0007.02",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Commands from a valid ground system are not described; ENISA states loss of connectivity."
+  },
+  {
+   "technique": "IA-0008.01",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "A mission-compatible ground station is a command-sending origin; ENISA states a loss of connectivity, not commands."
+  },
+  {
+   "technique": "IA-0008.02",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "ENISA names no rogue spacecraft."
+  },
+  {
+   "technique": "IA-0008.03",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-OTHER",
+   "other_threat": "TR18",
+   "reason": "A counterspace weapon is TR18 (ASAT), which keeps it; ENISA names no weapon."
+  },
+  {
+   "technique": "IA-0009",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Riding a trusted partner, vendor or user connection; ENISA names no trusted partner connection."
+  },
+  {
+   "technique": "IA-0009.01",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Entering through a mission collaborator's connection; ENISA names no trusted partner connection."
+  },
+  {
+   "technique": "IA-0009.02",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-OTHER",
+   "other_threat": "TR55",
+   "reason": "A vendor as origin is TR55, which keeps it; ENISA names no vendor."
+  },
+  {
+   "technique": "IA-0009.03",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Compromising the user segment as a route into mission cores; ENISA names no trusted partner connection."
+  },
+  {
+   "technique": "IA-0010",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Timing the first execution to safe-mode; ENISA names no backup path."
+  },
+  {
+   "technique": "IA-0011",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Abusing peripherals or removable media; ENISA names no co-orbital or physical actor."
+  },
+  {
+   "technique": "IA-0012",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Compromising assembly, test and launch operations; ENISA's attack is on the network, not on the supply chain."
+  },
+  {
+   "technique": "IA-0013",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Reaching a hosted payload from the host spacecraft; ENISA names no hosted payload."
+  },
+  {
+   "technique": "IMP-0007",
+   "sources": [
+    "impact"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "ENISA gives no abuse of a native function."
+  },
+  {
+   "technique": "IMP-0008",
+   "sources": [
+    "impact"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "ENISA gives no forced mode change."
+  },
+  {
+   "technique": "IMP-0009",
+   "sources": [
+    "impact"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "ENISA gives no changed settings."
+  },
+  {
+   "technique": "IMP-0010",
+   "sources": [
+    "impact"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "ENISA gives no falsified data."
+  },
+  {
+   "technique": "IMP-0011",
+   "sources": [
+    "impact"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "ENISA gives no altered command or data flow."
+  },
+  {
+   "technique": "IMP-0012",
+   "sources": [
+    "impact"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "ENISA gives no altered software; hardware or software malfunction is the non-attack branch."
+  },
+  {
+   "technique": "IMP-0014",
+   "sources": [
+    "impact"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "ENISA gives no timing manipulation."
+  },
+  {
+   "technique": "LM-0001",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Pivoting from a hosted payload across the host-payload boundary; ENISA names no hosted payload."
+  },
+  {
+   "technique": "LM-0003",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "No crosslink spread is described."
+  },
+  {
+   "technique": "RD-0001.01",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Building a ground stack is not described."
+  },
+  {
+   "technique": "RD-0001.02",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Buying commercial ground-station service is not described."
+  },
+  {
+   "technique": "REC-0003",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Communications reconnaissance is not described."
+  },
+  {
+   "technique": "REC-0003.02",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Commanding-detail reconnaissance is not described."
+  },
+  {
+   "technique": "REC-0005",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Eavesdropping is not described."
+  },
+  {
+   "technique": "REC-0005.01",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Uplink eavesdropping is not described."
+  },
+  {
+   "technique": "REC-0005.02",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Downlink eavesdropping is not described."
+  },
+  {
+   "technique": "REC-0007",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Monitoring for safe-mode indicators is not described."
+  }
+ ],
+ "review_response": [
+  {
+   "finding": "D-TR13 no_sparta_fit overclaims: says attack types are mapped under TR40/TR44/TR29 but no jamming row points to TR44",
+   "action": "fixed: the no-fit is removed. TR13 is mapped with weak vectors rf_link, feeder_rf, user_terminal (the networks the assets name), entry IA-0008 and the outcome IMP-0013; EX-0013 points to TR40, EX-0016*/DE-0002.02 to TR44, EXF-0003* is dropped as interception."
+  },
+  {
+   "finding": "D-TR13 templated 'is not described' reasons",
+   "action": "fixed: reasons rewritten per row."
+  },
+  {
+   "finding": "D-TR13 adversarial acceptable",
+   "action": "kept: adversary.json quote 'or attack directed at them'."
+  },
+  {
+   "finding": "arch-E-4 no_sparta_fit covers different situations",
+   "action": "fixed for TR13: no no_sparta_fit; the open doubt is that ENISA names no method, so no action technique is kept."
+  },
+  {
+   "finding": "v3 consider feeder_rf / user_terminal before declaring no fit",
+   "action": "fixed: both considered and included with basis weak."
+  },
+  {
+   "finding": "fix pass M4: result is an effect row with no attack technique yet shown complete with controls on",
+   "action": "fixed: kept as an effect-only mapping and said so in notes and in both rows' reasons; the IMP-0013 completeness assumes link-level denial. No attack technique is added because ENISA names none."
+  }
+ ],
+ "notes": [
+  "Effect-only threat: ENISA names no attack method. A scenario that ends in IMP-0013 (a link-only outcome) assumes link-level denial by a transmitter on the link; it must not be read as a chain that survives the controls."
+ ]
+}

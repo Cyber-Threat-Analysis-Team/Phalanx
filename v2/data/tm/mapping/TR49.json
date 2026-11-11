@@ -1,0 +1,665 @@
+{
+ "threat": "TR49",
+ "status": "proposed",
+ "author": "assistant sub-agent V3G4 (v3 re-map); fix pass Fix2",
+ "date": "2026-10-27",
+ "vectors": [
+  {
+   "vector": "ground",
+   "basis": "weak",
+   "enisa_quote": "The Zero-Day exploit may be present in any segment of the satellite lifecycle.",
+   "reason": "ENISA names no attacker origin, only that the flaw may sit in any segment; the ground segment is one of them and the affected assets list 'Ground: all assets'."
+  },
+  {
+   "vector": "rf_link",
+   "basis": "weak",
+   "enisa_quote": "The Zero-Day exploit may be present in any segment of the satellite lifecycle.",
+   "reason": "The flaw may sit in the space segment ('Space: all assets'); the way in from outside the mission is a crafted transmission on the TT&C link, which the text only implies."
+  }
+ ],
+ "rows": [
+  {
+   "technique": "IA-0007",
+   "code": "K-ENABLE",
+   "role": "entry",
+   "reason": "Exploiting an unknown flaw in ground software is how the ground segment is entered; ENISA implies the ground ('Ground: all assets') but names no path.",
+   "sparta_quote": "Compromising the ground segment gives an adversary the most direct path to first execution against a spacecraft",
+   "enables": "EX-0009",
+   "vectors": [
+    "ground"
+   ],
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0007.02",
+   "code": "K-ENABLE",
+   "role": "entry",
+   "enables": "EX-0009",
+   "vectors": [
+    "ground"
+   ],
+   "sparta_quote": "inserting commands or procedures into existing timelines",
+   "reason": "Commands sent through a compromised mission ground station are the delivery path by which crafted input reaches flawed on-board software; ENISA implies the ground ('Ground: all assets') but names no path.",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0007.01",
+   "code": "D-OTHER",
+   "other_threat": "TR46",
+   "reason": "Tampering with the update pipeline is injection into software updates; a zero-day needs no insertion.",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0004.01",
+   "code": "D-UNDESCRIBED",
+   "reason": "ENISA does not point at a backup ground station.",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0010",
+   "code": "D-UNDESCRIBED",
+   "reason": "ENISA does not tie the exploit to safe-mode.",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0011",
+   "code": "D-UNDESCRIBED",
+   "reason": "A tainted peripheral or medium is not what ENISA describes; the flaw already exists in the code.",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0008",
+   "code": "K-ENABLE",
+   "role": "entry",
+   "reason": "A crafted transmission reaching software with an unknown flaw is how a space-segment zero-day is triggered from outside; ENISA implies but does not state it.",
+   "sparta_quote": "radiating or exchanging traffic using mission-compatible waveforms, framing, or crosslink protocols",
+   "enables": "EX-0009",
+   "vectors": [
+    "rf_link"
+   ],
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0008.01",
+   "code": "K-ENABLE",
+   "role": "entry",
+   "reason": "The rogue ground station is the concrete outsider that sends the crafted traffic over the uplink.",
+   "sparta_quote": "crafts over-the-air traffic that appears valid at the RF and protocol layers",
+   "enables": "EX-0009",
+   "vectors": [
+    "rf_link"
+   ],
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0004",
+   "code": "D-UNDESCRIBED",
+   "reason": "ENISA does not name a backup channel as where the flaw is triggered.",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0004.02",
+   "code": "D-UNDESCRIBED",
+   "reason": "The backup receiver is a specific target ENISA does not name.",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0002",
+   "code": "D-UNDESCRIBED",
+   "reason": "Compromising a software-defined radio is an implant route, while ENISA's flaw is a pre-existing unknown vulnerability.",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0009.03",
+   "code": "D-UNDESCRIBED",
+   "reason": "ENISA lists 'User: all assets' but names no user-side attacker or path to the exploit; no vector for it is kept.",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0001",
+   "code": "D-OTHER",
+   "other_threat": "TR48",
+   "reason": "Inserting malicious code in the supply chain is how TR48 introduces flaws; a zero-day is already present in the code.",
+   "sources": [
+    "sv:SV-SP-1",
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0001.01",
+   "code": "D-OTHER",
+   "other_threat": "TR48",
+   "reason": "Poisoned dependencies are TR48's supply-chain route; no insertion is needed for an unknown flaw.",
+   "sources": [
+    "crosswalk",
+    "sv:SV-SP-1",
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0001.02",
+   "code": "D-OTHER",
+   "other_threat": "TR48",
+   "reason": "A delivered patch that reintroduces known weaknesses is the opposite of an unknown flaw and belongs to TR48.",
+   "sources": [
+    "sv:SV-SP-1",
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0001.03",
+   "code": "D-OTHER",
+   "other_threat": "TR15",
+   "reason": "Tainted hardware is rogue hardware; ENISA speaks of software vulnerabilities.",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0012",
+   "code": "D-OTHER",
+   "other_threat": "TR58",
+   "reason": "Compromised ATLO equipment pushing images is use of equipment, not exploitation of an unknown flaw.",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0009.02",
+   "code": "D-OTHER",
+   "other_threat": "TR55",
+   "reason": "Vendor access is a supplier route; ENISA names no third party.",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0003",
+   "code": "D-UNDESCRIBED",
+   "reason": "ENISA names no neighbouring satellite.",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0005",
+   "code": "D-UNDESCRIBED",
+   "reason": "No proximity action is described.",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0005.01",
+   "code": "D-UNDESCRIBED",
+   "reason": "Emanation analysis is not exploitation of a software flaw.",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0005.02",
+   "code": "D-UNDESCRIBED",
+   "reason": "Docking is not mentioned.",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0005.03",
+   "code": "D-UNDESCRIBED",
+   "reason": "Grappling is not mentioned.",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0006",
+   "code": "D-UNDESCRIBED",
+   "reason": "A hosted payload as a door is not named.",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0009",
+   "code": "D-UNDESCRIBED",
+   "reason": "No trusted partner connection is named.",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0009.01",
+   "code": "D-UNDESCRIBED",
+   "reason": "Mission collaborators are not named.",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0008.02",
+   "code": "D-UNDESCRIBED",
+   "reason": "A rogue spacecraft is a proximity attacker; none is named.",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0008.03",
+   "code": "D-UNDESCRIBED",
+   "reason": "Counterspace weapons are not part of this threat's text.",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0013",
+   "code": "D-UNDESCRIBED",
+   "reason": "The route from the bus into a hosted function is not described.",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "LM-0001",
+   "code": "D-UNDESCRIBED",
+   "reason": "No pivot across a hosted payload is described.",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "LM-0003",
+   "code": "D-UNDESCRIBED",
+   "reason": "No spread across a constellation is described.",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "LM-0005",
+   "code": "D-UNDESCRIBED",
+   "reason": "ENISA does not mention partitions or hypervisors; an escape would be a specific class of flaw it does not name.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EX-0009",
+   "code": "K-ACTION",
+   "role": "execution",
+   "reason": "Exploitation of software vulnerabilities is this technique. It is the only SPARTA exploit step that does not need a named or known defect; the children name a flaw class or a known defect, which ENISA does not.",
+   "sparta_quote": "abusing defects in software that runs on the vehicle",
+   "enisa_quote": "Exploitation of software vulnerabilities",
+   "sources": [
+    "crosswalk",
+    "sv:SV-SP-1"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EX-0009.01",
+   "code": "D-OTHER",
+   "other_threat": "TR48",
+   "reason": "The flight-software flaw class is named in TR48 ('logic or implementation erros'); this text names no class, only any segment.",
+   "sources": [
+    "crosswalk",
+    "sv:SV-SP-1"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EX-0009.02",
+   "code": "D-OTHER",
+   "other_threat": "TR48",
+   "reason": "OS misconfiguration is TR48's 'poor configuration'; here the flaw is not described as a misconfiguration.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EX-0009.03",
+   "code": "D-OTHER",
+   "other_threat": "TR48",
+   "reason": "ENISA contrasts zero-day with 'regular software exploits'; mapping components to known defects is the regular exploit.",
+   "sources": [
+    "sv:SV-SP-1"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EX-0002",
+   "code": "D-UNDESCRIBED",
+   "reason": "Code that fires on position and time is an implant trigger; ENISA describes none.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EX-0003",
+   "code": "D-UNDESCRIBED",
+   "reason": "Altering the authentication process is a follow-on action not described.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EX-0005.01",
+   "code": "D-UNDESCRIBED",
+   "reason": "ENISA's flaws are software vulnerabilities; hardware design errata are not named.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EX-0008.01",
+   "code": "D-UNDESCRIBED",
+   "reason": "A time-keyed trigger is not part of a zero-day description.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EX-0010",
+   "code": "D-OTHER",
+   "other_threat": "TR46",
+   "reason": "Delivering executable code is injection; ENISA describes exploiting a flaw, not delivering code.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EXF-0002.04",
+   "code": "D-UNDESCRIBED",
+   "reason": "Timing side channels are not mentioned.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EXF-0008",
+   "code": "D-OTHER",
+   "other_threat": "TR55",
+   "reason": "Stealing from a developer site is a supplier compromise.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "DE-0010",
+   "code": "D-UNDESCRIBED",
+   "reason": "ENISA's limited detection is a property of the window, not a step the attacker takes.",
+   "sources": [
+    "sv:SV-SP-1"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "DE-0012",
+   "code": "D-UNDESCRIBED",
+   "reason": "Colluding compromised components are not described.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "PER-0002",
+   "code": "D-OTHER",
+   "other_threat": "TR55",
+   "reason": "Backdoors are a third-party component compromise, not an unknown-flaw exploit.",
+   "sources": [
+    "crosswalk",
+    "sv:SV-SP-1"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "PER-0002.02",
+   "code": "D-OTHER",
+   "other_threat": "TR55",
+   "reason": "Software backdoors inserted by a third party are the supply-chain compromise.",
+   "sources": [
+    "crosswalk",
+    "sv:SV-SP-1"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IMP-0007",
+   "code": "D-UNDESCRIBED",
+   "reason": "ENISA gives no result; what an exploiter does with the foothold is not stated.",
+   "sources": [
+    "impact"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IMP-0008",
+   "code": "D-UNDESCRIBED",
+   "reason": "No forced mode change is stated.",
+   "sources": [
+    "impact"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IMP-0009",
+   "code": "D-UNDESCRIBED",
+   "reason": "No change of settings or limits is stated.",
+   "sources": [
+    "impact"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IMP-0010",
+   "code": "D-UNDESCRIBED",
+   "reason": "No corruption or falsification of data is stated.",
+   "sources": [
+    "impact"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IMP-0011",
+   "code": "D-UNDESCRIBED",
+   "reason": "No command or data flow change is stated.",
+   "sources": [
+    "impact"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IMP-0012",
+   "code": "D-UNDESCRIBED",
+   "reason": "No replaced code or firmware is stated.",
+   "sources": [
+    "impact"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IMP-0013",
+   "code": "D-UNDESCRIBED",
+   "reason": "No resource exhaustion is stated (that is TR48's wording).",
+   "sources": [
+    "impact"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IMP-0014",
+   "code": "D-UNDESCRIBED",
+   "reason": "No timing manipulation is stated.",
+   "sources": [
+    "impact"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "RD-0003.01",
+   "code": "P-PREP",
+   "enables": "EX-0009",
+   "reason": "SPARTA describes obtaining brokered N-day/0-day packages; for an exploit of a flaw nobody knows, the attacker first needs such a package.",
+   "sources": [
+    "sv:SV-SP-1"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "RD-0003",
+   "code": "D-UNDESCRIBED",
+   "reason": "The child technique names the 0-day acquisition; the parent adds commodity malware and SDR stacks that ENISA does not mention.",
+   "sources": [
+    "sv:SV-SP-1"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "REC-0008.03",
+   "code": "D-UNDESCRIBED",
+   "reason": "A catalogue of known vulnerabilities is the opposite of ENISA's 'unknown unknown'.",
+   "sources": [
+    "sv:SV-SP-1"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "REC-0001.01",
+   "code": "D-UNDESCRIBED",
+   "reason": "ENISA says nothing about studying software design.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "REC-0006",
+   "code": "D-UNDESCRIBED",
+   "reason": "Gathering flight-software development information is not mentioned.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "REC-0006.01",
+   "code": "D-UNDESCRIBED",
+   "reason": "The development environment is not mentioned.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "REC-0006.02",
+   "code": "D-UNDESCRIBED",
+   "reason": "Security testing tools are not mentioned.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  }
+ ],
+ "review_response": [
+  {
+   "finding": "The vector and entry keeps are built on a non-vector; IA-0001 family is an implant, a zero-day needs no insertion.",
+   "action": "fixed: supply_chain vector and the IA-0001 family removed (D-OTHER to TR48/TR15). The exploit now follows ground, rf_link and user_terminal, all basis weak, quoting 'may be present in any segment of the satellite lifecycle' and naming in each reason what the text only implies (affected assets 'Ground/Space/User: all assets')."
+  },
+  {
+   "finding": "TR49 and TR48 are indistinguishable (same IA-0001*, EX-0009, .01, .02).",
+   "action": "fixed: TR49 keeps only the unqualified EX-0009 plus RD-0003.01 (0-day acquisition) as preparation; EX-0009.01/.02/.03 go to TR48 because each adds a flaw class or a known defect that TR49's text does not name; ENISA contrasts zero-day with 'regular software exploits'. Entries, vectors and impact also differ. The distinction is in ENISA's wording; SPARTA has no zero-day flag."
+  },
+  {
+   "finding": "No outcome (scenario complete: false).",
+   "action": "kept because ENISA states no outcome: it gives only generic risk and impact. All IMP rows are D-UNDESCRIBED and the scenario shows an exploit with no result; this is intended."
+  },
+  {
+   "finding": "D-OTHER targets TR55/TR15/TR46/TR58 all keep (no issue).",
+   "action": "kept; re-checked against the current files before finishing."
+  },
+  {
+   "finding": "M3: user_terminal produced no chain and only weak 'differences'",
+   "action": "fixed: vector removed; IA-0008 restricted to rf_link; IA-0009.03 is D-UNDESCRIBED."
+  },
+  {
+   "finding": "M3: ground branch had an entry and no reachable action",
+   "action": "fixed: IA-0007.02 (commands through a compromised ground station) is now a ground K-ENABLE for EX-0009 so the ground foothold reaches the bus."
+  },
+  {
+   "finding": "M3: TR49 is a strict subset of TR48 plus RD-0003.01",
+   "action": "kept: stated in coverage_notes that TR49 differs from TR48 only by the acquisition step; the flaw-class children stay with TR48."
+  }
+ ],
+ "coverage_notes": [
+  "Zero-day versus known vulnerability: the boundary is drawn from ENISA's words. TR49: 'unknown to the user', 'unknown unknown', 'compared to regular software exploits'. TR48: weaknesses from 'poor configuration and/or logic or implementation erros'. SPARTA's EX-0009.03 is defined on 'publicly or privately known defects' (TR48 only); RD-0003.01 mentions 0-day packages (TR49 only); the unqualified EX-0009 is shared by both.",
+  "The user_terminal vector is removed: its chain stopped at the hosted RAN function and gave no scenario result.",
+  "TR49 and TR48 share the same exploit step EX-0009 and the rf_link/ground entries. TR49 differs from TR48 by the 0-day acquisition step RD-0003.01 and by keeping no flaw-class child (EX-0009.01/.02/.03), because SPARTA has no zero-day flag and ENISA names no class; TR48 adds the known-defect preparation REC-0008.03."
+ ]
+}

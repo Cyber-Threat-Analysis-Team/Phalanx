@@ -1,0 +1,52 @@
+{
+ "id": "TR26",
+ "source": "ENISA Space Threat Landscape 2025, Annex C Table 17 (via Phalanx/framework/enisa_threats_tuple.csv)",
+ "category": "LEG",
+ "name": "Third Party non-compliance (supply chain)",
+ "cia": [
+  "C"
+ ],
+ "affected_asset_selectors": [
+  "Ground: Production",
+  "Space: Payload (PLCOM)"
+ ],
+ "description": "Threats from unvetted, of insufficiently monitored third parties a satellite's the supply chain which may result in the development and delivery of specific components that fail to comply or live up to the security specifications and requiurements that have access to sensitive data or are intended to support critical satellite functions. Examples include use of counterfeit or copied software (e.g. pirated software) that may contain malware, such as disk wiper malware, or the provision of hardware components that contian back doors.",
+ "projection": {
+  "candidate_assets": [],
+  "candidate_lifecycle": [
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7
+  ],
+  "lifecycle_rule": "ET-P-LC-01 (legacy tuple L field; Annex C has no lifecycle column)",
+  "derivation_provenance": {
+   "kind": "source_field",
+   "source": "Phalanx/framework/enisa_threats_tuple.csv row TR26",
+   "source_sha256": "c086e9d7221893d69e2ff6d380e3b2024aecc144bac8f034218b6814ef060b52",
+   "field": "L (lifecycle)",
+   "note": "candidate_lifecycle copies the legacy tuple L field {3,4,5,6,7}; ENISA STL 2025 Annex C has no lifecycle column, so the basis is the legacy tuple, not the Annex"
+  },
+  "applicable_boundary_roles": [
+   "command_authority"
+  ]
+ },
+ "claims": [
+  {
+   "sv": "SV-SP-4",
+   "quote": "unvetted, of insufficiently monitored third parties",
+   "basis": "enisa_quote",
+   "rationale": "Supply chain manipulation via unvetted third parties."
+  },
+  {
+   "sv": "SV-SP-3",
+   "quote": "pirated software) that may contain malware",
+   "basis": "enisa_quote",
+   "rationale": "Pirated software carrying malware is malicious software introduction."
+  }
+ ],
+ "crosswalk_key": "Third Party non-compliance (supply chain)"
+}

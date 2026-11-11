@@ -1,0 +1,38 @@
+{
+  "si_id": "SI-TR52-C'",
+  "variant": "G-D53",
+  "label": "Rogue ground station attempts command injection; SDLS use on the TC uplink not stated; spacecraft not in safe mode (paired case 7 control)",
+  "attacker": {
+    "class": "rogue_ground_station",
+    "origin_node": "rogue_gs",
+    "credential": "none",
+    "capability": "SDR + steerable antenna, mission-compatible waveform"
+  },
+  "selected_asset_instances": {
+    "ground_ttc": "gs_primary",
+    "bus_cdhs": "sat_service",
+    "bus_com": "sat_service"
+  },
+  "realized_lifecycle": 6,
+  "intended_effect": [
+    "A"
+  ],
+  "protection_applied": {
+    "E-TCUL": {
+      "sdls_auth": "unknown",
+      "sdls_antireplay": "unknown"
+    },
+    "E-RF": {
+      "sdls_auth": "unknown",
+      "sdls_antireplay": "unknown"
+    }
+  },
+  "platform_state": {
+    "safe_mode": false
+  },
+  "evidence_refs": [
+    "ENISA STL 2025 Annex C TR52 description",
+    "SPARTA v4.0.1 technique text"
+  ],
+  "threat": "TR52"
+}

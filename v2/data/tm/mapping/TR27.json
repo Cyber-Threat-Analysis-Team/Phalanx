@@ -1,0 +1,378 @@
+{
+ "threat": "TR27",
+ "status": "proposed",
+ "author": "assistant sub-agent V3G7 (v3 re-map); fix pass Fix2",
+ "date": "2026-10-27",
+ "no_sparta_fit": {
+  "kind": "sparta_gap",
+  "reason": "ENISA says third parties get information from disposed/recycled media or decommmissioned infrastructure: confidentiality loss after the asset leaves operation, with an attacker holding the retired media. No SPARTA technique (v4.0.1, checked for decommission, dispos, recycl, end-of-life, deorbit, passivat) describes recovering data from retired media; the attack-surface model's origins also all assume an operating mission."
+ },
+ "vectors": [],
+ "review_response": [
+  {
+   "finding": "TR27 adversarial quote cuts off 'or decommmissioned infrastructure'",
+   "action": "kept because adversary.json is outside this file; the quote should be extended to the full sentence by its owner (reported to Main)."
+  },
+  {
+   "finding": "no_sparta_fit correct, confirmed by keyword search (§9)",
+   "action": "kept: no-fit now an object, kind sparta_gap; reasons rewritten per row."
+  },
+  {
+   "finding": "review2_B: no finding requiring a change",
+   "action": "kept; re-validated after the engine change."
+  }
+ ],
+ "rows": [
+  {
+   "technique": "IA-0001",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Supply-chain insertion adds code before flight; ENISA's third party reads what retired media still hold."
+  },
+  {
+   "technique": "IA-0001.01",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Poisoned dependencies are inserted into live builds, not read from discarded media."
+  },
+  {
+   "technique": "IA-0001.02",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Software supply-chain compromise implants code; ENISA describes information obtained from disposed media."
+  },
+  {
+   "technique": "IA-0001.03",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Hardware tampering before delivery is the opposite end of the lifecycle from disposal."
+  },
+  {
+   "technique": "IA-0002",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Compromising a running SDR needs an operating radio, which a disposed medium is not."
+  },
+  {
+   "technique": "IA-0003",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Crosslink compromise needs a live neighbouring satellite."
+  },
+  {
+   "technique": "IA-0004",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "A backup command channel exists only on an operating mission."
+  },
+  {
+   "technique": "IA-0004.01",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "A standby ground station is a live system, not retired media."
+  },
+  {
+   "technique": "IA-0004.02",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "The backup receiver is a live on-board path."
+  },
+  {
+   "technique": "IA-0005",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Rendezvous operations approach an active asset; nothing in ENISA's sentence describes approaching decommissioned infrastructure."
+  },
+  {
+   "technique": "IA-0005.01",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Emanation analysis needs an emitting system, which disposed media are not."
+  },
+  {
+   "technique": "IA-0005.02",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Docked-vehicle access targets an operating host."
+  },
+  {
+   "technique": "IA-0005.03",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Proximity grappling is physical contact with a flying vehicle; ENISA's third party holds discarded equipment."
+  },
+  {
+   "technique": "IA-0006",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "The hosted-payload door is an operating-mission boundary."
+  },
+  {
+   "technique": "IA-0007",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Compromising a live ground system is not recovery of data from discarded media."
+  },
+  {
+   "technique": "IA-0007.01",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "The on-orbit update pipeline is an operational path."
+  },
+  {
+   "technique": "IA-0007.02",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Commanding through a valid ground station needs an operating spacecraft."
+  },
+  {
+   "technique": "IA-0008",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "A rogue external entity talks to an operating spacecraft."
+  },
+  {
+   "technique": "IA-0008.01",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "A rogue ground station transmits to a commandable satellite."
+  },
+  {
+   "technique": "IA-0008.02",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "A rogue spacecraft interacts with an active satellite."
+  },
+  {
+   "technique": "IA-0008.03",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "An ASAT weapon destroys; ENISA describes data being read."
+  },
+  {
+   "technique": "IA-0009",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Trusted-relationship access rides a live partner connection."
+  },
+  {
+   "technique": "IA-0009.01",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Mission-collaborator access is to live systems."
+  },
+  {
+   "technique": "IA-0009.02",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Vendor remote access is to live systems."
+  },
+  {
+   "technique": "IA-0009.03",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "The user segment is a live path into the mission."
+  },
+  {
+   "technique": "IA-0010",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Safe-mode access presumes a commandable spacecraft."
+  },
+  {
+   "technique": "IA-0011",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Auxiliary-device compromise targets a system in use."
+  },
+  {
+   "technique": "IA-0012",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "ATLO compromise is a pre-launch path; disposal comes after operations."
+  },
+  {
+   "technique": "IA-0013",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Host-spacecraft compromise pivots from a hosted function on an active satellite."
+  },
+  {
+   "technique": "IMP-0007",
+   "framework": "SPARTA",
+   "sources": [
+    "impact"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Abusing native spacecraft functionality is an operating-spacecraft impact."
+  },
+  {
+   "technique": "IMP-0008",
+   "framework": "SPARTA",
+   "sources": [
+    "impact"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Forcing a state or mode change acts on a live spacecraft."
+  },
+  {
+   "technique": "IMP-0009",
+   "framework": "SPARTA",
+   "sources": [
+    "impact"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Altering configuration settings acts on a live system."
+  },
+  {
+   "technique": "IMP-0010",
+   "framework": "SPARTA",
+   "sources": [
+    "impact"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Falsifying or deleting data is modification; ENISA describes third parties obtaining data."
+  },
+  {
+   "technique": "IMP-0011",
+   "framework": "SPARTA",
+   "sources": [
+    "impact"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Altering command and data flows acts on an operating system."
+  },
+  {
+   "technique": "IMP-0012",
+   "framework": "SPARTA",
+   "sources": [
+    "impact"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Replacing software or firmware on a live spacecraft is not recovery of data from disposed media."
+  },
+  {
+   "technique": "IMP-0013",
+   "framework": "SPARTA",
+   "sources": [
+    "impact"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Resource exhaustion is denial of an operating service."
+  },
+  {
+   "technique": "IMP-0014",
+   "framework": "SPARTA",
+   "sources": [
+    "impact"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Timing manipulation acts on a running system."
+  },
+  {
+   "technique": "LM-0001",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Pivoting through a hosted payload needs an active host."
+  },
+  {
+   "technique": "LM-0003",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Hopping across crosslinks needs live vehicles."
+  }
+ ]
+}

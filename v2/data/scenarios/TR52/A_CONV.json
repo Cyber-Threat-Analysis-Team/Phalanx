@@ -1,0 +1,35 @@
+{
+  "si_id": "SI-TR52-A-CONV",
+  "variant": "G-CONV",
+  "label": "Same as SI-TR52-A on the conventional variant (paired case 5)",
+  "attacker": {
+    "class": "compromised_authorized_gs",
+    "origin_node": "gs_primary",
+    "credential": "mission_valid",
+    "gs_role": "primary",
+    "capability": "operator-level ground access"
+  },
+  "selected_asset_instances": {
+    "ground_ttc": "gs_primary",
+    "bus_cdhs": "sat_service",
+    "bus_com": "sat_service"
+  },
+  "realized_lifecycle": 6,
+  "intended_effect": [
+    "A"
+  ],
+  "protection_applied": {
+    "E-TCUL": {
+      "sdls_auth": true,
+      "sdls_antireplay": true
+    }
+  },
+  "platform_state": {
+    "safe_mode": "unknown"
+  },
+  "evidence_refs": [
+    "ENISA STL 2025 Annex C TR52 description",
+    "SPARTA v4.0.1 technique text"
+  ],
+  "threat": "TR52"
+}

@@ -1,0 +1,427 @@
+{
+ "threat": "TR21",
+ "status": "proposed",
+ "author": "assistant sub-agent V3G8 (v3 re-map); fix pass Fix1",
+ "date": "2026-10-27",
+ "vectors": [
+  {
+   "vector": "ground",
+   "basis": "weak",
+   "enisa_quote": "Unauthorized access/intrusion into buidlings, premises and sites",
+   "reason": "ENISA names intrusion into premises and the affected assets are 'Ground: all assets'; it does not say whose ground systems the intruder then reaches. The weak step is treating a physical intruder as sitting inside the mission's own ground systems."
+  },
+  {
+   "vector": "supply_chain",
+   "basis": "weak",
+   "enisa_quote": "(ground or space, if they are located on the ground)",
+   "reason": "ENISA includes space assets that are on the ground, i.e. a spacecraft at an integration or launch site; the intruder then acts on the spacecraft before launch. The weak step is that ENISA never names integration or launch sites."
+  }
+ ],
+ "rows": [
+  {
+   "technique": "IA-0001",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-OTHER",
+   "reason": "Insertion of malicious code or data during manufacturing or delivery is the supply-chain compromise of TR55; TR21 describes an intruder at a site.",
+   "other_threat": "TR55",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0001.01",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-OTHER",
+   "reason": "Poisoned developer dependencies and build tools are a supply-chain method (TR55), not an intrusion into premises.",
+   "other_threat": "TR55",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0001.02",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-OTHER",
+   "reason": "Software altered before delivery is supply-chain compromise (TR55); TR21 does not describe a delivery step.",
+   "other_threat": "TR55",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0001.03",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-OTHER",
+   "reason": "Altering boards or programmable logic before delivery is the tainted hardware of TR15; TR21's intruder acts at a site, not on a supplier's parts.",
+   "other_threat": "TR15",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0002",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Compromising a software-defined radio is a radio-side route; TR21 describes physical intrusion.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0003",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "A compromised neighbour satellite over a crosslink is not an intrusion into premises.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0004",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "A secondary communication path is not mentioned; TR21 describes physical intrusion.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0004.01",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "A backup or alternate ground station is not mentioned; the text names buildings, premises and sites in general.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0004.02",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "The backup RF receive path is not mentioned in TR21.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0005",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-OTHER",
+   "reason": "Orbital rendezvous is the rogue-object approach of TR18; TR21's spacecraft are on the ground.",
+   "other_threat": "TR18",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0005.01",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-OTHER",
+   "reason": "Analysing a spacecraft's emissions from a nearby vehicle is the spying of TR18; TR21 describes intrusion into sites.",
+   "other_threat": "TR18",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0005.02",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-OTHER",
+   "reason": "Docking or OSAM capture is the docked-vehicle connection of TR20; TR21's spacecraft are on the ground.",
+   "other_threat": "TR20",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0005.03",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Grappling with a capture mechanism is an in-orbit contact method; TR21's assets are on the ground.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0006",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "A hosted payload as a door into the bus is not mentioned in TR21.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0007",
+   "sources": [
+    "origin"
+   ],
+   "code": "K-ACTION",
+   "role": "entry",
+   "enisa_quote": "compromise, modification, damage to or even theft of the satellite lifecycle assets",
+   "sparta_quote": "Compromising the ground segment gives an adversary the most direct path to first execution",
+   "reason": "Intrusion into a ground site leads to compromise of ground-located assets; SPARTA's ground-system foothold is the closest description (a physical intruder is modelled as a ground compromise). Ground-asset damage and theft have no SPARTA technique, so this vector is entry-only by design.",
+   "vectors": [
+    "ground"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0007.01",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Tampering with the on-orbit update pipeline is a specific later step; ENISA names no update manipulation.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0007.02",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Sending commands through a valid ground station is a specific later step; ENISA names no commanding.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0008",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Rogue External Entity is an RF foothold from outside; TR21 describes physical intrusion.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0008.01",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "A rogue ground station transmitting mission signals is not an intrusion into premises.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0008.02",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Rogue Spacecraft is an RF peer in orbit; TR21's assets are on the ground.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0008.03",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-OTHER",
+   "reason": "A counterspace weapon is the ASAT case of TR18; TR21 describes intrusion into sites.",
+   "other_threat": "TR18",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0009",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "A trusted relationship is not mentioned; TR21's intruder is unauthorized.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0009.01",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Mission collaborators as access route are not mentioned in TR21.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0009.02",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-OTHER",
+   "reason": "Vendor access is the supply-chain relationship of TR55; TR21's intruder is unauthorized, not a vendor.",
+   "other_threat": "TR55",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0009.03",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "End-user equipment as attacker origin is not mentioned in TR21.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0010",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Timing first execution to safe-mode is not described.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0011",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-OTHER",
+   "reason": "Plugging a peripheral or removable medium into equipment is the rogue-device connection of TR20; TR21 states intrusion into sites, not a device.",
+   "other_threat": "TR20",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0012",
+   "sources": [
+    "origin"
+   ],
+   "code": "K-ENABLE",
+   "role": "entry",
+   "vectors": [
+    "supply_chain"
+   ],
+   "enables": "IMP-0012",
+   "sparta_quote": "compromised laptops or transient cyber assets push images and tables",
+   "reason": "An intruder at an assembly, test or launch site meets the spacecraft where tools and flight interfaces connect; ATLO compromise is the SPARTA technique for access to a spacecraft on the ground.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0013",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "The host spacecraft as a door into a hosted payload is not mentioned in TR21.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IMP-0007",
+   "sources": [
+    "impact"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "ENISA gives no spacecraft function that is abused; its outcomes are for assets located on the ground.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IMP-0008",
+   "sources": [
+    "impact"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "No state or mode change of a spacecraft is described; outcomes concern assets located on the ground.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IMP-0009",
+   "sources": [
+    "impact"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "'Modification' of assets is stated without saying that settings are changed.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IMP-0010",
+   "sources": [
+    "impact"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "'Modification' is stated for assets, without saying that data is falsified or deleted.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IMP-0011",
+   "sources": [
+    "impact"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "No change to command or data flow is described.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IMP-0012",
+   "sources": [
+    "impact"
+   ],
+   "code": "K-EFFECT",
+   "role": "impact",
+   "vectors": [
+    "supply_chain"
+   ],
+   "enisa_quote": "modification, damage to or even theft of the satellite lifecycle assets",
+   "sparta_quote": "the deliberate alteration of the implementation that controls spacecraft behavior",
+   "reason": "'Modification' of a space asset located on the ground is read as altered flight software or firmware; this is an interpretation, because modification of a physical asset is not necessarily code. Physical damage and theft have no SPARTA technique.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IMP-0013",
+   "sources": [
+    "impact"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "No depletion of a resource is described.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IMP-0014",
+   "sources": [
+    "impact"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "No clock or synchronisation change is described.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "LM-0001",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Pivoting from a hosted payload into the host is not described by TR21.",
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "LM-0003",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Hopping between satellites over a crosslink is not described by TR21.",
+   "framework": "SPARTA"
+  }
+ ],
+ "review_response": [
+  {
+   "finding": "Entry-only result, never complete; ENISA names compromise, modification, damage, theft",
+   "action": "fixed in part: supply_chain vector now has IA-0012 -> IMP-0012 (modification of a space asset on the ground) so a complete chain exists there; the ground vector stays entry-only by design (IA-0007 = compromise). Physical damage and theft have no SPARTA technique (sparta_gap) and are not coded."
+  },
+  {
+   "finding": "Wrong origin class: space assets on the ground at sites; proximity/supply_chain not considered, IA-0012/IA-0011 missing",
+   "action": "fixed: supply_chain vector added (basis weak, quote '(ground or space, if they are located on the ground)') with IA-0012 K-ENABLE. proximity not chosen: its only physical-access technique IA-0011 is a device connection (TR20), and in-orbit rendezvous does not apply to assets on the ground. IA-0011 is D-OTHER to TR20. Candidate files for TR21 now include all entries, so IA-0005.x, IA-0011, IA-0012 were assessed."
+  },
+  {
+   "finding": "IA-0007 is a cyber-compromise description; physical intruder via TC-UL is a model artifact",
+   "action": "kept because no closer SPARTA technique exists; the row reason and vector reason say physical intrusion is modelled as ground compromise (vector basis 'weak')."
+  },
+  {
+   "finding": "No-origin ENISA text mapped to ground without a weak basis flag",
+   "action": "fixed: both vectors carry basis 'weak' with the inference named."
+  },
+  {
+   "finding": "Entry-only threats have complete:0; candidate sets impact-only, 'no row' = not assessed",
+   "action": "fixed: ground vector remains entry-only with explicit reason; candidates now cover all entries so every entry technique is coded."
+  },
+  {
+   "finding": "fix pass m4: IA-0012 -> IMP-0012 reads 'modification' as software/firmware alteration",
+   "action": "fixed: the row reason now says it is an interpretation; the supply_chain vector stays weak."
+  }
+ ]
+}

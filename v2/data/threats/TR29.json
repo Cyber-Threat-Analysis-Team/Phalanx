@@ -1,0 +1,49 @@
+{
+ "id": "TR29",
+ "source": "ENISA Space Threat Landscape 2025, Annex C Table 17 (via Phalanx/framework/enisa_threats_tuple.csv)",
+ "category": "EIH",
+ "name": "Interception of communication",
+ "cia": [
+  "C"
+ ],
+ "affected_asset_selectors": [
+  "Ground: Satellite Control Centre & TTC Ground (Antenna, SLE/SDL protocol)",
+  "Space: BUS (COM) & Payload (PLCOM)",
+  "User: VSAT"
+ ],
+ "description": "Interception of data over a communication channel. This may concern any existing communication link in the satellite lifecycle, inside of specific segments - ground, space, user and human resources - as well as between the segments. It concerns both primary and secondary commincation channels (e.g. used as backup). This threat is commonly employed for cyber espionage, as it may compromise any information in the satellite lifecycle. For example, the threat of interception of communication can manifest itself as interception of Multi-Factor Authentication.",
+ "projection": {
+  "candidate_assets": [
+   "bus_com",
+   "ground_moc",
+   "ground_ttc"
+  ],
+  "candidate_lifecycle": [
+   3,
+   4,
+   5,
+   6,
+   7
+  ],
+  "lifecycle_rule": "ET-P-LC-01 (legacy tuple L field; Annex C has no lifecycle column)",
+  "derivation_provenance": {
+   "kind": "source_field",
+   "source": "Phalanx/framework/enisa_threats_tuple.csv row TR29",
+   "source_sha256": "c086e9d7221893d69e2ff6d380e3b2024aecc144bac8f034218b6814ef060b52",
+   "field": "L (lifecycle)",
+   "note": "candidate_lifecycle copies the legacy tuple L field {3,4,5,6,7}; ENISA STL 2025 Annex C has no lifecycle column, so the basis is the legacy tuple, not the Annex"
+  },
+  "applicable_boundary_roles": [
+   "command_authority"
+  ]
+ },
+ "claims": [
+  {
+   "sv": "SV-CF-1",
+   "quote": "Interception of data over a communication channel",
+   "basis": "enisa_quote",
+   "rationale": "Tapping/intercepting communication links."
+  }
+ ],
+ "crosswalk_key": "Interception of communication"
+}

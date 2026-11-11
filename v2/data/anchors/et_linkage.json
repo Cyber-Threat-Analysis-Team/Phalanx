@@ -1,0 +1,307 @@
+{
+ "status": "approved 2026-10-26 by the project lead (main links only); hash-committed",
+ "author": "assistant (not rule-blind: authored the TR52 rules); D-05 fallback: approval by the project lead recorded as the review",
+ "date": "2026-10-26",
+ "schema_note": "Protocol §1.5 names this artifact data/anchors/et_linkage.yaml; the repo is JSON-only (no pyyaml), so it is et_linkage.draft.json. The .draft infix drops at approval/hash-commit; format change is a deviation to log.",
+ "protocol_refs": [
+  "§1.5 anchor ET linkage",
+  "§4.2 authorship rules / U admission",
+  "§6.1 applicability predicates"
+ ],
+ "semantics": "Per anchor SI: the ENISA ETs it instantiates (main links only). ET-conditioned methods (B0, B1b, B2, B3) are applicable on an anchor SI iff it has a link here. `anchor_quote` occurs exactly once in the anchor's vault note; `enisa_quote` is part of the ET's description in the Annex C tuple; line numbers are hints.",
+ "tr52_caveat": "TR52 rules were tuned before this table existed. Rows with tuned_before_linkage=true must not be presented as independent evidence about TR52 rules.",
+ "anchors": [
+  {
+   "anchor_id": "OPS-SAT-SPARTA",
+   "name": "OPS-SAT / CYSAT 2023, SPARTA leg",
+   "gate_role": "native",
+   "linkage": [
+    {
+     "et_id": "TR52",
+     "et_name": "Seizure of control",
+     "anchor_locator": "70-72,83,99-103 (line hint, 2026-10-18)",
+     "enisa_locator": {
+      "annex": "ENISA Space Threat Landscape, Annex C (Table 17)",
+      "csv": "v2/data/legacy_v1/enisa_threats_tuple.csv",
+      "csv_row": 53,
+      "csv_id": "TR52"
+     },
+     "in_legacy_corpus": true,
+     "legacy_corpus_note": "ET is one of the 58 rows loaded by the legacy v1 engine (v2/data/legacy_v1/ntn_threat_algorithm.py run() returns 58 records) → A_B0 holds by the §6.1 predicate; B0 emits SPARTA techniques only for TR52 (v2/data/legacy_v1/mappings.json holds TR52 only; other ETs are ttp_status PENDING/N/A) so B0 results on this ET are an empty accepted set, not a restraint signal",
+     "rationale": "Overall outcome is a hostile takeover of a spacecraft's application environment, escalated to root, with persistence and mission-data modification; ENISA TR52 = adversaries taking control of space assets by exploiting existing vulnerabilities.",
+     "confidence": "high",
+     "tuned_before_linkage": true,
+     "anchor_techniques_supported": [
+      "EX-0009",
+      "EX-0009.01",
+      "EX-0009.02",
+      "PER-0002.02",
+      "EX-0012.06"
+     ],
+     "caveat": "Attacker was an authorised experimenter with standard access rights (line 49 quote), not an external intruder — the control-seizure semantics hold, the entry authority does not.",
+     "tuned_before_linkage_note": "TR52 rules/mappings were tuned before this table existed; any anchor result on a TR52-linked SI is not an out-of-sample test of the linkage or of the rules.",
+     "anchor_quote": "Once persistence and escalation occurred, the researchers proceeded to attack the",
+     "anchor_note": "research/notes/hacking-an-on-orbit-satellite-an-analysis-of-the-cysat-2023-demo-by-the-aerospac.md",
+     "enisa_quote": "Threats to the availability of the satellite bus as a result of adversaries taking control of space assets by"
+    }
+   ],
+   "not_adopted": [
+    "TR48",
+    "TR46",
+    "TR55",
+    "TR07"
+   ],
+   "considered_not_linked": [
+    {
+     "et_id": "TR39",
+     "reason": "Data Modification (ground) — EX-0012.06 modifies on-board payload data in orbit; TR39's segment is Ground only."
+    },
+    {
+     "et_id": "TR57",
+     "reason": "Unauthorized modification: Parameters concerns satellite parameters/test procedures; the source modifies imagery."
+    }
+   ]
+  },
+  {
+   "anchor_id": "FROSETH-2024",
+   "name": "Frøseth et al., ESORICS-WS 2024 (maritime satcom, Starlink)",
+   "gate_role": "native",
+   "linkage": [
+    {
+     "et_id": "TR54",
+     "et_name": "Spoofing",
+     "anchor_locator": "258,324 (line hint, 2026-10-18)",
+     "enisa_locator": {
+      "annex": "ENISA Space Threat Landscape, Annex C (Table 17)",
+      "csv": "v2/data/legacy_v1/enisa_threats_tuple.csv",
+      "csv_row": 55,
+      "csv_id": "TR54"
+     },
+     "in_legacy_corpus": true,
+     "legacy_corpus_note": "ET is one of the 58 rows loaded by the legacy v1 engine (v2/data/legacy_v1/ntn_threat_algorithm.py run() returns 58 records) → A_B0 holds by the §6.1 predicate; B0 emits SPARTA techniques only for TR52 (v2/data/legacy_v1/mappings.json holds TR52 only; other ETs are ttp_status PENDING/N/A) so B0 results on this ET are an empty accepted set, not a restraint signal",
+     "rationale": "EX-0014 Spoofing is the attack's effect: false GPS signals generated with SDR to mislead the vessel; ENISA TR54 = transmitting erroneous data via an apparently legitimate signal.",
+     "confidence": "high",
+     "tuned_before_linkage": false,
+     "anchor_techniques_supported": [
+      "EX-0014",
+      "IMP-0002"
+     ],
+     "caveat": "Spoofed signal is GNSS on a vessel receiver rather than a satellite comms/TC link; ENISA TR54 is generic about receiver/transmitter end.",
+     "anchor_quote": "generate and transmit false GPS signals",
+     "anchor_note": "research/notes/threat-modeling-in-satellite-communications-for-maritime-operations-springer-nat.md",
+     "enisa_quote": "Also known as \"malicious misdirecton\". Threat aimed at deceiving the receiver, seeing adversaries transmitting"
+    }
+   ],
+   "not_adopted": [
+    "TR35",
+    "TR55"
+   ],
+   "considered_not_linked": [
+    {
+     "et_id": "TR52",
+     "reason": "Compromise targets a ground station used as a launch pad (LM-0003 hop to other satellites is potential amplification); no seizure of satellite bus control is described. Not linked, which also keeps the SI out of the tuned-TR52 stratum — USER JUDGEMENT CALL."
+    },
+    {
+     "et_id": "TR28",
+     "reason": "Hijacking = replacement of satellite signals; here GPS signals are spoofed, not a satellite's own signal replaced."
+    }
+   ]
+  },
+  {
+   "anchor_id": "SPYCHAIN-2025",
+   "name": "SpyChain, arXiv 2510.06535 (NOS3/cFS supply-chain insider)",
+   "gate_role": "native",
+   "linkage": [
+    {
+     "et_id": "TR55",
+     "et_name": "Supply Chain Compromise",
+     "anchor_locator": "392-410,1169-1250 (line hint, 2026-10-18)",
+     "enisa_locator": {
+      "annex": "ENISA Space Threat Landscape, Annex C (Table 17)",
+      "csv": "v2/data/legacy_v1/enisa_threats_tuple.csv",
+      "csv_row": 56,
+      "csv_id": "TR55"
+     },
+     "in_legacy_corpus": true,
+     "legacy_corpus_note": "ET is one of the 58 rows loaded by the legacy v1 engine (v2/data/legacy_v1/ntn_threat_algorithm.py run() returns 58 records) → A_B0 holds by the §6.1 predicate; B0 emits SPARTA techniques only for TR52 (v2/data/legacy_v1/mappings.json holds TR52 only; other ETs are ttp_status PENDING/N/A) so B0 results on this ET are an empty accepted set, not a restraint signal",
+     "rationale": "Adversary is a supply-chain insider tainting COTS hardware/software via vendors pre-launch; ENISA TR55 explicitly includes malicious software/backdoors introduced through third-party components.",
+     "confidence": "high",
+     "tuned_before_linkage": false,
+     "anchor_techniques_supported": [
+      "IA-0001.02",
+      "IA-0009.0",
+      "PER-0002.01"
+     ],
+     "anchor_quote": "We consider a Supply Chain Insider with pre-launch access",
+     "anchor_note": "research/notes/spychain-multi-vector-supply-chain-attacks-on-small-satellite-systems-2.md",
+     "enisa_quote": "Threats to and from the supply chain including potential leaks of software/tools/data sheets, malicious use of"
+    },
+    {
+     "et_id": "TR15",
+     "et_name": "Rogue hardware",
+     "anchor_locator": "392-410,1234 (line hint, 2026-10-18)",
+     "enisa_locator": {
+      "annex": "ENISA Space Threat Landscape, Annex C (Table 17)",
+      "csv": "v2/data/legacy_v1/enisa_threats_tuple.csv",
+      "csv_row": 16,
+      "csv_id": "TR15"
+     },
+     "in_legacy_corpus": true,
+     "legacy_corpus_note": "ET is one of the 58 rows loaded by the legacy v1 engine (v2/data/legacy_v1/ntn_threat_algorithm.py run() returns 58 records) → A_B0 holds by the §6.1 predicate; B0 emits SPARTA techniques only for TR52 (v2/data/legacy_v1/mappings.json holds TR52 only; other ETs are ttp_status PENDING/N/A) so B0 results on this ET are an empty accepted set, not a restraint signal",
+     "rationale": "Malicious hardware components (hardware backdoor PER-0002.01, colluding hardware modules) built in during design/assembly; ENISA TR15 = tainted hardware with hidden malicious capabilities.",
+     "confidence": "high",
+     "tuned_before_linkage": false,
+     "anchor_techniques_supported": [
+      "PER-0002.01"
+     ],
+     "anchor_quote": "Backdoor: Hardware Backdoor",
+     "anchor_note": "research/notes/spychain-multi-vector-supply-chain-attacks-on-small-satellite-systems-2.md",
+     "enisa_quote": "Tainted hardware components may be built into both space and ground segments, ultimately resulting in hardware failure."
+    }
+   ],
+   "not_adopted": [
+    "TR38",
+    "TR46",
+    "TR40"
+   ],
+   "considered_not_linked": [
+    {
+     "et_id": "TR26",
+     "reason": "Third-party non-compliance concerns unvetted suppliers failing specs; SpyChain's actor is a malicious insider, covered by TR55."
+    }
+   ]
+  },
+  {
+   "anchor_id": "EAR-CH6-SPARTA",
+   "name": "Ear dissertation Ch. VI, SPARTA subset of AT_A (SATCOM testbed, module level)",
+   "gate_role": "native",
+   "linkage": [
+    {
+     "et_id": "TR52",
+     "et_name": "Seizure of control",
+     "anchor_locator": "6071-6099 (line hint, 2026-10-18)",
+     "enisa_locator": {
+      "annex": "ENISA Space Threat Landscape, Annex C (Table 17)",
+      "csv": "v2/data/legacy_v1/enisa_threats_tuple.csv",
+      "csv_row": 53,
+      "csv_id": "TR52"
+     },
+     "in_legacy_corpus": true,
+     "legacy_corpus_note": "ET is one of the 58 rows loaded by the legacy v1 engine (v2/data/legacy_v1/ntn_threat_algorithm.py run() returns 58 records) → A_B0 holds by the §6.1 predicate; B0 emits SPARTA techniques only for TR52 (v2/data/legacy_v1/mappings.json holds TR52 only; other ETs are ttp_status PENDING/N/A) so B0 results on this ET are an empty accepted set, not a restraint signal",
+     "rationale": "Attack 3 'Seizure of Control' (2008 ISS malware): ground compromise, malicious command transmission IA-0007.02, known-vulnerability exploit EX-0009.03 to gain control of SM.C&DH services; Ear's own attack-type label ty5 is 'Seizure of Control' (line 2427).",
+     "confidence": "high",
+     "tuned_before_linkage": true,
+     "anchor_techniques_supported": [
+      "IA-0007.02",
+      "EX-0009.03",
+      "EX-0012"
+     ],
+     "caveat": "Ear's ty-labels coincide with ENISA names but are Ear's own taxonomy (108-attack corpus), not ENISA Annex C [INFERENCE: label coincidence, no cited derivation].",
+     "tuned_before_linkage_note": "TR52 rules/mappings were tuned before this table existed; any anchor result on a TR52-linked SI is not an out-of-sample test of the linkage or of the rules.",
+     "anchor_quote": "6.5.3.4 Attack 3: Seizure of Control Attack",
+     "anchor_note": "research/notes/towards-principled-analysis-and.md",
+     "enisa_quote": "Threats to the availability of the satellite bus as a result of adversaries taking control of space assets by"
+    },
+    {
+     "et_id": "TR40",
+     "et_name": "Denial of Service (DoS)",
+     "anchor_locator": "6045-6062 (line hint, 2026-10-18)",
+     "enisa_locator": {
+      "annex": "ENISA Space Threat Landscape, Annex C (Table 17)",
+      "csv": "v2/data/legacy_v1/enisa_threats_tuple.csv",
+      "csv_row": 41,
+      "csv_id": "TR40"
+     },
+     "in_legacy_corpus": true,
+     "legacy_corpus_note": "ET is one of the 58 rows loaded by the legacy v1 engine (v2/data/legacy_v1/ntn_threat_algorithm.py run() returns 58 records) → A_B0 holds by the §6.1 predicate; B0 emits SPARTA techniques only for TR52 (v2/data/legacy_v1/mappings.json holds TR52 only; other ETs are ttp_status PENDING/N/A) so B0 results on this ET are an empty accepted set, not a restraint signal",
+     "rationale": "Attack 2 'DoS' (Galaxy 4): rogue ground station sends malicious command, corrupts on-board configuration (EX-0012), flight computer halts.",
+     "confidence": "high",
+     "tuned_before_linkage": false,
+     "anchor_techniques_supported": [
+      "REC-0005.02",
+      "IA-0008.01",
+      "EX-0012"
+     ],
+     "anchor_quote": "6.5.3.3 Attack 2: DoS Attack",
+     "anchor_note": "research/notes/towards-principled-analysis-and.md",
+     "enisa_quote": "DoS can pose a threat to both the satellite control center and TTC ground stations, as well as the bus and the payload"
+    },
+    {
+     "et_id": "TR28",
+     "et_name": "Hijacking",
+     "anchor_locator": "6003-6030 (line hint, 2026-10-18)",
+     "enisa_locator": {
+      "annex": "ENISA Space Threat Landscape, Annex C (Table 17)",
+      "csv": "v2/data/legacy_v1/enisa_threats_tuple.csv",
+      "csv_row": 29,
+      "csv_id": "TR28"
+     },
+     "in_legacy_corpus": true,
+     "legacy_corpus_note": "ET is one of the 58 rows loaded by the legacy v1 engine (v2/data/legacy_v1/ntn_threat_algorithm.py run() returns 58 records) → A_B0 holds by the §6.1 predicate; B0 emits SPARTA techniques only for TR52 (v2/data/legacy_v1/mappings.json holds TR52 only; other ETs are ttp_status PENDING/N/A) so B0 results on this ET are an empty accepted set, not a restraint signal",
+     "rationale": "Attack 1 'RF-based' (2007 Czech TV hijack): rogue ground station overpowers legitimate signal (IA-0008.01) after downlink intercept; ENISA TR28 = alteration/replacement of a satellite's legitimate signals; Ear ty6 'Signal Hijacking'.",
+     "confidence": "high",
+     "tuned_before_linkage": false,
+     "anchor_techniques_supported": [
+      "REC-0005.02",
+      "IA-0008.01"
+     ],
+     "anchor_quote": "6.5.3.2 Attack 1: RF-based Attack",
+     "anchor_note": "research/notes/towards-principled-analysis-and.md",
+     "enisa_quote": "Malicious alteration or complete replacement of a satellite's legitimate signals with the aim to reuse it for another"
+    }
+   ],
+   "not_adopted": [
+    "TR29"
+   ],
+   "considered_not_linked": [
+    {
+     "et_id": "TR54",
+     "reason": "Ear's Attack 1 could also be read as Spoofing (ty8); ENISA TR28 chosen because the text describes overpowering/replacing the legitimate signal."
+    }
+   ]
+  },
+  {
+   "anchor_id": "VIASAT-KA-SAT",
+   "name": "Viasat KA-SAT (ATT&CK Enterprise v13, OSINT reconstruction)",
+   "gate_role": "cross_framework_descriptive",
+   "linkage": [
+    {
+     "et_id": "TR42",
+     "et_name": "Firmware corruption",
+     "anchor_locator": "202-229 (T1495 Firmware Corruption, T1542.001; Phase 8-9); operator: research/notes/ka-sat-network-cyber-attack-overview-viasat.md:58 (line hint, 2026-10-18)",
+     "enisa_locator": {
+      "annex": "ENISA Space Threat Landscape, Annex C (Table 17)",
+      "csv": "v2/data/legacy_v1/enisa_threats_tuple.csv",
+      "csv_row": 43,
+      "csv_id": "TR42"
+     },
+     "in_legacy_corpus": true,
+     "legacy_corpus_note": "ET is one of the 58 rows loaded by the legacy v1 engine (v2/data/legacy_v1/ntn_threat_algorithm.py run() returns 58 records) → A_B0 holds by the §6.1 predicate; B0 emits SPARTA techniques only for TR52 (v2/data/legacy_v1/mappings.json holds TR52 only; other ETs are ttp_status PENDING/N/A) so B0 results on this ET are an empty accepted set, not a restraint signal",
+     "rationale": "Wiper overwrote modem flash/firmware making modems inoperable; ENISA TR42 = overwriting/corrupting firmware devices.",
+     "confidence": "high",
+     "tuned_before_linkage": false,
+     "anchor_techniques_supported": [
+      "T1495",
+      "T1542.001",
+      "T1561"
+     ],
+     "anchor_quote": "[2] «  _Specifically, these destructive commands overwrote key data in flash memory on the modems",
+     "anchor_note": "research/notes/an-analysis-of-the-viasat-cyber-attack-with-the-mitre-attck-framework-space-cybe.md",
+     "enisa_quote": "Threats against firmware include the potential of adversaries overwriting or corrupting firmware devices (e.g. flahs"
+    }
+   ],
+   "not_adopted": [
+    "TR35",
+    "TR52",
+    "TR55",
+    "TR09"
+   ],
+   "considered_not_linked": [
+    {
+     "et_id": "TR40",
+     "reason": "Initial malicious-traffic wave from modems (vri:53) and service outage; T1498 appears in the ATT&CK note but DoS is a symptom, not the instantiated mechanism."
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,566 @@
+{
+ "threat": "TR40",
+ "status": "proposed",
+ "author": "assistant sub-agent V3G6 (v3 re-map); fix pass Fix1",
+ "date": "2026-10-27",
+ "vectors": [
+  {
+   "vector": "rf_link",
+   "basis": "weak",
+   "enisa_quote": "flooding of satellite with requests/commands",
+   "reason": "ENISA gives the flood but not where it comes from; requests and commands reach the satellite from outside the mission only over the TT&C radio link, and the text routes the DoS 'through the bus' that terminates that link."
+  },
+  {
+   "vector": "user_terminal",
+   "basis": "weak",
+   "enisa_quote": "flooding of satellite with requests/commands",
+   "reason": "ENISA does not say who sends the requests; terminals are what send requests to a satellite RAN, and the same entry lists 'User: Consumer Interfaces & devices' among the affected assets, so a rogue terminal on the service link is the second best-supported origin."
+  }
+ ],
+ "rows": [
+  {
+   "technique": "IA-0008",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "K-ENABLE",
+   "role": "entry",
+   "vectors": [
+    "rf_link",
+    "user_terminal"
+   ],
+   "enables": "EX-0013",
+   "sparta_quote": "any actor-controlled transmitter, platform, or node",
+   "reason": "A transmitter outside the mission (rogue ground station or rogue terminal) is what puts the flooding traffic on the link."
+  },
+  {
+   "technique": "IA-0008.01",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "K-ENABLE",
+   "role": "entry",
+   "vectors": [
+    "rf_link"
+   ],
+   "enables": "EX-0013.01",
+   "sparta_quote": "Adversaries may field their own ground system, transportable or fixed, to transmit and receive mission-compatible signals",
+   "reason": "Mission-compatible requests/commands at flood rate need a ground system that speaks the mission's framing."
+  },
+  {
+   "technique": "EX-0013",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "code": "K-ACTION",
+   "role": "execution",
+   "enisa_quote": "flooding of satellite with requests/commands",
+   "sparta_quote": "Flooding overwhelms a communication or processing path by injecting traffic",
+   "reason": "Flooding is the one DoS technique ENISA names; the SPARTA text covers the link, protocol and application layers the satellite exposes."
+  },
+  {
+   "technique": "EX-0013.01",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "code": "K-ACTION",
+   "role": "execution",
+   "vectors": [
+    "rf_link"
+   ],
+   "enisa_quote": "flooding of satellite with requests/commands",
+   "sparta_quote": "saturates paths with legitimate telecommands or bus messages",
+   "reason": "ENISA's flood consists of commands the satellite processes through the bus; this variant needs the satellite to accept them, so it is not a link-only step."
+  },
+  {
+   "technique": "EX-0013.02",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "code": "K-ACTION",
+   "role": "execution",
+   "link_only": true,
+   "link_only_reason": "Noise or malformed frames burden the receiver and parser without the spacecraft accepting any command, so only the radio link is needed.",
+   "enisa_quote": "DoS may be perpetrated through various kinds of techniques",
+   "sparta_quote": "malformed frames, or near-valid messages, so receivers and parsers labor to acquire, decode, and reject it",
+   "reason": "ENISA's list of DoS techniques is open ('various kinds ... such as'); near-valid traffic that keeps receivers busy is a flood of requests the satellite cannot use."
+  },
+  {
+   "technique": "IMP-0013",
+   "sources": [
+    "impact"
+   ],
+   "framework": "SPARTA",
+   "code": "K-EFFECT",
+   "role": "impact",
+   "enisa_quote": "affecting their availability",
+   "sparta_quote": "deliberate depletion or monopolization of a finite spacecraft resource",
+   "reason": "The stated outcome is loss of availability of the bus and payload, i.e. a resource denied to legitimate use."
+  },
+  {
+   "technique": "DE-0002",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Denying or deceiving the telemetry downlink hides activity from operators; ENISA's DoS is a flood of the satellite, and TR44 keeps only the jamming variant DE-0002.02."
+  },
+  {
+   "technique": "DE-0002.02",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "code": "D-OTHER",
+   "other_threat": "TR44",
+   "reason": "Jamming the downlink signal is TR44 (Jamming), which keeps it; ENISA DoS names flooding, not jamming."
+  },
+  {
+   "technique": "DE-0010",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Overflowing on-board audit logs hides activity; ENISA DoS describes denial of availability, not log evasion."
+  },
+  {
+   "technique": "EXF-0004",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "ENISA DoS says nothing about exfiltration over a secondary link."
+  },
+  {
+   "technique": "EXF-0006.02",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "ENISA DoS says nothing about reconfiguring the transponder to leak data."
+  },
+  {
+   "technique": "EXF-0010",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "ENISA DoS says nothing about exfiltration through the payload channel."
+  },
+  {
+   "technique": "IA-0001",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-OTHER",
+   "other_threat": "TR55",
+   "reason": "Tampering at manufacture or delivery is TR55 (supply-chain compromise), which keeps it; ENISA's DoS is a flood during operation."
+  },
+  {
+   "technique": "IA-0001.01",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-OTHER",
+   "other_threat": "TR55",
+   "reason": "Poisoned dependencies and build tools are TR55, which keeps it; not a flood of requests."
+  },
+  {
+   "technique": "IA-0001.02",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-OTHER",
+   "other_threat": "TR55",
+   "reason": "Altering delivered software is TR55, which keeps it; ENISA's DoS is not delivered code."
+  },
+  {
+   "technique": "IA-0001.03",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-OTHER",
+   "other_threat": "TR55",
+   "reason": "Altered hardware before delivery is TR55, which keeps it; not a flood of requests."
+  },
+  {
+   "technique": "IA-0002",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "ENISA does not mention a compromised radio; flooding needs no foothold in the SDR."
+  },
+  {
+   "technique": "IA-0003",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Entering through a compromised neighbour over an inter-satellite link; ENISA names no neighbour satellite as the flooding source."
+  },
+  {
+   "technique": "IA-0004",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "No backup-channel path is described; ENISA only says the satellite is flooded."
+  },
+  {
+   "technique": "IA-0004.01",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Using a backup or standby ground station; ENISA's DoS names no backup path."
+  },
+  {
+   "technique": "IA-0004.02",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "ENISA does not mention forcing the satellite onto its backup receiver."
+  },
+  {
+   "technique": "IA-0005",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Approaching the satellite by rendezvous and proximity operations; ENISA's DoS names no co-orbital or physical actor."
+  },
+  {
+   "technique": "IA-0005.01",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Analysing emanations from a nearby vantage point; ENISA's DoS names no co-orbital or physical actor."
+  },
+  {
+   "technique": "IA-0005.02",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Riding a docking or servicing event; ENISA's DoS names no co-orbital or physical actor."
+  },
+  {
+   "technique": "IA-0005.03",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Grappling the satellite for physical contact; ENISA's DoS names no co-orbital or physical actor."
+  },
+  {
+   "technique": "IA-0006",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Entering through the hosted payload into the host spacecraft; ENISA's DoS names no hosted payload as door or target of the flood."
+  },
+  {
+   "technique": "IA-0007",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Compromising the mission ground system; ENISA's DoS does not describe a compromised ground system."
+  },
+  {
+   "technique": "IA-0007.01",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-OTHER",
+   "other_threat": "TR46",
+   "reason": "Poisoning the update pipeline is TR46 (injection into software updates), which keeps it; not a flood."
+  },
+  {
+   "technique": "IA-0007.02",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Sending legitimate-looking commands through a compromised mission ground system; ENISA's DoS does not describe a compromised ground system."
+  },
+  {
+   "technique": "IA-0008.02",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Operating a rogue spacecraft as a local RF peer; ENISA's DoS names no co-orbital or physical actor."
+  },
+  {
+   "technique": "IA-0008.03",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-OTHER",
+   "other_threat": "TR18",
+   "reason": "A counterspace weapon is TR18 (ASAT), which keeps it; ENISA's DoS is traffic, not a weapon effect."
+  },
+  {
+   "technique": "IA-0009",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Riding a trusted partner, vendor or user connection; ENISA's DoS names no trusted partner connection."
+  },
+  {
+   "technique": "IA-0009.01",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Entering through a mission collaborator's connection; ENISA's DoS names no trusted partner connection."
+  },
+  {
+   "technique": "IA-0009.02",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Entering through a vendor's remote access; ENISA's DoS names no trusted partner connection."
+  },
+  {
+   "technique": "IA-0009.03",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "SPARTA describes a compromised user domain as a route into mission cores; ENISA's request flood needs no foothold in the user segment, only a terminal that sends."
+  },
+  {
+   "technique": "IA-0010",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "ENISA does not tie the flood to safe-mode."
+  },
+  {
+   "technique": "IA-0011",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Abusing peripherals or removable media; ENISA's DoS names no co-orbital or physical actor."
+  },
+  {
+   "technique": "IA-0012",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-OTHER",
+   "other_threat": "TR58",
+   "reason": "Compromise during assembly, test and launch is TR58, which keeps it; ENISA's DoS happens in operation."
+  },
+  {
+   "technique": "IA-0013",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Reaching a hosted payload from the host spacecraft; ENISA's DoS names no hosted payload as door or target of the flood."
+  },
+  {
+   "technique": "IMP-0007",
+   "sources": [
+    "impact"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "ENISA states denial of availability, not the abuse of a native function for another purpose."
+  },
+  {
+   "technique": "IMP-0008",
+   "sources": [
+    "impact"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "ENISA does not describe forcing a state or mode change."
+  },
+  {
+   "technique": "IMP-0009",
+   "sources": [
+    "impact"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "ENISA DoS describes no change to settings or limits."
+  },
+  {
+   "technique": "IMP-0010",
+   "sources": [
+    "impact"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "ENISA DoS describes no falsified or corrupted data."
+  },
+  {
+   "technique": "IMP-0011",
+   "sources": [
+    "impact"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "The outcome ENISA gives is availability loss from the flood (IMP-0013), not altering commands or data flow."
+  },
+  {
+   "technique": "IMP-0012",
+   "sources": [
+    "impact"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "ENISA DoS describes no change to flight software or firmware."
+  },
+  {
+   "technique": "IMP-0014",
+   "sources": [
+    "impact"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "ENISA DoS describes no time or synchronization change."
+  },
+  {
+   "technique": "LM-0001",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Pivoting from a hosted payload across the host-payload boundary; ENISA's DoS names no hosted payload as door or target of the flood."
+  },
+  {
+   "technique": "LM-0003",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Hopping to other satellites over a crosslink; ENISA names no neighbour satellite as the flooding source."
+  },
+  {
+   "technique": "RD-0004",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Staging tooling is not described and no kept row needs it."
+  },
+  {
+   "technique": "RD-0004.02",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Uploading an exploit payload is not described; the flood needs no exploit."
+  },
+  {
+   "technique": "REC-0005.04",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "code": "D-UNDESCRIBED",
+   "reason": "Active scanning is not described and no kept row needs it."
+  }
+ ],
+ "review_response": [
+  {
+   "finding": "A-EX-0013.02 homeless (TR40/TR44 point at each other, neither keeps it)",
+   "action": "fixed: EX-0013.02 is now K-ACTION in TR40 (quote 'various kinds of techniques'), link_only true with reason; TR44 points to TR40."
+  },
+  {
+   "finding": "A-S4 parent EX-0013 and child EX-0013.01 both kept but engine treats them differently",
+   "action": "fixed: kept on purpose with different quotes and different reach: EX-0013 is link-only (default list), EX-0013.01 needs accepted commands (rf_link only), EX-0013.02 is link_only by explicit override. Not collapsed because ENISA says 'requests/commands'."
+  },
+  {
+   "finding": "A-ground-side targets: DoS text covers 'satellite control center and TTC ground stations' but no origin targets a ground node",
+   "action": "kept because the attack-surface model has no ground-node target; reported as a limit (surface_gap), no technique forced for it."
+  },
+  {
+   "finding": "A-IMP-0013 K-EFFECT quote 'affecting their availability' is generic",
+   "action": "kept because it is the only ENISA wording of the outcome; the SPARTA quote fits."
+  },
+  {
+   "finding": "A-S1 link-only effect handling (IMP-0013)",
+   "action": "kept because IMP-0013 is already in the link_only default list; TR40 outcome survives SDLS through EX-0013/EX-0013.02."
+  },
+  {
+   "finding": "arch-E-3 vector basis not recorded",
+   "action": "fixed: both vectors carry basis weak with the reason stating what the text only implies."
+  },
+  {
+   "finding": "v3 new vectors feeder_rf / user_terminal",
+   "action": "fixed: user_terminal added (weak, 'requests'); feeder_rf not added because ENISA says the DoS goes 'primarily ... through the bus', which is the TT&C side."
+  },
+  {
+   "finding": "v3 DE-0002 / DE-0002.02 D-OTHER to TR44",
+   "action": "fixed: DE-0002.02 stays D-OTHER TR44 (kept there); DE-0002 parent re-coded D-UNDESCRIBED because TR44 no longer keeps the parent."
+  },
+  {
+   "finding": "fix pass M5: surface_gap limit for ground-side DoS promised but not in the file",
+   "action": "fixed: recorded in notes."
+  },
+  {
+   "finding": "fix pass m6: EX-0013.02 quote differs from TR32 ('through TC suppression')",
+   "action": "kept because the ENISA wording differs (open list of DoS techniques here, TC suppression there); code and link_only override are identical."
+  }
+ ],
+ "notes": [
+  "Not covered: ENISA says DoS threatens the satellite control centre and TTC ground stations, but the attack-surface model has no ground node as a target (surface_gap); no technique is forced for it.",
+  "SDLS-on results: EX-0013 and EX-0013.02 are link-level and survive SDLS; EX-0013.01 (flooding with accepted commands) does not."
+ ]
+}

@@ -1,0 +1,36 @@
+{
+ "_about": "Proposed corrections for flagged anchor IDs. Proposals only: the resolver never applies them; anchor values stay as published. To be decided with the ET linkage table (step 2d).",
+ "status": "proposed 2026-10-18, not approved",
+ "items": [
+  {
+   "anchor": "FROSETH-2024",
+   "printed_id": "REC-0003",
+   "proposed": "RD-0003",
+   "rationale": "printed label 'Obtain Cyber Capabilities' is RD-0003's name in v4.0.1 and the paper files it under ST0002 Resource Development; REC-0003 is 'Gather Spacecraft Communications Information'"
+  },
+  {
+   "anchor": "FROSETH-2024",
+   "printed_id": "IA-0004.01",
+   "proposed": "IA-0004",
+   "rationale": "printed label 'Secondary/Backup Communication Channel' is the parent IA-0004; IA-0004.01 is 'Ground Station' (granularity slip)"
+  },
+  {
+   "anchor": "FROSETH-2024",
+   "printed_id": "IMP-0002",
+   "proposed": null,
+   "rationale": "deprecated in v4.0.1; successor among IMP-0007…0014 needs a scenario reading, not a label match"
+  },
+  {
+   "anchor": "SPYCHAIN-2025",
+   "printed_id": "IA-0009.0",
+   "proposed": "IA-0009.02",
+   "rationale": "malformed token; printed label 'Trusted Relationship: Vendor' matches IA-0009.02"
+  },
+  {
+   "anchor": "SPYCHAIN-2025",
+   "printed_id": "IMP-0001/0002/0003/0006",
+   "proposed": null,
+   "rationale": "deprecated in v4.0.1; successor needs a scenario reading"
+  }
+ ]
+}

@@ -1,0 +1,39 @@
+{
+ "si_id": "SI-TR54-RF-OPEN",
+ "threat": "TR54",
+ "variant": "G-D53",
+ "label": "Rogue ground station; SDLS authentication and anti-replay not applied on the TC links",
+ "attacker": {
+  "class": "rogue_ground_station",
+  "origin_node": "rogue_gs",
+  "credential": "none",
+  "capability": "SDR uplink transmitter"
+ },
+ "selected_asset_instances": {
+  "bus_com": "sat_service",
+  "ground_ttc": "gs_primary"
+ },
+ "realized_lifecycle": 6,
+ "intended_effect": [
+  "A",
+  "I"
+ ],
+ "protection_applied": {
+  "E-TCUL": {
+   "sdls_auth": false,
+   "sdls_antireplay": false
+  },
+  "E-RF": {
+   "sdls_auth": false,
+   "sdls_antireplay": false
+  }
+ },
+ "platform_state": {
+  "safe_mode": false
+ },
+ "evidence_refs": [
+  "ENISA STL 2025 Annex C TR54 description",
+  "SPARTA v4.0.1 SV-* related-to links",
+  "standard draft scenario set, tools/draft_all_ets.py"
+ ]
+}

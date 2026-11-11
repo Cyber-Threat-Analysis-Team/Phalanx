@@ -1,0 +1,537 @@
+{
+ "threat": "TR48",
+ "name": "Malicious code/software/activity: Software and vulnerability exploit",
+ "category": "NAA",
+ "cia": [
+  "C",
+  "I"
+ ],
+ "affected_assets": [
+  "Ground: Production (Manufacturing systems & Simulators) & Centralised Checkout Systems & Satellite Operations Centre (Mission Control System)",
+  "Space: Satellite Bus, Satellite payload"
+ ],
+ "description": "Exploitation of security weakness in satellite infrastructure resulting from poor configuration and/or logic or implementation erros. These may result in systemic vulnerabilities and affect the satellites' reliability and overall stability. Threat actors may exploit such weaknesses by injecting instructions to manipulate control functions, cause resource exhaustion or introduce flaws in satellite components via the supply chain, enabling them to launch subsequent attacks. This threat may encompass time synchronization executions, compromise of boot memory, exploiting faults in geofencing, software defied assets and others.",
+ "claims": [
+  {
+   "sv": "SV-SP-1",
+   "quote": "Exploitation of security weakness in satellite infrastructure resulting from poor configuration and/or logic or implementation erros"
+  },
+  {
+   "sv": "SV-IT-3",
+   "quote": "compromise of boot memory"
+  },
+  {
+   "sv": "SV-AV-2",
+   "quote": "time synchronization executions"
+  }
+ ],
+ "candidates": [
+  {
+   "technique": "DE-0003",
+   "tactic": "Defense Evasion",
+   "name": "On-Board Values Obfuscation",
+   "sources": [
+    "sv:SV-AV-2"
+   ]
+  },
+  {
+   "technique": "DE-0003.09",
+   "tactic": "Defense Evasion",
+   "name": "System Clock for Evasion",
+   "sources": [
+    "sv:SV-AV-2"
+   ]
+  },
+  {
+   "technique": "DE-0003.11",
+   "tactic": "Defense Evasion",
+   "name": "Watchdog Timer (WDT) for Evasion",
+   "sources": [
+    "sv:SV-AV-2"
+   ]
+  },
+  {
+   "technique": "DE-0010",
+   "tactic": "Defense Evasion",
+   "name": "Overflow Audit Log",
+   "sources": [
+    "sv:SV-SP-1"
+   ]
+  },
+  {
+   "technique": "EX-0004",
+   "tactic": "Execution",
+   "name": "Compromise Boot Memory",
+   "sources": [
+    "sv:SV-IT-3"
+   ]
+  },
+  {
+   "technique": "EX-0008",
+   "tactic": "Execution",
+   "name": "Time Synchronized Execution",
+   "sources": [
+    "sv:SV-AV-2"
+   ]
+  },
+  {
+   "technique": "EX-0008.01",
+   "tactic": "Execution",
+   "name": "Absolute Time Sequences",
+   "sources": [
+    "sv:SV-AV-2"
+   ]
+  },
+  {
+   "technique": "EX-0008.02",
+   "tactic": "Execution",
+   "name": "Relative Time Sequences",
+   "sources": [
+    "sv:SV-AV-2"
+   ]
+  },
+  {
+   "technique": "EX-0009",
+   "tactic": "Execution",
+   "name": "Exploit Code Flaws",
+   "sources": [
+    "sv:SV-SP-1"
+   ]
+  },
+  {
+   "technique": "EX-0009.01",
+   "tactic": "Execution",
+   "name": "Flight Software",
+   "sources": [
+    "sv:SV-SP-1"
+   ]
+  },
+  {
+   "technique": "EX-0009.03",
+   "tactic": "Execution",
+   "name": "Known Vulnerability (COTS/FOSS)",
+   "sources": [
+    "sv:SV-SP-1"
+   ]
+  },
+  {
+   "technique": "EX-0012",
+   "tactic": "Execution",
+   "name": "Modify On-Board Values",
+   "sources": [
+    "sv:SV-AV-2"
+   ]
+  },
+  {
+   "technique": "EX-0012.11",
+   "tactic": "Execution",
+   "name": "Watchdog Timer (WDT)",
+   "sources": [
+    "sv:SV-AV-2"
+   ]
+  },
+  {
+   "technique": "EX-0012.12",
+   "tactic": "Execution",
+   "name": "System Clock",
+   "sources": [
+    "sv:SV-AV-2"
+   ]
+  },
+  {
+   "technique": "EX-0014",
+   "tactic": "Execution",
+   "name": "Spoofing",
+   "sources": [
+    "sv:SV-AV-2"
+   ]
+  },
+  {
+   "technique": "EX-0014.01",
+   "tactic": "Execution",
+   "name": "Time Spoof",
+   "sources": [
+    "sv:SV-AV-2"
+   ]
+  },
+  {
+   "technique": "EX-0014.03",
+   "tactic": "Execution",
+   "name": "Sensor Data",
+   "sources": [
+    "sv:SV-AV-2"
+   ]
+  },
+  {
+   "technique": "EX-0014.04",
+   "tactic": "Execution",
+   "name": "Position, Navigation, and Timing (PNT) Spoofing",
+   "sources": [
+    "sv:SV-AV-2"
+   ]
+  },
+  {
+   "technique": "IA-0001",
+   "tactic": "Initial Access",
+   "name": "Compromise Supply Chain",
+   "sources": [
+    "sv:SV-SP-1",
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0001.01",
+   "tactic": "Initial Access",
+   "name": "Software Dependencies & Development Tools",
+   "sources": [
+    "sv:SV-SP-1",
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0001.02",
+   "tactic": "Initial Access",
+   "name": "Software Supply Chain",
+   "sources": [
+    "sv:SV-SP-1",
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0001.03",
+   "tactic": "Initial Access",
+   "name": "Hardware Supply Chain",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0002",
+   "tactic": "Initial Access",
+   "name": "Compromise Software Defined Radio",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0003",
+   "tactic": "Initial Access",
+   "name": "Crosslink via Compromised Neighbor",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0004",
+   "tactic": "Initial Access",
+   "name": "Secondary/Backup Communication Channel",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0004.01",
+   "tactic": "Initial Access",
+   "name": "Ground Station",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0004.02",
+   "tactic": "Initial Access",
+   "name": "Receiver",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0005",
+   "tactic": "Initial Access",
+   "name": "Rendezvous & Proximity Operations",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0005.01",
+   "tactic": "Initial Access",
+   "name": "Compromise Emanations",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0005.02",
+   "tactic": "Initial Access",
+   "name": "Docked Vehicle / OSAM",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0005.03",
+   "tactic": "Initial Access",
+   "name": "Proximity Grappling",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0006",
+   "tactic": "Initial Access",
+   "name": "Compromise Hosted Payload",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0007",
+   "tactic": "Initial Access",
+   "name": "Compromise Ground System",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0007.01",
+   "tactic": "Initial Access",
+   "name": "Compromise On-Orbit Update",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0007.02",
+   "tactic": "Initial Access",
+   "name": "Malicious Commanding via Valid GS",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0008",
+   "tactic": "Initial Access",
+   "name": "Rogue External Entity",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0008.01",
+   "tactic": "Initial Access",
+   "name": "Rogue Ground Station",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0008.02",
+   "tactic": "Initial Access",
+   "name": "Rogue Spacecraft",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0008.03",
+   "tactic": "Initial Access",
+   "name": "ASAT/Counterspace Weapon",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0009",
+   "tactic": "Initial Access",
+   "name": "Trusted Relationship",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0009.01",
+   "tactic": "Initial Access",
+   "name": "Mission Collaborator (academia, international, etc.)",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0009.02",
+   "tactic": "Initial Access",
+   "name": "Vendor",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0009.03",
+   "tactic": "Initial Access",
+   "name": "User Segment",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0010",
+   "tactic": "Initial Access",
+   "name": "Unauthorized Access During Safe-Mode",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0011",
+   "tactic": "Initial Access",
+   "name": "Auxiliary Device Compromise",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0012",
+   "tactic": "Initial Access",
+   "name": "Assembly, Test, and Launch Operation Compromise",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0013",
+   "tactic": "Initial Access",
+   "name": "Compromise Host Spacecraft",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IMP-0007",
+   "tactic": "Impact",
+   "name": "Native Functionality Abuse",
+   "sources": [
+    "impact"
+   ]
+  },
+  {
+   "technique": "IMP-0008",
+   "tactic": "Impact",
+   "name": "State or Mode Manipulation",
+   "sources": [
+    "impact"
+   ]
+  },
+  {
+   "technique": "IMP-0009",
+   "tactic": "Impact",
+   "name": "Configuration Manipulation",
+   "sources": [
+    "impact"
+   ]
+  },
+  {
+   "technique": "IMP-0010",
+   "tactic": "Impact",
+   "name": "Data Manipulation",
+   "sources": [
+    "impact"
+   ]
+  },
+  {
+   "technique": "IMP-0011",
+   "tactic": "Impact",
+   "name": "Command and Data Flow Manipulation",
+   "sources": [
+    "impact"
+   ]
+  },
+  {
+   "technique": "IMP-0012",
+   "tactic": "Impact",
+   "name": "Software, Firmware, or Programmable Logic Manipulation",
+   "sources": [
+    "impact"
+   ]
+  },
+  {
+   "technique": "IMP-0013",
+   "tactic": "Impact",
+   "name": "Resource Exhaustion or Contention",
+   "sources": [
+    "impact"
+   ]
+  },
+  {
+   "technique": "IMP-0014",
+   "tactic": "Impact",
+   "name": "Timing or Synchronization Manipulation",
+   "sources": [
+    "impact"
+   ]
+  },
+  {
+   "technique": "LM-0001",
+   "tactic": "Lateral Movement",
+   "name": "Hosted Payload",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "LM-0003",
+   "tactic": "Lateral Movement",
+   "name": "Constellation Hopping via Crosslink",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "PER-0001",
+   "tactic": "Persistence",
+   "name": "Memory Compromise",
+   "sources": [
+    "sv:SV-IT-3"
+   ]
+  },
+  {
+   "technique": "PER-0002",
+   "tactic": "Persistence",
+   "name": "Backdoor",
+   "sources": [
+    "sv:SV-SP-1"
+   ]
+  },
+  {
+   "technique": "PER-0002.02",
+   "tactic": "Persistence",
+   "name": "Software Backdoor",
+   "sources": [
+    "sv:SV-SP-1"
+   ]
+  },
+  {
+   "technique": "RD-0003",
+   "tactic": "Resource Development",
+   "name": "Obtain Cyber Capabilities",
+   "sources": [
+    "sv:SV-SP-1"
+   ]
+  },
+  {
+   "technique": "RD-0003.01",
+   "tactic": "Resource Development",
+   "name": "Exploit/Payload",
+   "sources": [
+    "sv:SV-SP-1"
+   ]
+  },
+  {
+   "technique": "REC-0008.03",
+   "tactic": "Reconnaissance",
+   "name": "Known Vulnerabilities",
+   "sources": [
+    "sv:SV-SP-1"
+   ]
+  }
+ ]
+}

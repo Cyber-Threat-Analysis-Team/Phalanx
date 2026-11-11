@@ -1,0 +1,63 @@
+{
+ "id": "TR09",
+ "source": "ENISA Space Threat Landscape 2025, Annex C Table 17 (via Phalanx/framework/enisa_threats_tuple.csv)",
+ "category": "UD",
+ "name": "Software misconfiguration",
+ "cia": [
+  "A",
+  "C",
+  "I"
+ ],
+ "affected_asset_selectors": [
+  "Ground: Design/dev/QA & Manufacturing & Assembly & Simulators & Satellite Control Centre",
+  "Ground & Space: SLE/SDL protocols",
+  "Space: all assets"
+ ],
+ "description": "Improper configuration of software resulting in vulnerabilities such as unsecure code and/or logic errors. These may lead to unauthorized access enabling data corruption/modification (intentional or non-intentional) by threat actors, and cause further software or hardware failure, enable use of unauthorized software, or impact the confidentiality, integrity or availability data.",
+ "projection": {
+  "candidate_assets": [
+   "bus_cdhs",
+   "bus_cdhs_f",
+   "bus_com",
+   "ground_moc",
+   "integration_site",
+   "ran_cu",
+   "ran_du"
+  ],
+  "candidate_lifecycle": [
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7
+  ],
+  "lifecycle_rule": "ET-P-LC-01 (legacy tuple L field; Annex C has no lifecycle column)",
+  "derivation_provenance": {
+   "kind": "source_field",
+   "source": "Phalanx/framework/enisa_threats_tuple.csv row TR09",
+   "source_sha256": "c086e9d7221893d69e2ff6d380e3b2024aecc144bac8f034218b6814ef060b52",
+   "field": "L (lifecycle)",
+   "note": "candidate_lifecycle copies the legacy tuple L field {3,4,5,6,7}; ENISA STL 2025 Annex C has no lifecycle column, so the basis is the legacy tuple, not the Annex"
+  },
+  "applicable_boundary_roles": [
+   "command_authority"
+  ]
+ },
+ "claims": [
+  {
+   "sv": "SV-SP-1",
+   "quote": "unsecure code and/or logic errors",
+   "basis": "enisa_quote",
+   "rationale": "SV-SP-1 names unsecure code and logic errors in flight software as exploitable vulnerabilities."
+  },
+  {
+   "sv": "SV-IT-2",
+   "quote": "data corruption/modification",
+   "basis": "enisa_quote",
+   "rationale": "Unauthorized modification or corruption of data by threat actors."
+  }
+ ],
+ "crosswalk_key": "Software misconfiguration"
+}

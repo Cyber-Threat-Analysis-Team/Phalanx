@@ -1,0 +1,46 @@
+{
+ "id": "TR07",
+ "source": "ENISA Space Threat Landscape 2025, Annex C Table 17 (via Phalanx/framework/enisa_threats_tuple.csv)",
+ "category": "UD",
+ "name": "Lack of segregation",
+ "cia": [
+  "A",
+  "C",
+  "I"
+ ],
+ "affected_asset_selectors": [
+  "Space: BUS (CDHS/COM) & Payload (PDHS/PLCOM/UDHS)"
+ ],
+ "description": "Although uncommon, it is possible that a satellite does not have built-in bus-payload segregation, or that segregation is implemented improperly. If these two asset subdomains are not segregated, potential materialization of threats to the satellite bus can impact a wider set of assets, including the satellite payload.",
+ "projection": {
+  "candidate_assets": [
+   "bus_cdhs",
+   "bus_cdhs_f",
+   "bus_com"
+  ],
+  "candidate_lifecycle": [
+   3,
+   4,
+   5,
+   6,
+   7
+  ],
+  "lifecycle_rule": "ET-P-LC-01 (legacy tuple L field; Annex C has no lifecycle column)",
+  "derivation_provenance": {
+   "kind": "source_field",
+   "source": "Phalanx/framework/enisa_threats_tuple.csv row TR07",
+   "source_sha256": "c086e9d7221893d69e2ff6d380e3b2024aecc144bac8f034218b6814ef060b52",
+   "field": "L (lifecycle)",
+   "note": "candidate_lifecycle copies the legacy tuple L field {3,4,5,6,7}; ENISA STL 2025 Annex C has no lifecycle column, so the basis is the legacy tuple, not the Annex"
+  },
+  "applicable_boundary_roles": []
+ },
+ "claims": [
+  {
+   "sv": "SV-AC-6",
+   "quote": "bus-payload segregation",
+   "basis": "enisa_quote",
+   "rationale": "Bus/payload segregation is exactly the segregation concern SV-AC-6 describes for onboard components."
+  }
+ ]
+}

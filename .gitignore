@@ -1,0 +1,35 @@
+# dependencies & virtual environments (regenerable / machine-specific)
+node_modules/
+pptenv/
+.venv/
+venv/
+__pycache__/
+*.pyc
+
+# build output
+dist/
+dist-ssr/
+.vite/
+
+# node / TypeScript / lint / test caches (created by npm install & build)
+*.tsbuildinfo
+.eslintcache
+.cache/
+coverage/
+*.tgz
+
+# environment files (keep an example if you add one)
+.env
+.env.*
+!.env.example
+
+# WSL / Windows download cruft
+*:Zone.Identifier
+
+# local tooling & OS cruft — track shared settings.json, ignore personal/local state
+.claude/*
+!.claude/settings.json
+.DS_Store
+Thumbs.db
+*.local
+*.log

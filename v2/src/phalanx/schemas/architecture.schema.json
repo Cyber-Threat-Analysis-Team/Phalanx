@@ -1,0 +1,196 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "G: architecture variant",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "source",
+    "nodes",
+    "edges"
+  ],
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "source": {
+      "type": "string"
+    },
+    "nodes": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "segment",
+          "assets",
+          "domain",
+          "security_domain",
+          "security_domain_basis",
+          "planes",
+          "functions"
+        ],
+        "properties": {
+          "segment": {
+            "enum": [
+              "Ground",
+              "Space",
+              "User",
+              "Human Resources"
+            ]
+          },
+          "assets": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "uniqueItems": true
+          },
+          "domain": {
+            "type": "string"
+          },
+          "scope": {
+            "const": "attacker"
+          },
+          "security_domain": {
+            "type": "string",
+            "pattern": "^SD-[A-Z0-9-]+$",
+            "description": "administrative-authority domain in the TS 33.210 sense"
+          },
+          "security_domain_basis": {
+            "type": "string",
+            "pattern": "^(source|assumed): .+",
+            "description": "'source: <ref>' or 'assumed: <reason>'"
+          },
+          "planes": {
+            "type": "array",
+            "items": {
+              "enum": [
+                "service_network",
+                "mission_operations",
+                "lifecycle_artifact"
+              ]
+            },
+            "uniqueItems": true,
+            "minItems": 1
+          },
+          "functions": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string",
+              "minLength": 1
+            },
+            "description": "asset -> logical function; keys must equal `assets`"
+          }
+        }
+      },
+      "minProperties": 1
+    },
+    "edges": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "src",
+          "dst",
+          "type",
+          "role",
+          "transition",
+          "provenance",
+          "endpoint_assets",
+          "active_lifecycle",
+          "figure_alias",
+          "figure_alias_basis",
+          "use_optionality",
+          "use_optionality_basis",
+          "crosses_security_domain"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^E-"
+          },
+          "src": {
+            "type": "string"
+          },
+          "dst": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string"
+          },
+          "transition": {
+            "enum": [
+              "COMMUNICATION",
+              "AUTHORITY",
+              "ARTIFACT_ADMISSION",
+              "PHYSICAL_CUSTODY"
+            ]
+          },
+          "security_mechanism": {
+            "type": "string"
+          },
+          "provenance": {
+            "type": "string"
+          },
+          "endpoint_assets": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "uniqueItems": true
+          },
+          "active_lifecycle": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 7
+            },
+            "uniqueItems": true
+          },
+          "scope": {
+            "const": "attacker"
+          },
+          "figure_alias": {
+            "type": "array",
+            "items": {
+              "enum": [
+                "TB1",
+                "TB2",
+                "TB3",
+                "TB4",
+                "TB5"
+              ]
+            },
+            "uniqueItems": true
+          },
+          "figure_alias_basis": {
+            "type": "string"
+          },
+          "use_optionality": {
+            "enum": [
+              "mandatory",
+              "optional",
+              "unspecified"
+            ],
+            "description": "whether USE of the specified mechanism is mandatory/optional per the source; unspecified when the source is silent or the edge has no mechanism"
+          },
+          "use_optionality_basis": {
+            "type": "string",
+            "pattern": "^(source|assumed): .+"
+          },
+          "crosses_security_domain": {
+            "type": "boolean",
+            "description": "derived: endpoint security_domain values differ; checked by Workspace.validate"
+          }
+        }
+      }
+    }
+  }
+}

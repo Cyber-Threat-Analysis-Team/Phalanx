@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "WebFetch(domain:www.enisa.europa.eu)",
+      "WebFetch(domain:sparta.aerospace.org)",
+      "WebFetch(domain:aerospace.org)",
+      "WebFetch(domain:www.3gpp.org)",
+      "WebFetch(domain:github.com)"
+    ]
+  }
+}

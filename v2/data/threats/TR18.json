@@ -1,0 +1,53 @@
+{
+ "id": "TR18",
+ "source": "ENISA Space Threat Landscape 2025, Annex C Table 17 (via Phalanx/framework/enisa_threats_tuple.csv)",
+ "category": "PA",
+ "name": "Damage/Destruction of the satellite via the use of ASAT",
+ "cia": [
+  "A"
+ ],
+ "affected_asset_selectors": [
+  "Ground: TTC Ground",
+  "Space: all assets"
+ ],
+ "description": "Deliberate physical damage to the satellite or some of its segments. This threat can negatively impact any aspect of satellite operations, epending on the specific satellite asset that has been damaged. hysical damage to the satellite can be caused by a deliberate attack ia an ASAT weapon. ASAT includes space or ground based directed nergy weapons or kinetic weapons inteded to physically destroy atellites, namely: high-powered microwave (HPM) weapons, lectromagnetic pulse (EMP), high-powered laser weapons, laser dazzling and blinding, and high-altitude nuclear detonation. This also entails proximity operations where rogue space objects approach space assets for the purpose of assessing their capabilities (spying), making physical contact (ramming), or conducting aforementioned attacks.",
+ "projection": {
+  "candidate_assets": [
+   "bus_cdhs",
+   "bus_cdhs_f",
+   "bus_com",
+   "ground_ttc",
+   "ran_cu",
+   "ran_du"
+  ],
+  "candidate_lifecycle": [
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7
+  ],
+  "lifecycle_rule": "ET-P-LC-01 (legacy tuple L field; Annex C has no lifecycle column)",
+  "derivation_provenance": {
+   "kind": "source_field",
+   "source": "Phalanx/framework/enisa_threats_tuple.csv row TR18",
+   "source_sha256": "c086e9d7221893d69e2ff6d380e3b2024aecc144bac8f034218b6814ef060b52",
+   "field": "L (lifecycle)",
+   "note": "candidate_lifecycle copies the legacy tuple L field {3,4,5,6,7}; ENISA STL 2025 Annex C has no lifecycle column, so the basis is the legacy tuple, not the Annex"
+  },
+  "applicable_boundary_roles": [
+   "command_authority"
+  ]
+ },
+ "claims": [
+  {
+   "sv": "SV-AC-5",
+   "quote": "proximity operations where rogue space objects approach space assets",
+   "basis": "enisa_quote",
+   "rationale": "Proximity operations by rogue objects."
+  }
+ ],
+ "crosswalk_key": "Damage/Destruction of the satellite via the use of ASAT"
+}

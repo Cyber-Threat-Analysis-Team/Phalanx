@@ -1,0 +1,104 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AF: assurance finding (one element of a scenario result's `af` list)",
+  "description": "A finding is derived output, never a decision: it records missing facts, crosswalk gaps, an unreachable goal, or (I11) that no generator proposed any candidate (`no_framework_coverage`, which has no MR).",
+  "oneOf": [
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "mr_id",
+        "facts",
+        "rule",
+        "rule_version"
+      ],
+      "properties": {
+        "type": {
+          "enum": [
+            "insufficient_evidence",
+            "missing_system_state"
+          ]
+        },
+        "mr_id": {
+          "type": "string",
+          "pattern": "^MR-"
+        },
+        "facts": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1
+        },
+        "rule": {
+          "type": "string",
+          "pattern": "^MAP-CHK-[0-9]{2}$"
+        },
+        "rule_version": {
+          "type": "string"
+        }
+      }
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "technique",
+        "detail",
+        "rule",
+        "rule_version"
+      ],
+      "properties": {
+        "type": {
+          "const": "candidate_inclusion_gap"
+        },
+        "technique": {
+          "type": "string",
+          "pattern": "^[A-Z]+-[0-9]{4}(\\.[0-9]{2})?$"
+        },
+        "detail": {
+          "type": "string",
+          "minLength": 1
+        },
+        "rule": {
+          "type": "string",
+          "pattern": "^MAP-CHK-[0-9]{2}$"
+        },
+        "rule_version": {
+          "type": "string"
+        }
+      }
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "detail",
+        "rule",
+        "rule_version"
+      ],
+      "properties": {
+        "type": {
+          "enum": [
+            "unreachable",
+            "no_framework_coverage"
+          ]
+        },
+        "detail": {
+          "type": "string",
+          "minLength": 1
+        },
+        "rule": {
+          "type": "string",
+          "pattern": "^MAP-CHK-[0-9]{2}$"
+        },
+        "rule_version": {
+          "type": "string"
+        }
+      }
+    }
+  ]
+}

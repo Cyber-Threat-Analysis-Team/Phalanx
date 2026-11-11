@@ -1,0 +1,167 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "MR: mapping decision record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "mr_id",
+    "si_id",
+    "technique",
+    "name",
+    "tactic",
+    "generators",
+    "status",
+    "reason_codes",
+    "checks",
+    "root_facts",
+    "relation",
+    "supporting_evidence",
+    "opposing_evidence",
+    "provenance",
+    "evidence_clause",
+    "profile_source"
+  ],
+  "properties": {
+    "mr_id": {
+      "type": "string"
+    },
+    "si_id": {
+      "type": "string"
+    },
+    "candidate_source": {
+      "type": "string"
+    },
+    "technique": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "tactic": {
+      "type": "string"
+    },
+    "profile_source": {
+      "enum": [
+        "analyst",
+        "derived",
+        "default"
+      ],
+      "description": "which layer set the technique's target profile"
+    },
+    "generators": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "status": {
+      "enum": [
+        "accepted",
+        "rejected",
+        "unresolved"
+      ]
+    },
+    "reason_codes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "checks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "code",
+          "rule",
+          "result",
+          "detail",
+          "rule_version"
+        ],
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "rule": {
+            "type": "string",
+            "pattern": "^MAP-CHK-[0-9]{2}$",
+            "description": "registered rule id (docs/rule_registry.json)"
+          },
+          "result": {
+            "enum": [
+              "pass",
+              "fail",
+              "unknown",
+              "not_applicable"
+            ]
+          },
+          "detail": {
+            "type": "string"
+          },
+          "rule_version": {
+            "type": "string"
+          }
+        }
+      },
+      "minItems": 2
+    },
+    "root_facts": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "relation": {
+      "type": "object"
+    },
+    "supporting_evidence": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "opposing_evidence": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "required": [
+        "scenario",
+        "threat",
+        "rules",
+        "catalog",
+        "engine",
+        "method"
+      ],
+      "properties": {
+        "rules": {
+          "type": "object",
+          "required": [
+            "vocabulary",
+            "techniques",
+            "evidence",
+            "registry"
+          ],
+          "properties": {
+            "registry": {
+              "type": "string",
+              "description": "rule_registry version"
+            }
+          }
+        }
+      }
+    },
+    "evidence_clause": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "id of the ET evidence clause linked to this technique (null if none)"
+    }
+  }
+}

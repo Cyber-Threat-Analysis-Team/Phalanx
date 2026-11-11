@@ -1,0 +1,1257 @@
+{
+ "threat": "TR52",
+ "status": "proposed",
+ "author": "assistant sub-agent V3G1-TR52 (v3 re-map); fix pass Fix1",
+ "date": "2026-10-27",
+ "review_response": [
+  {
+   "finding": "S2: rf_link chain (EX-0003, EX-0009) removed under SDLS",
+   "action": "kept because SDLS-on assumes an intact protocol: EX-0003 modifies on-board validation and EX-0009 exploits on-board code, both need a command the spacecraft has already accepted, so the engine removing them under SDLS is correct; no link_only override is used and the report must read 'SDLS-on assumes an intact protocol'."
+  },
+  {
+   "finding": "IA-0007.02 coded K-ACTION/execution while TR28/TR51 code K-ENABLE/entry",
+   "action": "fixed: now K-ENABLE, role entry (ground entry list), enables IMP-0011; IA-0007 enables EX-0003."
+  },
+  {
+   "finding": "PER-0004 role persistence orders the lockout before the impact row",
+   "action": "fixed: role impact with role_reason (the lockout is the stated outcome), still K-EFFECT with the lockout quote."
+  },
+  {
+   "finding": "IMP-0009 quote for the lockout is a stretch; two effect rows for one sentence",
+   "action": "fixed: demoted to D-UNDESCRIBED; SPARTA excludes key and executable changes from Configuration Manipulation and PER-0004 carries the lockout."
+  },
+  {
+   "finding": "EX-0009/EX-0003 and the effects appear unconnected via enables",
+   "action": "fixed (informational): entries now enable specific steps (IA-0007 -> EX-0003, IA-0007.02 -> IMP-0011, IA-0008/IA-0008.01 -> EX-0009)."
+  },
+  {
+   "finding": "no-issue items (vectors, D-OTHER targets, drops of EX-0012.x to TR57)",
+   "action": "kept because the review found them sound; D-OTHER targets re-checked against current keeps, EX-0004 re-pointed to TR48, all reasons rewritten per row, new entry/door candidates coded."
+  },
+  {
+   "finding": "fix pass: validator, EX-0003, IMP-0011 (rf_link) and EX-0009 (ground) had enablers only in the other vector",
+   "action": "fixed: IA-0008 enables EX-0009 and EX-0003, IA-0008.01 also enables IMP-0011, IA-0007 enables EX-0003 and EX-0009; each vector now has its own enabler for every step."
+  },
+  {
+   "finding": "fix pass M5: 'SDLS-on assumes an intact protocol' caveat not in file",
+   "action": "fixed: recorded in notes."
+  },
+  {
+   "finding": "fix pass: IA-0007/IA-0008 reasons carried process wording ('chosen by the lead')",
+   "action": "fixed: reasons now state what the SPARTA technique does; the lead decision stays on the rf_link vector (basis lead_decision)."
+  }
+ ],
+ "vectors": [
+  {
+   "vector": "ground",
+   "basis": "quote",
+   "enisa_quote": "overtaking control of the management segment to execute malicious commands",
+   "reason": "Control of the management (TT&C ground) segment is taken and used to issue commands."
+  },
+  {
+   "vector": "rf_link",
+   "basis": "lead_decision",
+   "enisa_quote": "adversaries taking control of space assets",
+   "reason": "ENISA gives no access path for the takeover; the rogue ground station origin is included by the project lead's decision."
+  }
+ ],
+ "rows": [
+  {
+   "technique": "DE-0001",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR50",
+   "reason": "Suppressing FDIR, watchdogs and limit checks so actions go unnoticed is a way to stop the satellite doing its service, while ENISA's seizure text only speaks of commands and user lockout."
+  },
+  {
+   "technique": "DE-0002.01",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Making ground software render or interpret telemetry wrongly hides the spacecraft's true state from controllers, an operator-blinding step the seizure text never mentions."
+  },
+  {
+   "technique": "DE-0002.03",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Pausing telemetry publishers or filtering packets on board to leave controllers uninformed is concealment, and ENISA says nothing about hiding the takeover."
+  },
+  {
+   "technique": "DE-0003",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Falsifying counters, flags and reporting modes that operators judge command hygiene by is a cover-up tactic that the ENISA takeover sentence does not describe."
+  },
+  {
+   "technique": "DE-0003.03",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Turning command receivers off to create quiet windows closes the command path, whereas ENISA's attacker wants to use the command path to issue commands."
+  },
+  {
+   "technique": "DE-0003.04",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Biasing the receiver AGC so that specific commands are not processed defeats reception of commands, and ENISA describes commands being executed, not suppressed."
+  },
+  {
+   "technique": "DE-0003.05",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Reading or faking command-lock and frame-lock indicators to test geometry or readiness is link reconnaissance that ENISA's text on taking control does not mention."
+  },
+  {
+   "technique": "DE-0003.06",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Switching telemetry downlink modes or virtual-channel selections to change what ground sees is reporting manipulation, which ENISA does not tie to seizure."
+  },
+  {
+   "technique": "DE-0003.07",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Toggling cryptographic modes or 'crypto off' selectors to desynchronise ground and spacecraft is a mode change, whereas ENISA names overtaking access control without describing mode selectors."
+  },
+  {
+   "technique": "DE-0003.09",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Biasing the spacecraft clock so logs and command histories look shifted is a time-evasion trick, and ENISA names no time manipulation."
+  },
+  {
+   "technique": "DE-0003.11",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Extending or disabling watchdog timeouts to let long processes run unreset is a stealth tweak that the seizure description does not include."
+  },
+  {
+   "technique": "DE-0005",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Abusing relaxed rate, size and timetag checks during safe-mode is a timing trick tied to a vehicle state, which the ENISA text does not mention."
+  },
+  {
+   "technique": "DE-0006",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Editing the on-board whitelist to run or hide malicious programs presumes an implanted program, while ENISA names exploited vulnerabilities and commands."
+  },
+  {
+   "technique": "DE-0007",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "A rootkit patches flight-software APIs and telemetry publishers to hide an implant, and ENISA describes no implant that needs hiding."
+  },
+  {
+   "technique": "DE-0008",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "A bootkit runs first in the boot chain to shape what later layers see, which presupposes a planted boot component that the seizure text does not describe."
+  },
+  {
+   "technique": "DE-0009.04",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Dazzling or spoofing the spacecraft's own proximity sensors targets space-situational awareness, not the command or access-control path ENISA says is seized."
+  },
+  {
+   "technique": "DE-0009.05",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Corrupting ground-based space-domain-awareness catalogues and sensor networks blinds monitoring, which has no link to taking control of a satellite."
+  },
+  {
+   "technique": "DE-0011",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Using valid credentials in a way that conceals the intruder is an evasion behaviour, and ENISA names no concealment."
+  },
+  {
+   "technique": "DE-0012",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Two or more compromised modules cooperating to hide activity assumes supply-chain implants, which ENISA's seizure sentence does not describe."
+  },
+  {
+   "technique": "EX-0002",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Executing an implant only when orbital geometry or lighting conditions match is a trigger condition, and ENISA gives no trigger or implant."
+  },
+  {
+   "technique": "EX-0003",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "K-ACTION",
+   "role": "execution",
+   "enisa_quote": "overtaking access control",
+   "sparta_quote": "The adversary alters how the spacecraft validates authority",
+   "reason": "Altering how the spacecraft validates authority is how access control is overtaken."
+  },
+  {
+   "technique": "EX-0004",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR48",
+   "reason": "Manipulating boot ROM vectors and loaders so attacker code runs before integrity checks is a firmware-level foothold, not the access-control or command takeover ENISA names."
+  },
+  {
+   "technique": "EX-0005.01",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Exploiting errata, scan chains and debug straps in the hardware design is one narrow flaw class, whereas ENISA says only 'existing vulnerabilities' without hardware detail."
+  },
+  {
+   "technique": "EX-0005.02",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR42",
+   "reason": "Issuing low-level maintenance or register-write device commands that bypass command mediation is a hardware-level abuse, not the exploitation of existing vulnerabilities ENISA describes."
+  },
+  {
+   "technique": "EX-0006",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR28",
+   "reason": "Putting links or storage into clear or weakened protection by toggling flags or forcing null ciphers is the SLE/SDL compromise of ENISA's hijacking threat, not this seizure text."
+  },
+  {
+   "technique": "EX-0008.01",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Keying execution to a fixed wall-clock epoch describes a time-triggered implant, and ENISA names no triggered code."
+  },
+  {
+   "technique": "EX-0009",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "K-ACTION",
+   "role": "execution",
+   "enisa_quote": "exploiting existing vulnerabilities",
+   "sparta_quote": "abusing defects in software that runs on the vehicle",
+   "reason": "ENISA says control of space assets is taken by exploiting existing vulnerabilities."
+  },
+  {
+   "technique": "EX-0009.01",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Flight-software parsers, table loaders and safing logic are one subclass of code flaws, and ENISA's 'existing vulnerabilities' does not name flight software specifically."
+  },
+  {
+   "technique": "EX-0009.02",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Kernel and scheduler flaws in Linux-style spacecraft operating systems are a further narrowing of code flaws that the ENISA wording does not make."
+  },
+  {
+   "technique": "EX-0010",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR46",
+   "reason": "Introducing native binaries, shellcode or interpreted data payloads is injection of malicious code, while ENISA's seizure text names exploited vulnerabilities rather than injected code."
+  },
+  {
+   "technique": "EX-0010.03",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR46",
+   "reason": "A rootkit that interposes on state-reporting mechanisms hides other implants, which is the malware-injection scenario rather than a takeover through vulnerabilities."
+  },
+  {
+   "technique": "EX-0010.04",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR46",
+   "reason": "A bootkit placed in the pre-OS boot chain is an injected implant, a different scenario from the vulnerability exploitation and access-control takeover in ENISA's text."
+  },
+  {
+   "technique": "EX-0011",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Timing on-board actions for safe-mode, when guardrails change, depends on a vehicle state that the ENISA text does not mention."
+  },
+  {
+   "technique": "EX-0012",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR57",
+   "reason": "Altering live registers, limit tables and schedule data is the parameter-modification scenario, not the command seizure and access-control lockout ENISA describes here."
+  },
+  {
+   "technique": "EX-0012.01",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Writing internal registers while flight software runs changes subsystem behaviour, and ENISA names no register tampering."
+  },
+  {
+   "technique": "EX-0012.02",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Rewriting message-ID to subscriber routing maps redirects on-board data flow, which ENISA does not mention for seizure of control."
+  },
+  {
+   "technique": "EX-0012.04",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Editing app or subscriber tables changes which software receives which message class, a table-level edit that ENISA does not enumerate."
+  },
+  {
+   "technique": "EX-0012.05",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR57",
+   "reason": "Skewing scheduler parameters and timer tables to alter task timing is a parameter-modification effect, not part of seizing control through commands."
+  },
+  {
+   "technique": "EX-0012.07",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Editing thruster calibration, valve timing and delta-V tables is a propulsion-specific change, whereas ENISA's takeover sentence names no subsystem."
+  },
+  {
+   "technique": "EX-0012.08",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Altering star-tracker catalogues, gyro biases and controller gains is an attitude-control manipulation that ENISA's text does not mention."
+  },
+  {
+   "technique": "EX-0012.09",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Changing bus voltage limits and MPPT setpoints concerns the power subsystem, which the seizure text leaves out."
+  },
+  {
+   "technique": "EX-0012.10",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Editing opcode-to-handler maps and queue limits in command and data handling is a C&DH table change that ENISA does not describe as the means of takeover."
+  },
+  {
+   "technique": "EX-0012.11",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR57",
+   "reason": "Changing watchdog timeouts, reset actions and enable masks is a parameter edit of the watchdog, not one of the takeover steps in ENISA's description."
+  },
+  {
+   "technique": "EX-0012.12",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Writing clock registers or time-distribution settings alters the time base, and ENISA mentions no timing change."
+  },
+  {
+   "technique": "EX-0013",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR40",
+   "reason": "Overwhelming a link or processing path with traffic is a denial-of-service action, while ENISA's seizure threat is a takeover that needs the commands to be accepted."
+  },
+  {
+   "technique": "EX-0013.01",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR40",
+   "reason": "Saturating the spacecraft with valid telecommands or no-ops so it burns resources honouring them is flooding, the opposite of the targeted malicious commands ENISA describes."
+  },
+  {
+   "technique": "EX-0013.02",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Injecting noise or malformed frames that receivers waste effort rejecting is jamming-like input, and ENISA's attacker needs commands to be accepted."
+  },
+  {
+   "technique": "EX-0014",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR54",
+   "reason": "Forging time tags, sensor measurements or bus messages so on-board logic acts on false inputs is spoofing, not the exploitation of existing vulnerabilities and access control ENISA names."
+  },
+  {
+   "technique": "EX-0014.01",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Forging or biasing the time that on-board consumers see to break timetag validation is a time-input attack, and ENISA names no time manipulation."
+  },
+  {
+   "technique": "EX-0014.02",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Forging frames on 1553, SpaceWire or CAN buses requires bus access and is not the vulnerability or access-control takeover that ENISA describes."
+  },
+  {
+   "technique": "EX-0014.03",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR54",
+   "reason": "Presenting fabricated sensor measurements as ground truth is data deception, not the command seizure and lockout ENISA states."
+  },
+  {
+   "technique": "EX-0014.04",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR54",
+   "reason": "Transmitting GNSS-like signals to steer the navigation solution is a navigation-spoofing attack that ENISA does not link to seizure of control."
+  },
+  {
+   "technique": "EXF-0002",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Learning secrets from power, timing or emissions side channels is data exfiltration, and ENISA states an availability loss, not data theft."
+  },
+  {
+   "technique": "EXF-0002.02",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Capturing electromagnetic leakage from switching chips to infer computation is a proximity exfiltration route and ENISA states no exfiltration."
+  },
+  {
+   "technique": "EXF-0002.04",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Timing acknowledgments and response latencies to learn which code path ran is a side-channel measurement that has no role in the described takeover."
+  },
+  {
+   "technique": "EXF-0004",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Co-opting a backup rekey or beacon link as a covert data path is exfiltration, which ENISA's seizure text does not describe."
+  },
+  {
+   "technique": "EXF-0006",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Retuning carriers or adding subcarriers so mission data leaves over an unmonitored path is exfiltration by radio reconfiguration, with no basis in ENISA's text."
+  },
+  {
+   "technique": "EXF-0006.01",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Adding a subcarrier or new waveform to an SDR to piggyback payload data is covert exfiltration and ENISA names no data leaving the system."
+  },
+  {
+   "technique": "EXF-0006.02",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Remapping transponder paths or frequencies to route traffic to non-mission receivers is a communications-configuration exfiltration, not command seizure."
+  },
+  {
+   "technique": "EXF-0007",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR38",
+   "reason": "Siphoning mission data at scale from a compromised ground system is a data-breach scenario, while ENISA's seizure text states no data theft."
+  },
+  {
+   "technique": "EXF-0008",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR55",
+   "reason": "Breaching a developer or integration site for source code and build artefacts is a third-party supply-chain route, not the exploitation of existing vulnerabilities in ENISA's text."
+  },
+  {
+   "technique": "EXF-0009",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Capturing mission data at commercial ground stations or relay partners is partner-site data theft, and ENISA's seizure sentence includes no data theft."
+  },
+  {
+   "technique": "EXF-0010",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR46",
+   "reason": "Routing stolen data over a payload's own downlink after implanting code in the payload follows a malicious-code implant that ENISA's seizure text does not describe."
+  },
+  {
+   "technique": "IA-0001",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR55",
+   "reason": "Inserting malicious code or configuration during manufacturing and delivery is the supply-chain threat, whereas ENISA's takeover occurs in operations by exploiting existing vulnerabilities."
+  },
+  {
+   "technique": "IA-0001.01",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR55",
+   "reason": "Poisoned dependencies, container images and IDE plugins compromise the build toolchain, which is a supply-chain action and not what the seizure text says."
+  },
+  {
+   "technique": "IA-0001.02",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR55",
+   "reason": "Swapping signed binaries, subverting update metadata or using stolen signing keys targets delivered software, which ENISA does not name for seizure."
+  },
+  {
+   "technique": "IA-0001.03",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR55",
+   "reason": "Hardware Trojans in ASIC/FPGA designs or tampered boards are inserted before delivery, which ENISA's operational takeover does not describe."
+  },
+  {
+   "technique": "IA-0002",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "A compromised software-defined radio gives a foothold through reconfigurable waveforms and bitstreams, and ENISA names no radio or payload-radio compromise."
+  },
+  {
+   "technique": "IA-0003",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Pivoting from a compromised neighbour over an inter-satellite link is a crosslink origin that ENISA's text on the management segment does not mention."
+  },
+  {
+   "technique": "IA-0004",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Using a secondary or backup communication channel with different monitoring is a door ENISA does not name; it speaks of the management segment."
+  },
+  {
+   "technique": "IA-0004.01",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Establishing presence on a standby MOC or alternate commercial station concerns the backup ground path, not the primary management segment of ENISA's takeover."
+  },
+  {
+   "technique": "IA-0004.02",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Using a spacecraft's backup RF receive path needs that cross-strapped receiver, which ENISA's seizure text does not name."
+  },
+  {
+   "technique": "IA-0005",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Co-orbiting and approaching the target for local sensing or contact is a proximity approach, and ENISA gives no physical or on-orbit access path."
+  },
+  {
+   "technique": "IA-0005.01",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Analysing unintentional emissions from nearby to infer keys and counters is a proximity eavesdropping step that ENISA does not describe."
+  },
+  {
+   "technique": "IA-0005.02",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Exploiting docking, berthing or servicing capture as a high-trust bridge between vehicles requires an OSAM contact that ENISA's text does not mention."
+  },
+  {
+   "technique": "IA-0005.03",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Grappling a target with a robotic arm or coupler to touch covers and umbilicals is physical proximity access, which is absent from ENISA's description."
+  },
+  {
+   "technique": "IA-0006",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Entering through a hosted payload's own command and file services is an alternate door into the host that ENISA's seizure text does not name."
+  },
+  {
+   "technique": "IA-0007",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "code": "K-ENABLE",
+   "role": "entry",
+   "vectors": [
+    "ground"
+   ],
+   "enables": [
+    "EX-0003",
+    "EX-0009"
+   ],
+   "sparta_quote": "manipulate authentication material and counters to pass checks",
+   "reason": "Compromising the ground segment gives the access to manipulate authentication material, which leads to the overtaking of access control."
+  },
+  {
+   "technique": "IA-0007.01",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR46",
+   "reason": "Manipulating the pipeline that builds and uplinks on-orbit updates delivers altered software, whereas ENISA describes malicious commands and exploited vulnerabilities, not a pushed update."
+  },
+  {
+   "technique": "IA-0007.02",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "code": "K-ENABLE",
+   "role": "entry",
+   "vectors": [
+    "ground"
+   ],
+   "enables": "IMP-0011",
+   "sparta_quote": "transmit legitimate-looking commands to the target spacecraft",
+   "reason": "Sending commands through the seized management segment is the way the malicious commands reach the spacecraft."
+  },
+  {
+   "technique": "IA-0008",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ],
+   "code": "K-ENABLE",
+   "role": "entry",
+   "vectors": [
+    "rf_link"
+   ],
+   "enables": [
+    "EX-0009",
+    "EX-0003"
+   ],
+   "sparta_quote": "Most interact by radiating or exchanging traffic using mission-compatible waveforms, framing, or crosslink protocols",
+   "reason": "An external transmitter sending mission-compatible signals reaches the vulnerable on-board code and the validation of authority through the radio link."
+  },
+  {
+   "technique": "IA-0008.01",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ],
+   "code": "K-ENABLE",
+   "role": "entry",
+   "vectors": [
+    "rf_link"
+   ],
+   "enables": [
+    "EX-0009",
+    "EX-0003",
+    "IMP-0011"
+   ],
+   "sparta_quote": "Adversaries may field their own ground system, transportable or fixed, to transmit and receive mission-compatible signals",
+   "reason": "A rogue ground station delivers the exploit, the access-control change and the malicious commands over the radio link."
+  },
+  {
+   "technique": "IA-0008.02",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "A rogue satellite phasing into a nearby orbit to act as a local RF peer requires a space-based attacker that ENISA does not describe; the lead chose only the rogue ground station."
+  },
+  {
+   "technique": "IA-0008.03",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR18",
+   "reason": "Counterspace weapons that jam or spoof links or directly impose effects belong to the anti-satellite threat, while ENISA's seizure text describes taking control by commands."
+  },
+  {
+   "technique": "IA-0009",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Riding trusted partner, vendor and user-community connections is an alternative first-execution route, and ENISA's text does not describe a trust relationship."
+  },
+  {
+   "technique": "IA-0009.01",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Compromising a university instrument builder or international collaborator through shared portals is a collaboration route that ENISA does not name."
+  },
+  {
+   "technique": "IA-0009.02",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR55",
+   "reason": "A vendor with persistent administrative access to ground software and modems is a third-party supplier route, not the seizure ENISA describes."
+  },
+  {
+   "technique": "IA-0009.03",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Entering through customer terminals, gateways and tasking portals uses the user segment as a door, which ENISA's wording about the management segment excludes."
+  },
+  {
+   "technique": "IA-0010",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Timing first execution to safe-mode, when contingency command sets are enabled, ties the entry to a vehicle state that ENISA does not mention."
+  },
+  {
+   "technique": "IA-0011",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Abusing removable media or peripherals ingested during integration or operations is an auxiliary-device door that ENISA's seizure text does not describe."
+  },
+  {
+   "technique": "IA-0012",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Compromising test controllers, EGSE and loaders during assembly and launch operations happens before flight, while ENISA's takeover concerns the operational management segment."
+  },
+  {
+   "technique": "IA-0013",
+   "framework": "SPARTA",
+   "sources": [
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Reaching a hosted payload through the host spacecraft bus is an inverse hosted-payload door, and ENISA names no hosted payload."
+  },
+  {
+   "technique": "IMP-0007",
+   "framework": "SPARTA",
+   "sources": [
+    "impact"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Triggering an existing spacecraft function for a harmful purpose is a different outcome from the malicious commands and user lockout that ENISA states."
+  },
+  {
+   "technique": "IMP-0008",
+   "framework": "SPARTA",
+   "sources": [
+    "impact"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Forcing or blocking a mode or state transition is an effect that ENISA does not state; it names commands being executed and users being locked out."
+  },
+  {
+   "technique": "IMP-0009",
+   "framework": "SPARTA",
+   "sources": [
+    "impact"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "SPARTA limits Configuration Manipulation to non-executable settings and excludes executable changes, and the key replacement behind the lockout is carried by PER-0004, so ENISA's lockout sentence is not described by this row separately."
+  },
+  {
+   "technique": "IMP-0010",
+   "framework": "SPARTA",
+   "sources": [
+    "impact"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR39",
+   "reason": "Falsifying sensor, stored or processed information is the data-modification scenario, and ENISA states no altered data."
+  },
+  {
+   "technique": "IMP-0011",
+   "framework": "SPARTA",
+   "sources": [
+    "impact"
+   ],
+   "code": "K-EFFECT",
+   "role": "impact",
+   "enisa_quote": "execute malicious commands",
+   "sparta_quote": "inject an unauthorized command",
+   "reason": "Injecting unauthorized commands is the outcome ENISA states."
+  },
+  {
+   "technique": "IMP-0012",
+   "framework": "SPARTA",
+   "sources": [
+    "impact"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR42",
+   "reason": "Replacing firmware or loading altered programmable logic changes the implementation itself, which ENISA's command-and-access-control takeover does not describe."
+  },
+  {
+   "technique": "IMP-0013",
+   "framework": "SPARTA",
+   "sources": [
+    "impact"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR51",
+   "reason": "Depleting or monopolising a finite spacecraft resource such as power or bandwidth is exhaustion, which ENISA's seizure sentence does not claim."
+  },
+  {
+   "technique": "IMP-0014",
+   "framework": "SPARTA",
+   "sources": [
+    "impact"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Shifting the on-board clock or breaking synchronisation is a timing effect that ENISA's seizure text never mentions."
+  },
+  {
+   "technique": "LM-0001",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Pivoting across the host-payload boundary through SpaceWire or 1553 gateways is lateral movement, and ENISA describes no movement inside the spacecraft."
+  },
+  {
+   "technique": "LM-0002",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Forging message IDs on a flat bus with no segregation to influence other nodes is lateral spread that ENISA does not describe."
+  },
+  {
+   "technique": "LM-0003",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Hopping between constellation vehicles with crafted crosslink traffic needs a compromised first satellite and a constellation, which ENISA does not describe."
+  },
+  {
+   "technique": "LM-0005",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Escaping a separation-kernel or hypervisor partition through message ports or shared memory is an on-board pivot that ENISA's text lacks."
+  },
+  {
+   "technique": "LM-0006.01",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Crossing between rideshare payloads on shared launch infrastructure happens before separation, which ENISA's operational takeover does not cover."
+  },
+  {
+   "technique": "LM-0007",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR37",
+   "reason": "Reusing operator accounts or station certificates to cross trust boundaries is abuse of granted rights, not the vulnerability exploitation and access-control takeover ENISA names."
+  },
+  {
+   "technique": "PER-0001",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Making malicious content survive resets by modifying boot ROM handoffs or non-volatile loaders is persistence of an implant, and ENISA names no implant."
+  },
+  {
+   "technique": "PER-0002",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR55",
+   "reason": "A covert access path preinstalled by a supplier or inserted for re-entry is a backdoor scenario, not a takeover through existing vulnerabilities."
+  },
+  {
+   "technique": "PER-0002.02",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-OTHER",
+   "other_threat": "TR46",
+   "reason": "Hidden command handlers and alternate authentication checks inserted as code are an implanted backdoor, which ENISA's seizure text does not describe."
+  },
+  {
+   "technique": "PER-0003",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Residing long-term in operator workstations and schedulers is ground-side persistence, but ENISA states no lasting presence."
+  },
+  {
+   "technique": "PER-0004",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "K-EFFECT",
+   "role": "impact",
+   "role_reason": "The lockout of legitimate users is the outcome ENISA states, so key replacement is coded as the impact rather than as persistence for its own sake.",
+   "enisa_quote": "complete lockout of legitimate satellite users by overtaking access control",
+   "sparta_quote": "so subsequent traffic must use the attacker’s keys to be accepted",
+   "reason": "Replacing the uplink keys makes legitimate users' traffic rejected, which is the lockout ENISA names."
+  },
+  {
+   "technique": "PER-0005",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Holding valid service or maintenance accounts to keep access is credential persistence, whereas ENISA's text describes overtaking access control without naming account use."
+  },
+  {
+   "technique": "RD-0002",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Compromising existing third-party or mission infrastructure to obtain ready-made reach is preparation that the kept chain does not need."
+  },
+  {
+   "technique": "RD-0002.01",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Compromising a mission's own ground system for preconfigured TT&C access is preparation that duplicates IA-0007, which the chain already keeps as the entry."
+  },
+  {
+   "technique": "RD-0003.02",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Acquiring uplink authentication and link-encryption keys beforehand is resource preparation that ENISA does not describe and the chain does not rely on."
+  },
+  {
+   "technique": "RD-0004.01",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Choosing between TT&C injection, payload downlinks or crosslinks as the delivery path is attack planning that the kept chain does not require."
+  },
+  {
+   "technique": "REC-0001.01",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Gathering RTOS versions and process layouts to find exploitable seams is reconnaissance that the kept chain does not need."
+  },
+  {
+   "technique": "REC-0003.04",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Collecting TT&C keys, counters and PN codes that would let the attacker authenticate is credential reconnaissance outside what ENISA describes."
+  },
+  {
+   "technique": "REC-0006",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Collecting architecture documents, SBOMs and toolchains to understand how flight software is built and signed is reconnaissance the chain does not need."
+  },
+  {
+   "technique": "REC-0006.01",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Enumerating IDEs, cross-compilers and container images used for flight builds is development-environment reconnaissance beyond the ENISA text."
+  },
+  {
+   "technique": "REC-0006.02",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Learning which analysers and fuzzers the programme uses to see what is untested is reconnaissance of test practice that ENISA does not describe."
+  },
+  {
+   "technique": "REC-0007",
+   "framework": "SPARTA",
+   "sources": [
+    "crosswalk"
+   ],
+   "code": "D-UNDESCRIBED",
+   "reason": "Watching for sun-pointing and low-rate indicators that the spacecraft has entered safe-mode is reconnaissance for a safe-mode timing attack that ENISA does not describe."
+  }
+ ],
+ "notes": [
+  "SDLS-on results assume an intact protocol: EX-0003 and EX-0009 act on code that has already accepted a command, so an outside transmitter without keys loses them when SDLS is on; the SDL protocol compromise itself is TR28."
+ ]
+}

@@ -1,0 +1,166 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ET: threat template with its projection (ETP)",
+  "description": "Invariants I1/I2: a threat template owns no realized output (decisions, attack flow, crossings, controls). additionalProperties=false enforces it.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "source",
+    "category",
+    "name",
+    "cia",
+    "affected_asset_selectors",
+    "description",
+    "projection"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[A-Z]{2}[0-9]{2}$"
+    },
+    "source": {
+      "type": "string"
+    },
+    "category": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "crosswalk_key": {
+      "type": "string",
+      "description": "threat name in the ENISA control workbook; absent = no T1 crosswalk"
+    },
+    "cia": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "C",
+          "I",
+          "A"
+        ]
+      },
+      "uniqueItems": true,
+      "minItems": 1
+    },
+    "affected_asset_selectors": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1
+    },
+    "projection": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "candidate_assets",
+        "candidate_lifecycle",
+        "lifecycle_rule",
+        "derivation_provenance",
+        "applicable_boundary_roles"
+      ],
+      "properties": {
+        "candidate_assets": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "candidate_lifecycle": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 7
+          },
+          "uniqueItems": true
+        },
+        "lifecycle_rule": {
+          "type": "string"
+        },
+        "applicable_boundary_roles": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "derivation_provenance": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "source",
+            "note"
+          ],
+          "properties": {
+            "kind": {
+              "enum": [
+                "source_field",
+                "derived",
+                "author_defined"
+              ]
+            },
+            "source": {
+              "type": "string",
+              "minLength": 1
+            },
+            "source_sha256": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            "field": {
+              "type": "string"
+            },
+            "note": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        }
+      }
+    },
+    "claims": {
+      "type": "array",
+      "description": "SPARTA SV-* threat statements this ET asserts. enisa_quote: `quote` must be a verbatim part of `description`; analyst_asserted: an analyst's claim, needs `author`.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "sv",
+          "quote",
+          "basis"
+        ],
+        "properties": {
+          "sv": {
+            "type": "string",
+            "pattern": "^SV-[A-Z]+-[0-9]+$"
+          },
+          "quote": {
+            "type": "string",
+            "minLength": 1
+          },
+          "basis": {
+            "enum": [
+              "enisa_quote",
+              "analyst_asserted"
+            ]
+          },
+          "author": {
+            "type": "string"
+          },
+          "rationale": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

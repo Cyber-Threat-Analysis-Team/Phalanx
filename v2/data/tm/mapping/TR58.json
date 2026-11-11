@@ -1,0 +1,420 @@
+{
+  "threat": "TR58",
+  "status": "proposed",
+  "author": "assistant sub-agent V3G5 (v3 re-map); fix pass Fix1",
+  "date": "2026-10-27",
+  "vectors": [
+    {
+      "vector": "ground",
+      "basis": "quote",
+      "enisa_quote": "such as physical workstations",
+      "reason": "Unauthorized access to a physical workstation puts the attacker inside the mission's own ground systems."
+    },
+    {
+      "vector": "supply_chain",
+      "basis": "quote",
+      "enisa_quote": "machinery in production/assembly facilities or launch facility",
+      "reason": "Machinery in production, assembly and launch facilities belongs to the manufacture and integration phase, which the supply_chain origin models."
+    }
+  ],
+  "notes": [
+    "Entry-only by design: ENISA names no concrete outcome ('multitude of nefarious activities'), so no impact or exfiltration is kept and no scenario can be complete."
+  ],
+  "review_response": [
+    {
+      "finding": "Entry-only: both vectors end at the entry and 'multitude of nefarious activities' is handled differently from TR43 (IMP-0007)",
+      "action": "kept because ENISA states no outcome; all IMP-* rows are D-UNDESCRIBED with a reason naming the generic wording (same rule as TR37 and TR35). The threat is labelled entry-only in the notes."
+    },
+    {
+      "finding": "IA-0012 quote is about transient devices while ENISA names production machinery; IA-0001.03 sent to TR55 with 'TR58 is about access'",
+      "action": "fixed: IA-0012 keeps the vector quote 'machinery in production/assembly facilities or launch facility' with a SPARTA quote about EGSE and test equipment. IA-0001.* stay D-OTHER TR55 with reasons that state the split: TR55 is how a component is altered, TR58 states no alteration, only access."
+    },
+    {
+      "finding": "IA-0011 (auxiliary devices) is not a candidate although 'physical devices' is the ENISA phrase",
+      "action": "fixed: IA-0011 is now a candidate and coded D-UNDESCRIBED, because ENISA's devices are the machines that are accessed, not media loaded into a spacecraft."
+    },
+    {
+      "finding": "IA-0007 sparta_quote ends mid-sentence",
+      "action": "fixed: quote now ends at 'first execution against a spacecraft'."
+    },
+    {
+      "finding": "Candidate sets for TR16/TR21/TR58 were impact-only, so 'no row' meant not assessed",
+      "action": "fixed: candidates now contain every origin entry technique and all were coded."
+    },
+    {
+      "finding": "fix pass m8: IA-0007 and IA-0012 coded K-ACTION here but K-ENABLE in other threats",
+      "action": "kept because here the unauthorized access to equipment is the whole threat (ENISA states no follow-on), while in TR43/TR37/TR53 the entry leads to a named step; the engine treats both codes alike."
+    }
+  ],
+  "rows": [
+    {
+      "technique": "IA-0007",
+      "framework": "SPARTA",
+      "code": "K-ACTION",
+      "role": "entry",
+      "vectors": [
+        "ground"
+      ],
+      "enisa_quote": "Unauthorized access to physical devices in scope of the satellite lifecycle, such as physical workstations",
+      "sparta_quote": "Compromising the ground segment gives an adversary the most direct path to first execution against a spacecraft",
+      "reason": "ENISA names unauthorized access to physical workstations, which is the foothold in the mission's ground systems; ENISA lists no follow-on activity, so the chain ends at the entry.",
+      "sources": [
+        "origin"
+      ]
+    },
+    {
+      "technique": "IA-0012",
+      "framework": "SPARTA",
+      "code": "K-ACTION",
+      "role": "entry",
+      "vectors": [
+        "supply_chain"
+      ],
+      "enisa_quote": "machinery in production/assembly facilities or launch facility",
+      "sparta_quote": "Test controllers, EGSE, simulators, flatsats, loaders, and data recorders connect to the same buses and command paths that will exist on orbit",
+      "reason": "ENISA names machinery in production, assembly and launch facilities and lists EGSE/MGSE among the assets; SPARTA's ATLO technique is abuse of exactly that test and integration equipment.",
+      "sources": [
+        "origin"
+      ]
+    },
+    {
+      "technique": "IA-0001",
+      "framework": "SPARTA",
+      "code": "D-OTHER",
+      "other_threat": "TR55",
+      "reason": "Inserting malicious artifacts into delivered components is the supply chain compromise ENISA TR55 describes; TR58 names unauthorized use of the machinery and no artifact it alters.",
+      "sources": [
+        "origin"
+      ]
+    },
+    {
+      "technique": "IA-0001.01",
+      "framework": "SPARTA",
+      "code": "D-OTHER",
+      "other_threat": "TR55",
+      "reason": "Tainting dependencies and build tools is the open-source and tooling compromise ENISA TR55 names; TR58 names equipment access, not what is changed through it.",
+      "sources": [
+        "origin"
+      ]
+    },
+    {
+      "technique": "IA-0001.02",
+      "framework": "SPARTA",
+      "code": "D-OTHER",
+      "other_threat": "TR55",
+      "reason": "Delivering altered software through a third party is what ENISA TR55 describes; TR58 states no software delivery.",
+      "sources": [
+        "origin"
+      ]
+    },
+    {
+      "technique": "IA-0001.03",
+      "framework": "SPARTA",
+      "code": "D-OTHER",
+      "other_threat": "TR55",
+      "reason": "SPARTA lists programming stations and golden images as hardware-tampering leverage, but ENISA TR58 states no modification; a hardware component altered before delivery is the TR55 clause on backdoors in third parties' components.",
+      "sources": [
+        "origin"
+      ]
+    },
+    {
+      "technique": "IA-0002",
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Compromise of a software-defined radio is not named; ENISA's devices are workstations and production machinery.",
+      "sources": [
+        "origin"
+      ]
+    },
+    {
+      "technique": "IA-0003",
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Reaching a satellite over a crosslink is not described; TR58 is about ground and production devices.",
+      "sources": [
+        "origin"
+      ]
+    },
+    {
+      "technique": "IA-0004",
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "A secondary or backup channel is not mentioned.",
+      "sources": [
+        "origin"
+      ]
+    },
+    {
+      "technique": "IA-0004.01",
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Targeting backup ground stations during failover is not described; ENISA names physical devices in general.",
+      "sources": [
+        "origin"
+      ]
+    },
+    {
+      "technique": "IA-0004.02",
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "A receiver foothold is not mentioned.",
+      "sources": [
+        "origin"
+      ]
+    },
+    {
+      "technique": "IA-0005",
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Rendezvous and proximity operations act on a satellite in orbit; ENISA's devices are on the ground.",
+      "sources": [
+        "origin"
+      ]
+    },
+    {
+      "technique": "IA-0005.01",
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Emanations collection from a nearby spacecraft is not described.",
+      "sources": [
+        "origin"
+      ]
+    },
+    {
+      "technique": "IA-0005.02",
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Docked-vehicle access is on-orbit; ENISA's devices are ground-based.",
+      "sources": [
+        "origin"
+      ]
+    },
+    {
+      "technique": "IA-0005.03",
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Grappling a satellite is a proximity attack; ENISA's devices are ground-based.",
+      "sources": [
+        "origin"
+      ]
+    },
+    {
+      "technique": "IA-0006",
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "A hosted payload is not mentioned.",
+      "sources": [
+        "origin"
+      ]
+    },
+    {
+      "technique": "IA-0007.01",
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Tampering with the on-orbit update pipeline is one possible activity; ENISA does not name updates.",
+      "sources": [
+        "origin"
+      ]
+    },
+    {
+      "technique": "IA-0007.02",
+      "framework": "SPARTA",
+      "code": "D-OTHER",
+      "other_threat": "TR52",
+      "reason": "Sending commands through a valid ground station is the malicious commanding ENISA TR52 describes; TR58 gives the access, not commanding.",
+      "sources": [
+        "origin"
+      ]
+    },
+    {
+      "technique": "IA-0008",
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "An outside RF transmitter is not described; the attacker is at a physical device.",
+      "sources": [
+        "origin"
+      ]
+    },
+    {
+      "technique": "IA-0008.01",
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "A rogue ground station is not described; the attacker uses an existing mission device.",
+      "sources": [
+        "origin"
+      ]
+    },
+    {
+      "technique": "IA-0008.02",
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "A rogue spacecraft is not described.",
+      "sources": [
+        "origin"
+      ]
+    },
+    {
+      "technique": "IA-0008.03",
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "A counterspace weapon is not described.",
+      "sources": [
+        "origin"
+      ]
+    },
+    {
+      "technique": "IA-0009",
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Riding a trusted partner connection is not described; the access is physical.",
+      "sources": [
+        "origin"
+      ]
+    },
+    {
+      "technique": "IA-0009.01",
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "A mission collaborator is not mentioned.",
+      "sources": [
+        "origin"
+      ]
+    },
+    {
+      "technique": "IA-0009.02",
+      "framework": "SPARTA",
+      "code": "D-OTHER",
+      "other_threat": "TR55",
+      "reason": "Vendor routes into operations are the supplier compromise ENISA TR55 describes; TR58 names unauthorized access to the devices themselves, not a vendor.",
+      "sources": [
+        "origin"
+      ]
+    },
+    {
+      "technique": "IA-0009.03",
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "User-segment access is not described.",
+      "sources": [
+        "origin"
+      ]
+    },
+    {
+      "technique": "IA-0010",
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Timing access to safe mode is not described.",
+      "sources": [
+        "origin"
+      ]
+    },
+    {
+      "technique": "IA-0011",
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Auxiliary-device compromise abuses peripherals or media that a spacecraft or its support equipment ingests; ENISA's physical devices are the workstations and machinery that are accessed, not media loaded into the vehicle.",
+      "sources": [
+        "origin"
+      ]
+    },
+    {
+      "technique": "IA-0013",
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Using a host spacecraft to reach a hosted payload is not described.",
+      "sources": [
+        "origin"
+      ]
+    },
+    {
+      "technique": "IMP-0007",
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Invoking native spacecraft functions is one possible activity: ENISA says only 'multitude of nefarious activities'; no outcome is named, so no impact is kept.",
+      "sources": [
+        "impact"
+      ]
+    },
+    {
+      "technique": "IMP-0008",
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "A forced state or mode change is not named: ENISA says only 'multitude of nefarious activities'; no outcome is named, so no impact is kept.",
+      "sources": [
+        "impact"
+      ]
+    },
+    {
+      "technique": "IMP-0009",
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "A change to settings or tables is not named: ENISA says only 'multitude of nefarious activities'; no outcome is named, so no impact is kept.",
+      "sources": [
+        "impact"
+      ]
+    },
+    {
+      "technique": "IMP-0010",
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Altering data is not named: ENISA says only 'multitude of nefarious activities'; no outcome is named, so no impact is kept.",
+      "sources": [
+        "impact"
+      ]
+    },
+    {
+      "technique": "IMP-0011",
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Manipulating command or data flow is not named: ENISA says only 'multitude of nefarious activities'; no outcome is named, so no impact is kept.",
+      "sources": [
+        "impact"
+      ]
+    },
+    {
+      "technique": "IMP-0012",
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Altering firmware or programmable logic is not named: ENISA says only 'multitude of nefarious activities'; no outcome is named, so no impact is kept.",
+      "sources": [
+        "impact"
+      ]
+    },
+    {
+      "technique": "IMP-0013",
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Resource exhaustion is not named: ENISA says only 'multitude of nefarious activities'; no outcome is named, so no impact is kept.",
+      "sources": [
+        "impact"
+      ]
+    },
+    {
+      "technique": "IMP-0014",
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Timing or synchronisation manipulation is not named: ENISA says only 'multitude of nefarious activities'; no outcome is named, so no impact is kept.",
+      "sources": [
+        "impact"
+      ]
+    },
+    {
+      "technique": "LM-0001",
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Pivoting from a hosted payload to the bus is not described.",
+      "sources": [
+        "origin"
+      ]
+    },
+    {
+      "technique": "LM-0003",
+      "framework": "SPARTA",
+      "code": "D-UNDESCRIBED",
+      "reason": "Hopping between satellites over crosslinks is not described.",
+      "sources": [
+        "origin"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+{
+ "id": "TR35",
+ "source": "ENISA Space Threat Landscape 2025, Annex C Table 17 (via Phalanx/framework/enisa_threats_tuple.csv)",
+ "category": "EIH",
+ "name": "Unauthorized access",
+ "cia": [
+  "C",
+  "I"
+ ],
+ "affected_asset_selectors": [
+  "Ground: all assets (including SLE/SDL protocol)"
+ ],
+ "description": "Threat actors gaining and maintaining unauthorized access to a network, which enables them to pre-position themselves for reconnaissance, espionage and/or launch of potential subsequent attcks. The threat can be materialized via web page attacks, cross-site scripting, cross-site reuqest forgery, drive-by hacking, phishing, or attcacks on air gapped solutions (i.e. intranet), or through brute force password cracking. Additionally, via masquerading techniques, threat actors presenting themselves as legitimate entities/users can gain unauthorized access.",
+ "projection": {
+  "candidate_assets": [
+   "core_5gc",
+   "fsw_update",
+   "ground_moc",
+   "ground_ttc",
+   "integration_site"
+  ],
+  "candidate_lifecycle": [
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7
+  ],
+  "lifecycle_rule": "ET-P-LC-01 (legacy tuple L field; Annex C has no lifecycle column)",
+  "derivation_provenance": {
+   "kind": "source_field",
+   "source": "Phalanx/framework/enisa_threats_tuple.csv row TR35",
+   "source_sha256": "c086e9d7221893d69e2ff6d380e3b2024aecc144bac8f034218b6814ef060b52",
+   "field": "L (lifecycle)",
+   "note": "candidate_lifecycle copies the legacy tuple L field {3,4,5,6,7}; ENISA STL 2025 Annex C has no lifecycle column, so the basis is the legacy tuple, not the Annex"
+  },
+  "applicable_boundary_roles": []
+ },
+ "claims": [
+  {
+   "sv": "SV-AC-4",
+   "quote": "via masquerading techniques, threat actors presenting themselves as legitimate entities/users can gain unauthorized access",
+   "basis": "enisa_quote",
+   "rationale": "Masquerading as authorized entity for access."
+  },
+  {
+   "sv": "SV-AC-1",
+   "quote": "Threat actors gaining and maintaining unauthorized access to a network",
+   "basis": "enisa_quote",
+   "rationale": "Unauthorized access to an access-controlled system."
+  }
+ ]
+}

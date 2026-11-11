@@ -1,0 +1,48 @@
+{
+ "id": "TR20",
+ "source": "ENISA Space Threat Landscape 2025, Annex C Table 17 (via Phalanx/framework/enisa_threats_tuple.csv)",
+ "category": "PA",
+ "name": "Sabotage through hardware/software",
+ "cia": [
+  "A",
+  "C",
+  "I"
+ ],
+ "affected_asset_selectors": [
+  "Ground: Design, development, and quality assurance & Assembly & Satellite Control Centre"
+ ],
+ "description": "Threats resulting from connection of unauthorized rogue hardware and software, such as USB sticks, unauthorized applications, etc. may endanger the integrity, confidentiality and availability of satellite components. They can be perpetrated as a result of intentional, targeted human intervention or even on the orbit itself (docking of another satellite).",
+ "projection": {
+  "candidate_assets": [
+   "ground_moc",
+   "integration_site"
+  ],
+  "candidate_lifecycle": [
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7
+  ],
+  "lifecycle_rule": "ET-P-LC-01 (legacy tuple L field; Annex C has no lifecycle column)",
+  "derivation_provenance": {
+   "kind": "source_field",
+   "source": "Phalanx/framework/enisa_threats_tuple.csv row TR20",
+   "source_sha256": "c086e9d7221893d69e2ff6d380e3b2024aecc144bac8f034218b6814ef060b52",
+   "field": "L (lifecycle)",
+   "note": "candidate_lifecycle copies the legacy tuple L field {3,4,5,6,7}; ENISA STL 2025 Annex C has no lifecycle column, so the basis is the legacy tuple, not the Annex"
+  },
+  "applicable_boundary_roles": []
+ },
+ "claims": [
+  {
+   "sv": "SV-AC-5",
+   "quote": "docking of another satellite",
+   "basis": "enisa_quote",
+   "rationale": "Docking of another satellite is a proximity operation."
+  }
+ ],
+ "crosswalk_key": "Sabotage through hardware/software"
+}

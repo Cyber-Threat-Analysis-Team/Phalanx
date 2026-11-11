@@ -1,0 +1,530 @@
+{
+ "threat": "TR15",
+ "status": "proposed",
+ "author": "assistant sub-agent V3G4 (v3 re-map); fix pass Fix2",
+ "date": "2026-10-27",
+ "vectors": [
+  {
+   "vector": "supply_chain",
+   "basis": "quote",
+   "enisa_quote": "hidden, malicious capabilities that are built in during the design and development and assembly stages of a satellite's lifecycle",
+   "reason": "The capabilities are built in at design, development and assembly, before the hardware reaches operations; this is the supply-chain origin."
+  }
+ ],
+ "rows": [
+  {
+   "technique": "IA-0001.03",
+   "code": "K-ACTION",
+   "role": "entry",
+   "reason": "Hardware altered before delivery to create latent access or failure is exactly the tainted component ENISA describes; counterfeit near-spec parts are named in the same SPARTA text. Same code as in the other hardware-backdoor threats.",
+   "sparta_quote": "inserting hardware Trojans in ASIC/FPGA designs",
+   "enisa_quote": "hidden, malicious capabilities that are built in during the design and development and assembly stages",
+   "enables": "PER-0002.01",
+   "vectors": [
+    "supply_chain"
+   ],
+   "sources": [
+    "crosswalk",
+    "sv:SV-SP-5",
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "PER-0002.01",
+   "code": "K-ACTION",
+   "role": "persistence",
+   "reason": "The built-in malicious capability is a hardware backdoor that stays in the part and activates on a stimulus.",
+   "sparta_quote": "logic inserted in FPGA/ASIC designs that activates under specific stimuli",
+   "enisa_quote": "hidden, malicious capabilities that are built in during the design and development and assembly stages",
+   "vectors": [
+    "supply_chain"
+   ],
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA",
+   "enables": "IMP-0012"
+  },
+  {
+   "technique": "IMP-0012",
+   "code": "K-EFFECT",
+   "role": "impact",
+   "reason": "ENISA's outcome is hardware failure or malfunction. SPARTA has no hardware-failure impact; altered programmable logic is the closest, so this is an approximation.",
+   "sparta_quote": "load altered programmable logic",
+   "enisa_quote": "ultimately resulting in hardware failure",
+   "sources": [
+    "impact"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EX-0005",
+   "code": "D-UNDESCRIBED",
+   "reason": "ENISA describes a capability built in and the resulting malfunction, but no step in which the attacker drives the hardware; PER-0002.01 already is the capability.",
+   "sources": [
+    "crosswalk",
+    "sv:SV-SP-5"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EX-0005.01",
+   "code": "D-UNDESCRIBED",
+   "reason": "A part not made to specification is a defect in the product, not an attacker exploiting a design erratum.",
+   "sources": [
+    "sv:SV-SP-5"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EX-0018",
+   "code": "D-UNDESCRIBED",
+   "reason": "Energy attacks on the satellite are not described; the failure comes from the part itself.",
+   "sources": [
+    "sv:SV-AV-7"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EX-0018.01",
+   "code": "D-UNDESCRIBED",
+   "reason": "Electromagnetic pulse is not part of the text.",
+   "sources": [
+    "sv:SV-AV-7"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EX-0018.02",
+   "code": "D-UNDESCRIBED",
+   "reason": "Laser damage is not part of the text.",
+   "sources": [
+    "sv:SV-AV-7"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "EX-0018.03",
+   "code": "D-UNDESCRIBED",
+   "reason": "High-power microwave is not part of the text.",
+   "sources": [
+    "sv:SV-AV-7"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "DE-0012",
+   "code": "D-UNDESCRIBED",
+   "reason": "Colluding compromised components are software modules in SPARTA's text; ENISA describes hardware.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0001",
+   "code": "D-UNDESCRIBED",
+   "reason": "The generic insertion technique adds firmware and software to hardware; ENISA's route is the hardware child IA-0001.03.",
+   "sources": [
+    "crosswalk",
+    "sv:SV-SP-5",
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0001.01",
+   "code": "D-OTHER",
+   "other_threat": "TR55",
+   "reason": "Poisoned software dependencies are third-party software compromise; ENISA's tainted items are hardware.",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0001.02",
+   "code": "D-OTHER",
+   "other_threat": "TR55",
+   "reason": "Delivered software and signed binaries are the software supply chain; ENISA's tainted items are hardware.",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0002",
+   "code": "D-UNDESCRIBED",
+   "reason": "A compromised software-defined radio is a software route; ENISA describes tainted hardware components.",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0003",
+   "code": "D-UNDESCRIBED",
+   "reason": "No neighbouring satellite is named.",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0004",
+   "code": "D-UNDESCRIBED",
+   "reason": "No backup channel is named.",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0004.01",
+   "code": "D-UNDESCRIBED",
+   "reason": "No backup ground station is named.",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0004.02",
+   "code": "D-UNDESCRIBED",
+   "reason": "No backup receiver is named.",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0005",
+   "code": "D-UNDESCRIBED",
+   "reason": "No proximity operation is described.",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0005.01",
+   "code": "D-UNDESCRIBED",
+   "reason": "No emanation analysis is described.",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0005.02",
+   "code": "D-UNDESCRIBED",
+   "reason": "No docking is described.",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0005.03",
+   "code": "D-UNDESCRIBED",
+   "reason": "No grappling is described.",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0006",
+   "code": "D-UNDESCRIBED",
+   "reason": "No hosted payload is named.",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0007",
+   "code": "D-UNDESCRIBED",
+   "reason": "The ground system is only where hardware sits (affected ground assets), not an attacker's way in.",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0007.01",
+   "code": "D-UNDESCRIBED",
+   "reason": "No on-orbit update is described; the capability is built in before launch.",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0007.02",
+   "code": "D-UNDESCRIBED",
+   "reason": "No commanding is described.",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0008",
+   "code": "D-UNDESCRIBED",
+   "reason": "No external transmitter is described.",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0008.01",
+   "code": "D-UNDESCRIBED",
+   "reason": "No rogue ground station is described.",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0008.02",
+   "code": "D-UNDESCRIBED",
+   "reason": "No rogue spacecraft is described.",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0008.03",
+   "code": "D-UNDESCRIBED",
+   "reason": "No counterspace weapon is described.",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0009",
+   "code": "D-UNDESCRIBED",
+   "reason": "No trusted partner connection is described.",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0009.01",
+   "code": "D-UNDESCRIBED",
+   "reason": "No mission collaborator is described.",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0009.02",
+   "code": "D-UNDESCRIBED",
+   "reason": "No vendor remote access is described; the vendor's product is the problem, not its access.",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0009.03",
+   "code": "D-UNDESCRIBED",
+   "reason": "No user-segment attacker is described.",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0010",
+   "code": "D-UNDESCRIBED",
+   "reason": "Safe-mode is not part of the text.",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0011",
+   "code": "D-UNDESCRIBED",
+   "reason": "Auxiliary devices are not described; the hardware is built into the satellite.",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0012",
+   "code": "D-UNDESCRIBED",
+   "reason": "ATLO compromise targets test equipment and images; ENISA's tainted part is delivered with the hardware.",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IA-0013",
+   "code": "D-UNDESCRIBED",
+   "reason": "No hosted function is involved.",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "LM-0001",
+   "code": "D-UNDESCRIBED",
+   "reason": "No hosted-payload pivot is described.",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "LM-0003",
+   "code": "D-UNDESCRIBED",
+   "reason": "No crosslink spread is described.",
+   "sources": [
+    "origin"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IMP-0007",
+   "code": "D-UNDESCRIBED",
+   "reason": "ENISA's result is failure, not use of a function.",
+   "sources": [
+    "impact"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IMP-0008",
+   "code": "D-UNDESCRIBED",
+   "reason": "No mode change is stated.",
+   "sources": [
+    "impact"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IMP-0009",
+   "code": "D-UNDESCRIBED",
+   "reason": "No settings change is stated.",
+   "sources": [
+    "impact"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IMP-0010",
+   "code": "D-UNDESCRIBED",
+   "reason": "No data manipulation is stated.",
+   "sources": [
+    "impact"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IMP-0011",
+   "code": "D-UNDESCRIBED",
+   "reason": "No command or data flow change is stated.",
+   "sources": [
+    "impact"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IMP-0013",
+   "code": "D-UNDESCRIBED",
+   "reason": "Exhausting a resource is not stated; failure is.",
+   "sources": [
+    "impact"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "IMP-0014",
+   "code": "D-UNDESCRIBED",
+   "reason": "No timing manipulation is stated.",
+   "sources": [
+    "impact"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "REC-0001.02",
+   "code": "D-UNDESCRIBED",
+   "reason": "Gathering firmware information for the attacker is not described.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "REC-0008",
+   "code": "D-UNDESCRIBED",
+   "reason": "Gathering supply-chain information is not described.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  },
+  {
+   "technique": "REC-0008.02",
+   "code": "D-UNDESCRIBED",
+   "reason": "Software reconnaissance is not relevant to hardware.",
+   "sources": [
+    "crosswalk"
+   ],
+   "framework": "SPARTA"
+  }
+ ],
+ "review_response": [
+  {
+   "finding": "Hardware-backdoor chain is coded differently in TR15, TR26 and TR55; IA-0001.03 should be K-ACTION in all three.",
+   "action": "fixed: agreed with the TR26/TR55 mapper: IA-0001.03 K-ACTION entry (enables PER-0002.01), PER-0002.01 K-ACTION persistence in all three; IMP-0012 is kept here and in TR55 only."
+  },
+  {
+   "finding": "EX-0005 in TR15 looks like a step added to complete the chain.",
+   "action": "fixed: EX-0005 is D-UNDESCRIBED; ENISA describes no execution step, the chain is entry, built-in capability, failure. TR26/TR55 do not keep it either."
+  },
+  {
+   "finding": "The failure outcome is mapped to IMP-0012 only.",
+   "action": "kept because no SPARTA impact describes hardware failure; IMP-0012 (altered programmable logic) is the closest. The reason states it is an approximation."
+  },
+  {
+   "finding": "Ground-segment hardware has no attachment point.",
+   "action": "kept as a model gap: ENISA names space and ground hardware, the supply_chain origin attaches only to the flight-software pipeline and ATLO. Recorded in coverage_notes."
+  },
+  {
+   "finding": "Counterfeit/off-spec drop (EX-0005.01 D-UNDESCRIBED), IA-0001.01/.02 -> TR55 (no issue).",
+   "action": "kept; counterfeit parts are covered by the IA-0001.03 text itself."
+  },
+  {
+   "finding": "M1: unaffected (single path)",
+   "action": "re-checked: IA-0001.03 enables PER-0002.01 and PER-0002.01 leads to IMP-0012."
+  },
+  {
+   "finding": "m6: IMP-0012 for hardware failure",
+   "action": "kept as an approximation; recorded in coverage_notes that the completed chain approximates the outcome."
+  }
+ ],
+ "coverage_notes": [
+  "ENISA's 'both space and ground segments': tainted ground hardware (EGSE/MGSE, crypto units) has no attach point in the attack-surface model; only the flight-side chain is modelled (surface_gap for the ground half).",
+  "Off-specification (not malicious) hardware is not an attacker action and is not coded beyond what IA-0001.03 says about counterfeits.",
+  "SPARTA has no hardware-failure impact; IMP-0012 (altered programmable logic) stands in for ENISA's 'hardware failure', so a complete chain for this threat is an approximation of the stated outcome."
+ ]
+}

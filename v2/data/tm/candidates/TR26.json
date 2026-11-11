@@ -1,0 +1,654 @@
+{
+ "threat": "TR26",
+ "name": "Third Party non-compliance (supply chain)",
+ "category": "LEG",
+ "cia": [
+  "C"
+ ],
+ "affected_assets": [
+  "Ground: Production",
+  "Space: Payload (PLCOM)"
+ ],
+ "description": "Threats from unvetted, of insufficiently monitored third parties a satellite's the supply chain which may result in the development and delivery of specific components that fail to comply or live up to the security specifications and requiurements that have access to sensitive data or are intended to support critical satellite functions. Examples include use of counterfeit or copied software (e.g. pirated software) that may contain malware, such as disk wiper malware, or the provision of hardware components that contian back doors.",
+ "claims": [
+  {
+   "sv": "SV-SP-4",
+   "quote": "unvetted, of insufficiently monitored third parties"
+  },
+  {
+   "sv": "SV-SP-3",
+   "quote": "pirated software) that may contain malware"
+  }
+ ],
+ "candidates": [
+  {
+   "technique": "DE-0007",
+   "tactic": "Defense Evasion",
+   "name": "Evasion via Rootkit",
+   "sources": [
+    "sv:SV-SP-3"
+   ]
+  },
+  {
+   "technique": "DE-0008",
+   "tactic": "Defense Evasion",
+   "name": "Evasion via Bootkit",
+   "sources": [
+    "sv:SV-SP-3"
+   ]
+  },
+  {
+   "technique": "DE-0009.05",
+   "tactic": "Defense Evasion",
+   "name": "Corruption or Overload of Ground-Based SDA Systems",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "DE-0012",
+   "tactic": "Defense Evasion",
+   "name": "Component Collusion",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "EX-0002",
+   "tactic": "Execution",
+   "name": "Position, Navigation, and Timing (PNT) Geofencing",
+   "sources": [
+    "sv:SV-SP-3"
+   ]
+  },
+  {
+   "technique": "EX-0004",
+   "tactic": "Execution",
+   "name": "Compromise Boot Memory",
+   "sources": [
+    "sv:SV-SP-4"
+   ]
+  },
+  {
+   "technique": "EX-0005",
+   "tactic": "Execution",
+   "name": "Exploit Hardware/Firmware Corruption",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "EX-0010",
+   "tactic": "Execution",
+   "name": "Malicious Code",
+   "sources": [
+    "sv:SV-SP-3"
+   ]
+  },
+  {
+   "technique": "EX-0010.01",
+   "tactic": "Execution",
+   "name": "Ransomware",
+   "sources": [
+    "sv:SV-SP-3"
+   ]
+  },
+  {
+   "technique": "EX-0010.02",
+   "tactic": "Execution",
+   "name": "Wiper Malware",
+   "sources": [
+    "sv:SV-SP-3"
+   ]
+  },
+  {
+   "technique": "EX-0010.03",
+   "tactic": "Execution",
+   "name": "Rootkit",
+   "sources": [
+    "sv:SV-SP-3"
+   ]
+  },
+  {
+   "technique": "EX-0010.04",
+   "tactic": "Execution",
+   "name": "Bootkit",
+   "sources": [
+    "sv:SV-SP-3"
+   ]
+  },
+  {
+   "technique": "EX-0010.05",
+   "tactic": "Execution",
+   "name": "On-Board Process Injection",
+   "sources": [
+    "sv:SV-SP-3"
+   ]
+  },
+  {
+   "technique": "EXF-0008",
+   "tactic": "Exfiltration",
+   "name": "Compromised Developer Site",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "EXF-0009",
+   "tactic": "Exfiltration",
+   "name": "Compromised Partner Site",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "EXF-0010",
+   "tactic": "Exfiltration",
+   "name": "Payload Communication Channel",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "IA-0001",
+   "tactic": "Initial Access",
+   "name": "Compromise Supply Chain",
+   "sources": [
+    "crosswalk",
+    "sv:SV-SP-4",
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0001.01",
+   "tactic": "Initial Access",
+   "name": "Software Dependencies & Development Tools",
+   "sources": [
+    "sv:SV-SP-4",
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0001.02",
+   "tactic": "Initial Access",
+   "name": "Software Supply Chain",
+   "sources": [
+    "sv:SV-SP-4",
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0001.03",
+   "tactic": "Initial Access",
+   "name": "Hardware Supply Chain",
+   "sources": [
+    "crosswalk",
+    "sv:SV-SP-4",
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0002",
+   "tactic": "Initial Access",
+   "name": "Compromise Software Defined Radio",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0003",
+   "tactic": "Initial Access",
+   "name": "Crosslink via Compromised Neighbor",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0004",
+   "tactic": "Initial Access",
+   "name": "Secondary/Backup Communication Channel",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0004.01",
+   "tactic": "Initial Access",
+   "name": "Ground Station",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0004.02",
+   "tactic": "Initial Access",
+   "name": "Receiver",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0005",
+   "tactic": "Initial Access",
+   "name": "Rendezvous & Proximity Operations",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0005.01",
+   "tactic": "Initial Access",
+   "name": "Compromise Emanations",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0005.02",
+   "tactic": "Initial Access",
+   "name": "Docked Vehicle / OSAM",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0005.03",
+   "tactic": "Initial Access",
+   "name": "Proximity Grappling",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0006",
+   "tactic": "Initial Access",
+   "name": "Compromise Hosted Payload",
+   "sources": [
+    "crosswalk",
+    "sv:SV-SP-4",
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0007",
+   "tactic": "Initial Access",
+   "name": "Compromise Ground System",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0007.01",
+   "tactic": "Initial Access",
+   "name": "Compromise On-Orbit Update",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0007.02",
+   "tactic": "Initial Access",
+   "name": "Malicious Commanding via Valid GS",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0008",
+   "tactic": "Initial Access",
+   "name": "Rogue External Entity",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0008.01",
+   "tactic": "Initial Access",
+   "name": "Rogue Ground Station",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0008.02",
+   "tactic": "Initial Access",
+   "name": "Rogue Spacecraft",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0008.03",
+   "tactic": "Initial Access",
+   "name": "ASAT/Counterspace Weapon",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0009",
+   "tactic": "Initial Access",
+   "name": "Trusted Relationship",
+   "sources": [
+    "crosswalk",
+    "sv:SV-SP-3",
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0009.01",
+   "tactic": "Initial Access",
+   "name": "Mission Collaborator (academia, international, etc.)",
+   "sources": [
+    "crosswalk",
+    "sv:SV-SP-3",
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0009.02",
+   "tactic": "Initial Access",
+   "name": "Vendor",
+   "sources": [
+    "crosswalk",
+    "sv:SV-SP-3",
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0009.03",
+   "tactic": "Initial Access",
+   "name": "User Segment",
+   "sources": [
+    "sv:SV-SP-3",
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0010",
+   "tactic": "Initial Access",
+   "name": "Unauthorized Access During Safe-Mode",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0011",
+   "tactic": "Initial Access",
+   "name": "Auxiliary Device Compromise",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0012",
+   "tactic": "Initial Access",
+   "name": "Assembly, Test, and Launch Operation Compromise",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ]
+  },
+  {
+   "technique": "IA-0013",
+   "tactic": "Initial Access",
+   "name": "Compromise Host Spacecraft",
+   "sources": [
+    "crosswalk",
+    "origin"
+   ]
+  },
+  {
+   "technique": "IMP-0007",
+   "tactic": "Impact",
+   "name": "Native Functionality Abuse",
+   "sources": [
+    "impact"
+   ]
+  },
+  {
+   "technique": "IMP-0008",
+   "tactic": "Impact",
+   "name": "State or Mode Manipulation",
+   "sources": [
+    "impact"
+   ]
+  },
+  {
+   "technique": "IMP-0009",
+   "tactic": "Impact",
+   "name": "Configuration Manipulation",
+   "sources": [
+    "impact"
+   ]
+  },
+  {
+   "technique": "IMP-0010",
+   "tactic": "Impact",
+   "name": "Data Manipulation",
+   "sources": [
+    "impact"
+   ]
+  },
+  {
+   "technique": "IMP-0011",
+   "tactic": "Impact",
+   "name": "Command and Data Flow Manipulation",
+   "sources": [
+    "impact"
+   ]
+  },
+  {
+   "technique": "IMP-0012",
+   "tactic": "Impact",
+   "name": "Software, Firmware, or Programmable Logic Manipulation",
+   "sources": [
+    "impact"
+   ]
+  },
+  {
+   "technique": "IMP-0013",
+   "tactic": "Impact",
+   "name": "Resource Exhaustion or Contention",
+   "sources": [
+    "impact"
+   ]
+  },
+  {
+   "technique": "IMP-0014",
+   "tactic": "Impact",
+   "name": "Timing or Synchronization Manipulation",
+   "sources": [
+    "impact"
+   ]
+  },
+  {
+   "technique": "LM-0001",
+   "tactic": "Lateral Movement",
+   "name": "Hosted Payload",
+   "sources": [
+    "crosswalk",
+    "sv:SV-SP-4",
+    "origin"
+   ]
+  },
+  {
+   "technique": "LM-0003",
+   "tactic": "Lateral Movement",
+   "name": "Constellation Hopping via Crosslink",
+   "sources": [
+    "origin"
+   ]
+  },
+  {
+   "technique": "LM-0004",
+   "tactic": "Lateral Movement",
+   "name": "Visiting Vehicle Interface(s)",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "LM-0006",
+   "tactic": "Lateral Movement",
+   "name": "Launch Vehicle Interface",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "LM-0006.01",
+   "tactic": "Lateral Movement",
+   "name": "Rideshare Payload",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "PER-0001",
+   "tactic": "Persistence",
+   "name": "Memory Compromise",
+   "sources": [
+    "sv:SV-SP-4"
+   ]
+  },
+  {
+   "technique": "PER-0002",
+   "tactic": "Persistence",
+   "name": "Backdoor",
+   "sources": [
+    "sv:SV-SP-4"
+   ]
+  },
+  {
+   "technique": "PER-0002.01",
+   "tactic": "Persistence",
+   "name": "Hardware Backdoor",
+   "sources": [
+    "crosswalk",
+    "sv:SV-SP-4"
+   ]
+  },
+  {
+   "technique": "PER-0002.02",
+   "tactic": "Persistence",
+   "name": "Software Backdoor",
+   "sources": [
+    "sv:SV-SP-3"
+   ]
+  },
+  {
+   "technique": "RD-0001.02",
+   "tactic": "Resource Development",
+   "name": "Commercial Ground Station Services",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "RD-0002",
+   "tactic": "Resource Development",
+   "name": "Compromise Infrastructure",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "RD-0002.02",
+   "tactic": "Resource Development",
+   "name": "3rd Party Ground System",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "RD-0002.03",
+   "tactic": "Resource Development",
+   "name": "3rd-Party Spacecraft",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "RD-0003",
+   "tactic": "Resource Development",
+   "name": "Obtain Cyber Capabilities",
+   "sources": [
+    "sv:SV-SP-3"
+   ]
+  },
+  {
+   "technique": "RD-0003.01",
+   "tactic": "Resource Development",
+   "name": "Exploit/Payload",
+   "sources": [
+    "sv:SV-SP-3"
+   ]
+  },
+  {
+   "technique": "RD-0004",
+   "tactic": "Resource Development",
+   "name": "Stage Capabilities",
+   "sources": [
+    "sv:SV-SP-4"
+   ]
+  },
+  {
+   "technique": "RD-0004.01",
+   "tactic": "Resource Development",
+   "name": "Identify/Select Delivery Mechanism",
+   "sources": [
+    "sv:SV-SP-4"
+   ]
+  },
+  {
+   "technique": "RD-0004.02",
+   "tactic": "Resource Development",
+   "name": "Upload Exploit/Payload",
+   "sources": [
+    "sv:SV-SP-4"
+   ]
+  },
+  {
+   "technique": "REC-0004",
+   "tactic": "Reconnaissance",
+   "name": "Gather Launch Information",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "REC-0006",
+   "tactic": "Reconnaissance",
+   "name": "Gather FSW Development Information",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "REC-0008",
+   "tactic": "Reconnaissance",
+   "name": "Gather Supply Chain Information",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "REC-0008.01",
+   "tactic": "Reconnaissance",
+   "name": "Hardware Recon",
+   "sources": [
+    "crosswalk"
+   ]
+  },
+  {
+   "technique": "REC-0008.04",
+   "tactic": "Reconnaissance",
+   "name": "Business Relationships",
+   "sources": [
+    "crosswalk"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "EvaluationCell: one record per (method_id, si_id, technique_id) over the universe U",
+  "description": "Separate from MR. `not_applicable` = the method's frozen applicability predicate is false (excluded from its denominators); `not_generated` = applicable run that emitted no candidate. Neither is a domain decision.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["method_id", "si_id", "technique_id", "normalized_outcome"],
+  "properties": {
+    "method_id": {"type": "string", "pattern": "^B[0-9]+[a-z]?$"},
+    "si_id": {"type": "string", "pattern": "^SI-"},
+    "technique_id": {"type": "string", "pattern": "^[A-Z]+-[0-9]{4}(\\.[0-9]{2})?$"},
+    "normalized_outcome": {"enum": ["accepted", "rejected", "unresolved", "not_generated", "not_applicable"]}
+  }
+}

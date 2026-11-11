@@ -1,0 +1,58 @@
+{
+ "id": "TR46",
+ "source": "ENISA Space Threat Landscape 2025, Annex C Table 17 (via Phalanx/framework/enisa_threats_tuple.csv)",
+ "category": "NAA",
+ "name": "Malicious code/software/activity: Malicious injection",
+ "cia": [
+  "A",
+  "I"
+ ],
+ "affected_asset_selectors": [
+  "Ground: Production (Manufacturing systems & Simulators & Crypto hw/sw) & Centralised Checkout Systems & Satellite Operations Centre (Mission Control System)",
+  "Space: BUS (CDHS/COM) & Payload (PDHS/PLCOM)"
+ ],
+ "description": "Injection of malicious software (e.g. rootkits, bootkits, backdoors) into space operations contorl systems and/or satellite data receivers and trasmitters. Malicious code could also be injected into software updates, affecting for exmaple on-orbit software updates, upgrades, patches, or direct memory writes. Malicious injection could enable satellite data extraction and/or manipluation targeting the bus or payload.",
+ "projection": {
+  "candidate_assets": [
+   "bus_cdhs",
+   "bus_cdhs_f",
+   "bus_com",
+   "ground_moc"
+  ],
+  "candidate_lifecycle": [
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7
+  ],
+  "lifecycle_rule": "ET-P-LC-01 (legacy tuple L field; Annex C has no lifecycle column)",
+  "derivation_provenance": {
+   "kind": "source_field",
+   "source": "Phalanx/framework/enisa_threats_tuple.csv row TR46",
+   "source_sha256": "c086e9d7221893d69e2ff6d380e3b2024aecc144bac8f034218b6814ef060b52",
+   "field": "L (lifecycle)",
+   "note": "candidate_lifecycle copies the legacy tuple L field {3,4,5,6,7}; ENISA STL 2025 Annex C has no lifecycle column, so the basis is the legacy tuple, not the Annex"
+  },
+  "applicable_boundary_roles": [
+   "command_authority"
+  ]
+ },
+ "claims": [
+  {
+   "sv": "SV-SP-3",
+   "quote": "Injection of malicious software (e.g. rootkits, bootkits, backdoors)",
+   "basis": "enisa_quote",
+   "rationale": "Introduction of malicious software."
+  },
+  {
+   "sv": "SV-SP-9",
+   "quote": "Malicious code could also be injected into software updates, affecting for exmaple on-orbit software updates, upgrades, patches, or direct memory writes",
+   "basis": "enisa_quote",
+   "rationale": "Matches on-orbit update/direct memory write injection."
+  }
+ ],
+ "crosswalk_key": "Malicious code/software/activity: Malicious injection"
+}

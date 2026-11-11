@@ -1,0 +1,6567 @@
+{
+ "_about": "Decisions of the TR52 pilot (bundle hash fb60ada6...). The engine must reproduce them until a recorded rule change says otherwise. On-board steps whose entry steps lack ET evidence name that as a separate fact, 'ET-linked evidence for the entry step' (I6).",
+ "scenarios": {
+  "SI-TR52-A": {
+   "decisions": {
+    "DE-0001": [
+     "unresolved",
+     [
+      "evidence"
+     ],
+     [
+      "ET-linked evidence"
+     ]
+    ],
+    "DE-0002.01": [
+     "unresolved",
+     [
+      "evidence"
+     ],
+     [
+      "ET-linked evidence"
+     ]
+    ],
+    "DE-0002.03": [
+     "unresolved",
+     [
+      "evidence"
+     ],
+     [
+      "ET-linked evidence"
+     ]
+    ],
+    "DE-0003": [
+     "unresolved",
+     [
+      "evidence"
+     ],
+     [
+      "ET-linked evidence"
+     ]
+    ],
+    "DE-0003.03": [
+     "unresolved",
+     [
+      "evidence"
+     ],
+     [
+      "ET-linked evidence"
+     ]
+    ],
+    "DE-0003.04": [
+     "unresolved",
+     [
+      "evidence"
+     ],
+     [
+      "ET-linked evidence"
+     ]
+    ],
+    "DE-0003.05": [
+     "unresolved",
+     [
+      "evidence"
+     ],
+     [
+      "ET-linked evidence"
+     ]
+    ],
+    "DE-0003.06": [
+     "unresolved",
+     [
+      "evidence"
+     ],
+     [
+      "ET-linked evidence"
+     ]
+    ],
+    "DE-0003.07": [
+     "unresolved",
+     [
+      "evidence"
+     ],
+     [
+      "ET-linked evidence"
+     ]
+    ],
+    "DE-0003.09": [
+     "unresolved",
+     [
+      "evidence"
+     ],
+     [
+      "ET-linked evidence"
+     ]
+    ],
+    "DE-0003.11": [
+     "unresolved",
+     [
+      "evidence"
+     ],
+     [
+      "ET-linked evidence"
+     ]
+    ],
+    "DE-0005": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "SI.platform_state.safe_mode"
+     ]
+    ],
+    "DE-0006": [
+     "unresolved",
+     [
+      "evidence"
+     ],
+     [
+      "ET-linked evidence"
+     ]
+    ],
+    "DE-0007": [
+     "unresolved",
+     [
+      "evidence"
+     ],
+     [
+      "ET-linked evidence"
+     ]
+    ],
+    "DE-0008": [
+     "unresolved",
+     [
+      "evidence"
+     ],
+     [
+      "ET-linked evidence"
+     ]
+    ],
+    "DE-0009.04": [
+     "rejected",
+     [
+      "target"
+     ],
+     []
+    ],
+    "DE-0009.05": [
+     "rejected",
+     [
+      "target"
+     ],
+     []
+    ],
+    "DE-0011": [
+     "unresolved",
+     [
+      "evidence"
+     ],
+     [
+      "ET-linked evidence"
+     ]
+    ],
+    "DE-0012": [
+     "unresolved",
+     [
+      "evidence"
+     ],
+     [
+      "ET-linked evidence"
+     ]
+    ],
+    "EX-0002": [
+     "rejected",
+     [
+      "target"
+     ],
+     []
+    ],
+    "EX-0003": [
+     "accepted",
+     [],
+     []
+    ],
+    "EX-0004": [
+     "unresolved",
+     [
+      "evidence"
+     ],
+     [
+      "ET-linked evidence"
+     ]
+    ],
+    "EX-0005.01": [
+     "accepted",
+     [],
+     []
+    ],
+    "EX-0005.02": [
+     "accepted",
+     [],
+     []
+    ],
+    "EX-0006": [
+     "rejected",
+     [
+      "effect"
+     ],
+     []
+    ],
+    "EX-0008.01": [
+     "unresolved",
+     [
+      "evidence"
+     ],
+     [
+      "ET-linked evidence"
+     ]
+    ],
+    "EX-0009": [
+     "accepted",
+     [],
+     []
+    ],
+    "EX-0009.01": [
+     "accepted",
+     [],
+     []
+    ],
+    "EX-0009.02": [
+     "accepted",
+     [],
+     []
+    ],
+    "EX-0010": [
+     "unresolved",
+     [
+      "evidence"
+     ],
+     [
+      "ET-linked evidence"
+     ]
+    ],
+    "EX-0010.03": [
+     "unresolved",
+     [
+      "evidence"
+     ],
+     [
+      "ET-linked evidence"
+     ]
+    ],
+    "EX-0010.04": [
+     "unresolved",
+     [
+      "evidence"
+     ],
+     [
+      "ET-linked evidence"
+     ]
+    ],
+    "EX-0011": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "SI.platform_state.safe_mode"
+     ]
+    ],
+    "EX-0012": [
+     "unresolved",
+     [
+      "evidence"
+     ],
+     [
+      "ET-linked evidence"
+     ]
+    ],
+    "EX-0012.01": [
+     "unresolved",
+     [
+      "evidence"
+     ],
+     [
+      "ET-linked evidence"
+     ]
+    ],
+    "EX-0012.02": [
+     "unresolved",
+     [
+      "evidence"
+     ],
+     [
+      "ET-linked evidence"
+     ]
+    ],
+    "EX-0012.04": [
+     "unresolved",
+     [
+      "evidence"
+     ],
+     [
+      "ET-linked evidence"
+     ]
+    ],
+    "EX-0012.05": [
+     "unresolved",
+     [
+      "evidence"
+     ],
+     [
+      "ET-linked evidence"
+     ]
+    ],
+    "EX-0012.07": [
+     "rejected",
+     [
+      "target"
+     ],
+     []
+    ],
+    "EX-0012.08": [
+     "rejected",
+     [
+      "target"
+     ],
+     []
+    ],
+    "EX-0012.09": [
+     "rejected",
+     [
+      "target"
+     ],
+     []
+    ],
+    "EX-0012.10": [
+     "accepted",
+     [],
+     []
+    ],
+    "EX-0012.11": [
+     "unresolved",
+     [
+      "evidence"
+     ],
+     [
+      "ET-linked evidence"
+     ]
+    ],
+    "EX-0012.12": [
+     "unresolved",
+     [
+      "evidence"
+     ],
+     [
+      "ET-linked evidence"
+     ]
+    ],
+    "EX-0013": [
+     "unresolved",
+     [
+      "evidence"
+     ],
+     [
+      "ET-linked evidence"
+     ]
+    ],
+    "EX-0013.01": [
+     "unresolved",
+     [
+      "evidence"
+     ],
+     [
+      "ET-linked evidence"
+     ]
+    ],
+    "EX-0013.02": [
+     "unresolved",
+     [
+      "evidence"
+     ],
+     [
+      "ET-linked evidence"
+     ]
+    ],
+    "EX-0014": [
+     "unresolved",
+     [
+      "evidence"
+     ],
+     [
+      "ET-linked evidence"
+     ]
+    ],
+    "EX-0014.01": [
+     "rejected",
+     [
+      "target"
+     ],
+     []
+    ],
+    "EX-0014.02": [
+     "unresolved",
+     [
+      "evidence"
+     ],
+     [
+      "ET-linked evidence"
+     ]
+    ],
+    "EX-0014.03": [
+     "rejected",
+     [
+      "target"
+     ],
+     []
+    ],
+    "EX-0014.04": [
+     "rejected",
+     [
+      "target"
+     ],
+     []
+    ],
+    "EXF-0002": [
+     "rejected",
+     [
+      "effect"
+     ],
+     []
+    ],
+    "EXF-0002.02": [
+     "rejected",
+     [
+      "effect"
+     ],
+     []
+    ],
+    "EXF-0002.04": [
+     "rejected",
+     [
+      "effect"
+     ],
+     []
+    ],
+    "EXF-0004": [
+     "rejected",
+     [
+      "effect"
+     ],
+     []
+    ],
+    "EXF-0006": [
+     "rejected",
+     [
+      "effect"
+     ],
+     []
+    ],
+    "EXF-0006.01": [
+     "rejected",
+     [
+      "effect"
+     ],
+     []
+    ],
+    "EXF-0006.02": [
+     "rejected",
+     [
+      "effect"
+     ],
+     []
+    ],
+    "EXF-0007": [
+     "rejected",
+     [
+      "effect"
+     ],
+     []
+    ],
+    "EXF-0008": [
+     "rejected",
+     [
+      "effect"
+     ],
+     []
+    ],
+    "EXF-0009": [
+     "rejected",
+     [
+      "effect"
+     ],
+     []
+    ],
+    "EXF-0010": [
+     "rejected",
+     [
+      "effect"
+     ],
+     []
+    ],
+    "IA-0001.01": [
+     "rejected",
+     [
+      "access_position",
+      "lifecycle",
+      "reachability"
+     ],
+     []
+    ],
+    "IA-0001.02": [
+     "rejected",
+     [
+      "access_position",
+      "lifecycle",
+      "reachability"
+     ],
+     []
+    ],
+    "IA-0001.03": [
+     "rejected",
+     [
+      "access_position",
+      "lifecycle",
+      "reachability"
+     ],
+     []
+    ],
+    "IA-0003": [
+     "rejected",
+     [
+      "access_position",
+      "reachability"
+     ],
+     []
+    ],
+    "IA-0004.01": [
+     "rejected",
+     [
+      "reachability"
+     ],
+     []
+    ],
+    "IA-0005.03": [
+     "rejected",
+     [
+      "access_position",
+      "target",
+      "reachability"
+     ],
+     []
+    ],
+    "IA-0006": [
+     "rejected",
+     [
+      "access_position",
+      "target",
+      "reachability"
+     ],
+     []
+    ],
+    "IA-0007": [
+     "accepted",
+     [],
+     []
+    ],
+    "IA-0007.01": [
+     "rejected",
+     [
+      "reachability"
+     ],
+     []
+    ],
+    "IA-0007.02": [
+     "accepted",
+     [],
+     []
+    ],
+    "IA-0009": [
+     "rejected",
+     [
+      "access_position"
+     ],
+     []
+    ],
+    "IA-0009.01": [
+     "rejected",
+     [
+      "access_position"
+     ],
+     []
+    ],
+    "IA-0009.02": [
+     "rejected",
+     [
+      "access_position",
+      "lifecycle",
+      "reachability"
+     ],
+     []
+    ],
+    "IA-0009.03": [
+     "rejected",
+     [
+      "access_position",
+      "target",
+      "reachability"
+     ],
+     []
+    ],
+    "IA-0010": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "SI.platform_state.safe_mode"
+     ]
+    ],
+    "IA-0012": [
+     "rejected",
+     [
+      "access_position",
+      "lifecycle",
+      "reachability"
+     ],
+     []
+    ],
+    "IMP-0002": [
+     "rejected",
+     [
+      "version"
+     ],
+     []
+    ],
+    "IMP-0003": [
+     "rejected",
+     [
+      "version"
+     ],
+     []
+    ],
+    "IMP-0006": [
+     "rejected",
+     [
+      "version"
+     ],
+     []
+    ],
+    "IMP-0007": [
+     "unresolved",
+     [
+      "evidence"
+     ],
+     [
+      "ET-linked evidence"
+     ]
+    ],
+    "IMP-0008": [
+     "accepted",
+     [],
+     []
+    ],
+    "IMP-0009": [
+     "unresolved",
+     [
+      "evidence"
+     ],
+     [
+      "ET-linked evidence"
+     ]
+    ],
+    "IMP-0010": [
+     "rejected",
+     [
+      "effect"
+     ],
+     []
+    ],
+    "IMP-0011": [
+     "accepted",
+     [],
+     []
+    ],
+    "IMP-0012": [
+     "unresolved",
+     [
+      "evidence"
+     ],
+     [
+      "ET-linked evidence"
+     ]
+    ],
+    "IMP-0013": [
+     "accepted",
+     [],
+     []
+    ],
+    "IMP-0014": [
+     "unresolved",
+     [
+      "evidence"
+     ],
+     [
+      "ET-linked evidence"
+     ]
+    ],
+    "LM-0001": [
+     "rejected",
+     [
+      "target"
+     ],
+     []
+    ],
+    "LM-0002": [
+     "unresolved",
+     [
+      "evidence"
+     ],
+     [
+      "ET-linked evidence"
+     ]
+    ],
+    "LM-0003": [
+     "rejected",
+     [
+      "target"
+     ],
+     []
+    ],
+    "LM-0005": [
+     "unresolved",
+     [
+      "evidence"
+     ],
+     [
+      "ET-linked evidence"
+     ]
+    ],
+    "LM-0006.01": [
+     "rejected",
+     [
+      "target"
+     ],
+     []
+    ],
+    "LM-0007": [
+     "unresolved",
+     [
+      "evidence"
+     ],
+     [
+      "ET-linked evidence"
+     ]
+    ],
+    "PER-0001": [
+     "unresolved",
+     [
+      "evidence"
+     ],
+     [
+      "ET-linked evidence"
+     ]
+    ],
+    "PER-0002": [
+     "unresolved",
+     [
+      "evidence"
+     ],
+     [
+      "ET-linked evidence"
+     ]
+    ],
+    "PER-0002.02": [
+     "unresolved",
+     [
+      "evidence"
+     ],
+     [
+      "ET-linked evidence"
+     ]
+    ],
+    "PER-0003": [
+     "accepted",
+     [],
+     []
+    ],
+    "PER-0004": [
+     "accepted",
+     [],
+     []
+    ],
+    "PER-0005": [
+     "accepted",
+     [],
+     []
+    ],
+    "RD-0002": [
+     "rejected",
+     [
+      "behavior"
+     ],
+     []
+    ],
+    "RD-0002.01": [
+     "rejected",
+     [
+      "behavior"
+     ],
+     []
+    ],
+    "RD-0003.02": [
+     "rejected",
+     [
+      "behavior"
+     ],
+     []
+    ],
+    "RD-0004.01": [
+     "rejected",
+     [
+      "behavior"
+     ],
+     []
+    ],
+    "REC-0001.01": [
+     "rejected",
+     [
+      "behavior"
+     ],
+     []
+    ],
+    "REC-0003.04": [
+     "rejected",
+     [
+      "behavior"
+     ],
+     []
+    ],
+    "REC-0006": [
+     "rejected",
+     [
+      "behavior"
+     ],
+     []
+    ],
+    "REC-0006.01": [
+     "rejected",
+     [
+      "behavior"
+     ],
+     []
+    ],
+    "REC-0006.02": [
+     "rejected",
+     [
+      "behavior"
+     ],
+     []
+    ],
+    "REC-0007": [
+     "rejected",
+     [
+      "behavior"
+     ],
+     []
+    ]
+   },
+   "attack_flow": [
+    "IA-0007",
+    "PER-0003",
+    "IA-0007.02",
+    "EX-0003",
+    "EX-0005.01",
+    "EX-0005.02",
+    "EX-0009",
+    "EX-0009.01",
+    "EX-0009.02",
+    "EX-0012.10",
+    "PER-0004",
+    "PER-0005",
+    "IMP-0008",
+    "IMP-0011",
+    "IMP-0013"
+   ],
+   "crossings": {
+    "E-TCUL": [
+     "IA-0007.02"
+    ]
+   },
+   "boundary_verdicts": {
+    "E-SLE": "adjacent",
+    "E-TCUL": "crossed",
+    "E-F1": "not_applicable",
+    "E-NG": "not_applicable",
+    "E-UPD": "adjacent",
+    "E-ATLO": "not_applicable"
+   },
+   "findings": {
+    "candidate_inclusion_gap": 8,
+    "insufficient_evidence": 43,
+    "missing_system_state": 3
+   }
+  },
+  "SI-TR52-A-CONV": {
+   "decisions": {
+    "DE-0001": [
+     "unresolved",
+     [
+      "evidence"
+     ],
+     [
+      "ET-linked evidence"
+     ]
+    ],
+    "DE-0002.01": [
+     "unresolved",
+     [
+      "evidence"
+     ],
+     [
+      "ET-linked evidence"
+     ]
+    ],
+    "DE-0002.03": [
+     "unresolved",
+     [
+      "evidence"
+     ],
+     [
+      "ET-linked evidence"
+     ]
+    ],
+    "DE-0003": [
+     "unresolved",
+     [
+      "evidence"
+     ],
+     [
+      "ET-linked evidence"
+     ]
+    ],
+    "DE-0003.03": [
+     "unresolved",
+     [
+      "evidence"
+     ],
+     [
+      "ET-linked evidence"
+     ]
+    ],
+    "DE-0003.04": [
+     "unresolved",
+     [
+      "evidence"
+     ],
+     [
+      "ET-linked evidence"
+     ]
+    ],
+    "DE-0003.05": [
+     "unresolved",
+     [
+      "evidence"
+     ],
+     [
+      "ET-linked evidence"
+     ]
+    ],
+    "DE-0003.06": [
+     "unresolved",
+     [
+      "evidence"
+     ],
+     [
+      "ET-linked evidence"
+     ]
+    ],
+    "DE-0003.07": [
+     "unresolved",
+     [
+      "evidence"
+     ],
+     [
+      "ET-linked evidence"
+     ]
+    ],
+    "DE-0003.09": [
+     "unresolved",
+     [
+      "evidence"
+     ],
+     [
+      "ET-linked evidence"
+     ]
+    ],
+    "DE-0003.11": [
+     "unresolved",
+     [
+      "evidence"
+     ],
+     [
+      "ET-linked evidence"
+     ]
+    ],
+    "DE-0005": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "SI.platform_state.safe_mode"
+     ]
+    ],
+    "DE-0006": [
+     "unresolved",
+     [
+      "evidence"
+     ],
+     [
+      "ET-linked evidence"
+     ]
+    ],
+    "DE-0007": [
+     "unresolved",
+     [
+      "evidence"
+     ],
+     [
+      "ET-linked evidence"
+     ]
+    ],
+    "DE-0008": [
+     "unresolved",
+     [
+      "evidence"
+     ],
+     [
+      "ET-linked evidence"
+     ]
+    ],
+    "DE-0009.04": [
+     "rejected",
+     [
+      "target"
+     ],
+     []
+    ],
+    "DE-0009.05": [
+     "rejected",
+     [
+      "target"
+     ],
+     []
+    ],
+    "DE-0011": [
+     "unresolved",
+     [
+      "evidence"
+     ],
+     [
+      "ET-linked evidence"
+     ]
+    ],
+    "DE-0012": [
+     "unresolved",
+     [
+      "evidence"
+     ],
+     [
+      "ET-linked evidence"
+     ]
+    ],
+    "EX-0002": [
+     "rejected",
+     [
+      "target"
+     ],
+     []
+    ],
+    "EX-0003": [
+     "accepted",
+     [],
+     []
+    ],
+    "EX-0004": [
+     "unresolved",
+     [
+      "evidence"
+     ],
+     [
+      "ET-linked evidence"
+     ]
+    ],
+    "EX-0005.01": [
+     "accepted",
+     [],
+     []
+    ],
+    "EX-0005.02": [
+     "accepted",
+     [],
+     []
+    ],
+    "EX-0006": [
+     "rejected",
+     [
+      "effect"
+     ],
+     []
+    ],
+    "EX-0008.01": [
+     "unresolved",
+     [
+      "evidence"
+     ],
+     [
+      "ET-linked evidence"
+     ]
+    ],
+    "EX-0009": [
+     "accepted",
+     [],
+     []
+    ],
+    "EX-0009.01": [
+     "accepted",
+     [],
+     []
+    ],
+    "EX-0009.02": [
+     "accepted",
+     [],
+     []
+    ],
+    "EX-0010": [
+     "unresolved",
+     [
+      "evidence"
+     ],
+     [
+      "ET-linked evidence"
+     ]
+    ],
+    "EX-0010.03": [
+     "unresolved",
+     [
+      "evidence"
+     ],
+     [
+      "ET-linked evidence"
+     ]
+    ],
+    "EX-0010.04": [
+     "unresolved",
+     [
+      "evidence"
+     ],
+     [
+      "ET-linked evidence"
+     ]
+    ],
+    "EX-0011": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "SI.platform_state.safe_mode"
+     ]
+    ],
+    "EX-0012": [
+     "unresolved",
+     [
+      "evidence"
+     ],
+     [
+      "ET-linked evidence"
+     ]
+    ],
+    "EX-0012.01": [
+     "unresolved",
+     [
+      "evidence"
+     ],
+     [
+      "ET-linked evidence"
+     ]
+    ],
+    "EX-0012.02": [
+     "unresolved",
+     [
+      "evidence"
+     ],
+     [
+      "ET-linked evidence"
+     ]
+    ],
+    "EX-0012.04": [
+     "unresolved",
+     [
+      "evidence"
+     ],
+     [
+      "ET-linked evidence"
+     ]
+    ],
+    "EX-0012.05": [
+     "unresolved",
+     [
+      "evidence"
+     ],
+     [
+      "ET-linked evidence"
+     ]
+    ],
+    "EX-0012.07": [
+     "rejected",
+     [
+      "target"
+     ],
+     []
+    ],
+    "EX-0012.08": [
+     "rejected",
+     [
+      "target"
+     ],
+     []
+    ],
+    "EX-0012.09": [
+     "rejected",
+     [
+      "target"
+     ],
+     []
+    ],
+    "EX-0012.10": [
+     "accepted",
+     [],
+     []
+    ],
+    "EX-0012.11": [
+     "unresolved",
+     [
+      "evidence"
+     ],
+     [
+      "ET-linked evidence"
+     ]
+    ],
+    "EX-0012.12": [
+     "unresolved",
+     [
+      "evidence"
+     ],
+     [
+      "ET-linked evidence"
+     ]
+    ],
+    "EX-0013": [
+     "unresolved",
+     [
+      "evidence"
+     ],
+     [
+      "ET-linked evidence"
+     ]
+    ],
+    "EX-0013.01": [
+     "unresolved",
+     [
+      "evidence"
+     ],
+     [
+      "ET-linked evidence"
+     ]
+    ],
+    "EX-0013.02": [
+     "unresolved",
+     [
+      "evidence"
+     ],
+     [
+      "ET-linked evidence"
+     ]
+    ],
+    "EX-0014": [
+     "unresolved",
+     [
+      "evidence"
+     ],
+     [
+      "ET-linked evidence"
+     ]
+    ],
+    "EX-0014.01": [
+     "rejected",
+     [
+      "target"
+     ],
+     []
+    ],
+    "EX-0014.02": [
+     "unresolved",
+     [
+      "evidence"
+     ],
+     [
+      "ET-linked evidence"
+     ]
+    ],
+    "EX-0014.03": [
+     "rejected",
+     [
+      "target"
+     ],
+     []
+    ],
+    "EX-0014.04": [
+     "rejected",
+     [
+      "target"
+     ],
+     []
+    ],
+    "EXF-0002": [
+     "rejected",
+     [
+      "effect"
+     ],
+     []
+    ],
+    "EXF-0002.02": [
+     "rejected",
+     [
+      "effect"
+     ],
+     []
+    ],
+    "EXF-0002.04": [
+     "rejected",
+     [
+      "effect"
+     ],
+     []
+    ],
+    "EXF-0004": [
+     "rejected",
+     [
+      "effect"
+     ],
+     []
+    ],
+    "EXF-0006": [
+     "rejected",
+     [
+      "effect"
+     ],
+     []
+    ],
+    "EXF-0006.01": [
+     "rejected",
+     [
+      "effect"
+     ],
+     []
+    ],
+    "EXF-0006.02": [
+     "rejected",
+     [
+      "effect"
+     ],
+     []
+    ],
+    "EXF-0007": [
+     "rejected",
+     [
+      "effect"
+     ],
+     []
+    ],
+    "EXF-0008": [
+     "rejected",
+     [
+      "effect"
+     ],
+     []
+    ],
+    "EXF-0009": [
+     "rejected",
+     [
+      "effect"
+     ],
+     []
+    ],
+    "EXF-0010": [
+     "rejected",
+     [
+      "effect"
+     ],
+     []
+    ],
+    "IA-0001.01": [
+     "rejected",
+     [
+      "access_position",
+      "lifecycle",
+      "reachability"
+     ],
+     []
+    ],
+    "IA-0001.02": [
+     "rejected",
+     [
+      "access_position",
+      "lifecycle",
+      "reachability"
+     ],
+     []
+    ],
+    "IA-0001.03": [
+     "rejected",
+     [
+      "access_position",
+      "lifecycle",
+      "reachability"
+     ],
+     []
+    ],
+    "IA-0003": [
+     "rejected",
+     [
+      "access_position",
+      "reachability"
+     ],
+     []
+    ],
+    "IA-0004.01": [
+     "rejected",
+     [
+      "reachability"
+     ],
+     []
+    ],
+    "IA-0005.03": [
+     "rejected",
+     [
+      "access_position",
+      "target",
+      "reachability"
+     ],
+     []
+    ],
+    "IA-0006": [
+     "rejected",
+     [
+      "access_position",
+      "target",
+      "reachability"
+     ],
+     []
+    ],
+    "IA-0007": [
+     "accepted",
+     [],
+     []
+    ],
+    "IA-0007.01": [
+     "rejected",
+     [
+      "reachability"
+     ],
+     []
+    ],
+    "IA-0007.02": [
+     "accepted",
+     [],
+     []
+    ],
+    "IA-0009": [
+     "rejected",
+     [
+      "access_position"
+     ],
+     []
+    ],
+    "IA-0009.01": [
+     "rejected",
+     [
+      "access_position"
+     ],
+     []
+    ],
+    "IA-0009.02": [
+     "rejected",
+     [
+      "access_position",
+      "lifecycle",
+      "reachability"
+     ],
+     []
+    ],
+    "IA-0009.03": [
+     "rejected",
+     [
+      "access_position",
+      "target",
+      "reachability"
+     ],
+     []
+    ],
+    "IA-0010": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "SI.platform_state.safe_mode"
+     ]
+    ],
+    "IA-0012": [
+     "rejected",
+     [
+      "access_position",
+      "lifecycle",
+      "reachability"
+     ],
+     []
+    ],
+    "IMP-0002": [
+     "rejected",
+     [
+      "version"
+     ],
+     []
+    ],
+    "IMP-0003": [
+     "rejected",
+     [
+      "version"
+     ],
+     []
+    ],
+    "IMP-0006": [
+     "rejected",
+     [
+      "version"
+     ],
+     []
+    ],
+    "IMP-0007": [
+     "unresolved",
+     [
+      "evidence"
+     ],
+     [
+      "ET-linked evidence"
+     ]
+    ],
+    "IMP-0008": [
+     "accepted",
+     [],
+     []
+    ],
+    "IMP-0009": [
+     "unresolved",
+     [
+      "evidence"
+     ],
+     [
+      "ET-linked evidence"
+     ]
+    ],
+    "IMP-0010": [
+     "rejected",
+     [
+      "effect"
+     ],
+     []
+    ],
+    "IMP-0011": [
+     "accepted",
+     [],
+     []
+    ],
+    "IMP-0012": [
+     "unresolved",
+     [
+      "evidence"
+     ],
+     [
+      "ET-linked evidence"
+     ]
+    ],
+    "IMP-0013": [
+     "accepted",
+     [],
+     []
+    ],
+    "IMP-0014": [
+     "unresolved",
+     [
+      "evidence"
+     ],
+     [
+      "ET-linked evidence"
+     ]
+    ],
+    "LM-0001": [
+     "rejected",
+     [
+      "target"
+     ],
+     []
+    ],
+    "LM-0002": [
+     "unresolved",
+     [
+      "evidence"
+     ],
+     [
+      "ET-linked evidence"
+     ]
+    ],
+    "LM-0003": [
+     "rejected",
+     [
+      "target"
+     ],
+     []
+    ],
+    "LM-0005": [
+     "unresolved",
+     [
+      "evidence"
+     ],
+     [
+      "ET-linked evidence"
+     ]
+    ],
+    "LM-0006.01": [
+     "rejected",
+     [
+      "target"
+     ],
+     []
+    ],
+    "LM-0007": [
+     "unresolved",
+     [
+      "evidence"
+     ],
+     [
+      "ET-linked evidence"
+     ]
+    ],
+    "PER-0001": [
+     "unresolved",
+     [
+      "evidence"
+     ],
+     [
+      "ET-linked evidence"
+     ]
+    ],
+    "PER-0002": [
+     "unresolved",
+     [
+      "evidence"
+     ],
+     [
+      "ET-linked evidence"
+     ]
+    ],
+    "PER-0002.02": [
+     "unresolved",
+     [
+      "evidence"
+     ],
+     [
+      "ET-linked evidence"
+     ]
+    ],
+    "PER-0003": [
+     "accepted",
+     [],
+     []
+    ],
+    "PER-0004": [
+     "accepted",
+     [],
+     []
+    ],
+    "PER-0005": [
+     "accepted",
+     [],
+     []
+    ],
+    "RD-0002": [
+     "rejected",
+     [
+      "behavior"
+     ],
+     []
+    ],
+    "RD-0002.01": [
+     "rejected",
+     [
+      "behavior"
+     ],
+     []
+    ],
+    "RD-0003.02": [
+     "rejected",
+     [
+      "behavior"
+     ],
+     []
+    ],
+    "RD-0004.01": [
+     "rejected",
+     [
+      "behavior"
+     ],
+     []
+    ],
+    "REC-0001.01": [
+     "rejected",
+     [
+      "behavior"
+     ],
+     []
+    ],
+    "REC-0003.04": [
+     "rejected",
+     [
+      "behavior"
+     ],
+     []
+    ],
+    "REC-0006": [
+     "rejected",
+     [
+      "behavior"
+     ],
+     []
+    ],
+    "REC-0006.01": [
+     "rejected",
+     [
+      "behavior"
+     ],
+     []
+    ],
+    "REC-0006.02": [
+     "rejected",
+     [
+      "behavior"
+     ],
+     []
+    ],
+    "REC-0007": [
+     "rejected",
+     [
+      "behavior"
+     ],
+     []
+    ]
+   },
+   "attack_flow": [
+    "IA-0007",
+    "PER-0003",
+    "IA-0007.02",
+    "EX-0003",
+    "EX-0005.01",
+    "EX-0005.02",
+    "EX-0009",
+    "EX-0009.01",
+    "EX-0009.02",
+    "EX-0012.10",
+    "PER-0004",
+    "PER-0005",
+    "IMP-0008",
+    "IMP-0011",
+    "IMP-0013"
+   ],
+   "crossings": {
+    "E-TCUL": [
+     "IA-0007.02"
+    ]
+   },
+   "boundary_verdicts": {
+    "E-SLE": "adjacent",
+    "E-TCUL": "crossed",
+    "E-NG": "not_applicable",
+    "E-UPD": "adjacent",
+    "E-ATLO": "not_applicable"
+   },
+   "findings": {
+    "candidate_inclusion_gap": 8,
+    "insufficient_evidence": 43,
+    "missing_system_state": 3
+   }
+  },
+  "SI-TR52-B": {
+   "decisions": {
+    "DE-0001": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode"
+     ]
+    ],
+    "DE-0002.01": [
+     "rejected",
+     [
+      "access_position",
+      "reachability"
+     ],
+     []
+    ],
+    "DE-0002.03": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode"
+     ]
+    ],
+    "DE-0003": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode"
+     ]
+    ],
+    "DE-0003.03": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode"
+     ]
+    ],
+    "DE-0003.04": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode"
+     ]
+    ],
+    "DE-0003.05": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode"
+     ]
+    ],
+    "DE-0003.06": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode"
+     ]
+    ],
+    "DE-0003.07": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode"
+     ]
+    ],
+    "DE-0003.09": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode"
+     ]
+    ],
+    "DE-0003.11": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode"
+     ]
+    ],
+    "DE-0005": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode"
+     ]
+    ],
+    "DE-0006": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode"
+     ]
+    ],
+    "DE-0007": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode"
+     ]
+    ],
+    "DE-0008": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode"
+     ]
+    ],
+    "DE-0009.04": [
+     "rejected",
+     [
+      "target"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode"
+     ]
+    ],
+    "DE-0009.05": [
+     "rejected",
+     [
+      "target"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode"
+     ]
+    ],
+    "DE-0011": [
+     "rejected",
+     [
+      "authority"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode"
+     ]
+    ],
+    "DE-0012": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode"
+     ]
+    ],
+    "EX-0001": [
+     "rejected",
+     [
+      "authority"
+     ],
+     []
+    ],
+    "EX-0001.01": [
+     "rejected",
+     [
+      "authority"
+     ],
+     []
+    ],
+    "EX-0002": [
+     "rejected",
+     [
+      "target"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode"
+     ]
+    ],
+    "EX-0003": [
+     "unresolved",
+     [
+      "reachability"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode"
+     ]
+    ],
+    "EX-0004": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode"
+     ]
+    ],
+    "EX-0005.01": [
+     "unresolved",
+     [
+      "reachability"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode"
+     ]
+    ],
+    "EX-0005.02": [
+     "unresolved",
+     [
+      "reachability"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode"
+     ]
+    ],
+    "EX-0006": [
+     "rejected",
+     [
+      "effect"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode"
+     ]
+    ],
+    "EX-0008.01": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode"
+     ]
+    ],
+    "EX-0009": [
+     "unresolved",
+     [
+      "reachability"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode"
+     ]
+    ],
+    "EX-0009.01": [
+     "unresolved",
+     [
+      "reachability"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode"
+     ]
+    ],
+    "EX-0009.02": [
+     "unresolved",
+     [
+      "reachability"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode"
+     ]
+    ],
+    "EX-0010": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode"
+     ]
+    ],
+    "EX-0010.03": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode"
+     ]
+    ],
+    "EX-0010.04": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode"
+     ]
+    ],
+    "EX-0011": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode"
+     ]
+    ],
+    "EX-0012": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode"
+     ]
+    ],
+    "EX-0012.01": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode"
+     ]
+    ],
+    "EX-0012.02": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode"
+     ]
+    ],
+    "EX-0012.04": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode"
+     ]
+    ],
+    "EX-0012.05": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode"
+     ]
+    ],
+    "EX-0012.07": [
+     "rejected",
+     [
+      "target"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode"
+     ]
+    ],
+    "EX-0012.08": [
+     "rejected",
+     [
+      "target"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode"
+     ]
+    ],
+    "EX-0012.09": [
+     "rejected",
+     [
+      "target"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode"
+     ]
+    ],
+    "EX-0012.10": [
+     "unresolved",
+     [
+      "reachability"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode"
+     ]
+    ],
+    "EX-0012.11": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode"
+     ]
+    ],
+    "EX-0012.12": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode"
+     ]
+    ],
+    "EX-0013": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode"
+     ]
+    ],
+    "EX-0013.01": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode"
+     ]
+    ],
+    "EX-0013.02": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode"
+     ]
+    ],
+    "EX-0014": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode"
+     ]
+    ],
+    "EX-0014.01": [
+     "rejected",
+     [
+      "target"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode"
+     ]
+    ],
+    "EX-0014.02": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode"
+     ]
+    ],
+    "EX-0014.03": [
+     "rejected",
+     [
+      "target"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode"
+     ]
+    ],
+    "EX-0014.04": [
+     "rejected",
+     [
+      "target"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode"
+     ]
+    ],
+    "EXF-0002": [
+     "rejected",
+     [
+      "effect"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode"
+     ]
+    ],
+    "EXF-0002.02": [
+     "rejected",
+     [
+      "effect"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode"
+     ]
+    ],
+    "EXF-0002.04": [
+     "rejected",
+     [
+      "effect"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode"
+     ]
+    ],
+    "EXF-0004": [
+     "rejected",
+     [
+      "effect"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode"
+     ]
+    ],
+    "EXF-0006": [
+     "rejected",
+     [
+      "effect"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode"
+     ]
+    ],
+    "EXF-0006.01": [
+     "rejected",
+     [
+      "effect"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode"
+     ]
+    ],
+    "EXF-0006.02": [
+     "rejected",
+     [
+      "effect"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode"
+     ]
+    ],
+    "EXF-0007": [
+     "rejected",
+     [
+      "effect"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode"
+     ]
+    ],
+    "EXF-0008": [
+     "rejected",
+     [
+      "effect"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode"
+     ]
+    ],
+    "EXF-0009": [
+     "rejected",
+     [
+      "effect"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode"
+     ]
+    ],
+    "EXF-0010": [
+     "rejected",
+     [
+      "effect"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode"
+     ]
+    ],
+    "IA-0001.01": [
+     "rejected",
+     [
+      "access_position",
+      "lifecycle",
+      "reachability"
+     ],
+     []
+    ],
+    "IA-0001.02": [
+     "rejected",
+     [
+      "access_position",
+      "lifecycle",
+      "reachability"
+     ],
+     []
+    ],
+    "IA-0001.03": [
+     "rejected",
+     [
+      "access_position",
+      "lifecycle",
+      "reachability"
+     ],
+     []
+    ],
+    "IA-0003": [
+     "rejected",
+     [
+      "access_position",
+      "reachability"
+     ],
+     []
+    ],
+    "IA-0004.01": [
+     "rejected",
+     [
+      "access_position",
+      "authority"
+     ],
+     [
+      "SI.attacker.gs_role"
+     ]
+    ],
+    "IA-0005.03": [
+     "rejected",
+     [
+      "access_position",
+      "target",
+      "reachability"
+     ],
+     []
+    ],
+    "IA-0006": [
+     "rejected",
+     [
+      "access_position",
+      "target",
+      "reachability"
+     ],
+     []
+    ],
+    "IA-0007": [
+     "rejected",
+     [
+      "access_position",
+      "reachability"
+     ],
+     []
+    ],
+    "IA-0007.01": [
+     "rejected",
+     [
+      "access_position",
+      "authority",
+      "reachability"
+     ],
+     []
+    ],
+    "IA-0007.02": [
+     "rejected",
+     [
+      "access_position",
+      "authority"
+     ],
+     []
+    ],
+    "IA-0008": [
+     "rejected",
+     [
+      "authority"
+     ],
+     []
+    ],
+    "IA-0008.01": [
+     "rejected",
+     [
+      "authority"
+     ],
+     []
+    ],
+    "IA-0009": [
+     "rejected",
+     [
+      "access_position"
+     ],
+     []
+    ],
+    "IA-0009.01": [
+     "rejected",
+     [
+      "access_position"
+     ],
+     []
+    ],
+    "IA-0009.02": [
+     "rejected",
+     [
+      "access_position",
+      "lifecycle",
+      "reachability"
+     ],
+     []
+    ],
+    "IA-0009.03": [
+     "rejected",
+     [
+      "access_position",
+      "target",
+      "reachability"
+     ],
+     []
+    ],
+    "IA-0010": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "SI.platform_state.safe_mode"
+     ]
+    ],
+    "IA-0012": [
+     "rejected",
+     [
+      "access_position",
+      "lifecycle",
+      "reachability"
+     ],
+     []
+    ],
+    "IMP-0002": [
+     "rejected",
+     [
+      "version"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode"
+     ]
+    ],
+    "IMP-0003": [
+     "rejected",
+     [
+      "version"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode"
+     ]
+    ],
+    "IMP-0006": [
+     "rejected",
+     [
+      "version"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode"
+     ]
+    ],
+    "IMP-0007": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode"
+     ]
+    ],
+    "IMP-0008": [
+     "unresolved",
+     [
+      "reachability"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode"
+     ]
+    ],
+    "IMP-0009": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode"
+     ]
+    ],
+    "IMP-0010": [
+     "rejected",
+     [
+      "effect"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode"
+     ]
+    ],
+    "IMP-0011": [
+     "unresolved",
+     [
+      "reachability"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode"
+     ]
+    ],
+    "IMP-0012": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode"
+     ]
+    ],
+    "IMP-0013": [
+     "unresolved",
+     [
+      "reachability"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode"
+     ]
+    ],
+    "IMP-0014": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode"
+     ]
+    ],
+    "LM-0001": [
+     "rejected",
+     [
+      "target"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode"
+     ]
+    ],
+    "LM-0002": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode"
+     ]
+    ],
+    "LM-0003": [
+     "rejected",
+     [
+      "target"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode"
+     ]
+    ],
+    "LM-0005": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode"
+     ]
+    ],
+    "LM-0006.01": [
+     "rejected",
+     [
+      "target"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode"
+     ]
+    ],
+    "LM-0007": [
+     "rejected",
+     [
+      "authority"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode"
+     ]
+    ],
+    "PER-0001": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode"
+     ]
+    ],
+    "PER-0002": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode"
+     ]
+    ],
+    "PER-0002.02": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode"
+     ]
+    ],
+    "PER-0003": [
+     "rejected",
+     [
+      "access_position",
+      "reachability"
+     ],
+     []
+    ],
+    "PER-0004": [
+     "unresolved",
+     [
+      "reachability"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode"
+     ]
+    ],
+    "PER-0005": [
+     "rejected",
+     [
+      "authority"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode"
+     ]
+    ],
+    "RD-0002": [
+     "rejected",
+     [
+      "behavior"
+     ],
+     []
+    ],
+    "RD-0002.01": [
+     "rejected",
+     [
+      "behavior"
+     ],
+     []
+    ],
+    "RD-0003.02": [
+     "rejected",
+     [
+      "behavior"
+     ],
+     []
+    ],
+    "RD-0004.01": [
+     "rejected",
+     [
+      "behavior"
+     ],
+     []
+    ],
+    "REC-0001.01": [
+     "rejected",
+     [
+      "behavior"
+     ],
+     []
+    ],
+    "REC-0003.04": [
+     "rejected",
+     [
+      "behavior"
+     ],
+     []
+    ],
+    "REC-0006": [
+     "rejected",
+     [
+      "behavior"
+     ],
+     []
+    ],
+    "REC-0006.01": [
+     "rejected",
+     [
+      "behavior"
+     ],
+     []
+    ],
+    "REC-0006.02": [
+     "rejected",
+     [
+      "behavior"
+     ],
+     []
+    ],
+    "REC-0007": [
+     "rejected",
+     [
+      "behavior"
+     ],
+     []
+    ]
+   },
+   "attack_flow": [],
+   "crossings": {},
+   "boundary_verdicts": {
+    "E-SLE": "adjacent",
+    "E-TCUL": "applicable",
+    "E-RF": "applicable",
+    "E-F1": "not_applicable",
+    "E-NG": "not_applicable",
+    "E-UPD": "adjacent",
+    "E-ATLO": "not_applicable"
+   },
+   "findings": {
+    "candidate_inclusion_gap": 12,
+    "missing_system_state": 54,
+    "unreachable": 1
+   }
+  },
+  "SI-TR52-B'": {
+   "decisions": {
+    "DE-0001": [
+     "rejected",
+     [
+      "reachability"
+     ],
+     []
+    ],
+    "DE-0002.01": [
+     "rejected",
+     [
+      "access_position",
+      "reachability"
+     ],
+     []
+    ],
+    "DE-0002.03": [
+     "rejected",
+     [
+      "reachability"
+     ],
+     []
+    ],
+    "DE-0003": [
+     "rejected",
+     [
+      "reachability"
+     ],
+     []
+    ],
+    "DE-0003.03": [
+     "rejected",
+     [
+      "reachability"
+     ],
+     []
+    ],
+    "DE-0003.04": [
+     "rejected",
+     [
+      "reachability"
+     ],
+     []
+    ],
+    "DE-0003.05": [
+     "rejected",
+     [
+      "reachability"
+     ],
+     []
+    ],
+    "DE-0003.06": [
+     "rejected",
+     [
+      "reachability"
+     ],
+     []
+    ],
+    "DE-0003.07": [
+     "rejected",
+     [
+      "reachability"
+     ],
+     []
+    ],
+    "DE-0003.09": [
+     "rejected",
+     [
+      "reachability"
+     ],
+     []
+    ],
+    "DE-0003.11": [
+     "rejected",
+     [
+      "reachability"
+     ],
+     []
+    ],
+    "DE-0005": [
+     "rejected",
+     [
+      "reachability"
+     ],
+     []
+    ],
+    "DE-0006": [
+     "rejected",
+     [
+      "reachability"
+     ],
+     []
+    ],
+    "DE-0007": [
+     "rejected",
+     [
+      "reachability"
+     ],
+     []
+    ],
+    "DE-0008": [
+     "rejected",
+     [
+      "reachability"
+     ],
+     []
+    ],
+    "DE-0009.04": [
+     "rejected",
+     [
+      "target",
+      "reachability"
+     ],
+     []
+    ],
+    "DE-0009.05": [
+     "rejected",
+     [
+      "target",
+      "reachability"
+     ],
+     []
+    ],
+    "DE-0011": [
+     "rejected",
+     [
+      "authority",
+      "reachability"
+     ],
+     []
+    ],
+    "DE-0012": [
+     "rejected",
+     [
+      "reachability"
+     ],
+     []
+    ],
+    "EX-0001": [
+     "rejected",
+     [
+      "authority"
+     ],
+     []
+    ],
+    "EX-0001.01": [
+     "rejected",
+     [
+      "authority"
+     ],
+     []
+    ],
+    "EX-0002": [
+     "rejected",
+     [
+      "target",
+      "reachability"
+     ],
+     []
+    ],
+    "EX-0003": [
+     "rejected",
+     [
+      "reachability"
+     ],
+     []
+    ],
+    "EX-0004": [
+     "rejected",
+     [
+      "reachability"
+     ],
+     []
+    ],
+    "EX-0005.01": [
+     "rejected",
+     [
+      "reachability"
+     ],
+     []
+    ],
+    "EX-0005.02": [
+     "rejected",
+     [
+      "reachability"
+     ],
+     []
+    ],
+    "EX-0006": [
+     "rejected",
+     [
+      "effect",
+      "reachability"
+     ],
+     []
+    ],
+    "EX-0008.01": [
+     "rejected",
+     [
+      "reachability"
+     ],
+     []
+    ],
+    "EX-0009": [
+     "rejected",
+     [
+      "reachability"
+     ],
+     []
+    ],
+    "EX-0009.01": [
+     "rejected",
+     [
+      "reachability"
+     ],
+     []
+    ],
+    "EX-0009.02": [
+     "rejected",
+     [
+      "reachability"
+     ],
+     []
+    ],
+    "EX-0010": [
+     "rejected",
+     [
+      "reachability"
+     ],
+     []
+    ],
+    "EX-0010.03": [
+     "rejected",
+     [
+      "reachability"
+     ],
+     []
+    ],
+    "EX-0010.04": [
+     "rejected",
+     [
+      "reachability"
+     ],
+     []
+    ],
+    "EX-0011": [
+     "rejected",
+     [
+      "reachability"
+     ],
+     []
+    ],
+    "EX-0012": [
+     "rejected",
+     [
+      "reachability"
+     ],
+     []
+    ],
+    "EX-0012.01": [
+     "rejected",
+     [
+      "reachability"
+     ],
+     []
+    ],
+    "EX-0012.02": [
+     "rejected",
+     [
+      "reachability"
+     ],
+     []
+    ],
+    "EX-0012.04": [
+     "rejected",
+     [
+      "reachability"
+     ],
+     []
+    ],
+    "EX-0012.05": [
+     "rejected",
+     [
+      "reachability"
+     ],
+     []
+    ],
+    "EX-0012.07": [
+     "rejected",
+     [
+      "target",
+      "reachability"
+     ],
+     []
+    ],
+    "EX-0012.08": [
+     "rejected",
+     [
+      "target",
+      "reachability"
+     ],
+     []
+    ],
+    "EX-0012.09": [
+     "rejected",
+     [
+      "target",
+      "reachability"
+     ],
+     []
+    ],
+    "EX-0012.10": [
+     "rejected",
+     [
+      "reachability"
+     ],
+     []
+    ],
+    "EX-0012.11": [
+     "rejected",
+     [
+      "reachability"
+     ],
+     []
+    ],
+    "EX-0012.12": [
+     "rejected",
+     [
+      "reachability"
+     ],
+     []
+    ],
+    "EX-0013": [
+     "rejected",
+     [
+      "reachability"
+     ],
+     []
+    ],
+    "EX-0013.01": [
+     "rejected",
+     [
+      "reachability"
+     ],
+     []
+    ],
+    "EX-0013.02": [
+     "rejected",
+     [
+      "reachability"
+     ],
+     []
+    ],
+    "EX-0014": [
+     "rejected",
+     [
+      "reachability"
+     ],
+     []
+    ],
+    "EX-0014.01": [
+     "rejected",
+     [
+      "target",
+      "reachability"
+     ],
+     []
+    ],
+    "EX-0014.02": [
+     "rejected",
+     [
+      "reachability"
+     ],
+     []
+    ],
+    "EX-0014.03": [
+     "rejected",
+     [
+      "target",
+      "reachability"
+     ],
+     []
+    ],
+    "EX-0014.04": [
+     "rejected",
+     [
+      "target",
+      "reachability"
+     ],
+     []
+    ],
+    "EXF-0002": [
+     "rejected",
+     [
+      "effect",
+      "reachability"
+     ],
+     []
+    ],
+    "EXF-0002.02": [
+     "rejected",
+     [
+      "effect",
+      "reachability"
+     ],
+     []
+    ],
+    "EXF-0002.04": [
+     "rejected",
+     [
+      "effect",
+      "reachability"
+     ],
+     []
+    ],
+    "EXF-0004": [
+     "rejected",
+     [
+      "effect",
+      "reachability"
+     ],
+     []
+    ],
+    "EXF-0006": [
+     "rejected",
+     [
+      "effect",
+      "reachability"
+     ],
+     []
+    ],
+    "EXF-0006.01": [
+     "rejected",
+     [
+      "effect",
+      "reachability"
+     ],
+     []
+    ],
+    "EXF-0006.02": [
+     "rejected",
+     [
+      "effect",
+      "reachability"
+     ],
+     []
+    ],
+    "EXF-0007": [
+     "rejected",
+     [
+      "effect",
+      "reachability"
+     ],
+     []
+    ],
+    "EXF-0008": [
+     "rejected",
+     [
+      "effect",
+      "reachability"
+     ],
+     []
+    ],
+    "EXF-0009": [
+     "rejected",
+     [
+      "effect",
+      "reachability"
+     ],
+     []
+    ],
+    "EXF-0010": [
+     "rejected",
+     [
+      "effect",
+      "reachability"
+     ],
+     []
+    ],
+    "IA-0001.01": [
+     "rejected",
+     [
+      "access_position",
+      "lifecycle",
+      "reachability"
+     ],
+     []
+    ],
+    "IA-0001.02": [
+     "rejected",
+     [
+      "access_position",
+      "lifecycle",
+      "reachability"
+     ],
+     []
+    ],
+    "IA-0001.03": [
+     "rejected",
+     [
+      "access_position",
+      "lifecycle",
+      "reachability"
+     ],
+     []
+    ],
+    "IA-0003": [
+     "rejected",
+     [
+      "access_position",
+      "reachability"
+     ],
+     []
+    ],
+    "IA-0004.01": [
+     "rejected",
+     [
+      "access_position",
+      "authority"
+     ],
+     [
+      "SI.attacker.gs_role"
+     ]
+    ],
+    "IA-0005.03": [
+     "rejected",
+     [
+      "access_position",
+      "target",
+      "reachability"
+     ],
+     []
+    ],
+    "IA-0006": [
+     "rejected",
+     [
+      "access_position",
+      "target",
+      "reachability"
+     ],
+     []
+    ],
+    "IA-0007": [
+     "rejected",
+     [
+      "access_position",
+      "reachability"
+     ],
+     []
+    ],
+    "IA-0007.01": [
+     "rejected",
+     [
+      "access_position",
+      "authority",
+      "reachability"
+     ],
+     []
+    ],
+    "IA-0007.02": [
+     "rejected",
+     [
+      "access_position",
+      "authority"
+     ],
+     []
+    ],
+    "IA-0008": [
+     "rejected",
+     [
+      "authority"
+     ],
+     []
+    ],
+    "IA-0008.01": [
+     "rejected",
+     [
+      "authority"
+     ],
+     []
+    ],
+    "IA-0009": [
+     "rejected",
+     [
+      "access_position"
+     ],
+     []
+    ],
+    "IA-0009.01": [
+     "rejected",
+     [
+      "access_position"
+     ],
+     []
+    ],
+    "IA-0009.02": [
+     "rejected",
+     [
+      "access_position",
+      "lifecycle",
+      "reachability"
+     ],
+     []
+    ],
+    "IA-0009.03": [
+     "rejected",
+     [
+      "access_position",
+      "target",
+      "reachability"
+     ],
+     []
+    ],
+    "IA-0010": [
+     "rejected",
+     [
+      "reachability"
+     ],
+     []
+    ],
+    "IA-0012": [
+     "rejected",
+     [
+      "access_position",
+      "lifecycle",
+      "reachability"
+     ],
+     []
+    ],
+    "IMP-0002": [
+     "rejected",
+     [
+      "version",
+      "reachability"
+     ],
+     []
+    ],
+    "IMP-0003": [
+     "rejected",
+     [
+      "version",
+      "reachability"
+     ],
+     []
+    ],
+    "IMP-0006": [
+     "rejected",
+     [
+      "version",
+      "reachability"
+     ],
+     []
+    ],
+    "IMP-0007": [
+     "rejected",
+     [
+      "reachability"
+     ],
+     []
+    ],
+    "IMP-0008": [
+     "rejected",
+     [
+      "reachability"
+     ],
+     []
+    ],
+    "IMP-0009": [
+     "rejected",
+     [
+      "reachability"
+     ],
+     []
+    ],
+    "IMP-0010": [
+     "rejected",
+     [
+      "effect",
+      "reachability"
+     ],
+     []
+    ],
+    "IMP-0011": [
+     "rejected",
+     [
+      "reachability"
+     ],
+     []
+    ],
+    "IMP-0012": [
+     "rejected",
+     [
+      "reachability"
+     ],
+     []
+    ],
+    "IMP-0013": [
+     "rejected",
+     [
+      "reachability"
+     ],
+     []
+    ],
+    "IMP-0014": [
+     "rejected",
+     [
+      "reachability"
+     ],
+     []
+    ],
+    "LM-0001": [
+     "rejected",
+     [
+      "target",
+      "reachability"
+     ],
+     []
+    ],
+    "LM-0002": [
+     "rejected",
+     [
+      "reachability"
+     ],
+     []
+    ],
+    "LM-0003": [
+     "rejected",
+     [
+      "target",
+      "reachability"
+     ],
+     []
+    ],
+    "LM-0005": [
+     "rejected",
+     [
+      "reachability"
+     ],
+     []
+    ],
+    "LM-0006.01": [
+     "rejected",
+     [
+      "target",
+      "reachability"
+     ],
+     []
+    ],
+    "LM-0007": [
+     "rejected",
+     [
+      "authority",
+      "reachability"
+     ],
+     []
+    ],
+    "PER-0001": [
+     "rejected",
+     [
+      "reachability"
+     ],
+     []
+    ],
+    "PER-0002": [
+     "rejected",
+     [
+      "reachability"
+     ],
+     []
+    ],
+    "PER-0002.02": [
+     "rejected",
+     [
+      "reachability"
+     ],
+     []
+    ],
+    "PER-0003": [
+     "rejected",
+     [
+      "access_position",
+      "reachability"
+     ],
+     []
+    ],
+    "PER-0004": [
+     "rejected",
+     [
+      "reachability"
+     ],
+     []
+    ],
+    "PER-0005": [
+     "rejected",
+     [
+      "authority",
+      "reachability"
+     ],
+     []
+    ],
+    "RD-0002": [
+     "rejected",
+     [
+      "behavior"
+     ],
+     []
+    ],
+    "RD-0002.01": [
+     "rejected",
+     [
+      "behavior"
+     ],
+     []
+    ],
+    "RD-0003.02": [
+     "rejected",
+     [
+      "behavior"
+     ],
+     []
+    ],
+    "RD-0004.01": [
+     "rejected",
+     [
+      "behavior"
+     ],
+     []
+    ],
+    "REC-0001.01": [
+     "rejected",
+     [
+      "behavior"
+     ],
+     []
+    ],
+    "REC-0003.04": [
+     "rejected",
+     [
+      "behavior"
+     ],
+     []
+    ],
+    "REC-0006": [
+     "rejected",
+     [
+      "behavior"
+     ],
+     []
+    ],
+    "REC-0006.01": [
+     "rejected",
+     [
+      "behavior"
+     ],
+     []
+    ],
+    "REC-0006.02": [
+     "rejected",
+     [
+      "behavior"
+     ],
+     []
+    ],
+    "REC-0007": [
+     "rejected",
+     [
+      "behavior"
+     ],
+     []
+    ]
+   },
+   "attack_flow": [],
+   "crossings": {},
+   "boundary_verdicts": {
+    "E-SLE": "adjacent",
+    "E-TCUL": "applicable",
+    "E-RF": "applicable",
+    "E-F1": "not_applicable",
+    "E-NG": "not_applicable",
+    "E-UPD": "adjacent",
+    "E-ATLO": "not_applicable"
+   },
+   "findings": {
+    "candidate_inclusion_gap": 12,
+    "unreachable": 1
+   }
+  },
+  "SI-TR52-C": {
+   "decisions": {
+    "DE-0001": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "DE-0002.01": [
+     "rejected",
+     [
+      "access_position",
+      "reachability"
+     ],
+     []
+    ],
+    "DE-0002.03": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "DE-0003": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "DE-0003.03": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "DE-0003.04": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "DE-0003.05": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "DE-0003.06": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "DE-0003.07": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "DE-0003.09": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "DE-0003.11": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "DE-0005": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "DE-0006": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "DE-0007": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "DE-0008": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "DE-0009.04": [
+     "rejected",
+     [
+      "target"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "DE-0009.05": [
+     "rejected",
+     [
+      "target"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "DE-0011": [
+     "rejected",
+     [
+      "authority"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "DE-0012": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "EX-0001": [
+     "unresolved",
+     [
+      "authority",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "SI.protection_applied.E-RF.sdls_antireplay"
+     ]
+    ],
+    "EX-0001.01": [
+     "unresolved",
+     [
+      "authority"
+     ],
+     [
+      "SI.protection_applied.E-RF.sdls_antireplay"
+     ]
+    ],
+    "EX-0002": [
+     "rejected",
+     [
+      "target"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "EX-0003": [
+     "unresolved",
+     [
+      "reachability"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "EX-0004": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "EX-0005.01": [
+     "unresolved",
+     [
+      "reachability"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "EX-0005.02": [
+     "unresolved",
+     [
+      "reachability"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "EX-0006": [
+     "rejected",
+     [
+      "effect"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "EX-0008.01": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "EX-0009": [
+     "unresolved",
+     [
+      "reachability"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "EX-0009.01": [
+     "unresolved",
+     [
+      "reachability"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "EX-0009.02": [
+     "unresolved",
+     [
+      "reachability"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "EX-0010": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "EX-0010.03": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "EX-0010.04": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "EX-0011": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "EX-0012": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "EX-0012.01": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "EX-0012.02": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "EX-0012.04": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "EX-0012.05": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "EX-0012.07": [
+     "rejected",
+     [
+      "target"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "EX-0012.08": [
+     "rejected",
+     [
+      "target"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "EX-0012.09": [
+     "rejected",
+     [
+      "target"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "EX-0012.10": [
+     "unresolved",
+     [
+      "reachability"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "EX-0012.11": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "EX-0012.12": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "EX-0013": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "EX-0013.01": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "EX-0013.02": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "EX-0014": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "EX-0014.01": [
+     "rejected",
+     [
+      "target"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "EX-0014.02": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "EX-0014.03": [
+     "rejected",
+     [
+      "target"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "EX-0014.04": [
+     "rejected",
+     [
+      "target"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "EXF-0002": [
+     "rejected",
+     [
+      "effect"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "EXF-0002.02": [
+     "rejected",
+     [
+      "effect"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "EXF-0002.04": [
+     "rejected",
+     [
+      "effect"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "EXF-0004": [
+     "rejected",
+     [
+      "effect"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "EXF-0006": [
+     "rejected",
+     [
+      "effect"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "EXF-0006.01": [
+     "rejected",
+     [
+      "effect"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "EXF-0006.02": [
+     "rejected",
+     [
+      "effect"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "EXF-0007": [
+     "rejected",
+     [
+      "effect"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "EXF-0008": [
+     "rejected",
+     [
+      "effect"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "EXF-0009": [
+     "rejected",
+     [
+      "effect"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "EXF-0010": [
+     "rejected",
+     [
+      "effect"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "IA-0001.01": [
+     "rejected",
+     [
+      "access_position",
+      "lifecycle",
+      "reachability"
+     ],
+     []
+    ],
+    "IA-0001.02": [
+     "rejected",
+     [
+      "access_position",
+      "lifecycle",
+      "reachability"
+     ],
+     []
+    ],
+    "IA-0001.03": [
+     "rejected",
+     [
+      "access_position",
+      "lifecycle",
+      "reachability"
+     ],
+     []
+    ],
+    "IA-0003": [
+     "rejected",
+     [
+      "access_position",
+      "reachability"
+     ],
+     []
+    ],
+    "IA-0004.01": [
+     "rejected",
+     [
+      "access_position",
+      "authority"
+     ],
+     [
+      "SI.attacker.gs_role"
+     ]
+    ],
+    "IA-0005.03": [
+     "rejected",
+     [
+      "access_position",
+      "target",
+      "reachability"
+     ],
+     []
+    ],
+    "IA-0006": [
+     "rejected",
+     [
+      "access_position",
+      "target",
+      "reachability"
+     ],
+     []
+    ],
+    "IA-0007": [
+     "rejected",
+     [
+      "access_position",
+      "reachability"
+     ],
+     []
+    ],
+    "IA-0007.01": [
+     "rejected",
+     [
+      "access_position",
+      "authority",
+      "reachability"
+     ],
+     []
+    ],
+    "IA-0007.02": [
+     "rejected",
+     [
+      "access_position",
+      "authority"
+     ],
+     []
+    ],
+    "IA-0008": [
+     "unresolved",
+     [
+      "authority",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "IA-0008.01": [
+     "unresolved",
+     [
+      "authority"
+     ],
+     [
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "IA-0009": [
+     "rejected",
+     [
+      "access_position"
+     ],
+     []
+    ],
+    "IA-0009.01": [
+     "rejected",
+     [
+      "access_position"
+     ],
+     []
+    ],
+    "IA-0009.02": [
+     "rejected",
+     [
+      "access_position",
+      "lifecycle",
+      "reachability"
+     ],
+     []
+    ],
+    "IA-0009.03": [
+     "rejected",
+     [
+      "access_position",
+      "target",
+      "reachability"
+     ],
+     []
+    ],
+    "IA-0010": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "SI.platform_state.safe_mode"
+     ]
+    ],
+    "IA-0012": [
+     "rejected",
+     [
+      "access_position",
+      "lifecycle",
+      "reachability"
+     ],
+     []
+    ],
+    "IMP-0002": [
+     "rejected",
+     [
+      "version"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "IMP-0003": [
+     "rejected",
+     [
+      "version"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "IMP-0006": [
+     "rejected",
+     [
+      "version"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "IMP-0007": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "IMP-0008": [
+     "unresolved",
+     [
+      "reachability"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "IMP-0009": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "IMP-0010": [
+     "rejected",
+     [
+      "effect"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "IMP-0011": [
+     "unresolved",
+     [
+      "reachability"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "IMP-0012": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "IMP-0013": [
+     "unresolved",
+     [
+      "reachability"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "IMP-0014": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "LM-0001": [
+     "rejected",
+     [
+      "target"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "LM-0002": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "LM-0003": [
+     "rejected",
+     [
+      "target"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "LM-0005": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "LM-0006.01": [
+     "rejected",
+     [
+      "target"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "LM-0007": [
+     "rejected",
+     [
+      "authority"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "PER-0001": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "PER-0002": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "PER-0002.02": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "PER-0003": [
+     "rejected",
+     [
+      "access_position",
+      "reachability"
+     ],
+     []
+    ],
+    "PER-0004": [
+     "unresolved",
+     [
+      "reachability"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "PER-0005": [
+     "rejected",
+     [
+      "authority"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.platform_state.safe_mode",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "RD-0002": [
+     "rejected",
+     [
+      "behavior"
+     ],
+     []
+    ],
+    "RD-0002.01": [
+     "rejected",
+     [
+      "behavior"
+     ],
+     []
+    ],
+    "RD-0003.02": [
+     "rejected",
+     [
+      "behavior"
+     ],
+     []
+    ],
+    "RD-0004.01": [
+     "rejected",
+     [
+      "behavior"
+     ],
+     []
+    ],
+    "REC-0001.01": [
+     "rejected",
+     [
+      "behavior"
+     ],
+     []
+    ],
+    "REC-0003.04": [
+     "rejected",
+     [
+      "behavior"
+     ],
+     []
+    ],
+    "REC-0006": [
+     "rejected",
+     [
+      "behavior"
+     ],
+     []
+    ],
+    "REC-0006.01": [
+     "rejected",
+     [
+      "behavior"
+     ],
+     []
+    ],
+    "REC-0006.02": [
+     "rejected",
+     [
+      "behavior"
+     ],
+     []
+    ],
+    "REC-0007": [
+     "rejected",
+     [
+      "behavior"
+     ],
+     []
+    ]
+   },
+   "attack_flow": [],
+   "crossings": {},
+   "boundary_verdicts": {
+    "E-SLE": "adjacent",
+    "E-TCUL": "applicable",
+    "E-RF": "applicable",
+    "E-F1": "not_applicable",
+    "E-NG": "not_applicable",
+    "E-UPD": "adjacent",
+    "E-ATLO": "not_applicable"
+   },
+   "findings": {
+    "candidate_inclusion_gap": 12,
+    "missing_system_state": 58,
+    "unreachable": 1
+   }
+  },
+  "SI-TR52-C'": {
+   "decisions": {
+    "DE-0001": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "DE-0002.01": [
+     "rejected",
+     [
+      "access_position",
+      "reachability"
+     ],
+     []
+    ],
+    "DE-0002.03": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "DE-0003": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "DE-0003.03": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "DE-0003.04": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "DE-0003.05": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "DE-0003.06": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "DE-0003.07": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "DE-0003.09": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "DE-0003.11": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "DE-0005": [
+     "rejected",
+     [
+      "reachability"
+     ],
+     []
+    ],
+    "DE-0006": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "DE-0007": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "DE-0008": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "DE-0009.04": [
+     "rejected",
+     [
+      "target"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "DE-0009.05": [
+     "rejected",
+     [
+      "target"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "DE-0011": [
+     "rejected",
+     [
+      "authority"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "DE-0012": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "EX-0001": [
+     "unresolved",
+     [
+      "authority",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "SI.protection_applied.E-RF.sdls_antireplay"
+     ]
+    ],
+    "EX-0001.01": [
+     "unresolved",
+     [
+      "authority"
+     ],
+     [
+      "SI.protection_applied.E-RF.sdls_antireplay"
+     ]
+    ],
+    "EX-0002": [
+     "rejected",
+     [
+      "target"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "EX-0003": [
+     "unresolved",
+     [
+      "reachability"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "EX-0004": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "EX-0005.01": [
+     "unresolved",
+     [
+      "reachability"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "EX-0005.02": [
+     "unresolved",
+     [
+      "reachability"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "EX-0006": [
+     "rejected",
+     [
+      "effect"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "EX-0008.01": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "EX-0009": [
+     "unresolved",
+     [
+      "reachability"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "EX-0009.01": [
+     "unresolved",
+     [
+      "reachability"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "EX-0009.02": [
+     "unresolved",
+     [
+      "reachability"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "EX-0010": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "EX-0010.03": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "EX-0010.04": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "EX-0011": [
+     "rejected",
+     [
+      "reachability"
+     ],
+     []
+    ],
+    "EX-0012": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "EX-0012.01": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "EX-0012.02": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "EX-0012.04": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "EX-0012.05": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "EX-0012.07": [
+     "rejected",
+     [
+      "target"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "EX-0012.08": [
+     "rejected",
+     [
+      "target"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "EX-0012.09": [
+     "rejected",
+     [
+      "target"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "EX-0012.10": [
+     "unresolved",
+     [
+      "reachability"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "EX-0012.11": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "EX-0012.12": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "EX-0013": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "EX-0013.01": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "EX-0013.02": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "EX-0014": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "EX-0014.01": [
+     "rejected",
+     [
+      "target"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "EX-0014.02": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "EX-0014.03": [
+     "rejected",
+     [
+      "target"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "EX-0014.04": [
+     "rejected",
+     [
+      "target"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "EXF-0002": [
+     "rejected",
+     [
+      "effect"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "EXF-0002.02": [
+     "rejected",
+     [
+      "effect"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "EXF-0002.04": [
+     "rejected",
+     [
+      "effect"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "EXF-0004": [
+     "rejected",
+     [
+      "effect"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "EXF-0006": [
+     "rejected",
+     [
+      "effect"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "EXF-0006.01": [
+     "rejected",
+     [
+      "effect"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "EXF-0006.02": [
+     "rejected",
+     [
+      "effect"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "EXF-0007": [
+     "rejected",
+     [
+      "effect"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "EXF-0008": [
+     "rejected",
+     [
+      "effect"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "EXF-0009": [
+     "rejected",
+     [
+      "effect"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "EXF-0010": [
+     "rejected",
+     [
+      "effect"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "IA-0001.01": [
+     "rejected",
+     [
+      "access_position",
+      "lifecycle",
+      "reachability"
+     ],
+     []
+    ],
+    "IA-0001.02": [
+     "rejected",
+     [
+      "access_position",
+      "lifecycle",
+      "reachability"
+     ],
+     []
+    ],
+    "IA-0001.03": [
+     "rejected",
+     [
+      "access_position",
+      "lifecycle",
+      "reachability"
+     ],
+     []
+    ],
+    "IA-0003": [
+     "rejected",
+     [
+      "access_position",
+      "reachability"
+     ],
+     []
+    ],
+    "IA-0004.01": [
+     "rejected",
+     [
+      "access_position",
+      "authority"
+     ],
+     [
+      "SI.attacker.gs_role"
+     ]
+    ],
+    "IA-0005.03": [
+     "rejected",
+     [
+      "access_position",
+      "target",
+      "reachability"
+     ],
+     []
+    ],
+    "IA-0006": [
+     "rejected",
+     [
+      "access_position",
+      "target",
+      "reachability"
+     ],
+     []
+    ],
+    "IA-0007": [
+     "rejected",
+     [
+      "access_position",
+      "reachability"
+     ],
+     []
+    ],
+    "IA-0007.01": [
+     "rejected",
+     [
+      "access_position",
+      "authority",
+      "reachability"
+     ],
+     []
+    ],
+    "IA-0007.02": [
+     "rejected",
+     [
+      "access_position",
+      "authority"
+     ],
+     []
+    ],
+    "IA-0008": [
+     "unresolved",
+     [
+      "authority",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "IA-0008.01": [
+     "unresolved",
+     [
+      "authority"
+     ],
+     [
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "IA-0009": [
+     "rejected",
+     [
+      "access_position"
+     ],
+     []
+    ],
+    "IA-0009.01": [
+     "rejected",
+     [
+      "access_position"
+     ],
+     []
+    ],
+    "IA-0009.02": [
+     "rejected",
+     [
+      "access_position",
+      "lifecycle",
+      "reachability"
+     ],
+     []
+    ],
+    "IA-0009.03": [
+     "rejected",
+     [
+      "access_position",
+      "target",
+      "reachability"
+     ],
+     []
+    ],
+    "IA-0010": [
+     "rejected",
+     [
+      "reachability"
+     ],
+     []
+    ],
+    "IA-0012": [
+     "rejected",
+     [
+      "access_position",
+      "lifecycle",
+      "reachability"
+     ],
+     []
+    ],
+    "IMP-0002": [
+     "rejected",
+     [
+      "version"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "IMP-0003": [
+     "rejected",
+     [
+      "version"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "IMP-0006": [
+     "rejected",
+     [
+      "version"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "IMP-0007": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "IMP-0008": [
+     "unresolved",
+     [
+      "reachability"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "IMP-0009": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "IMP-0010": [
+     "rejected",
+     [
+      "effect"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "IMP-0011": [
+     "unresolved",
+     [
+      "reachability"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "IMP-0012": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "IMP-0013": [
+     "unresolved",
+     [
+      "reachability"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "IMP-0014": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "LM-0001": [
+     "rejected",
+     [
+      "target"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "LM-0002": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "LM-0003": [
+     "rejected",
+     [
+      "target"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "LM-0005": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "LM-0006.01": [
+     "rejected",
+     [
+      "target"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "LM-0007": [
+     "rejected",
+     [
+      "authority"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "PER-0001": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "PER-0002": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "PER-0002.02": [
+     "unresolved",
+     [
+      "reachability",
+      "evidence"
+     ],
+     [
+      "ET-linked evidence",
+      "ET-linked evidence for the entry step",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "PER-0003": [
+     "rejected",
+     [
+      "access_position",
+      "reachability"
+     ],
+     []
+    ],
+    "PER-0004": [
+     "unresolved",
+     [
+      "reachability"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "PER-0005": [
+     "rejected",
+     [
+      "authority"
+     ],
+     [
+      "ET-linked evidence for the entry step",
+      "SI.protection_applied.E-RF.sdls_antireplay",
+      "SI.protection_applied.E-RF.sdls_auth"
+     ]
+    ],
+    "RD-0002": [
+     "rejected",
+     [
+      "behavior"
+     ],
+     []
+    ],
+    "RD-0002.01": [
+     "rejected",
+     [
+      "behavior"
+     ],
+     []
+    ],
+    "RD-0003.02": [
+     "rejected",
+     [
+      "behavior"
+     ],
+     []
+    ],
+    "RD-0004.01": [
+     "rejected",
+     [
+      "behavior"
+     ],
+     []
+    ],
+    "REC-0001.01": [
+     "rejected",
+     [
+      "behavior"
+     ],
+     []
+    ],
+    "REC-0003.04": [
+     "rejected",
+     [
+      "behavior"
+     ],
+     []
+    ],
+    "REC-0006": [
+     "rejected",
+     [
+      "behavior"
+     ],
+     []
+    ],
+    "REC-0006.01": [
+     "rejected",
+     [
+      "behavior"
+     ],
+     []
+    ],
+    "REC-0006.02": [
+     "rejected",
+     [
+      "behavior"
+     ],
+     []
+    ],
+    "REC-0007": [
+     "rejected",
+     [
+      "behavior"
+     ],
+     []
+    ]
+   },
+   "attack_flow": [],
+   "crossings": {},
+   "boundary_verdicts": {
+    "E-SLE": "adjacent",
+    "E-TCUL": "applicable",
+    "E-RF": "applicable",
+    "E-F1": "not_applicable",
+    "E-NG": "not_applicable",
+    "E-UPD": "adjacent",
+    "E-ATLO": "not_applicable"
+   },
+   "findings": {
+    "candidate_inclusion_gap": 12,
+    "missing_system_state": 55,
+    "unreachable": 1
+   }
+  }
+ },
+ "t1": {
+  "controls": 19,
+  "techniques": 102,
+  "workbook_rows": 19
+ }
+}
