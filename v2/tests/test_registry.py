@@ -192,3 +192,9 @@ def test_altered_legacy_engine_is_reported(reg, tmp_ws):
     with open(root / "legacy_v1" / "ntn_threat_algorithm.py", "a", encoding="utf-8") as f:
         f.write("\n# altered\n")
     assert any("legacy_source_sha256" in e for e in registry.check(reg, Workspace(root)))
+
+
+def test_rule_with_null_id_is_reported_not_raised():
+    reg = copy.deepcopy(registry.load())
+    reg["rules"].append({"id": None, "title": "x"})
+    assert any("rule without a string id" in e for e in registry.check(reg, Workspace()))

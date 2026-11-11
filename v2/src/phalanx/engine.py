@@ -242,6 +242,11 @@ def run_scenario(threat: dict, si: dict, variant: dict, rules: Rules, catalog: C
     att = si["attacker"]
     claims = claim_links(threat, catalog, rules.techniques["deprecation_successors"])
     gen_of = candidates(threat, si, rules, crosswalk["techniques"], v1_techniques, claims)
+    if not gen_of:
+        # I11: zero candidates -> no_framework_coverage, no MR, never a silent "rejected"
+        return {"si": si, "mrs": [], "afg": {"nodes": [], "edges": [], "crossings": {}},
+                "boundary_verdicts": [], "cpr_sparta": [], "cpr_enisa_annex_d": [],
+                "af": [{"type": "no_framework_coverage", "detail": "no generator proposed any candidate for this scenario"}]}
     unknown = sorted(t for t in gen_of if t not in catalog.techniques)
     if unknown:
         raise ValueError(f"{si['si_id']}: candidates not in {catalog.version}: {unknown}")
@@ -401,15 +406,6 @@ def run_threat(threat: dict, scenarios: list[dict], architectures: dict, rules: 
         raise ValueError(f"method must be one of {sorted(METHODS)}")
     results = []
     for si in scenarios:
-        gen = candidates(threat, si, rules, crosswalk["techniques"], v1_techniques,
-                         claim_links(threat, catalog, rules.techniques["deprecation_successors"]))
-        if not gen:
-            # I11: zero candidates -> no_framework_coverage, no MR, never a silent "rejected"
-            results.append({"si": si, "mrs": [], "afg": {"nodes": [], "edges": [], "crossings": {}},
-                            "boundary_verdicts": [], "cpr_sparta": [], "cpr_enisa_annex_d": [],
-                            "af": [{"type": "no_framework_coverage",
-                                    "detail": "no generator proposed any candidate for this scenario"}]})
-            continue
         variant = architectures[si["variant"]] if method == "B3" else None
         results.append(run_scenario(threat, si, variant, rules, catalog, crosswalk, v1_techniques,
                                     {**provenance, "method": method}))

@@ -96,8 +96,7 @@ def load_sparta(path: Path, version: str = "SPARTA v4.0.1") -> Catalog:
                 if a in sv_by_stix and b in by_stix:
                     sv_links[sv_by_stix[a]].add(by_stix[b])
     sv = {sid: {"description": " ".join(o["description"]) if isinstance(o.get("description"), list) else o.get("description", ""),
-                "tier": o.get("x_aerospace_threat_tier"), "did_layer": o.get("x_aerospace_did_layer"),
-                "requirement": o.get("x_aerospace_high_level_requirements"),
+                "did_layer": o.get("x_aerospace_did_layer"),
                 "techniques": sorted(sv_links.get(sid, ()))}
           for sid, o in svo.items()}
     for sid, d in sv.items():                     # defence-in-depth layers of the SVs that relate each technique
@@ -162,7 +161,6 @@ class Crosswalk:
     controls_by_threat: dict[str, set[str]]        # workbook threat name -> control ids
     rows_by_threat: dict[str, int]
     techniques_by_control: dict[str, set[str]]
-    unjoined_rows: list
 
     def for_threat(self, name: str) -> dict:
         ctl = sorted(self.controls_by_threat.get(name, set()))
@@ -198,12 +196,14 @@ def load_crosswalk(xlsx: Path, safemode_gz: Path) -> Crosswalk:
             by_threat[r[2]].update(cand)
         else:
             unjoined.append((r[2], r[6], r[3]))
+    if unjoined:        # a threat row that joins no control would silently shrink the T1 crosswalk
+        raise ValueError(f"{xlsx.name}: {len(unjoined)} threat rows join no control, e.g. {unjoined[0]}")
     sm = json.load(gzip.open(safemode_gz))
     tech_by_ctl = collections.defaultdict(set)
     for e in sm["edges"]:
         if e["target_family"] == "enisa_control":
             tech_by_ctl[e["target_id"]].add(e["technique_id"])
-    return Crosswalk(controls, dict(by_threat), dict(rows_by_threat), dict(tech_by_ctl), unjoined)
+    return Crosswalk(controls, dict(by_threat), dict(rows_by_threat), dict(tech_by_ctl))
 
 
 def load_v1_mapping(path: Path, threat_id: str) -> list[str]:

@@ -48,8 +48,7 @@ def _attach_rule_ids(body: dict, reg: dict) -> None:
             tag(v, _VERDICT_RULE.get(v["verdict"], "BC-GEN-01"))
         for a in r["af"]:
             tag(a, _AF_RULE)
-        if r["afg"] is not None:
-            r["afg"]["rules"] = {rid: rules[rid]["version"] for rid in _AFG_RULES}
+        r["afg"]["rules"] = {rid: rules[rid]["version"] for rid in _AFG_RULES}
 
 
 def run(ws: Workspace, threat_id: str, scenario_ids: list[str] | None = None, evidence: dict | None = None,
@@ -110,17 +109,24 @@ def summary(bundle: dict) -> list[dict]:
     return rows
 
 
+def candidate_lists(ws: Workspace, threat_id: str, sis: list[dict]) -> dict:
+    """Comparison methods whose output is a technique list: B0 (v1 as shipped, from this workspace) and B1b."""
+    from . import baselines
+    return {"B0": baselines.run_b0(threat_id, sis, framework=ws.root / "legacy_v1",
+                                   pinned_sha256=ws.manifest.entries["phalanx_v1"]["sha256"]),
+            "B1b": baselines.run_b1b(ws.threats[threat_id], sis, ws.catalog)}
+
+
 def compare(ws: Workspace, threat_id: str, scenario_ids: list[str] | None = None,
             universe: dict[str, list[str]] | None = None, universe_id: str | None = None) -> dict:
     """Run B3, B2, B0, B1 and B1b on the same scenarios and normalize them into EvaluationCells (plan v5 §14.3).
     B1 needs an EMB3D-side input, which development SIs do not have, so its cells are `not_applicable`.
     Without a frozen `universe` the cells use the development union and are diagnostic only."""
-    from . import baselines, evaluation
+    from . import evaluation
     b3 = run(ws, threat_id, scenario_ids, method="B3")
     b2 = run(ws, threat_id, scenario_ids, method="B2")
     sis = [r["si"] for r in b3["results"]]
-    b0 = baselines.run_b0(threat_id, sis, framework=ws.root / "legacy_v1", pinned_sha256=ws.manifest.entries["phalanx_v1"]["sha256"])
-    b1b = baselines.run_b1b(ws.threats[threat_id], sis, ws.catalog)
+    b0, b1b = candidate_lists(ws, threat_id, sis).values()
     rows = evaluation.cells({"B3": evaluation.from_engine(b3), "B2": evaluation.from_engine(b2),
                              "B0": evaluation.from_b0(b0), "B1": evaluation.not_applicable(s["si_id"] for s in sis),
                              "B1b": evaluation.from_b0(b1b)}, universe)

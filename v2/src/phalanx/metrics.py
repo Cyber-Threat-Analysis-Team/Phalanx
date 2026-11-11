@@ -20,7 +20,7 @@ import copy
 import json
 from pathlib import Path
 
-from . import baselines, engine, evaluation, pipeline
+from . import engine, evaluation, pipeline
 from .workspace import Workspace
 
 STATUS_NOTE = ("development / illustrative: {threat} scenarios are development SIs, the expectation catalogue was "
@@ -207,7 +207,7 @@ def _rate(k: int, n: int):
 
 
 def constructed_negatives(ws: Workspace, threat_id: str, scenario_ids: list[str] | None = None,
-                          bundle_b3: dict | None = None) -> dict:
+                          bundle_b3: dict | None = None, lists: dict | None = None) -> dict:
     """Run the same negative universe through B3, B2 and the candidate-list baselines.
 
     Rate = accepted negatives / applicable negatives (lower is better). B3 and B2 negatives are re-run
@@ -228,9 +228,7 @@ def constructed_negatives(ws: Workspace, threat_id: str, scenario_ids: list[str]
         universe.setdefault(n["si"], [])
         if n["technique"] not in universe[n["si"]]:
             universe[n["si"]].append(n["technique"])
-    lists = {"B0": baselines.run_b0(threat_id, list(sis.values()), framework=ws.root / "legacy_v1",
-                                    pinned_sha256=ws.manifest.entries["phalanx_v1"]["sha256"]),
-             "B1b": baselines.run_b1b(ctx["threat"], list(sis.values()), ws.catalog)}
+    lists = lists or pipeline.candidate_lists(ws, threat_id, list(sis.values()))
     cells = evaluation.cells({m: evaluation.from_b0(b) for m, b in lists.items()}, universe) if universe else []
     coded = {(c["method_id"], c["si_id"], c["technique_id"]): c["normalized_outcome"] for c in cells}
     for n in negs:
@@ -478,13 +476,16 @@ def replay_stats(bundles: list[dict]) -> dict:
         raise ValueError("replay needs at least two runs")
     hashes = [b["canonical_sha256"] for b in bundles]
     seen: dict[tuple[str, str], set[str]] = {}
-    for b in bundles:
-        for r in b["results"]:
-            for m in r["mrs"]:
-                seen.setdefault((r["si"]["si_id"], m["technique"]), set()).add(m["status"])
+    per_run = [{(r["si"]["si_id"], m["technique"]): m["status"] for r in b["results"] for m in r["mrs"]} for b in bundles]
+    for run in per_run:
+        for k, st in run.items():
+            seen.setdefault(k, set()).add(st)
+    for k, sts in seen.items():      # generated in some runs but not in others is a flip too
+        if any(k not in run for run in per_run):
+            sts.add("not_generated")
     flips = sorted(f"{si}/{t}" for (si, t), s in seen.items() if len(s) > 1)
     return {"runs": len(bundles), "hashes": hashes, "hash_equal": len(set(hashes)) == 1,
-            "decisions_compared": len(seen), "decision_flips": len(flips), "flip_rate": len(flips) / len(seen) if seen else 0.0,
+            "decisions_compared": len(seen), "decision_flips": len(flips), "flip_rate": _rate(len(flips), len(seen)),
             "flipped": flips, "machines": 1,
             "scope": "same machine only; the protocol's >=3 clean runs on >=2 machines is not exercised here"}
 
@@ -514,8 +515,7 @@ def report(ws: Workspace, threat_id: str, scenario_ids: list[str] | None = None,
     workspaces."""
     bundles = {m: pipeline.run(ws, threat_id, scenario_ids, method=m) for m in ("B3", "B2")}
     sis = [r["si"] for r in bundles["B3"]["results"]]
-    lists = {"B0": baselines.run_b0(threat_id, sis, framework=ws.root / "legacy_v1", pinned_sha256=ws.manifest.entries["phalanx_v1"]["sha256"]),
-             "B1b": baselines.run_b1b(ws.threats[threat_id], sis, ws.catalog)}
+    lists = pipeline.candidate_lists(ws, threat_id, sis)
     # B1b is exploratory and no expectation lists it; B0 is evaluated on accepted / not_accepted only
     views = {m: view(b) for m, b in bundles.items()} | {"B0": list_view(lists["B0"])}
     if (ws.root / "expectations" / f"{threat_id}.json").exists():
@@ -527,7 +527,7 @@ def report(ws: Workspace, threat_id: str, scenario_ids: list[str] | None = None,
            "anchor_recovery": {"status": f"not_applicable: {threat_id} scenarios are development SIs without published anchor "
                                          "assertions; gate anchors are never run as development scenarios; "
                                          "recovery is tested on synthetic fixtures only"},
-           "constructed_negatives": constructed_negatives(ws, threat_id, scenario_ids, bundles["B3"]),
+           "constructed_negatives": constructed_negatives(ws, threat_id, scenario_ids, bundles["B3"], lists),
            "directional_pass": directional,
            "decision_record_completeness": {m: completeness(b, ws.vocabulary) for m, b in bundles.items()}
            | {m: {"status": "not_applicable: a candidate list carries no decision record"} for m in lists},

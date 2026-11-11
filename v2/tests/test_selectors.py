@@ -72,7 +72,6 @@ def test_selector_text_splitting_respects_brackets_and_inherits_segments():
     assert tagged[1]["segments"] == ["Space"] and tagged[1]["context"] == ["communications"]
 
 
-@pytest.mark.skipif(not V1_CSV.exists(), reason="v1 prototype CSV not on this machine")
 def test_registry_covers_exactly_the_58_enisa_threats(reg):
     raw = V1_CSV.read_bytes()
     assert hashlib.sha256(raw).hexdigest() == reg["source"]["sha256"]

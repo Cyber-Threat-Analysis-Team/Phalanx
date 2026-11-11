@@ -26,3 +26,10 @@ def test_legacy_csv_pin_checks_the_workspace_copy(tmp_ws):
 
 def test_metrics_command_runs(capsys):
     assert cli.main(["metrics", "TR52", "-s", "SI-TR52-B", "--runs", "2"]) == 0
+
+
+def test_architecture_id_must_match_its_file_name(tmp_ws):
+    root, edit, _ = tmp_ws
+    edit("architectures/G-D53.json", lambda g: {**g, "id": "G-D53x"})
+    assert any("architectures/G-D53.json: id G-D53x does not match file name" in e
+               for e in Workspace(root).validate(check_sources=False))

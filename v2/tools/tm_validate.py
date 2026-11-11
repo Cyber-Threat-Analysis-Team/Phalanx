@@ -13,11 +13,12 @@ import re
 import sys
 from pathlib import Path
 
+from phalanx.tm import KEEP, ROLE_ORDER, _targets
+
 ROOT = Path(__file__).resolve().parents[1]
 TM = ROOT / "data" / "tm"
 CODES = {"K-ACTION", "K-ENABLE", "K-EFFECT", "P-PREP", "D-OTHER", "D-UNDESCRIBED"}
-KEEP = {"K-ACTION", "K-ENABLE", "K-EFFECT"}
-ROLES = {"entry", "execution", "persistence", "evasion", "lateral", "exfiltration", "impact"}
+ROLES = set(ROLE_ORDER)
 TACTIC_ROLES = {"Initial Access": {"entry", "lateral"}, "Execution": {"execution"}, "Persistence": {"persistence"},
                 "Defense Evasion": {"evasion"}, "Lateral Movement": {"lateral"}, "Exfiltration": {"exfiltration"},
                 "Impact": {"impact"}}
@@ -42,15 +43,10 @@ def role_of(adv: dict, index: dict, tid: str) -> str:
     return "adversarial" if index[tid]["category"] in adv["default_adversarial_categories"] else "none"
 
 
-def _enables(r: dict) -> list[str]:
-    e = r.get("enables")
-    return [e] if isinstance(e, str) else list(e or [])
-
-
 def _enables_cycle(seen: dict[str, dict], kept: set[str]) -> list[str]:
     """Kept techniques that enable themselves, directly or through other kept rows; chain pruning cannot remove those."""
     def reaches(t: str, goal: str, trail: set[str]) -> bool:
-        return any(n == goal or (n not in trail and reaches(n, goal, trail | {n})) for n in _enables(seen[t]) if n in kept)
+        return any(n == goal or (n not in trail and reaches(n, goal, trail | {n})) for n in _targets(seen[t]) if n in kept)
     return sorted(t for t in kept if reaches(t, t, {t}))
 
 
@@ -141,7 +137,7 @@ def validate(tid: str, live: dict, surface: dict, index: dict, adv: dict) -> lis
         if code == "P-PREP":
             if tactic not in PREP_TACTICS:
                 errs.append(f"{where}: P-PREP only for Reconnaissance/Resource Development")
-            if not _enables(r) or not set(_enables(r)) <= kept:
+            if not _targets(r) or not set(_targets(r)) <= kept:
                 errs.append(f"{where}: enables must name kept techniques")
         if code in {"K-ACTION", "K-EFFECT"}:
             errs += [f"{where}: {e}" for e in _quote(r.get("enisa_quote"), desc, "enisa_quote")]
@@ -166,7 +162,7 @@ def validate(tid: str, live: dict, surface: dict, index: dict, adv: dict) -> lis
                 errs.append(f"{where}: link_only override needs link_only_reason")
             if r.get("ground_side") and not r.get("ground_side_reason"):
                 errs.append(f"{where}: ground_side needs ground_side_reason")
-        if code == "K-ENABLE" and (not _enables(r) or not set(_enables(r)) <= kept):
+        if code == "K-ENABLE" and (not _targets(r) or not set(_targets(r)) <= kept):
             errs.append(f"{where}: enables must name kept techniques (one or a list)")
         if code == "D-OTHER":
             o = r.get("other_threat")
@@ -175,7 +171,7 @@ def validate(tid: str, live: dict, surface: dict, index: dict, adv: dict) -> lis
     enabled_by: dict[str, list[dict]] = {}
     for r in seen.values():
         if r.get("code") in KEEP:
-            for t in _enables(r):
+            for t in _targets(r):
                 enabled_by.setdefault(t, []).append(r)
     for t, en in enabled_by.items():
         r = seen.get(t)

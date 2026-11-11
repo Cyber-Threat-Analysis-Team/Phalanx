@@ -130,7 +130,10 @@ class Workspace:
                     bad_threats.add(tid)
         bad_archs = set()
         for gid, g in self.architectures.items():
-            if against("architecture", g, f"architectures/{gid}.json"):
+            if g.get("id") != gid:
+                errs.append(f"architectures/{gid}.json: id {g.get('id')} does not match file name")
+                bad_archs.add(gid)
+            if against("architecture", g, f"architectures/{gid}.json") and gid not in bad_archs:
                 errs += self._check_graph(gid, g)
             else:
                 bad_archs.add(gid)

@@ -6,6 +6,7 @@ Writes OUT_DIR/index.html (Korean report), OUT_DIR/summary.json, OUT_DIR/mapping
 from __future__ import annotations
 
 import csv
+import datetime
 import html
 import json
 import sys
@@ -201,7 +202,7 @@ def main(out: Path) -> None:
                              if basis[d["vector"]] != "quote" and k not in STRUCTURAL})
         kept = sum(r["code"].startswith("K-") for r in mp["rows"])
         summary[tid] = {"status": "mapped", "vectors": [v["vector"] for v in mp["vectors"]], "kept": kept, "candidates": len(mp["rows"]),
-                        "complete_any": worst, "complete_with_controls_on": resid,
+                        "complete_any": worst, "complete_with_controls_on_no_credential": resid,
                         "controls_on_kind": ("link_level" if resid_link else "no_protection_met") if on_ok else None, "complete_via_credential_bypass": insider, "complete_without_modelled_control": nocontrol, "differences": kinds, "differences_weak_basis": weak_kinds, "satellite_count_only": structural, "vector_basis": basis, "result": res}
         vec = ", ".join(m.surface["origins"][v["vector"]]["label_ko"].split(" (")[0] + ("*" if v.get("basis", "quote") != "quote" else "") for v in mp["vectors"])
         yn = lambda d: ("<span class='pill p-ok'>예</span>" if next(iter(d.values())) else "<span class='pill p-no'>아니오</span>") if len(set(d.values())) == 1 \
@@ -214,7 +215,7 @@ def main(out: Path) -> None:
     mapped = {t: s for t, s in summary.items() if s["status"] == "mapped"}
     nc = not_covered(m)
     k_any = sum(any(s["complete_any"].values()) for s in mapped.values())
-    k_res = sum(any(s["complete_with_controls_on"].values()) for s in mapped.values())
+    k_res = sum(any(s["complete_with_controls_on_no_credential"].values()) for s in mapped.values())
     k_res_link = sum(s["controls_on_kind"] == "link_level" for s in mapped.values())
     k_res_none = sum(s["controls_on_kind"] == "no_protection_met" for s in mapped.values())
     k_ins = sum(any(s["complete_via_credential_bypass"].values()) for s in mapped.values())
@@ -242,10 +243,10 @@ def main(out: Path) -> None:
     weak_li = "".join(f"<li>{t}: {e('; '.join(tr(x) for x in s['differences_weak_basis']))}</li>" for t, s in mapped.items() if s["differences_weak_basis"]) or "<li>없음</li>"
     doc = f"""<!doctype html><html lang="ko"><head><meta charset="utf-8"><title>PHALANX 위협 모델링 쇼케이스 (초안)</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet"><style>{CSS}</style></head><body><main>
-<p class="sub">6G-NTN 우주 구간 위협 모델링 · 2026-10-27 · 초안</p>
+<p class="sub">6G-NTN 우주 구간 위협 모델링 · {datetime.date.today().isoformat()} · 초안</p>
 <h1>ENISA 위협 → SPARTA 킬 체인: 전체 초안</h1>
 <p class="lead">ENISA Space Threat Landscape 2025의 위협마다 공격자 출처(접근 벡터)를 정하고, SPARTA v4.0.1 기법 후보를 고정된 사유 코드와 인용문으로 판정한 뒤, 세 6G NTN 아키텍처(transparent, G-CONV, G-D53)에서 진입 경로·공격자 자격·보호 수단별 시나리오로 킬 체인을 구성함.</p>
-<div class="card warn"><b>초안 주의</b>: 접근 벡터·공격자 유무·기법 판정은 assistant가 제안한 것이며 연구 책임자의 검토 전임. 아키텍처는 원본 그래프(G-D53의 feeder 위성에는 TT&C·업데이트·ATLO 링크 없음)를 따르되, 호스팅 RAN을 이동통신 운영 주체가 운영한다는 것, 사용자 단말·서비스 링크·GNSS 수신은 가정임. 원본 아키텍처 파일에서도 TT&C(SLE, TC 업링크)·업데이트·ATLO 링크는 저자가 정의한 확장(author_defined_extension)임. 정확도·우수성 주장이 아닌 개발용 결과임.</div>
+<div class="card warn"><b>초안 주의</b>: 접근 벡터·공격자 유무·기법 판정은 분석자가 작성한 것이며 검토 전임. 아키텍처는 원본 그래프(G-D53의 feeder 위성에는 TT&C·업데이트·ATLO 링크 없음)를 따르되, 호스팅 RAN을 이동통신 운영 주체가 운영한다는 것, 사용자 단말·서비스 링크·GNSS 수신은 가정임. 원본 아키텍처 파일에서도 TT&C(SLE, TC 업링크)·업데이트·ATLO 링크는 저자가 정의한 확장(author_defined_extension)임. 정확도·우수성 주장이 아닌 개발용 결과임.</div>
 <div class="kpi"><div class="hl"><b>{len(mapped)}</b>SPARTA로 매핑한 공격자 있는 위협</div><div class="hl"><b>{k_any}</b>어떤 시나리오에서든 킬 체인이 완전한 위협</div><div class="hl"><b>{len(k_diff)}</b>ENISA가 직접 지명한 출처에서 G-CONV와 G-D53 또는 transparent의 결과가 다른 위협 (ENISA·SPARTA로 기술할 수 있는 범위, 4절)</div>
 <div><b>{k_res_link} / {k_res_none}</b>보호 수단을 켜도 완전 (자격 없는 공격자): 링크 자체 공격 / 경로에 보호 수단이 없음</div><div><b>{k_ins}</b>자격(임무 키 등)이 보호 수단을 통과해서 완전</div><div><b>{count('enabling')} / {count('outside_sparta')} / {count('no_sparta_fit')} / {len(HELD_OUT)}</b>공격 조건 / 공격자 없음 / SPARTA 미적합 / 평가용 보류</div></div>
 <div class="card note"><b>보호 수단과 결과</b><ul><li>자격 없는 공격자가 보호 수단을 모두 켠 상태에서도 완전한 위협 {k_res}개: 켜진 보호 수단을 링크 자체에 대한 공격(재밍·감청·플러딩)으로 이겨 내는 위협 {k_res_link}개, 경로에서 모델링된 보호 수단을 만나지 않는 위협(결과가 지상 IT에 머묾, 근접·물리 공격) {k_res_none}개.</li><li>자격(임무 키 등)으로 보호 수단을 통과해 완전한 위협 {k_ins}개.</li><li>경로에 모델링된 보호 수단이 없어 완전한 위협(공급망, 근접 등) {k_noc}개. 한 위협에 공격 경로가 여러 개 있어 그룹은 겹칠 수 있음.</li><li>SDLS 켬은 프로토콜이 올바르게 구현되었다는 가정이며, SDLS 자체를 깨는 위협(TR28, TR52 등)은 SDLS 끔 시나리오로 나타남.</li></ul></div>

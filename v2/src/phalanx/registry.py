@@ -216,7 +216,7 @@ def check(registry: dict, ws: Workspace) -> list[str]:
         elif r.get("generator_kind") != g["kind"]:
             errs.append(f"{gid}: registered kind {r.get('generator_kind')!r} differs from vocabulary kind {g['kind']!r}")
     for r in rules:
-        if prefix_of(r.get("id", "")) == "MAP-CG" and r["id"] not in ws.vocabulary["candidate_generators"]:
+        if prefix_of(r.get("id") or "") == "MAP-CG" and r["id"] not in ws.vocabulary["candidate_generators"]:
             errs.append(f"{r['id']}: registered generator is absent from vocabulary.candidate_generators")
 
     # ---- data rows (authority rules, evidence clauses)

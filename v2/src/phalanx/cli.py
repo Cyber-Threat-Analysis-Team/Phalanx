@@ -198,7 +198,7 @@ def cmd_b1(args) -> int:
     for st in res["steps"]:
         cov = ", ".join(f"{a} {v}" for a, v in st["asserted_coverage"].items())
         print(f"  {st['step']:<32} {len(st['candidates']):>3} candidates, counted {st['counted'] or '—'}; asserted: {cov}")
-    print(f"emitted {res['emitted']}, counted {res['counted']} (precision {res['precision']:.1%}); "
+    print(f"emitted {res['emitted']}, counted {res['counted']} (precision {'n/a' if res['precision'] is None else format(res['precision'], '.1%')}); "
           f"asserted {res['asserted']}, covered {res['covered']} ({res['coverage']['exact']} exact + "
           f"{res['coverage']['parent_child']} parent/child)")
     return 0

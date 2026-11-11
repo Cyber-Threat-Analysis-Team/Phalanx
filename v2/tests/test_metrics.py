@@ -284,3 +284,13 @@ def test_report_bundles_all_six_deterministically(ws):
         assert a["replay"][m]["hash_equal"] and a["replay"][m]["decision_flips"] == 0
         assert a["unresolved"][m]["no_framework_coverage"]["sis"] == 0
     assert a["hashes"]["B3"] == pipeline.run(ws, "TR52")["canonical_sha256"]
+
+
+def test_replay_counts_a_decision_missing_from_one_run_as_a_flip():
+    def bundle(mrs):
+        return {"canonical_sha256": str(len(mrs)), "results": [{"si": {"si_id": "S"}, "mrs": mrs}]}
+    one, both = [{"technique": "A", "status": "accepted"}], [{"technique": "A", "status": "accepted"},
+                                                              {"technique": "B", "status": "rejected"}]
+    r = metrics.replay_stats([bundle(both), bundle(one)])
+    assert r["flipped"] == ["S/B"] and r["flip_rate"] == 0.5
+    assert metrics.replay_stats([bundle([]), bundle([])])["flip_rate"] is None
