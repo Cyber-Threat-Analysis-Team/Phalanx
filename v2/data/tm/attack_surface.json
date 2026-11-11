@@ -1,5 +1,5 @@
 {
-  "_about": "Attack-surface model for the threat-modeling showcase, v2. Nodes and links follow data/architectures/G-CONV.json and G-D53.json; the transparent architecture follows 3GPP TR 38.821 and shares the TT&C, update, ATLO and GNSS links of G-CONV (source graph only: no TT&C, update or ATLO link to the G-D53 feeder satellite). Additions are marked basis 'assumed'. Entry paths are computed by phalanx.tm from the attach rules below; nothing per architecture is hand-listed. Analyst-drafted, unreviewed.",
+  "_about": "Attack-surface model for the threat-modeling showcase, v2. Nodes and links follow data/architectures/G-CONV.json, G-D53.json and transparent.json; the transparent architecture follows 3GPP TR 38.821 and shares the TT&C, update, ATLO and GNSS links of G-CONV (source graph only: no TT&C, update or ATLO link to the G-D53 feeder satellite). Additions are marked basis 'assumed'. Entry paths are computed by phalanx.tm from the attach rules below; nothing per architecture is hand-listed. Analyst-drafted, unreviewed.",
   "version": "2026-11-11.1",
   "trust_boundaries": {
     "_about": "Paper trust boundaries (ASIANComNet 2026 manuscript, §III-D and Table I; data/rules/vocabulary.json paper_boundaries) per link id, as in the source architectures' figure_alias. Labels only: no rule gates a step on them.",

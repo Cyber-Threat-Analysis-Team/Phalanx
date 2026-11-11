@@ -74,7 +74,7 @@ Allowed values for every field are in `src/phalanx/schemas/scenario.schema.json`
 | Method object | Where |
 |---|---|
 | ET (threat template) + ETP (projection) | `data/threats/<ET>.json` (`projection` block), `schemas/threat.schema.json` |
-| G (architecture variant): nodes with security domain, planes, functions; edges with role, `use_optionality`, domain crossing | `data/architectures/G-D53.json`, `G-CONV.json`, `schemas/architecture.schema.json` |
+| G (architecture variant): nodes with security domain, planes, functions; edges with role, `use_optionality`, domain crossing | `data/architectures/G-D53.json`, `G-CONV.json`, `transparent.json`, `schemas/architecture.schema.json` |
 | SI (scenario instance), incl. optional `authoring_aid` | `data/scenarios/<ET>/*.json`, `schemas/scenario.schema.json` |
 | ET evidence clauses (ET linkage) | `data/rules/evidence/<ET>.json` |
 | Technique profiles, attacker seeds, deprecation successors | `data/rules/techniques.json` |

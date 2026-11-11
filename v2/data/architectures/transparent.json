@@ -1,0 +1,326 @@
+{
+  "id": "transparent",
+  "source": "3GPP TR 38.821 transparent payload: gNB and core on the ground, the satellite relays Uu between the service and feeder links + author_defined TT&C chain (as G-CONV)",
+  "nodes": {
+    "moc": {
+      "segment": "Ground",
+      "assets": [
+        "ground_moc"
+      ],
+      "domain": "mission_operator",
+      "security_domain": "SD-MISSION-OPERATOR",
+      "security_domain_basis": "assumed: mission-operator ground segment inside the same administrative authority as its satellites (author_defined TT&C chain; not stated by D3.7/D5.3)",
+      "planes": [
+        "mission_operations"
+      ],
+      "functions": {
+        "ground_moc": "mission operations control"
+      }
+    },
+    "gs_primary": {
+      "segment": "Ground",
+      "assets": [
+        "ground_ttc"
+      ],
+      "domain": "mission_operator",
+      "security_domain": "SD-MISSION-OPERATOR",
+      "security_domain_basis": "assumed: mission-operator ground segment inside the same administrative authority as its satellites (author_defined TT&C chain; not stated by D3.7/D5.3)",
+      "planes": [
+        "mission_operations"
+      ],
+      "functions": {
+        "ground_ttc": "TT&C ground station (SLE/SDL)"
+      }
+    },
+    "rogue_gs": {
+      "segment": "Ground",
+      "assets": [
+        "rogue_ttc"
+      ],
+      "domain": "adversary",
+      "scope": "attacker",
+      "security_domain": "SD-ADVERSARY",
+      "security_domain_basis": "assumed: attacker-controlled station is outside every legitimate administrative authority by construction",
+      "planes": [
+        "mission_operations"
+      ],
+      "functions": {
+        "rogue_ttc": "adversary TT&C-compatible ground station"
+      }
+    },
+    "sat_service": {
+      "segment": "Space",
+      "assets": [
+        "bus_cdhs",
+        "bus_com",
+        "payload_relay"
+      ],
+      "domain": "mission_operator",
+      "security_domain": "SD-MISSION-OPERATOR",
+      "security_domain_basis": "assumed: one operator's satellites are one administrative authority (plan v5 §1.2 reading of TS 33.210; the architecture sources do not state security-domain membership)",
+      "planes": [
+        "mission_operations",
+        "service_network"
+      ],
+      "functions": {
+        "bus_cdhs": "on-board command and data handling",
+        "bus_com": "on-board communications / TT&C receiver",
+        "payload_relay": "transparent payload: frequency conversion and amplification of Uu, no RAN function"
+      }
+    },
+    "gnb_ground": {
+      "segment": "Ground",
+      "assets": [
+        "ran_gnb_ground"
+      ],
+      "domain": "mno",
+      "security_domain": "SD-MNO",
+      "security_domain_basis": "assumed: ground gNB run by the mobile network operator together with the core (TR 38.821 places the gNB at the gateway side); source does not state security-domain membership",
+      "planes": [
+        "service_network"
+      ],
+      "functions": {
+        "ran_gnb_ground": "full gNB on the ground behind the NTN gateway"
+      }
+    },
+    "core": {
+      "segment": "Ground",
+      "assets": [
+        "core_5gc"
+      ],
+      "domain": "mno",
+      "security_domain": "SD-MNO",
+      "security_domain_basis": "assumed: core network run by a distinct mobile network operator (existing `domain` value mno); source does not state security-domain membership",
+      "planes": [
+        "service_network"
+      ],
+      "functions": {
+        "core_5gc": "5G core network"
+      }
+    },
+    "fsw_pipeline": {
+      "segment": "Ground",
+      "assets": [
+        "fsw_update"
+      ],
+      "domain": "mission_operator",
+      "security_domain": "SD-MISSION-OPERATOR",
+      "security_domain_basis": "assumed: mission-operator ground segment inside the same administrative authority as its satellites (author_defined TT&C chain; not stated by D3.7/D5.3)",
+      "planes": [
+        "lifecycle_artifact"
+      ],
+      "functions": {
+        "fsw_update": "flight-software update pipeline"
+      }
+    },
+    "atlo": {
+      "segment": "Ground",
+      "assets": [
+        "integration_site"
+      ],
+      "domain": "integrator",
+      "security_domain": "SD-INTEGRATOR",
+      "security_domain_basis": "assumed: integration site is run by a separate integrator (existing `domain` value integrator)",
+      "planes": [
+        "lifecycle_artifact"
+      ],
+      "functions": {
+        "integration_site": "assembly, test and launch operations site"
+      }
+    }
+  },
+  "edges": [
+    {
+      "id": "E-SLE",
+      "src": "moc",
+      "dst": "gs_primary",
+      "type": "command",
+      "role": "operator_policy",
+      "transition": "AUTHORITY",
+      "provenance": "author_defined_extension",
+      "endpoint_assets": [
+        "ground_moc",
+        "ground_ttc"
+      ],
+      "active_lifecycle": [
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "figure_alias": [
+        "TB2"
+      ],
+      "figure_alias_basis": "interpretation: both ends on the ground; Table I places TT&C/SOC (SLE-SDL) at TB2",
+      "use_optionality": "unspecified",
+      "use_optionality_basis": "assumed: author-defined ground link; no source specifies a mechanism",
+      "crosses_security_domain": false
+    },
+    {
+      "id": "E-TCUL",
+      "src": "gs_primary",
+      "dst": "sat_service",
+      "type": "command",
+      "role": "command_authority",
+      "transition": "AUTHORITY",
+      "security_mechanism": "SDLS (CCSDS 355.0-B-2): MAC + anti-replay",
+      "provenance": "author_defined_extension",
+      "endpoint_assets": [
+        "ground_ttc",
+        "bus_com",
+        "bus_cdhs"
+      ],
+      "active_lifecycle": [
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "figure_alias": [
+        "TB2"
+      ],
+      "figure_alias_basis": "stated: Fig. 2, TR52 crosses TB2 on the TT&C command path",
+      "use_optionality": "unspecified",
+      "use_optionality_basis": "assumed: SDLS use on the TC uplink is not stated by any pinned source; SIs record the realized state in protection_applied",
+      "crosses_security_domain": false
+    },
+    {
+      "id": "E-RF",
+      "src": "rogue_gs",
+      "dst": "sat_service",
+      "type": "rf",
+      "role": "command_authority",
+      "transition": "AUTHORITY",
+      "security_mechanism": "SDLS (same TC uplink)",
+      "provenance": "author_defined_extension",
+      "endpoint_assets": [
+        "rogue_ttc",
+        "bus_com",
+        "bus_cdhs"
+      ],
+      "active_lifecycle": [
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "scope": "attacker",
+      "figure_alias": [
+        "TB2"
+      ],
+      "figure_alias_basis": "interpretation: same TC uplink as E-TCUL, from a rogue station",
+      "use_optionality": "unspecified",
+      "use_optionality_basis": "assumed: same TC uplink as E-TCUL",
+      "crosses_security_domain": true
+    },
+    {
+      "id": "E-FEEDER",
+      "src": "gnb_ground",
+      "dst": "sat_service",
+      "type": "rf",
+      "role": "uu_over_feeder",
+      "transition": "COMMUNICATION",
+      "provenance": "3GPP TR 38.821 (transparent payload)",
+      "endpoint_assets": [
+        "ran_gnb_ground",
+        "payload_relay"
+      ],
+      "active_lifecycle": [
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "figure_alias": [
+        "TB2"
+      ],
+      "figure_alias_basis": "interpretation: feeder link between ground and space",
+      "use_optionality": "unspecified",
+      "use_optionality_basis": "source: TR 38.821: the transparent payload relays the radio signal and performs no authentication; Uu security (TS 33.501) is end-to-end between UE and the ground gNB",
+      "crosses_security_domain": true
+    },
+    {
+      "id": "E-NG",
+      "src": "gnb_ground",
+      "dst": "core",
+      "type": "network",
+      "role": "ng_terrestrial",
+      "transition": "COMMUNICATION",
+      "security_mechanism": "NDS/IP (TS 33.210)",
+      "provenance": "3GPP TR 38.821 (transparent payload): Ng stays terrestrial",
+      "endpoint_assets": [
+        "ran_gnb_ground",
+        "core_5gc"
+      ],
+      "active_lifecycle": [
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "figure_alias": [
+        "TB3"
+      ],
+      "figure_alias_basis": "interpretation: ground gNB to ground core",
+      "use_optionality": "optional",
+      "use_optionality_basis": "source: TS 33.210 NDS/IP: integrity protection is mandatory between security domains (Za), optional within one (Zb); here gNB and core are both in SD-MNO (assumed), so Zb applies",
+      "crosses_security_domain": false
+    },
+    {
+      "id": "E-UPD",
+      "src": "fsw_pipeline",
+      "dst": "sat_service",
+      "type": "artifact",
+      "role": "artifact_admission",
+      "transition": "ARTIFACT_ADMISSION",
+      "provenance": "author_defined_extension",
+      "endpoint_assets": [
+        "fsw_update",
+        "bus_cdhs"
+      ],
+      "active_lifecycle": [
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "figure_alias": [
+        "TB4"
+      ],
+      "figure_alias_basis": "stated: development/update pipeline",
+      "use_optionality": "unspecified",
+      "use_optionality_basis": "assumed: author-defined artifact path; no mechanism specified",
+      "crosses_security_domain": false
+    },
+    {
+      "id": "E-ATLO",
+      "src": "atlo",
+      "dst": "sat_service",
+      "type": "custody",
+      "role": "physical_custody",
+      "transition": "PHYSICAL_CUSTODY",
+      "provenance": "author_defined_extension",
+      "endpoint_assets": [
+        "integration_site",
+        "bus_cdhs",
+        "bus_com"
+      ],
+      "active_lifecycle": [
+        2,
+        3,
+        4
+      ],
+      "figure_alias": [],
+      "figure_alias_basis": "none: physical custody is not one of the paper's five boundaries",
+      "use_optionality": "unspecified",
+      "use_optionality_basis": "assumed: author-defined physical custody; no mechanism specified",
+      "crosses_security_domain": true
+    }
+  ]
+}

@@ -53,6 +53,14 @@
     "physical_custody": {
       "transition": "PHYSICAL_CUSTODY",
       "meaning": "physical custody transfer (integration, launch)"
+    },
+    "uu_over_feeder": {
+      "transition": "COMMUNICATION",
+      "meaning": "Uu relayed between a ground gNB and a transparent payload over the feeder link"
+    },
+    "ng_terrestrial": {
+      "transition": "COMMUNICATION",
+      "meaning": "Ng between a ground gNB and the core over terrestrial transport"
     }
   },
   "traversal_only_roles": [

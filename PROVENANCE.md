@@ -28,8 +28,8 @@ flowchart TD
   WB[ENISA control workbook] -->|copied| WBC[v2/data/sources/enisa-stl-…xlsx]
   SM[SafeMode Space mappings] -->|copied| SMC[v2/data/sources/safemode-…json.gz]
   D53[6G-NTN D5.3 §5.2.1 / D3.7 §4.2] -->|authored graph| ARCH[v2/data/architectures]
-  TR[3GPP TR 38.821] -->|transparent variant| SURF[v2/data/tm/attack_surface.json]
-  ARCH --> SURF
+  TR[3GPP TR 38.821] -->|transparent variant| ARCH
+  ARCH --> SURF[v2/data/tm/attack_surface.json]
   SP & CSV -->|tools/tm_candidates.py| CAND[v2/data/tm/candidates]
   CAND -->|analyst coding| MAP[v2/data/tm/mapping]
   SURF & MAP -->|phalanx.tm, tools/tm_showcase.py| OUT[report, summary.json, CSV]
@@ -93,7 +93,7 @@ flowchart TD
 | `tm/enisa_index.json`, `tm/sparta_live.json` | derived | ENISA threat index; non-deprecated SPARTA techniques | ENISA STL 2025 Annex C; SPARTA v4.0.1 | — |
 | `tm/candidates/<TR>.json` | generated | SPARTA candidates per adversarial threat | `tools/tm_candidates.py` | — |
 | `tm/mapping/<TR>.json` | authored | access vectors and one reason code per candidate, with ENISA and SPARTA quotes | analyst-drafted (AI-assisted); author field per file | proposed |
-| `architectures/G-D53.json`, `G-CONV.json` | authored | split-RAN and conventional variants with TT&C chain; each edge has `role`, `transition`, `figure_alias` with stated/interpretation basis | 6G-NTN D5.3 §5.2.1, D3.7 §4.2; TT&C edges author-defined | draft |
+| `architectures/G-D53.json`, `G-CONV.json`, `transparent.json` | authored | split-RAN, conventional and transparent-payload variants with TT&C chain; each edge has `role`, `transition`, `figure_alias` with stated/interpretation basis | 6G-NTN D5.3 §5.2.1, D3.7 §4.2, 3GPP TR 38.821; TT&C edges author-defined | draft |
 | `threats/TR52.json` | transcribed + authored | TR52 "Seizure of control" with projection | `legacy_v1/enisa_threats_tuple.csv` row TR52 | draft |
 | `threats/TR01…TR58.json` (except held-out threats) | generated + authored | name, description, CIA, selectors, lifecycle from the Annex C row (validated against it); SV-* claims authored without SPARTA's technique links; unreviewed | `legacy_v1/enisa_threats_tuple.csv`; SPARTA v4.0.1 SV-* | draft |
 | `scenarios/<ET>/*.json` | authored | scenario instances for TR52 (A, A_CONV, B, B′, C, C′) and development scenarios for TR15, TR28, TR40, TR54, TR55 | — | draft |
