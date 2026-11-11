@@ -76,3 +76,30 @@ def test_threat_description_must_match_its_source_row(tmp_ws):
     edit("rules/evidence/TR52.json", lambda e: None)
     errs = Workspace(root).validate(check_sources=False)
     assert any("description differs" in e for e in errs)
+
+
+@pytest.mark.parametrize("rel, mutate, needle", [
+    ("rules/techniques.json", lambda t: t["tactic_defaults"]["Initial Access"].__setitem__("authority", "valid_credentail"), "authority valid_credentail"),
+    ("rules/techniques.json", lambda t: t["tactic_defaults"]["Initial Access"].__setitem__("traverses", "command_authorty"), "traverses command_authorty"),
+    ("threats/TR52.json", lambda t: t["projection"]["applicable_boundary_roles"].append("TB2"), "applicable_boundary_roles TB2"),
+])
+def test_rule_and_projection_roles_are_checked(tmp_ws, rel, mutate, needle):
+    root, edit, _ = tmp_ws
+    edit(rel, mutate)
+    assert any(needle in e for e in Workspace(root).validate(check_sources=False))
+
+
+def test_recorded_input_hash_is_the_file_actually_read(tmp_ws):
+    root, _, _ = tmp_ws
+    src = root / "sources"
+    real = src.resolve()
+    src.unlink()
+    src.mkdir()
+    for f in real.iterdir():
+        (src / f.name).symlink_to(f)
+    w = Workspace(root)
+    e = w.manifest.entries["phalanx_v1"]
+    (src / e["path"]).unlink()
+    (src / e["path"]).write_text("{}", encoding="utf-8")
+    assert w.input_hashes()[f"data/sources/{e['path']}"] != e["sha256"]
+    assert any("sources/phalanx_v1" in x and "sha256 mismatch" in x for x in w.validate())

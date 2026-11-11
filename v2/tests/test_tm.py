@@ -1,7 +1,7 @@
 """Scenario engine of the threat-modeling showcase (phalanx.tm): computed paths, authority, door, chain, link-only."""
 import pytest
 
-from phalanx.tm import Model, entry_paths, scenarios
+from phalanx.tm import Model, boundaries, entry_paths, scenarios
 
 
 def K(tech, role, code="K-ENABLE", enables="IMP-0011", **kw):
@@ -186,3 +186,57 @@ def test_link_only_outcome_on_an_uncontrolled_link_is_no_residual_difference():
     res = scenarios(model(rows, ["feeder_rf"]), "TRX")
     d = next(c for c in res["comparison"] if c["against"] == "transparent")
     assert "residual_differs" not in d["kinds"]
+
+
+def test_g_d53_f1_isl_is_left_at_the_far_end_when_crossed_backwards():
+    res = scenarios(model(ROWS, ["user_terminal"]), "TRX")
+    pv = next(p for p in res["architectures"]["G-D53"])
+    sub = [s for s in pv["scenarios"] if s["credential"] == "subscriber_valid" and s["path"]["via"] == ["SERVICE", "F1-ISL", "HOST-F"]]
+    by = {s["setting"]: s for s in sub}
+    # F1-ISL is defined cu → du but crossed du → cu; only HOST-F (segregation) stops the attacker at the CU
+    assert by["only ipsec_f1 off"]["reached"] == "sat_feeder.cu" and "segregation" in by["only ipsec_f1 off"]["stopped_by"]
+    assert by["on"]["reached"] == "sat_service.du" and "no_effect" not in by
+
+
+def test_boundaries_follow_the_walk_direction_of_a_reversed_link():
+    arch = {"nodes": {"a": {"operated_by": "x", "segment": "ground"}, "b": {"operated_by": "y", "segment": "space"}},
+            "links": [{"id": "L", "from": "b", "to": "a", "kind": "feeder"}]}
+    assert boundaries(arch, {"links": ["L"], "reaches": "b", "via": ["L"]}) == ["L: x→y (ground→space)"]
+
+
+def test_a_blocked_entry_does_not_make_the_chains_differ():
+    from phalanx.tm import _arch_view
+    def view(*settings):
+        sc = [dict(reached=None, accepted=0, path={"kinds": []}, boundaries=[], path_controls=[], controls_on=[], complete=False,
+                   setting=st, steps=[{"technique": "IA-0008", "removed": None if st == "off" else "authority"}]) for st in settings]
+        return _arch_view({"scenarios": sc})["chains"]
+    assert view("off", "on") == view("off") == [("IA-0008",)]
+
+
+def test_a_user_terminal_is_not_a_ground_side_attacker():
+    rows = [K("IA-0009.03", "entry", enables="EXF-0007"), {"technique": "EXF-0007", "role": "exfiltration", "code": "K-EFFECT"}]
+    steps, _ = pick(scenarios(model(rows, ["user_terminal"]), "TRX"), "G-CONV", "user_terminal", credential="none", setting="off")
+    assert steps["EXF-0007"].startswith("reachability: needs an attacker on the ground side")
+
+
+def test_validate_rejects_enables_cycles_and_survives_an_unknown_vector(tmp_path, monkeypatch):
+    import importlib.util
+    import json
+    from pathlib import Path
+    spec = importlib.util.spec_from_file_location("tm_validate", Path(__file__).parents[1] / "tools" / "tm_validate.py")
+    tv = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(tv)
+    seen = {"A": {"enables": "B"}, "B": {"enables": ["C"]}, "C": {"enables": "A"}, "D": {"enables": "D"}, "E": {"enables": "A"}}
+    assert tv._enables_cycle(seen, set(seen)) == ["A", "B", "C", "D"]
+    desc = "attackers run code on the spacecraft"
+    quote = {"sparta_quote": "run code on", "reason": "r", "code": "K-ENABLE"}
+    mp = {"vectors": [{"vector": "nowhere", "enisa_quote": "run code on the spacecraft"}],
+          "rows": [{"technique": "EX-1", "role": "entry", **quote, "enables": "EX-2"},
+                   {"technique": "EX-2", "role": "execution", **quote, "enables": "EX-2"}]}
+    for sub, name, data in (("mapping", "TRX", mp), ("candidates", "TRX", {"description": desc, "candidates": []})):
+        (tmp_path / sub).mkdir()
+        (tmp_path / sub / f"{name}.json").write_text(json.dumps(data), encoding="utf-8")
+    monkeypatch.setattr(tv, "TM", tmp_path)
+    live = {t: {"tactic": "Execution", "name": t, "description": "run code on the target"} for t in ("EX-1", "EX-2")}
+    errs = tv.validate("TRX", live, {"origins": {}}, {"TRX": {"category": "c"}}, {"overrides": {}, "default_adversarial_categories": ["c"]})
+    assert any("EX-2: enables itself" in e for e in errs) and not any("Error" in e for e in errs)

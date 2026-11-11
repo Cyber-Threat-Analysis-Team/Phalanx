@@ -96,8 +96,9 @@ class Workspace:
     def input_hashes(self) -> dict[str, str]:
         """sha256 of every authored file read so far and every pinned source."""
         out = {f"data/{k}": sources.sha256_file(p) for k, p in sorted(self.files.items())}
-        for k, e in self.manifest.entries.items():
-            out[f"data/sources/{e['path']}"] = e["sha256"]
+        for e in self.manifest.entries.values():
+            f = self.manifest.root / e["path"]
+            out[f"data/sources/{e['path']}"] = sources.sha256_file(f) if f.exists() else ""
         return out
 
     # ---- validation
@@ -106,39 +107,50 @@ class Workspace:
         errs: list[str] = []
 
         def against(name, obj, where):
+            n = len(errs)
             for e in jsonschema.Draft202012Validator(schema(name)).iter_errors(obj):
                 path = "/".join(str(x) for x in e.absolute_path)
                 errs.append(f"{where}: {path or '<root>'}: {e.message}")
+            return len(errs) == n
 
         if check_sources:
             for k, (ok, actual) in self.manifest.verify().items():
                 if not ok:
                     errs.append(f"sources/{k}: sha256 mismatch or missing file (got {actual or 'nothing'})")
-        against("techniques", self.techniques, "rules/techniques.json")
+        rules_ok = against("techniques", self.techniques, "rules/techniques.json")
+        bad_threats = set()
         for tid, t in self.threats.items():
-            against("threat", t, f"threats/{tid}.json")
+            if not against("threat", t, f"threats/{tid}.json"):
+                bad_threats.add(tid)
             if t.get("id") != tid:
                 errs.append(f"threats/{tid}.json: id {t.get('id')} does not match file name")
             ev = self.evidence(tid)
             if ev is not None:
-                against("evidence", ev, f"rules/evidence/{tid}.json")
+                if not against("evidence", ev, f"rules/evidence/{tid}.json"):
+                    bad_threats.add(tid)
+        bad_archs = set()
         for gid, g in self.architectures.items():
-            against("architecture", g, f"architectures/{gid}.json")
-            errs += self._check_graph(gid, g)
+            if against("architecture", g, f"architectures/{gid}.json"):
+                errs += self._check_graph(gid, g)
+            else:
+                bad_archs.add(gid)
         for tid, sis in self.scenarios.items():
             if tid not in self.threats:
                 errs.append(f"scenarios/{tid}: no threat file threats/{tid}.json")
             seen = set()
             for si in sis:
                 where = f"scenarios/{tid}/{si.get('si_id')}"
-                against("scenario", si, where)
+                si_ok = against("scenario", si, where)
                 if si.get("si_id") in seen:
                     errs.append(f"{where}: duplicate si_id")
                 seen.add(si.get("si_id"))
-                errs += self._check_scenario(tid, si, where)
-        errs += self._check_identifiers()
+                if si_ok and si.get("variant") not in bad_archs:
+                    errs += self._check_scenario(tid, si, where, tid in bad_threats)
+        if rules_ok:
+            errs += self._check_identifiers(bad_threats)
         from . import registry, selectors
-        errs += [f"docs/rule_registry.json: {e}" for e in registry.check(registry.load(), self)]
+        if rules_ok and not bad_threats:      # the registry check reads rules and evidence without schema guards
+            errs += [f"docs/rule_registry.json: {e}" for e in registry.check(registry.load(), self)]
         if (self.root / "selectors").exists():
             errs += [f"selectors: {e}" for e in selectors.validate_registry(selectors.load_registry(self))]
         return errs
@@ -165,7 +177,7 @@ class Workspace:
                 errs.append(f"architectures/{gid}: edge {e.get('id')} crosses_security_domain disagrees with endpoint security domains")
         return errs
 
-    def _check_scenario(self, tid, si, where) -> list[str]:
+    def _check_scenario(self, tid, si, where, threat_bad=False) -> list[str]:
         errs = []
         g = self.architectures.get(si.get("variant"))
         if g is None:
@@ -177,7 +189,7 @@ class Workspace:
         for asset, node in si["selected_asset_instances"].items():
             if asset not in g["nodes"].get(node, {}).get("assets", []):
                 errs.append(f"{where}: selected asset {asset} is not on node {node} in {g['id']}")
-        threat = self.threats.get(tid)
+        threat = None if threat_bad else self.threats.get(tid)
         if threat:
             extra = set(si["selected_asset_instances"]) - set(threat["projection"]["candidate_assets"])
             if extra:
@@ -190,7 +202,7 @@ class Workspace:
                 errs.append(f"{where}: protection_applied names unknown edge {eid}")
         return errs
 
-    def _check_identifiers(self) -> list[str]:
+    def _check_identifiers(self, bad_threats=frozenset()) -> list[str]:
         """Invariant I10: authored rule tables may not name unknown or deprecated SPARTA techniques."""
         errs, cat = [], self.catalog.techniques
         tr = self.techniques
@@ -211,7 +223,19 @@ class Workspace:
         for tac in tr["tactic_defaults"]:
             if tac not in self.vocabulary["tactic_order"]:
                 errs.append(f"rules/techniques.json: tactic {tac} not in vocabulary.tactic_order")
+        auth, roles = self.vocabulary["authority_rules"], self.vocabulary["boundary_roles"]
+        for where, p in [(f"tactic_defaults.{k}", v) for k, v in tr["tactic_defaults"].items()] + \
+                        [(f"overrides.{k}", v) for k, v in tr["overrides"].items()]:
+            if p.get("authority", "none") not in {*auth, "none"}:
+                errs.append(f"rules/techniques.json {where}: authority {p['authority']} not in vocabulary.authority_rules")
+            if p.get("traverses") not in {*roles, *self.vocabulary["traversal_only_roles"], None}:
+                errs.append(f"rules/techniques.json {where}: traverses {p['traverses']} not in vocabulary.boundary_roles")
         for th in self.threats:
+            if th in bad_threats:
+                continue
+            for r in self.threats[th]["projection"]["applicable_boundary_roles"]:
+                if r not in roles:
+                    errs.append(f"threats/{th}.json: applicable_boundary_roles {r} not in vocabulary.boundary_roles")
             ev = self.evidence(th)
             description = self.threats[th].get("description", "")
             for cid, c in (ev or {}).get("clauses", {}).items():
@@ -248,7 +272,7 @@ class Workspace:
         t = self.threats[th]
         if "enisa_threats_tuple.csv" not in t.get("source", ""):
             return []
-        path = DEFAULT_DATA / "legacy_v1" / "enisa_threats_tuple.csv"
+        path = self.root / "legacy_v1" / "enisa_threats_tuple.csv"
         where = f"threats/{th}.json"
         if not path.exists():
             return [f"{where}: source file {path} not found"]

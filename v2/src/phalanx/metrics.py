@@ -23,8 +23,8 @@ from pathlib import Path
 from . import baselines, engine, evaluation, pipeline
 from .workspace import Workspace
 
-STATUS_NOTE = ("development / illustrative: TR52 scenarios are development SIs, the expectation catalogue was "
-               "written after TR52 results were seen, and the negative universe is derived from B3 acceptances; "
+STATUS_NOTE = ("development / illustrative: {threat} scenarios are development SIs, the expectation catalogue was "
+               "written after {threat} results were seen, and the negative universe is derived from B3 acceptances; "
                "none of this is a validation result")
 CANDIDATE_LISTS = ("B0", "B1b")   # methods whose raw output is a technique list (every listed technique = accepted)
 _RANK = {"accepted": 2, "unresolved": 1, "rejected": 0}
@@ -228,7 +228,7 @@ def constructed_negatives(ws: Workspace, threat_id: str, scenario_ids: list[str]
         universe.setdefault(n["si"], [])
         if n["technique"] not in universe[n["si"]]:
             universe[n["si"]].append(n["technique"])
-    lists = {"B0": baselines.run_b0(threat_id, list(sis.values()),
+    lists = {"B0": baselines.run_b0(threat_id, list(sis.values()), framework=ws.root / "legacy_v1",
                                     pinned_sha256=ws.manifest.entries["phalanx_v1"]["sha256"]),
              "B1b": baselines.run_b1b(ctx["threat"], list(sis.values()), ws.catalog)}
     cells = evaluation.cells({m: evaluation.from_b0(b) for m, b in lists.items()}, universe) if universe else []
@@ -307,8 +307,10 @@ def _targets(exp: dict, v: dict, sis: list[str]) -> list[str]:
     ts = exp["techniques"]
     if ts != "all":
         return ts
-    sets = [set(v[s]["decisions"]) for s in sis if s in v]
-    return sorted(set.intersection(*sets)) if sets else []
+    for s in sis:
+        if s not in v:
+            raise _NotEvaluable(s)
+    return sorted(set.intersection(*(set(v[s]["decisions"]) for s in sis)))
 
 
 def _collapse_set(x, collapse: bool):
@@ -512,17 +514,21 @@ def report(ws: Workspace, threat_id: str, scenario_ids: list[str] | None = None,
     workspaces."""
     bundles = {m: pipeline.run(ws, threat_id, scenario_ids, method=m) for m in ("B3", "B2")}
     sis = [r["si"] for r in bundles["B3"]["results"]]
-    lists = {"B0": baselines.run_b0(threat_id, sis, pinned_sha256=ws.manifest.entries["phalanx_v1"]["sha256"]),
+    lists = {"B0": baselines.run_b0(threat_id, sis, framework=ws.root / "legacy_v1", pinned_sha256=ws.manifest.entries["phalanx_v1"]["sha256"]),
              "B1b": baselines.run_b1b(ws.threats[threat_id], sis, ws.catalog)}
     # B1b is exploratory and no expectation lists it; B0 is evaluated on accepted / not_accepted only
     views = {m: view(b) for m, b in bundles.items()} | {"B0": list_view(lists["B0"])}
-    expectations = load_expectations(ws, threat_id)
-    out = {"threat": threat_id, "scenarios": [s["si_id"] for s in sis], "status": STATUS_NOTE,
-           "anchor_recovery": {"status": "not_applicable: TR52 scenarios are development SIs without published anchor "
+    if (ws.root / "expectations" / f"{threat_id}.json").exists():
+        directional = directional_pass(load_expectations(ws, threat_id), views)
+    else:
+        directional = {"status": f"not_applicable: no expectation catalogue for {threat_id}", "catalogue": None,
+                       "methods": {}}
+    out = {"threat": threat_id, "scenarios": [s["si_id"] for s in sis], "status": STATUS_NOTE.format(threat=threat_id),
+           "anchor_recovery": {"status": f"not_applicable: {threat_id} scenarios are development SIs without published anchor "
                                          "assertions; gate anchors are never run as development scenarios; "
                                          "recovery is tested on synthetic fixtures only"},
            "constructed_negatives": constructed_negatives(ws, threat_id, scenario_ids, bundles["B3"]),
-           "directional_pass": directional_pass(expectations, views),
+           "directional_pass": directional,
            "decision_record_completeness": {m: completeness(b, ws.vocabulary) for m, b in bundles.items()}
            | {m: {"status": "not_applicable: a candidate list carries no decision record"} for m in lists},
            "replay": {m: replay_stats([pipeline.run(Workspace(ws.root), threat_id, scenario_ids, method=m)

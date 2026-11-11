@@ -185,3 +185,10 @@ def test_prefix_of_and_token_scan():
     assert registry.prefix_of("ET-EV-01") is None
     assert registry.tokens_in("see check_AFG-CHK-01 and MAP-CG-02, not ET-EV-03 or SI-I-xx") == {"AFG-CHK-01", "MAP-CG-02"}
     assert re.fullmatch(r"[0-9a-f]{64}", registry.load()["legacy_source_sha256"])
+
+
+def test_altered_legacy_engine_is_reported(reg, tmp_ws):
+    root, _, _ = tmp_ws
+    with open(root / "legacy_v1" / "ntn_threat_algorithm.py", "a", encoding="utf-8") as f:
+        f.write("\n# altered\n")
+    assert any("legacy_source_sha256" in e for e in registry.check(reg, Workspace(root)))

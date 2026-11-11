@@ -106,3 +106,21 @@ def test_zero_candidates_reports_no_coverage_not_rejection(tmp_ws):
     assert res["mrs"] == []
     assert [a["type"] for a in res["af"]] == ["no_framework_coverage"]
     assert b["invariant_violations"] == []
+
+
+def test_passed_requires_fact_is_not_a_missing_fact(tmp_ws):
+    from phalanx import pipeline
+    from phalanx.workspace import Workspace
+    root, edit, _ = tmp_ws
+    edit("scenarios/TR52/C.json", lambda s: s["platform_state"].update(safe_mode=True))
+    r = _by_id(pipeline.run(Workspace(root), "TR52", ["SI-TR52-C"]))["SI-TR52-C"]
+    mr = next(m for m in r["mrs"] if m["technique"] == "EX-0011")
+    assert "SI.platform_state.safe_mode" not in mr["root_facts"]
+
+
+def test_evidence_only_gaps_are_insufficient_evidence():
+    from phalanx.engine import findings
+    mrs = {"T": {"status": "unresolved", "mr_id": "MR-1", "root_facts": ["ET-linked evidence", "ET-linked evidence for the entry step"]}}
+    att = {"class": "x"}
+    rules = type("R", (), {"vocabulary": {"candidate_generators": {}}})()
+    assert findings(mrs, {}, [{"x": 1}], att, rules)[0]["type"] == "insufficient_evidence"

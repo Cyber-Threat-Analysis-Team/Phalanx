@@ -47,6 +47,13 @@ def _enables(r: dict) -> list[str]:
     return [e] if isinstance(e, str) else list(e or [])
 
 
+def _enables_cycle(seen: dict[str, dict], kept: set[str]) -> list[str]:
+    """Kept techniques that enable themselves, directly or through other kept rows; chain pruning cannot remove those."""
+    def reaches(t: str, goal: str, trail: set[str]) -> bool:
+        return any(n == goal or (n not in trail and reaches(n, goal, trail | {n})) for n in _enables(seen[t]) if n in kept)
+    return sorted(t for t in kept if reaches(t, t, {t}))
+
+
 def _quote(q: str | None, text: str, what: str) -> list[str]:
     q = norm(q)
     if not q:
@@ -151,9 +158,9 @@ def validate(tid: str, live: dict, surface: dict, index: dict, adv: dict) -> lis
             for v in rv:
                 if v not in vecs:
                     errs.append(f"{where}: vector {v} not chosen")
-                elif role == "entry" and t not in entry_of[v]:
+                elif role == "entry" and t not in entry_of.get(v, set()):
                     errs.append(f"{where}: entry role but not an entry technique of vector {v}")
-                elif role != "entry" and t in entry_of[v]:
+                elif role != "entry" and t in entry_of.get(v, set()):
                     errs.append(f"{where}: entry technique of vector {v} must have role entry")
             if "link_only" in r and not r.get("link_only_reason"):
                 errs.append(f"{where}: link_only override needs link_only_reason")
@@ -177,6 +184,8 @@ def validate(tid: str, live: dict, surface: dict, index: dict, adv: dict) -> lis
         for v in r.get("vectors", vecs):
             if not any(v in e.get("vectors", vecs) for e in en):
                 errs.append(f"{t}: kept for vector {v} but every step that enables it belongs to another vector")
+    for t in _enables_cycle(seen, kept):
+        errs.append(f"{t}: enables itself (directly or through other kept rows)")
     for reason, n in collections.Counter(norm(r.get("reason")) for r in rows).items():
         if reason and n > MAX_SAME_REASON:
             errs.append(f"same reason on {n} rows: {reason[:70]}")

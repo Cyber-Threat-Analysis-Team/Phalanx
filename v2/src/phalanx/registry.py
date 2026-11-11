@@ -11,6 +11,7 @@ import re
 from collections import Counter, defaultdict
 from pathlib import Path
 
+from .sources import sha256_file
 from .workspace import Workspace
 
 DEFAULT_REGISTRY = Path(__file__).resolve().parents[2] / "docs" / "rule_registry.json"
@@ -106,6 +107,10 @@ def check(registry: dict, ws: Workspace) -> list[str]:
         return ["registry: no rules"]
     if tuple(registry.get("prefixes", {})) != PREFIXES:
         errs.append(f"registry: prefixes {list(registry.get('prefixes', {}))} differ from the protocol set {list(PREFIXES)}")
+
+    v1 = ws.root / "legacy_v1" / "ntn_threat_algorithm.py"
+    if registry.get("legacy_source_sha256") != sha256_file(v1):
+        errs.append(f"{v1.name}: sha256 differs from the pinned legacy_source_sha256")
 
     # ---- identifiers
     ids = [r.get("id") for r in rules]

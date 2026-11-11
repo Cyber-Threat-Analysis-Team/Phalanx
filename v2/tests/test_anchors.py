@@ -101,13 +101,15 @@ def test_linkage_rows_resolve_quote_their_sources_and_flag_tr52(ws):
     d = json.loads((ws.root / "anchors" / "et_linkage.json").read_text(encoding="utf-8"))
     known = {a["id"] for a in anchors.load(ws.root / "anchors" / "published_mappings.json")["anchors"]}
     vault = ws.root.parents[3]
+    has_vault = (vault / "research" / "notes").is_dir()
     for a in d["anchors"]:
         assert a["anchor_id"] in known and a["linkage"]
         for row in a["linkage"]:
             assert row["enisa_quote"] in desc[row["et_id"]], row["et_id"]
             assert row["rationale"] and row["tuned_before_linkage"] == (row["et_id"] == "TR52")
             note = vault / row["anchor_note"]
-            if note.exists():
+            if has_vault:
+                assert note.exists(), row["anchor_note"]
                 assert note.read_text(encoding="utf-8").count(row["anchor_quote"]) == 1, (a["anchor_id"], row["et_id"])
 
 def _vault_notes(ws):

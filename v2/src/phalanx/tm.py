@@ -115,6 +115,13 @@ def entry_paths(arch: dict, origin: dict) -> list[dict]:
     return sorted(out, key=lambda e: (e["reaches"], e["via"]))
 
 
+def _far_ends(plinks: list[dict], reaches: str) -> list[str]:
+    """Node at which each path link is left: the node shared with the next link, the last link ends at the path's end.
+    Links are walked in both directions, so this is not always the link's `to`."""
+    ends = [l["to"] if l["to"] in (n["from"], n["to"]) else l["from"] for l, n in zip(plinks, plinks[1:])]
+    return ends + [reaches] if plinks else []
+
+
 def boundaries(arch: dict, path: dict) -> list[str]:
     """Operator changes along the path (node operated_by), including attacker → system at a rogue or proximity entry."""
     nodes, links = arch["nodes"], {l["id"]: l for l in arch["links"]}
@@ -129,12 +136,15 @@ def boundaries(arch: dict, path: dict) -> list[str]:
         first = links[path["links"][0]]
         near = first["to"] if first["from"].startswith(path["from_satellite"]) else first["from"]
         out.append(f"{first['id']}: neighbour satellite→{nodes[near]['operated_by']}")
-    for lid in path["links"]:
+    far = _far_ends([links[i] for i in path["links"]], path["reaches"])
+    for i, lid in enumerate(path["links"]):
         l = links[lid]
         if path.get("rogue") == lid or (path.get("from_satellite") and lid == path["links"][0]):
             continue
-        a, b = nodes[l["from"]]["operated_by"], nodes[l["to"]]["operated_by"]
-        seg = nodes[l["from"]]["segment"] != nodes[l["to"]]["segment"]
+        end = far[i]
+        start = far[i - 1] if i else (l["from"] if end == l["to"] else l["to"])
+        a, b = nodes[start]["operated_by"], nodes[end]["operated_by"]
+        seg = nodes[start]["segment"] != nodes[end]["segment"]
         if a != b:
             out.append(f"{lid}: {a}→{b}" + (" (ground→space)" if seg else ""))
         elif seg:
@@ -153,6 +163,7 @@ def _evaluate(m: Model, arch: dict, origin: dict, path: dict, cred: str, on: set
     mine = {r["technique"] for r in rows}      # door / crosslink / reverse door must be kept for this attacker origin
     links = {l["id"]: l for l in arch["links"]}
     plinks = [links[i] for i in path["links"]]
+    far = _far_ends(plinks, path["reaches"])
     blocked = lambda l: l.get("control") in on and not _bypass(m, l["control"], cred)
     steps: list[dict] = []
     land = None            # index in plinks after which the attacker stands (-1: before the first link)
@@ -183,8 +194,9 @@ def _evaluate(m: Model, arch: dict, origin: dict, path: dict, cred: str, on: set
         if path.get("proximity"):
             reached = path["reaches"]
         else:
-            reached = plinks[land]["to"] if land >= 0 else None
-            for l in plinks[land + 1:]:
+            reached = far[land] if land >= 0 else None
+            for i in range(land + 1, len(plinks)):
+                l = plinks[i]
                 if l["kind"] == "hosted" and not (set(m.surface["door"]["techniques"]) & mine):
                     stop = "no door technique (IA-0006/LM-0001) kept for this threat"
                 elif l["kind"] == "hosted" and blocked(l):
@@ -195,10 +207,11 @@ def _evaluate(m: Model, arch: dict, origin: dict, path: dict, cred: str, on: set
                     stop = f"{l['control']} on; needs {m.surface['controls'][l['control']]['bypassed_by']}"
                 if stop:
                     break
-                reached = l["to"]
+                reached = far[i]
     on_bus = bool(reached and reached.endswith(".bus"))
     entered = land is not None
-    ground_ok = entered and "from_nodes" in origin["attach"]       # ground-side steps need an attacker on the ground side
+    # ground-side steps need an attacker that starts on the ground side (a user terminal does not)
+    ground_ok = entered and any(arch["nodes"].get(n, {}).get("segment") == "ground" for n in origin["attach"].get("from_nodes", []))
     # radio links the attacker can act on: its rogue link, its service link, or the TT&C link of a ground station it is in
     acts_on = set()
     if path.get("rogue"):
@@ -339,7 +352,9 @@ def _arch_view(per_vec: dict) -> dict:
     sc = per_vec["scenarios"]
     return {"reached": sorted({s["reached"] for s in sc if s["reached"] and s["accepted"]}),
             "paths": sorted({tuple(s["path"]["kinds"]) for s in sc}),
-            "chains": sorted({tuple(x["technique"] for x in s["steps"] if x["removed"] is None) for s in sc}),
+            # only runs where no control stops the attacker; a blocked entry would differ merely because a control exists
+            "chains": sorted({tuple(x["technique"] for x in s["steps"] if x["removed"] is None) for s in sc
+                              if s["setting"] in ("off", "none", "bypassed", "no_effect")}),
             # every modelled control on the path is on (none on the path, on, bypassed or without effect)
             "complete_on": any(s["complete"] for s in sc if set(s["path_controls"]) <= set(s["controls_on"])),
             "boundaries": sorted({b.split(": ", 1)[1] for s in sc for b in s["boundaries"]}),

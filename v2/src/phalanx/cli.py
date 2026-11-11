@@ -157,14 +157,14 @@ def cmd_metrics(args) -> int:
     for m, d in cn["methods"].items():
         split = f"  rejected {d['rejected']}, unresolved {d['unresolved']}" if "rejected" in d else \
             f"  not_generated {d['not_generated']}"
-        print(f"  {m:<4} {d['accepted']:>4}/{d['negatives']:<4} ({d['rate']:.1%}){split}")
+        print(f"  {m:<4} {d['accepted']:>4}/{d['negatives']:<4} ({'n/a' if d['rate'] is None else format(d['rate'], '.1%')}){split}")
     print(f"directional pass ({res['directional_pass']['status']}):")
     for m, d in res["directional_pass"]["methods"].items():
         print(f"  {m:<4} {d['passed']:>3}/{d['evaluated']:<3} violations {d['violation_count']}")
     for m in ("B3", "B2"):
         c, r, u = res["decision_record_completeness"][m], res["replay"][m], res["unresolved"][m]
         print(f"{m}: record completeness {c['complete']}/{c['mrs']}; replay {r['runs']} runs hash_equal={r['hash_equal']} "
-              f"flips {r['decision_flips']} ({r['scope'].split(';')[0]}); unresolved {u['unresolved']}/{u['mrs']} ({u['rate']:.1%})")
+              f"flips {r['decision_flips']} ({r['scope'].split(';')[0]}); unresolved {u['unresolved']}/{u['mrs']} ({'n/a' if u['rate'] is None else format(u['rate'], '.1%')})")
     print(f"metrics hash {res['metrics_sha256']}")
     return 0
 

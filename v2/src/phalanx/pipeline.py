@@ -119,7 +119,7 @@ def compare(ws: Workspace, threat_id: str, scenario_ids: list[str] | None = None
     b3 = run(ws, threat_id, scenario_ids, method="B3")
     b2 = run(ws, threat_id, scenario_ids, method="B2")
     sis = [r["si"] for r in b3["results"]]
-    b0 = baselines.run_b0(threat_id, sis, pinned_sha256=ws.manifest.entries["phalanx_v1"]["sha256"])
+    b0 = baselines.run_b0(threat_id, sis, framework=ws.root / "legacy_v1", pinned_sha256=ws.manifest.entries["phalanx_v1"]["sha256"])
     b1b = baselines.run_b1b(ws.threats[threat_id], sis, ws.catalog)
     rows = evaluation.cells({"B3": evaluation.from_engine(b3), "B2": evaluation.from_engine(b2),
                              "B0": evaluation.from_b0(b0), "B1": evaluation.not_applicable(s["si_id"] for s in sis),

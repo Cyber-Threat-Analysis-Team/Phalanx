@@ -114,8 +114,8 @@
       "optional": true
     },
     "as_security": {
-      "label": "5G access-stratum / NAS security on the service link",
-      "label_ko": "서비스 링크 5G AS/NAS 보안",
+      "label": "5G access-stratum / NAS security (UE ↔ gNB; also covers Uu relayed over a transparent feeder link)",
+      "label_ko": "5G AS/NAS 보안 (UE ↔ gNB)",
       "bypassed_by": "subscriber_valid",
       "source": "TS 33.501",
       "encrypts": true,
@@ -885,8 +885,9 @@
           "from": "gnb",
           "to": "sat_service.payload",
           "kind": "feeder",
+          "control": "as_security",
           "label": "feeder link (relayed Uu)",
-          "basis": "3GPP TR 38.821: the feeder link carries the relayed Uu between the gateway/gNB and the payload; the payload performs no authentication, so no control is placed on this link"
+          "basis": "3GPP TR 38.821: the feeder link carries the relayed Uu between the gateway/gNB and the payload; the payload performs no authentication itself, but 5G AS security between the UE and the ground gNB (TS 33.501) protects the relayed traffic end to end"
         },
         {
           "id": "SERVICE",

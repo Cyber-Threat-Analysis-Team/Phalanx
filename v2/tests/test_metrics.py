@@ -181,6 +181,23 @@ def test_expectation_on_unselected_scenario_is_not_evaluated_rather_than_failed(
     assert out["violations"] == []
     assert {e["expectation"] for e in out["not_evaluated"]} >= {"DIR-01", "INV-01"}
     assert out["evaluated"] == out["passed"] and out["evaluated"] < 21
+    assert {"DIR-01", "INV-01"} <= {e["expectation"] for e in out["not_evaluated"]}
+    both_missing = metrics.directional_pass(exps, {"B3": {}})["methods"]["B3"]
+    assert both_missing["evaluated"] == 0 and both_missing["not_evaluated"]
+
+
+def test_report_without_expectation_catalogue_is_not_applicable(tmp_ws):
+    root = tmp_ws[0]
+    (root / "expectations" / "TR52.json").unlink()
+    out = metrics.report(Workspace(root), "TR52", runs=2)["directional_pass"]
+    assert out["status"] == "not_applicable: no expectation catalogue for TR52" and out["methods"] == {}
+
+
+def test_b0_in_pipeline_reads_the_workspace_legacy_copy(tmp_ws):
+    root = tmp_ws[0]
+    (root / "legacy_v1" / "enisa_threats_tuple.csv").unlink()
+    with pytest.raises(FileNotFoundError):
+        pipeline.compare(Workspace(root), "TR52")
 
 
 # ------------------------------------------------------------------ 4. decision-record completeness

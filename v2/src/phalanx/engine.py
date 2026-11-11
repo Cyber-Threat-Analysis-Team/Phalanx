@@ -199,7 +199,7 @@ def check(tid: str, p: dict, catalog: Catalog, si: dict, G: dict, rules: Rules, 
     for path, want in p.get("requires_fact", {}).items():
         v = fact(si, path)
         reach.append(("unknown", f"missing fact SI.{path} (needs {want})") if v == "unknown"
-                     else (("pass" if v == want else "fail"), f"SI.{path} = {v}, needs {want}"))
+                     else (("pass" if v == want else "fail"), f"{'SI.' if v != want else ''}{path} = {v}, needs {want}"))
     worst = min(reach, key=lambda x: _ORDER[x[0]])
     res.append(("reachability", worst[0], "; ".join(d for _, d in reach)))
 
@@ -379,7 +379,7 @@ def findings(mrs: dict, gen_of: dict, accepted: list, att: dict, rules: Rules) -
     for t in sorted(mrs):
         m = mrs[t]
         if m["status"] == "unresolved":
-            af.append({"type": "insufficient_evidence" if m["root_facts"] == [EVIDENCE_FACT] else "missing_system_state",
+            af.append({"type": "missing_system_state" if any(f.startswith("SI.") for f in m["root_facts"]) else "insufficient_evidence",
                        "mr_id": m["mr_id"], "facts": m["root_facts"]})
     for t in sorted(gen_of):
         if gen_of[t] & gap_sources and not gen_of[t] & baseline:
